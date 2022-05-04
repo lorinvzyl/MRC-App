@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRC App.Android", "Midrand Reformed Church App\Midrand Reformed Church App.Android\MRC App.Android.csproj", "{951DD0C7-90D1-47CA-838F-D1B532516923}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRC App.Android", "MRC App\MRC App.Android\MRC App.Android.csproj", "{951DD0C7-90D1-47CA-838F-D1B532516923}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRC App.iOS", "Midrand Reformed Church App\Midrand Reformed Church App.iOS\MRC App.iOS.csproj", "{1C35EC70-799D-4961-B91D-46C72B2E8C97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRC App.iOS", "MRC App\MRC App.iOS\MRC App.iOS.csproj", "{1C35EC70-799D-4961-B91D-46C72B2E8C97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRC App", "Midrand Reformed Church App\Midrand Reformed Church App\MRC App.csproj", "{D94812DC-781E-4A4A-8AF8-CCB80EEF87FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRC App", "MRC App\MRC App\MRC App.csproj", "{D94812DC-781E-4A4A-8AF8-CCB80EEF87FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

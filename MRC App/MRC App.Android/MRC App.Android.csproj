@@ -87,7 +87,7 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Midrand Reformed Church App\MRC App.csproj">
+    <ProjectReference Include="..\MRC App\MRC App.csproj">
       <Project>{D94812DC-781E-4A4A-8AF8-CCB80EEF87FE}</Project>
       <Name>MRC App</Name>
     </ProjectReference>
