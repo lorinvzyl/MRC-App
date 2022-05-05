@@ -78,15 +78,35 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="About" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+    <FlyoutItem Title="Home">
+        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Browse" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
+    <FlyoutItem Title="Blog">
+        <ShellContent Route="BlogPage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Archive">
+        <ShellContent Route="ArchivePage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Contact">
+        <ShellContent Route="ContactPage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Donate">
+        <ShellContent Route="DonatePage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Events">
+        <ShellContent Route="EventPage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="QR Scan">
+        <ShellContent Route="QRPage"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Youth">
+        <ShellContent Route="YouthPage"/>
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    </MenuItem>
+    <MenuItem Text="Sign Up" StyleClass="MenuItemLayoutStyle">
     </MenuItem>
 
     <!--

@@ -7,8 +7,20 @@
              x:Class="Midrand_Reformed_Church_App.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+        <StackLayout Orientation="Vertical" Spacing="40" Padding="10,0,10,0" VerticalOptions="Center">
+            <BoxView HeightRequest="10"/>
+            <Image HorizontalOptions="Center" WidthRequest="300" Source="#"/>
+            <Frame HasShadow="False">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="Email" Text="Email" Placeholder="Email"
+                           PlaceholderColor="Black" HeightRequest="40"
+                           Keyboard="Email" TextColor="Black"/>
+                    <Entry x:Name="Password" Text="Password" Placeholder="Password"
+                           PlaceholderColor="Black" HeightRequest="40"
+                           IsPassword="True" TextColor="Black"/>
+                </StackLayout>
+            </Frame>
+            <Button VerticalOptions="Center" WidthRequest="200" Text="Login" Command="{Binding LoginCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
