@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<!--
+    The purpose of the blog page is for users to view written texts from the pastor, whether that be educational or spiritual blocks of text.
+    I do not think I need to provide an example of what this is like, everyone's seen a blog before.
+-->
+    <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MRC_App.Views.BlogPage">
     <ContentPage.Content>

@@ -1,4 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    The purpose of the about page is to provide the user with a quick way to check if any changes have happened.
+    For example, if there is a livestream the user will be provided a small block that notifies them of this.
+    
+    This is NOT to provide information on the company, that is better suited to the website.
+-->
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Midrand_Reformed_Church_App.Views.AboutPage"

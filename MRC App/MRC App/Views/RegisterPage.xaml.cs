@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MRC_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace MRC_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SignUpPage : ContentPage
+    public partial class RegisterPage : ContentPage
     {
-        public SignUpPage()
+        public RegisterPage()
         {
             InitializeComponent();
+            BindingContext = new RegisterViewModel();
         }
     }
 }

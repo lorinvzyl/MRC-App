@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MRC_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace MRC_App.Views
         public BlogPage()
         {
             InitializeComponent();
+            BindingContext = new BlogViewModel();
         }
     }
 }
