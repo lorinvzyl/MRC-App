@@ -1,5 +1,4 @@
-﻿using MRC_App.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +15,6 @@ namespace MRC_App.Views
         public QRPage()
         {
             InitializeComponent();
-            BindingContext = new QRViewModel();
         }
     }
 }

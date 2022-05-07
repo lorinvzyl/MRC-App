@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Midrand_Reformed_Church_App.iOS
+namespace MRC_App.iOS
 {
     public class Application
     {

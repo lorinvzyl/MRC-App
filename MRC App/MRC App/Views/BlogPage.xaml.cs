@@ -16,7 +16,6 @@ namespace MRC_App.Views
         public BlogPage()
         {
             InitializeComponent();
-            BindingContext = new BlogViewModel();
         }
     }
 }

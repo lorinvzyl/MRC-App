@@ -1,10 +1,10 @@
-﻿using Midrand_Reformed_Church_App.Views;
+﻿using MRC_App.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace Midrand_Reformed_Church_App.ViewModels
+namespace MRC_App.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {

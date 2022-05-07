@@ -12,15 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\DonatePage.xaml.cs">
-      <DependentUpon>DonatePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\EventsPage.xaml.cs">
-      <DependentUpon>EventsPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Views\BlogPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -36,6 +27,11 @@
     <EmbeddedResource Update="Views\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

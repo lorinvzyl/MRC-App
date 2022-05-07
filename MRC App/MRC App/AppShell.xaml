@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:Midrand_Reformed_Church_App.Views"
-       Title="Midrand_Reformed_Church_App"
-       x:Class="Midrand_Reformed_Church_App.AppShell">
+       xmlns:local="clr-namespace:MRC_App.Views"
+       Title="MRC_App"
+       x:Class="MRC_App.AppShell">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -82,16 +82,16 @@
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Blog">
-        <ShellContent Route="BlogPage"/>
+        <ShellContent Route="BlogPage" ContentTemplate="{DataTemplate local:BlogPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Donate">
-        <ShellContent Route="DonatePage"/>
+        <ShellContent Route="DonatePage" ContentTemplate="{DataTemplate local:DonatePage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Events">
-        <ShellContent Route="EventPage"/>
+        <ShellContent Route="EventsPage" ContentTemplate="{DataTemplate local:EventsPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="QR Scan">
-        <ShellContent Route="QRPage"/>
+        <ShellContent Route="QRPage" ContentTemplate="{DataTemplate local:QRPage}"/>
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

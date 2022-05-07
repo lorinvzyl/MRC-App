@@ -1,5 +1,4 @@
-﻿using MRC_App.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace MRC_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Events : ContentPage
+    public partial class EventsPage : ContentPage
     {
-        public Events()
+        public EventsPage()
         {
             InitializeComponent();
-            BindingContext = new EventsViewModel();
         }
     }
 }

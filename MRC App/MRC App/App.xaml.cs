@@ -1,10 +1,9 @@
-﻿using Midrand_Reformed_Church_App.Services;
-using Midrand_Reformed_Church_App.Views;
+﻿using MRC_App.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Midrand_Reformed_Church_App
+namespace MRC_App
 {
     public partial class App : Application
     {
@@ -13,7 +12,6 @@ namespace Midrand_Reformed_Church_App
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
