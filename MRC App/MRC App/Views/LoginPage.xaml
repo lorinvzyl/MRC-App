@@ -10,20 +10,32 @@
              x:Class="MRC_App.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="40" Padding="10,0,10,0" VerticalOptions="Center">
-            <BoxView HeightRequest="10"/>
-            <Image HorizontalOptions="Center" WidthRequest="300" Source="#"/>
-            <Frame HasShadow="False">
-                <StackLayout Orientation="Vertical" Spacing="10">
-                    <Entry x:Name="Email" Text="Email" Placeholder="Email"
-                           PlaceholderColor="Black" HeightRequest="40"
-                           Keyboard="Email" TextColor="Black"/>
-                    <Entry x:Name="Password" Text="Password" Placeholder="Password"
-                           PlaceholderColor="Black" HeightRequest="40"
-                           IsPassword="True" TextColor="Black"/>
-                </StackLayout>
-            </Frame>
-            <Button VerticalOptions="Center" WidthRequest="200" Text="Login" Command="{Binding LoginCommand}"/>
-        </StackLayout>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" HeightRequest="250" Padding="20" BackgroundColor="#57120e" Margin="-20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="#" HeightRequest="180" WidthRequest="80" VerticalOptions="CenterAndExpand" Aspect="AspectFit"/>
+            </StackLayout>
+
+            <Label Grid.Row="1" Text="Welcome!" Margin="0,20,0,0" FontSize="24" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+            <Label Grid.Row="2" Text="Log into your account" TextColor="Black" HorizontalOptions="CenterAndExpand" Margin="0,-15,0,0"/>
+
+            <Entry Grid.Row="3" Placeholder="Email" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <Entry Grid.Row="4" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+
+            <Button Grid.Row="5" Text="Login" BackgroundColor="#57120e" CornerRadius="20" Command=""/>
+
+            <Label Grid.Row="6" Text="Forgot password?" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+            <Label Grid.Row="7" Text="No account? Sign up here" HorizontalOptions="CenterAndExpand"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
