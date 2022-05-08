@@ -31,6 +31,7 @@
 
             <Entry Grid.Row="3" Placeholder="Email" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <Entry Grid.Row="4" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <!--Can add a "eye" icon here so they can see the password they entered-->
 
             <Button Grid.Row="5" Text="Login" BackgroundColor="#57120e" CornerRadius="20"/>
 

@@ -6,10 +6,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MRC_App.Views.RegisterPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Register"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" HeightRequest="250" Padding="20" BackgroundColor="#57120e" Margin="-20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image Source="logo.png" HeightRequest="180" WidthRequest="80" VerticalOptions="CenterAndExpand" Aspect="AspectFit"/>
+            </StackLayout>
+
+            <Label Grid.Row="1" Text="Welcome!" Margin="0,20,0,0" FontSize="24" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+            <Label Grid.Row="2" Text="Register your account" TextColor="Black" HorizontalOptions="CenterAndExpand" Margin="0,-15,0,0"/>
+            
+            <!-- Need an entry for their email and password currently, however more entries are likely required.-->
+            <Entry Grid.Row="3" Placeholder="Email"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <Entry Grid.Row="4" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/> <!--Can add a "eye" icon here so they can see the password they entered-->
+
+            <Button Grid.Row="5" Text="Register" BackgroundColor="#57120e" CornerRadius="20"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
