@@ -11,6 +11,7 @@
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="20,0,20,0">
+            <!--Define rows needed-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -21,20 +22,25 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
+            
+            <!--Header-->
             <StackLayout Grid.Row="0" HeightRequest="250" Padding="20" BackgroundColor="#57120e" Margin="-20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Image Source="logo.png" HeightRequest="180" WidthRequest="80" VerticalOptions="CenterAndExpand" Aspect="AspectFit"/>
             </StackLayout>
-
+               
+            <!--Information block header text-->
             <Label Grid.Row="1" Text="Welcome!" Margin="0,20,0,0" FontSize="24" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
             <Label Grid.Row="2" Text="Log into your account" TextColor="Black" HorizontalOptions="CenterAndExpand" Margin="0,-15,0,0"/>
-
+            
+            <!--Enter email and password-->
             <Entry Grid.Row="3" Placeholder="Email" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <Entry Grid.Row="4" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <!--Can add a "eye" icon here so they can see the password they entered-->
-
+            
+            <!--Button to log into account-->
             <Button Grid.Row="5" Text="Login" BackgroundColor="#57120e" CornerRadius="20"/>
-
+            
+            <!--Links for user-->
             <Label Grid.Row="6" Text="Forgot password?" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
             <Label Grid.Row="7" Text="No account? Sign up here" HorizontalOptions="CenterAndExpand"/>
         </Grid>
