@@ -32,7 +32,7 @@
             <Entry Grid.Row="3" Placeholder="Email" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             <Entry Grid.Row="4" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
-            <Button Grid.Row="5" Text="Login" BackgroundColor="#57120e" CornerRadius="20" Command=""/>
+            <Button Grid.Row="5" Text="Login" BackgroundColor="#57120e" CornerRadius="20"/>
 
             <Label Grid.Row="6" Text="Forgot password?" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
             <Label Grid.Row="7" Text="No account? Sign up here" HorizontalOptions="CenterAndExpand"/>
