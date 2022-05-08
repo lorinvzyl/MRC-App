@@ -13,9 +13,14 @@ namespace MRC_App
             InitializeComponent();
         }
 
-        private async void OnMenuItemClicked(object sender, EventArgs e)
+        private async void Logout_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//LoginPage");
+        }
+
+        private async void Account_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//AccountPage");
         }
     }
 }
