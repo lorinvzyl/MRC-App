@@ -31,6 +31,21 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="fa-6-brands.otf#Font Awesome 6 Brands Regular" />
+                <On Platform="iOS" Value="fa-6-brands.otf#Font Awesome 6 Brands Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="fa-6-solid.otf#Font Awesome 6 Free Solid" />
+                <On Platform="iOS" Value="fa-6-solid.otf#Font Awesome 6 Free Solid" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="fa-6-regular.otf#Font Awesome 6 Free Regular" />
+                <On Platform="iOS" Value="fa-6-regular.otf#Font Awesome 6 Free Regular" />
+            </OnPlatform>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

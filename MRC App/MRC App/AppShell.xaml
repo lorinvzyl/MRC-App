@@ -15,14 +15,14 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource Background}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource Background}" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Background}"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Background}"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -31,7 +31,8 @@
             Default Styles for all Flyout Items
             https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
             -->
-            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+            
+            <!--<Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"></Setter>
             </Style>
             <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
@@ -52,8 +53,7 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
-            </Style>
-
+            </Style>-->
             <!--
             Custom Style you can apply to any Flyout Item
             -->
@@ -73,24 +73,42 @@
         </ResourceDictionary>
     </Shell.Resources>
 
+    <Shell.FlyoutIcon>
+        <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource Primary}" Size="24"/>
+    </Shell.FlyoutIcon>
     <!-- 
         When the Flyout is visible this defines the content to display in the flyout.
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
     <FlyoutItem Title="Home">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xe3af;" Color="{StaticResource Primary}"/>
+        </FlyoutItem.Icon>
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Blog">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf1ea;" Color="{StaticResource Primary}"/>
+        </FlyoutItem.Icon>
         <ShellContent Route="BlogPage" ContentTemplate="{DataTemplate local:BlogPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Donate">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf4c0;" Color="{StaticResource Primary}"/>
+        </FlyoutItem.Icon>
         <ShellContent Route="DonatePage" ContentTemplate="{DataTemplate local:DonatePage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Events">
-        <ShellContent Route="EventsPage" ContentTemplate="{DataTemplate local:EventsPage}"/>
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf073;" Color="{StaticResource Primary}"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="EventsPage"  ContentTemplate="{DataTemplate local:EventsPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="QR Scan">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf029;" Color="{StaticResource Primary}"/>
+        </FlyoutItem.Icon>
         <ShellContent Route="QRPage" ContentTemplate="{DataTemplate local:QRPage}"/>
     </FlyoutItem>
 
@@ -121,17 +139,21 @@
     -->
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="#57120e" HeightRequest="90" Padding="20,66,0,40">
+            <Grid BackgroundColor="#57120e" HeightRequest="80" Padding="20,40,20,30">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Account_Tapped"/>
                 </Grid.GestureRecognizers>
-                 
-                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="#" WidthRequest="50" VerticalOptions="Start" HorizontalOptions="Center"/>
-                <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalOptions="Center" Text="Bob Johnson" TextColor="White"/>
+
+                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Text="&#xf2bd;" TextColor="{StaticResource Background}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="70"  WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Padding="0,0,-10,0"/>
+                <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalOptions="Center" Text="Bob Johnson" TextColor="{StaticResource Background}"/>
                 <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalOptions="Center" Text="bob.johnson@gmail.com" TextColor="White"/>
             </Grid>
         </DataTemplate>
@@ -139,26 +161,55 @@
     
     <Shell.FlyoutFooterTemplate>
         <DataTemplate>
-            <Grid>
+            <Grid HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Logout_Tapped"/>
                 </Grid.GestureRecognizers>
-                <Image Grid.Column="0" Source="#" VerticalOptions="Start" HorizontalOptions="Center"/>
+                <Label Grid.Column="1" Text="&#xf08b;" TextColor="{StaticResource Primary}" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="Center" Margin="5"/>
 
-                <Label Grid.Column="1" FontSize="16" VerticalOptions="Center" Text="Logout"/>
+                <Label Grid.Column="2" TextColor="{StaticResource Primary}" FontSize="16" VerticalOptions="Center" HorizontalOptions="Start" Text="Logout"/>
             </Grid>
         </DataTemplate>
     </Shell.FlyoutFooterTemplate>
 
-    <!--
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid>
+                <!--Add visual state manager to get selected and normal states-->
+                <!--Issue with implementing second setter for label colour.-->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Background}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 
+                <Image Grid.Column="1" Source="{Binding Icon}" VerticalOptions="Center" Margin="5"/>
+                <Label Grid.Column="2" Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="16" Padding="0,10"/>
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
-
+<!--
     <Shell.MenuItemTemplate>
         <DataTemplate>
             <Grid>

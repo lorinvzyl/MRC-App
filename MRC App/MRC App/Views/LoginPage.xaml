@@ -24,12 +24,12 @@
             </Grid.RowDefinitions>
             
             <!--Header-->
-            <StackLayout Grid.Row="0" HeightRequest="250" Padding="20" BackgroundColor="#57120e" Margin="-20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Image Source="logo.png" HeightRequest="180" WidthRequest="80" VerticalOptions="CenterAndExpand" Aspect="AspectFit"/>
+            <StackLayout Grid.Row="0" HeightRequest="250" Padding="20" BackgroundColor="{StaticResource Primary}" Margin="-20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label Text="&#xf51d;" FontSize="100" TextColor="{StaticResource Background}" FontFamily="{StaticResource FontAwesomeSolid}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </StackLayout>
                
             <!--Information block header text-->
-            <Label Grid.Row="1" Text="Welcome!" Margin="0,20,0,0" FontSize="24" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+            <Label Grid.Row="1" Text="Welcome!" Margin="0,50,0,0" FontSize="24" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
             <Label Grid.Row="2" Text="Log into your account" TextColor="Black" HorizontalOptions="CenterAndExpand" Margin="0,-15,0,0"/>
             
             <!--Enter email and password-->
