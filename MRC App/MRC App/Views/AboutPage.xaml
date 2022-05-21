@@ -51,35 +51,64 @@
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
                 <Setter Property="Margin" Value="15"/>
             </Style>
+            <Style x:Key="Container" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Margin" Value="20,10,20,10"/>
+            </Style>
+            <Style x:Key="ContainerTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="ContainerText" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Discover" Style="{StaticResource TitleLabelStyle}"/>
 
-            <CollectionView ItemsSource="{Binding blog}" HeightRequest="300">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Frame Style="{StaticResource BlogCardStyle}">
-                                <Grid>
-                                    <StackLayout Style="{StaticResource imageStackLayoutStyle}">
-                                        <Image Source="{Binding Img}" Style="{StaticResource imageStyle}"/>
-                                    </StackLayout>
-                                    <StackLayout>
-                                        <Label Text="{Binding Title}" Style="{StaticResource BlogCardTitleStyle}"/>
-                                    </StackLayout>
-                                </Grid>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            
-        </StackLayout>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Discover" Style="{StaticResource TitleLabelStyle}"/>
+
+                <CollectionView ItemsSource="{Binding blog}" HeightRequest="300">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame Style="{StaticResource BlogCardStyle}">
+                                    <Grid>
+                                        <StackLayout Style="{StaticResource imageStackLayoutStyle}">
+                                            <Image Source="{Binding Img}" Style="{StaticResource imageStyle}"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}" Style="{StaticResource BlogCardTitleStyle}"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Frame Style="{StaticResource Container}">
+                    <StackLayout>
+                        <Label Text="Livestreams" Style="{StaticResource ContainerTitle}"/>
+                        <Label Text="Currently not streaming, click here to view the schedule" Style="{StaticResource ContainerText}"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource Container}" HeightRequest="150">
+                    <StackLayout>
+                        <Label Text="Verse of the Day" Style="{StaticResource ContainerTitle}"/>
+                        <Label Text="Verse text here" Style="{StaticResource ContainerText}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
