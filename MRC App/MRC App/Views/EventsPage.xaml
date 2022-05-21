@@ -1,12 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar" 
+             xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.EventsPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:EventsViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Title" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="Body" TargetType="Label">
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Events"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <controls:Calendar 
+                ShownDate="2022-05-21"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Events="{Binding Events}">
+                <controls:Calendar.EventTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" Style="{StaticResource Title}"/>
+                            <Label Text="{Binding Description}" Style="{StaticResource Body}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </controls:Calendar.EventTemplate>
+            </controls:Calendar>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
