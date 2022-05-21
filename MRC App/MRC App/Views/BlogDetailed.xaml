@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Once the user clicks on a blog from the blog page or recents from the about page,
+    the user will be shown the blog in full detail. ScrollView will definitely be needed here.
+-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MRC_App.Views.BlogDetailed">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Detailed Blog"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
