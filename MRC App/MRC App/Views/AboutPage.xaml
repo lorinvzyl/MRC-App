@@ -26,13 +26,13 @@
             <Style x:Key="LabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="14"/>
             </Style>
-            <Style x:Key="imageStyle" TargetType="Image">
+            <Style x:Key="BlogImageStyle" TargetType="Image">
                 <Setter Property="WidthRequest" Value="280"/>
                 <Setter Property="Opacity" Value="0.85"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
                 <Setter Property="Aspect" Value="AspectFill"/>
             </Style>
-            <Style x:Key="imageStackLayoutStyle" TargetType="StackLayout">
+            <Style x:Key="ImageStackLayoutStyle" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="Black"/>
             </Style>
             <Style x:Key="BlogCardStyle" TargetType="Frame">
@@ -45,23 +45,23 @@
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
             </Style>
-            <Style x:Key="BlogCardTitleStyle" TargetType="Label">
+            <Style x:Key="BlogTitleStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
                 <Setter Property="Margin" Value="15"/>
             </Style>
-            <Style x:Key="Container" TargetType="Frame">
+            <Style x:Key="ContainerStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                 <Setter Property="Margin" Value="20,10,20,10"/>
             </Style>
-            <Style x:Key="ContainerTitle" TargetType="Label">
+            <Style x:Key="ContainerTitleStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
-            <Style x:Key="ContainerText" TargetType="Label">
+            <Style x:Key="ContainerTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="TextColor" Value="White"/>
             </Style>
@@ -82,11 +82,11 @@
                             <StackLayout>
                                 <Frame Style="{StaticResource BlogCardStyle}">
                                     <Grid>
-                                        <StackLayout Style="{StaticResource imageStackLayoutStyle}">
-                                            <Image Source="{Binding Img}" Style="{StaticResource imageStyle}"/>
+                                        <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
+                                            <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
                                         </StackLayout>
                                         <StackLayout>
-                                            <Label Text="{Binding Title}" Style="{StaticResource BlogCardTitleStyle}"/>
+                                            <Label Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
                                         </StackLayout>
                                     </Grid>
                                 </Frame>
@@ -95,17 +95,17 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <Frame Style="{StaticResource Container}">
+                <Frame Style="{StaticResource ContainerStyle}">
                     <StackLayout>
-                        <Label Text="Livestreams" Style="{StaticResource ContainerTitle}"/>
-                        <Label Text="Currently not streaming, click here to view the schedule" Style="{StaticResource ContainerText}"/>
+                        <Label Text="Livestreams" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Text="Currently not streaming, click here to view the schedule" Style="{StaticResource ContainerTextStyle}"/>
                     </StackLayout>
                 </Frame>
 
-                <Frame Style="{StaticResource Container}" HeightRequest="150">
+                <Frame Style="{StaticResource ContainerStyle}" HeightRequest="150">
                     <StackLayout>
-                        <Label Text="Verse of the Day" Style="{StaticResource ContainerTitle}"/>
-                        <Label Text="Verse text here" Style="{StaticResource ContainerText}"/>
+                        <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Text="Verse text here" Style="{StaticResource ContainerTextStyle}"/>
                     </StackLayout>
                 </Frame>
             </StackLayout>
