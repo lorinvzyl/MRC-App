@@ -7,13 +7,79 @@
 -->
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.AboutPage">
+    <ContentPage.BindingContext>
+        <viewmodels:AboutViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Margin" Value="15"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="imageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="280"/>
+                <Setter Property="Opacity" Value="0.85"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="Aspect" Value="AspectFill"/>
+            </Style>
+            <Style x:Key="imageStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="Black"/>
+            </Style>
+            <Style x:Key="BlogCardStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HeightRequest" Value="280"/>
+                <Setter Property="WidthRequest" Value="180"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+            </Style>
+            <Style x:Key="BlogCardTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="Margin" Value="15"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Home"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Discover" Style="{StaticResource TitleLabelStyle}"/>
+
+            <CollectionView ItemsSource="{Binding blog}" HeightRequest="300">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame Style="{StaticResource BlogCardStyle}">
+                                <Grid>
+                                    <StackLayout Style="{StaticResource imageStackLayoutStyle}">
+                                        <Image Source="{Binding Img}" Style="{StaticResource imageStyle}"/>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}" Style="{StaticResource BlogCardTitleStyle}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
