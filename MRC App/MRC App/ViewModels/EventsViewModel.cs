@@ -25,12 +25,8 @@ namespace MRC_App.ViewModels
         public ICommand EventSelectedCommand => new Command(async (item) => await ExecuteEventSelectedCommand(item));
 
         private async Task ExecuteEventSelectedCommand(object item)
-        {
-            if (item is Events events)
-            {
-                //Move user to event?
-                //Or create popup where user can RSVP
-            }
+        {  
+            throw new NotImplementedException();
         }
 
         public EventCollection Events { get; set; }

@@ -20,13 +20,13 @@
             </Grid.RowDefinitions>
             
             <!--Header-->
-            <StackLayout Grid.Row="0" HeightRequest="250" Padding="20" BackgroundColor="#57120e" Margin="-20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Grid.Row="0" HeightRequest="250" Padding="20" BackgroundColor="{StaticResource Primary}" Margin="-20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Image Source="logo.png" HeightRequest="180" WidthRequest="80" VerticalOptions="CenterAndExpand" Aspect="AspectFit"/>
             </StackLayout>
             
             <!--Information block header text-->
             <Label Grid.Row="1" Text="Welcome!" Margin="0,20,0,0" FontSize="24" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
-            <Label Grid.Row="2" Text="Register your account" TextColor="Black" HorizontalOptions="CenterAndExpand" Margin="0,-15,0,0"/>
+            <Label Grid.Row="2" Text="Register your account" TextColor="{StaticResource DarkShade}" HorizontalOptions="CenterAndExpand" Margin="0,-15,0,0"/>
             
             <!--Entry for user details-->
             <!-- Need an entry for their email and password currently, however more entries are likely required.-->
@@ -34,7 +34,7 @@
             <Entry Grid.Row="4" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/> <!--Can add a "eye" icon here so they can see the password they entered-->
             
             <!--Register button-->
-            <Button Grid.Row="5" Text="Register" BackgroundColor="#57120e" CornerRadius="20"/>
+            <Button Grid.Row="5" Text="Register" BackgroundColor="{StaticResource Primary}" CornerRadius="20"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

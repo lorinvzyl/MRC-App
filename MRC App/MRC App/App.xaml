@@ -7,11 +7,15 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#57120e</Color>
-            <Color x:Key="HeadingText">Black</Color>
-            <Color x:Key="MainText">#3d3d3d</Color>
-            <Color x:Key="LinkText">#858585</Color>
-            <Color x:Key="Background">White</Color>
+            <Color x:Key="Primary">#3f8ba7</Color>
+            <Color x:Key="DarkDarkShade">#0a0b0b</Color>
+            <Color x:Key="DarkShade">#202628</Color>
+            <Color x:Key="DarkAccent">#cba945</Color>
+            <Color x:Key="LightShade">#f5f7f3</Color>
+            <Color x:Key="LightAccent">#97cab8</Color>
+            <Color x:Key="Success">#48a46a</Color>
+            <Color x:Key="Warning">#c59432</Color>
+            <Color x:Key="Danger">#f44336</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">

@@ -15,14 +15,14 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="{StaticResource Background}" />
-                <Setter Property="Shell.TitleColor" Value="{StaticResource Background}" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource LightShade}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource DarkShade}" />
+                <Setter Property="Shell.DisabledColor" Value="{StaticResource LightShade}" />
+                <Setter Property="Shell.UnselectedColor" Value="{StaticResource DarkShade}" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Background}"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Background}"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource DarkShade}"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -139,7 +139,7 @@
     -->
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="#57120e" HeightRequest="80" Padding="20,40,20,30">
+            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="80" Padding="20,40,20,30">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -152,9 +152,9 @@
                     <TapGestureRecognizer Tapped="Account_Tapped"/>
                 </Grid.GestureRecognizers>
 
-                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Text="&#xf2bd;" TextColor="{StaticResource Background}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="70"  WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Padding="0,0,-10,0"/>
-                <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalOptions="Center" Text="Bob Johnson" TextColor="{StaticResource Background}"/>
-                <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalOptions="Center" Text="bob.johnson@gmail.com" TextColor="White"/>
+                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="70"  WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Padding="0,0,-10,0"/>
+                <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalOptions="Center" Text="Bob Johnson" TextColor="{StaticResource LightShade}"/>
+                <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalOptions="Center" Text="bob.johnson@gmail.com" TextColor="{StaticResource LightShade}"/>
             </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
@@ -187,7 +187,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Background}"/>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
