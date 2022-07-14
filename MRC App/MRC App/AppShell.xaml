@@ -3,7 +3,8 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:MRC_App.Views"
        Title="MRC_App"
-       x:Class="MRC_App.AppShell">
+       x:Class="MRC_App.AppShell"
+       FlyoutBackground="{StaticResource LightShade}">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -57,19 +58,6 @@
             <!--
             Custom Style you can apply to any Flyout Item
             -->
-            <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
-            </Style>
         </ResourceDictionary>
     </Shell.Resources>
 
@@ -83,31 +71,31 @@
     -->
     <FlyoutItem Title="Home">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xe3af;" Color="{StaticResource Primary}"/>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xe3af;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Blog">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf1ea;" Color="{StaticResource Primary}"/>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf1ea;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="BlogPage" ContentTemplate="{DataTemplate local:BlogPage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Donate">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf4c0;" Color="{StaticResource Primary}"/>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf4c0;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="DonatePage" ContentTemplate="{DataTemplate local:DonatePage}"/>
     </FlyoutItem>
     <FlyoutItem Title="Events">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf073;" Color="{StaticResource Primary}"/>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf073;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="EventsPage"  ContentTemplate="{DataTemplate local:EventsPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="QR Scan">
+    <FlyoutItem Title="QR">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf029;" Color="{StaticResource Primary}"/>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf029;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="QRPage" ContentTemplate="{DataTemplate local:QRPage}"/>
     </FlyoutItem>
@@ -139,47 +127,41 @@
     -->
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="80" Padding="20,40,20,30">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="170">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Account_Tapped"/>
                 </Grid.GestureRecognizers>
 
-                <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="70"  WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Padding="0,0,-10,0"/>
-                <Label Grid.Column="1" Grid.Row="0" FontSize="17" VerticalOptions="Center" Text="Bob Johnson" TextColor="{StaticResource LightShade}"/>
-                <Label Grid.Column="1" Grid.Row="1" FontSize="17" VerticalOptions="Center" Text="bob.johnson@gmail.com" TextColor="{StaticResource LightShade}"/>
+                <Label Grid.Column="0" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="70"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,-10,0"/>
+                <Label Grid.Column="1" FontSize="Large" Padding="10,0" VerticalOptions="Center" Text="Bob Johnson" TextColor="{StaticResource LightShade}"/>
             </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
-    
+
     <Shell.FlyoutFooterTemplate>
         <DataTemplate>
             <Grid HeightRequest="50">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="15"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Logout_Tapped"/>
                 </Grid.GestureRecognizers>
-                <Label Grid.Column="1" Text="&#xf08b;" TextColor="{StaticResource Primary}" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="Center" Margin="5"/>
+                <Label Grid.Column="1" Text="&#xf08b;" FontSize="Large" TextColor="{StaticResource DarkShade}" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="Center"/>
 
-                <Label Grid.Column="2" TextColor="{StaticResource Primary}" FontSize="16" VerticalOptions="Center" HorizontalOptions="Start" Text="Logout"/>
+                <Label Grid.Column="2" Padding="10,0,0,3" TextColor="{StaticResource DarkShade}" FontSize="Large" VerticalOptions="Center" HorizontalOptions="Start" Text="Logout"/>
             </Grid>
         </DataTemplate>
     </Shell.FlyoutFooterTemplate>
-
+    
     <Shell.ItemTemplate>
         <DataTemplate>
-            <Grid>
+            <Grid HeightRequest="62">
                 <!--Add visual state manager to get selected and normal states-->
                 <!--Issue with implementing second setter for label colour.-->
                 <VisualStateManager.VisualStateGroups>
@@ -193,19 +175,21 @@
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource LightShade}"/>
+                                    <Setter TargetName="FlyoutItemIcon" Property="Label.TextColor" Value="{StaticResource LightShade}"/>
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
-                <Image Grid.Column="1" Source="{Binding Icon}" VerticalOptions="Center" Margin="5"/>
-                <Label Grid.Column="2" Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="16" Padding="0,10"/>
+                <Label x:Name="FlyoutItemIcon" Grid.Column="1" Text="{Binding Icon.Glyph}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="Large" VerticalOptions="Center" TextColor="{StaticResource DarkShade}"/>
+                <Label x:Name="FlyoutItemLabel" Grid.Column="2" Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="Large" TextColor="{StaticResource DarkShade}"/>
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
