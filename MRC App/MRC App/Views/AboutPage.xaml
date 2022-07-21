@@ -38,7 +38,7 @@
             <Style x:Key="BlogCardStyle" TargetType="Frame">
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="HeightRequest" Value="280"/>
-                <Setter Property="WidthRequest" Value="180"/>
+                <Setter Property="WidthRequest" Value="202"/>
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="HasShadow" Value="False"/>
                 <Setter Property="Margin" Value="20,0,0,0"/>
@@ -50,6 +50,7 @@
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
                 <Setter Property="Margin" Value="15"/>
+                <Setter Property="Opacity" Value="1.0"/>
             </Style>
             <Style x:Key="ContainerStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="15"/>
@@ -64,6 +65,13 @@
             <Style x:Key="ContainerTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="TextColor" Value="White"/>
+            </Style>
+            <Style x:Key="BlogTextBackgroundStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
+                <Setter Property="Opacity" Value="0.65"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="CornerRadius" Value="15"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -85,9 +93,11 @@
                                         <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
                                             <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
                                         </StackLayout>
-                                        <StackLayout>
+                                        <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
+                                        <StackLayout VerticalOptions="EndAndExpand">
                                             <Label Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
                                         </StackLayout>
+                                        
                                     </Grid>
                                 </Frame>
                             </StackLayout>
