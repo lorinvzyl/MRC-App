@@ -118,6 +118,14 @@
                         <Label Text="Verse text here" Style="{StaticResource ContainerTextStyle}"/>
                     </StackLayout>
                 </Frame>
+
+                <Frame Style="{StaticResource ContainerStyle}" HeightRequest="150">
+                    <StackLayout>
+                        <Label Text="Institutions we support" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Style="{StaticResource ContainerTextStyle}"
+                            Text="&#x2022; Institution 1 &#10;&#x2022; Institution 2 &#10;&#x2022; Institution 3 &#10;&#10;If you wish to find out more about these institutions, visit our website page on it here"/>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
