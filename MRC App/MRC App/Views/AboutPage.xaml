@@ -79,9 +79,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label Text="Discover" Style="{StaticResource TitleLabelStyle}"/>
-
-                <CollectionView ItemsSource="{Binding blog}" HeightRequest="300">
+                <CollectionView Margin="0,25,0,0" ItemsSource="{Binding blog}" HeightRequest="300">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"/>
                     </CollectionView.ItemsLayout>
