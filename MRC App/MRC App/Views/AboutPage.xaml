@@ -95,7 +95,14 @@
                                         </StackLayout>
                                         <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
                                         <StackLayout VerticalOptions="EndAndExpand">
-                                            <Label Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
+                                            <Grid HeightRequest="140">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="0" VerticalOptions="Start" Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
+                                            </Grid>
+                                            
                                         </StackLayout>
                                         
                                     </Grid>
