@@ -21,7 +21,7 @@
             
             <!--Header-->
             <StackLayout Grid.Row="0" HeightRequest="250" Padding="20" BackgroundColor="{StaticResource Primary}" Margin="-20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <Image Source="logo.png" HeightRequest="180" WidthRequest="80" VerticalOptions="CenterAndExpand" Aspect="AspectFit"/>
+                <Label Text="&#xf51d;" FontSize="100" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </StackLayout>
             
             <!--Information block header text-->

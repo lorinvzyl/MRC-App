@@ -43,8 +43,15 @@
             <Button Grid.Row="6" Text="Login" BackgroundColor="{StaticResource Primary}" CornerRadius="20"/>
             
             <!--Links for user-->
-            <Label Grid.Row="7" Text="Forgot password?" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
-            <Label Grid.Row="8" Text="No account? Sign up here" HorizontalOptions="CenterAndExpand"/>
+            <Label Grid.Row="7" Text="Forgot password?" FontAttributes="Bold" HorizontalOptions="CenterAndExpand">
+            
+            </Label>
+            
+            <Label Grid.Row="8" Text="No account? Sign up here" HorizontalOptions="CenterAndExpand">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
