@@ -19,7 +19,7 @@
             <Style x:Key="TitleLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="26"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
                 <Setter Property="Margin" Value="15"/>
                 <Setter Property="Padding" Value="0"/>
             </Style>
@@ -33,20 +33,20 @@
                 <Setter Property="Aspect" Value="AspectFill"/>
             </Style>
             <Style x:Key="ImageStackLayoutStyle" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
             </Style>
             <Style x:Key="BlogCardStyle" TargetType="Frame">
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="HeightRequest" Value="280"/>
                 <Setter Property="WidthRequest" Value="202"/>
-                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="HasShadow" Value="False"/>
                 <Setter Property="Margin" Value="20,0,0,0"/>
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
             </Style>
             <Style x:Key="BlogTitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
                 <Setter Property="Margin" Value="15"/>
@@ -59,19 +59,28 @@
             </Style>
             <Style x:Key="ContainerTitleStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="20"/>
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
             <Style x:Key="ContainerTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
             </Style>
             <Style x:Key="BlogTextBackgroundStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
                 <Setter Property="Opacity" Value="0.65"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
-                <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="HeightRequest" Value="95"/>
                 <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+            <Style x:Key="IconLabels" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+            <Style x:Key="Icons" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="Margin" Value="0,4,0,0"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -93,12 +102,26 @@
                                         </StackLayout>
                                         <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
                                         <StackLayout VerticalOptions="EndAndExpand">
-                                            <Grid HeightRequest="140">
+                                            <Grid HeightRequest="135" RowSpacing="0">
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="7*"/>
+                                                    <RowDefinition Height="3*"/>
                                                 </Grid.RowDefinitions>
-                                                <Label Grid.Row="0" VerticalOptions="Start" Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
+                                                <ScrollView>
+                                                    <Label Grid.Row="0" VerticalOptions="Start"  Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
+                                                </ScrollView>
+                                                <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                                    <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
+                                                    <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                                    <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
+                                                </Grid>
                                             </Grid>
                                             
                                         </StackLayout>
