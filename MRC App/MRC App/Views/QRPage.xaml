@@ -4,12 +4,12 @@
 -->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              x:Class="MRC_App.Views.QRPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="QR Scan"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <zxing:ZXingScannerView OnScanResult="ZXingScannerView_OnScanResult"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
