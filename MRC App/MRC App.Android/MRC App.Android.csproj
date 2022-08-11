@@ -57,10 +57,13 @@
     <PackageReference Include="NETStandard.Library">
       <Version>2.0.3</Version>
     </PackageReference>
+    <PackageReference Include="UXDivers.GorillaPlayer.SDK">
+      <Version>1.5.5</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.4</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Xamarin.Plugin.Calendar">
       <Version>2.0.9699</Version>

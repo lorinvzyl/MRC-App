@@ -1,12 +1,113 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="MRC_App.Views.AccountPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Account"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <Grid RowSpacing="0"
+          ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="230"/>
+                <RowDefinition />
+                <RowDefinition />
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                
+            </Grid.ColumnDefinitions>
+
+            <!-- Grid row 1 col 1-->
+                <BoxView Color="White" />
+            <Label Text="Account Information "  FontAttributes="Bold" FontSize="Medium"
+               HorizontalOptions="Start"
+               VerticalOptions="StartAndExpand" />
+            <Label Text="First Name: "   FontSize="Small"
+               HorizontalOptions="Start"
+                   TranslationY="30"
+               VerticalOptions="StartAndExpand"/>
+            <Label Text="Last Name: "   FontSize="Small"
+               HorizontalOptions="Start"
+                   TranslationY="50"
+               VerticalOptions="StartAndExpand"/>
+            <Label Text="Email: "   FontSize="Small"
+               HorizontalOptions="Start"
+                   TranslationY="70"
+               VerticalOptions="StartAndExpand"/>
+            <Label Text="Birthday: "   FontSize="Small"
+               HorizontalOptions="Start"
+                   TranslationY="90"
+               VerticalOptions="StartAndExpand"/>
+            <!-- Grid row 1 col 2-->
+            <BoxView Grid.Column="1" 
+                 Color="White" />
+            <Label x:Name="firstNameLabel" Grid.Column="1"
+               Text="Bob" TranslationY="30"
+               HorizontalOptions="Start"
+               VerticalOptions="Start"/>
+            <Label x:Name="lastNameLabel"
+               Grid.Column="1"
+               Text="The builder" TranslationY="50"
+               HorizontalOptions="Start"
+               VerticalOptions="Start"/>
+            <Label x:Name="emailLabel"
+               Grid.Column="1"
+               Text="BobTheBuilder@test.com" TranslationY="70"
+               HorizontalOptions="Start"
+               VerticalOptions="Start"/>
+            <Label x:Name="birthdayLabel"
+               Grid.Column="1"
+               Text="20/03/1998" TranslationY="90"
+               HorizontalOptions="Start"
+               VerticalOptions="Start"/>
+
+            <!-- Row 2  -->
+                <BoxView Grid.Row="1" Grid.ColumnSpan="2"
+                  />
+                    <Label Grid.Row="2"
+                 Text="Avatar" FontAttributes="Bold" FontSize="Medium"
+                 HorizontalOptions="Start"
+                 VerticalOptions="StartAndExpand" />
+            <Frame BackgroundColor="LightSkyBlue" CornerRadius="10" HasShadow="True" Grid.Row="1" Grid.ColumnSpan="2">
+               
+                 <StackLayout >
+                    <Label Grid.Row="2"
+                 Text="Avatar" FontAttributes="Bold" FontSize="Medium"
+                 HorizontalOptions="Start"
+                 VerticalOptions="StartAndExpand" />
+                    <xct:AvatarView Text="BTB" HorizontalOptions="Start" Size="60" Margin=" 10,10" Color="Gray" BorderColor="White"/>
+                    <Label Text="We recommend an image&#10; of atleast 600x240.&#10; You can upload a PNG or JPEG under 2MB." FontSize="Small" HorizontalOptions="EndAndExpand" TranslationY="-50"/>
+
+                    <Button Text="Change Avatar" />
+                 </StackLayout>
+
+                 </Frame>
+                    
+
+            <!-- Row 3 -->
+                <BoxView Grid.Row="2"
+                 Color="red" />
+            <Label Grid.Row="2"
+               Text=""
+               HorizontalOptions="Start"
+               VerticalOptions="End" />
+            <BoxView Grid.Row="2"
+                 Grid.Column="1"
+                 Color="LightBlue" />
+            <Label Grid.Row="2"
+               Grid.Column="1"
+               Text=""
+               HorizontalOptions="Center"
+               VerticalOptions="End" />
+            <BoxView Grid.Row="3"
+                 Color="Yellow" />
+        </Grid>
+        
+
+
+
     </ContentPage.Content>
 </ContentPage>

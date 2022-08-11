@@ -13,8 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.5.5" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.4" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />  
     <PackageReference Include="Xamarin.Plugin.Calendar" Version="2.0.9699" />  
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.1.0-beta2" />
