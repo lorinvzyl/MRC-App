@@ -5,107 +5,114 @@
              x:Class="MRC_App.Views.AccountPage">
     <ContentPage.Content>
 
-        <Grid RowSpacing="0"
-          ColumnSpacing="0">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
-                <RowDefinition Height="230"/>
-                <RowDefinition />
-                <RowDefinition />
-                
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <!-- Grid row 1 col 1-->
-                <BoxView Color="White" />
-            <Label Text="Account Information "  FontAttributes="Bold" FontSize="Medium"
-               HorizontalOptions="Start"
-               VerticalOptions="StartAndExpand" />
-            <Label Text="First Name: "   FontSize="Small"
-               HorizontalOptions="Start"
-                   TranslationY="30"
-               VerticalOptions="StartAndExpand"/>
-            <Label Text="Last Name: "   FontSize="Small"
-               HorizontalOptions="Start"
-                   TranslationY="50"
-               VerticalOptions="StartAndExpand"/>
-            <Label Text="Email: "   FontSize="Small"
-               HorizontalOptions="Start"
-                   TranslationY="70"
-               VerticalOptions="StartAndExpand"/>
-            <Label Text="Birthday: "   FontSize="Small"
-               HorizontalOptions="Start"
-                   TranslationY="90"
-               VerticalOptions="StartAndExpand"/>
-            <!-- Grid row 1 col 2-->
-            <BoxView Grid.Column="1" 
-                 Color="White" />
-            <Label x:Name="firstNameLabel" Grid.Column="1"
-               Text="Bob" TranslationY="30"
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
-            <Label x:Name="lastNameLabel"
-               Grid.Column="1"
-               Text="The builder" TranslationY="50"
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
-            <Label x:Name="emailLabel"
-               Grid.Column="1"
-               Text="BobTheBuilder@test.com" TranslationY="70"
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
-            <Label x:Name="birthdayLabel"
-               Grid.Column="1"
-               Text="20/03/1998" TranslationY="90"
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
+            <Label Grid.Row="0" Text="Account Information" TextColor="Black" FontSize="Medium" 
+                   FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                   VerticalTextAlignment="Start"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition  Height="20"/>
+                    <RowDefinition  Height="20"/>
+                    <RowDefinition  Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Row 2  -->
-                <BoxView Grid.Row="1" Grid.ColumnSpan="2"
-                  />
-                    <Label Grid.Row="2"
-                 Text="Avatar" FontAttributes="Bold" FontSize="Medium"
-                 HorizontalOptions="Start"
-                 VerticalOptions="StartAndExpand" />
-            <Frame BackgroundColor="LightSkyBlue" CornerRadius="10" HasShadow="True" Grid.Row="1" Grid.ColumnSpan="2">
-               
-                 <StackLayout >
-                    <Label Grid.Row="2"
-                 Text="Avatar" FontAttributes="Bold" FontSize="Medium"
-                 HorizontalOptions="Start"
-                 VerticalOptions="StartAndExpand" />
-                    <xct:AvatarView Text="BTB" HorizontalOptions="Start" Size="60" Margin=" 10,10" Color="Gray" BorderColor="White"/>
-                    <Label Text="We recommend an image&#10; of atleast 600x240.&#10; You can upload a PNG or JPEG under 2MB." FontSize="Small" HorizontalOptions="EndAndExpand" TranslationY="-50"/>
-
-                    <Button Text="Change Avatar" />
-                 </StackLayout>
-
-                 </Frame>
+                <!--Col 1 labels -->
+                <Label Text="First Name: "   FontSize="Medium" 
+                    Grid.Row="0" Grid.Column="0"
+                    HorizontalOptions="Start"
                     
+                    VerticalOptions="StartAndExpand"/>
+                <Label Text="Last Name: "   FontSize="Medium"
+                    Grid.Row="1" Grid.Column="0"
+                    HorizontalOptions="Start"
+                    
+                    VerticalOptions="StartAndExpand"/>
+                <Label Text="Email: "   FontSize="Medium"
+                   Grid.Row="2" Grid.Column="0"    
+                   HorizontalOptions="Start"
+                   
+                   VerticalOptions="StartAndExpand"/>
+                <Label Text="Birthday: "   FontSize="Medium"
+                   Grid.Row="3" Grid.Column="0"
+                   HorizontalOptions="Start"
+                   
+                   VerticalOptions="StartAndExpand"/>
+                <!-- Col 2  -->
+                <Label x:Name="firstNameLabel" FontSize="Medium"
+                   Grid.Column="1" Grid.Row="0"
+                   Text="Bob" 
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"/>
 
-            <!-- Row 3 -->
-                <BoxView Grid.Row="2"
-                 Color="red" />
-            <Label Grid.Row="2"
-               Text=""
+                <Label x:Name="lastNameLabel" FontSize="Medium"
+               Grid.Column="1" Grid.Row="1"
+               Text="The builder" 
                HorizontalOptions="Start"
-               VerticalOptions="End" />
-            <BoxView Grid.Row="2"
-                 Grid.Column="1"
-                 Color="LightBlue" />
-            <Label Grid.Row="2"
-               Grid.Column="1"
-               Text=""
+               VerticalOptions="Start"/>
+
+                <Label x:Name="emailLabel" FontSize="Medium"
+               Grid.Column="1" Grid.Row="2"
+               Text="BobTheBuilder@test.com" 
+               HorizontalOptions="Start"
+               VerticalOptions="Start"/>
+
+                <Label x:Name="birthdayLabel" FontSize="Medium"
+               Grid.Column="1" Grid.Row="3"
+               Text="20/03/1998" 
+               HorizontalOptions="Start"
+               VerticalOptions="Start"/>
+                
+                <!-- Col 3 -->
+                <Label x:Name="Pointer1" FontSize="Medium" FontAttributes="Bold"
+               Grid.Column="2" Grid.Row="0"
+               Text=">" 
                HorizontalOptions="Center"
-               VerticalOptions="End" />
-            <BoxView Grid.Row="3"
-                 Color="Yellow" />
+               VerticalOptions="Start"/>
+
+                <Label x:Name="Pointer2" FontSize="Medium" FontAttributes="Bold"
+               Grid.Column="2" Grid.Row="1"
+               Text=">" 
+               HorizontalOptions="Center"
+               VerticalOptions="Start"/>
+
+                <Label x:Name="Pointer3" FontSize="Medium" FontAttributes="Bold"
+               Grid.Column="2" Grid.Row="2"
+               Text=">" 
+               HorizontalOptions="Center"
+               VerticalOptions="Start"/>
+
+                <Label x:Name="Pointer4" FontSize="Medium" FontAttributes="Bold"
+               Grid.Column="2" Grid.Row="3"
+               Text=">" 
+               HorizontalOptions="Center"
+               VerticalOptions="Start"/>
+            </Grid>
+
+
         </Grid>
-        
 
 
 
