@@ -9,10 +9,10 @@
             <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="170"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -111,6 +111,43 @@
                VerticalOptions="Start"/>
             </Grid>
 
+            <Label Grid.Row="2" 
+                   Text="Avatar" TextColor="Black" FontSize="Medium"
+                   FontAttributes="Bold" HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Start"
+                   TranslationY="50"/>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition  Height="*"/>
+                    <RowDefinition  Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                       BackgroundColor="LightSkyBlue" CornerRadius="10"
+                       HasShadow="True" TranslationY="20">
+                    <StackLayout>
+                        <xct:AvatarView Grid.Column="0" Text="BTB" CornerRadius="40" 
+                                        HorizontalOptions="Start" Padding="1" Size="80" Margin=" 0,0" 
+                                        Color="Gray" BorderColor="White"
+                                        TranslationY="-10"/>
+                        <Label Grid.Column="1"
+                            Text="We recommend&#10;an image&#10;of atleast 600x240.&#10;You can upload a PNG or JPEG&#10;under 2MB." 
+                               FontSize="Small" 
+                               HorizontalOptions="End" TranslationY="-25"/>
+
+                        <Button Grid.Row="2" Grid.Column="0" Text=" Change Avatar" CornerRadius="40" TranslationY="-10"/>
+                    </StackLayout>
+                    
+                    
+
+                </Frame>
+
+                
+            </Grid>
 
         </Grid>
 
