@@ -4,7 +4,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="MRC_App.Views.AccountPage">
     <ContentPage.Content>
-
+        <ScrollView VerticalScrollBarVisibility="Always">
         <Grid>
             <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
@@ -114,8 +114,8 @@
             <Label Grid.Row="2" 
                    Text="Avatar" TextColor="Black" FontSize="Medium"
                    FontAttributes="Bold" HorizontalTextAlignment="Start"
-                   VerticalTextAlignment="Start"
-                   TranslationY="50"/>
+                   
+                   TranslationY="-40"/>
             <Grid Grid.Row="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -128,7 +128,7 @@
                 </Grid.ColumnDefinitions>
                 <Frame Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"
                        BackgroundColor="LightSkyBlue" CornerRadius="10"
-                       HasShadow="True" TranslationY="20">
+                       HasShadow="True" TranslationY="-165">
                     <StackLayout>
                         <xct:AvatarView Grid.Column="0" Text="BTB" CornerRadius="40" 
                                         HorizontalOptions="Start" Padding="1" Size="80" Margin=" 0,0" 
@@ -149,9 +149,96 @@
                 
             </Grid>
 
+            <Label Grid.Row="4" Text="Newsletter Settings" TextColor="Black" FontSize="Medium" 
+                   FontAttributes="Bold" HorizontalTextAlignment="Start" 
+                   VerticalTextAlignment="Start"
+                   TranslationY="-150"/>
+            <Grid Grid.Row="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Label 1 -->
+                <Label Text="Communcation Emails" FontSize="Medium" 
+                   Grid.Column="0" Grid.Row="0" 
+                   HorizontalOptions="Start" VerticalOptions="Start"
+                       TranslationY="-270"/>
+                <Label Text="Recieve emails with" FontSize="Micro"
+                   Grid.Column="0" Grid.Row="0"
+                   HorizontalOptions="Start" VerticalOptions="End" 
+                       TranslationY="-255"/>
+                <Switch x:Name="commEmailsSwitch" IsToggled="true" 
+                    Grid.Column="1" Grid.Row="0"
+                    HorizontalOptions="End" 
+                    OnColor="LimeGreen" ThumbColor="White" BackgroundColor="White"
+                    TranslationY="-265"/>
+
+                    <!-- Label 2 -->
+                    <Label Text="Social Emails" FontSize="Medium" 
+                   Grid.Column="0" Grid.Row="1" 
+                   HorizontalOptions="Start" TranslationY="-250"
+                       />
+                    <Label Text="Recieve emails with" FontSize="Micro"
+                   Grid.Column="0" Grid.Row="1"
+                   HorizontalOptions="Start" VerticalOptions="End" 
+                       TranslationY="-235"/>
+                    <Switch x:Name="socialEmailsSwitch" IsToggled="False" 
+                    Grid.Column="1" Grid.Row="1"
+                    HorizontalOptions="End" 
+                    OnColor="LimeGreen" ThumbColor="White" BackgroundColor="White"
+                    TranslationY="-240"/>
+
+                    <!-- Label 3 -->
+                    <Label Text="Recommendation Emails" FontSize="Medium" 
+                   Grid.Column="0" Grid.Row="2" 
+                   HorizontalOptions="Start" TranslationY="-220"
+                       />
+                    <Label Text="Recieve emails with suggested events" FontSize="Micro"
+                   Grid.Column="0" Grid.Row="2"
+                   HorizontalOptions="Start" VerticalOptions="End" 
+                       TranslationY="-210"/>
+                    <Switch x:Name="recEmailsSwitch" IsToggled="False" 
+                    Grid.Column="1" Grid.Row="2"
+                    HorizontalOptions="End" 
+                    OnColor="LimeGreen" ThumbColor="White" BackgroundColor="White"
+                    TranslationY="-220"/>
+
+                    <!-- Label 4 -->
+                    <Label Text="Announcement and Update Emails" FontSize="Medium" 
+                   Grid.Column="0" Grid.Row="3" 
+                   HorizontalOptions="Start" TranslationY="-200"
+                       />
+                    <Label Text="Receive emails with product updates, newest features, imrpovements and bug fixes" FontSize="Micro"
+                   Grid.Column="0" Grid.Row="3"
+                   HorizontalOptions="Start" VerticalOptions="End" 
+                       TranslationY="-180"/>
+                    <Switch x:Name="announcementEmailsSwitch" IsToggled="False" 
+                    Grid.Column="1" Grid.Row="3"
+                    HorizontalOptions="End" 
+                    OnColor="LimeGreen" ThumbColor="White" BackgroundColor="White"
+                    TranslationY="-200"/>
+
+                    <!-- Label 5-->
+                    <Label Text="Unsubscribe from all newsletter emails" FontSize="Small" FontAttributes="Bold" TextDecorations="Underline"
+                           TextColor="Teal"
+                   Grid.Column="0" Grid.Row="4" 
+                   HorizontalOptions="Start" TranslationY="-180"
+                       />
+                </Grid>
+
+            
+
         </Grid>
 
 
-
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
