@@ -235,9 +235,32 @@
                        />
                 </Grid>
 
-            
+                <Label Text="Account Management" TextColor="Black" FontSize="Medium" 
+                   FontAttributes="Bold" HorizontalTextAlignment="Start"
+                       Grid.Row="6"
+                       TranslationY="-180"/>
 
-        </Grid>
+                <Grid Grid.Row="7">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Text=" Reset Password"
+                            Grid.Row="0"
+                            TranslationY=" -280"
+                            />
+                    <Button Text=" Delete Account" 
+                            BackgroundColor="Red"
+                            Grid.Row="1"
+                            TranslationY="-270"/>
+                </Grid>
+
+            </Grid>
 
 
         </ScrollView>
