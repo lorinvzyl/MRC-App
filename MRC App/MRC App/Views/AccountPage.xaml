@@ -228,9 +228,10 @@
 
                     <!-- Label 5-->
                     <Label Text="Unsubscribe from all newsletter emails" FontSize="Small" FontAttributes="Bold" TextDecorations="Underline"
+                           HorizontalOptions="Center"
                            TextColor="Teal"
                    Grid.Column="0" Grid.Row="4" 
-                   HorizontalOptions="Start" TranslationY="-180"
+                    TranslationY="-180"
                        />
                 </Grid>
 
