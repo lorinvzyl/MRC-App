@@ -53,7 +53,7 @@ namespace MRC_App.ViewModels
         public int Month
         {
             get => _month;
-            set => SetProperty(ref _year, value);
+            set => SetProperty(ref _month, value);
         }
 
         private DateTime _minimumDate = new DateTime(2022, 8, 3);
