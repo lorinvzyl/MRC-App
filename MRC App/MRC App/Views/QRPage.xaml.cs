@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ZXing.Net.Mobile;
 
 namespace MRC_App.Views
 {
@@ -16,13 +15,14 @@ namespace MRC_App.Views
         public QRPage()
         {
             InitializeComponent();
-            ScanAsync();
+            _ = ScanAsync();
         }
 
         public async Task<string> ScanAsync()
         {
             var scanner = new ZXing.Mobile.MobileBarcodeScanner();
             scanner.UseCustomOverlay = true;
+            //customoverlay does not exist>
             var result = await scanner.Scan();
             return null;
         }
