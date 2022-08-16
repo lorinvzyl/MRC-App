@@ -16,21 +16,20 @@ namespace MRC_App.Views
         public QRPage()
         {
             InitializeComponent();
+            ScanAsync();
+        }
+
+        public async Task<string> ScanAsync()
+        {
+            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+            scanner.UseCustomOverlay = true;
+            var result = await scanner.Scan();
+            return null;
         }
 
         private void ZXingScannerView_OnScanResult(ZXing.Result result)
         {
-            /*
-             * Scan qr code.
-             * List:
-             * 1. Needs to ensure it is actually of type QR code. (do not want random stuff to be scanned)
-             * 2. Need to customise how this looks.
-             * 
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                
-            });
-            */
+
         }
     }
 }

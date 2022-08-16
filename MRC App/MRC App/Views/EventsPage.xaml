@@ -28,7 +28,39 @@
                 ShownDate="2022-05-21"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
-                Events="{Binding Events}">
+                Events="{Binding Events}"
+                BackgroundColor="{StaticResource LightShade}">
+                <controls:Calendar.HeaderSectionTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/> <!--filler-->
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/> <!--filler-->
+                            </Grid.ColumnDefinitions>
+                            
+                            <!--icon for left-->
+                            <Label Grid.Column="1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf104;" TextColor="{StaticResource DarkShade}" InputTransparent="True"/>
+                            
+                            <!--label with month and year together-->
+                            <Label Grid.Column="2" HorizontalOptions="Center" FontSize="Medium" TextColor="{StaticResource DarkShade}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Month, Mode=TwoWay}"/>
+                                        <Span Text=", "/>
+                                        <Span Text="{Binding Year, Mode=TwoWay}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            
+                            <!--icon for right-->
+                            <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf105;" TextColor="{StaticResource DarkShade}" InputTransparent="True"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </controls:Calendar.HeaderSectionTemplate>
                 <controls:Calendar.EventTemplate>
                     <DataTemplate>
                         <StackLayout>
