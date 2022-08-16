@@ -135,7 +135,8 @@
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Account_Tapped"/>
                 </Grid.GestureRecognizers>
-
+                
+                <!--<xct:AvatarView/>-->
                 <Label Grid.Column="0" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="70"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,-10,0"/>
                 <Label Grid.Column="1" FontSize="Large" Padding="10,0" VerticalOptions="Center" Text="Bob Johnson" TextColor="{StaticResource LightShade}"/>
             </Grid>
