@@ -161,7 +161,7 @@
     
     <Shell.ItemTemplate>
         <DataTemplate>
-            <Grid HeightRequest="62">
+            <Grid HeightRequest="60" BackgroundColor="{StaticResource LightShade}" Padding="0">
                 <!--Add visual state manager to get selected and normal states-->
                 <!--Issue with implementing second setter for label colour.-->
                 <VisualStateManager.VisualStateGroups>
@@ -174,7 +174,7 @@
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                                    <Setter TargetName="Frame" Property="Grid.BackgroundColor" Value="{StaticResource Primary}"/>
                                     <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource LightShade}"/>
                                     <Setter TargetName="FlyoutItemIcon" Property="Label.TextColor" Value="{StaticResource LightShade}"/>
                                 </VisualState.Setters>
@@ -183,13 +183,19 @@
                     </VisualStateGroupList>
                 </VisualStateManager.VisualStateGroups>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" x:Name="Frame" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="15*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="FlyoutItemIcon" Grid.Column="1" Text="{Binding Icon.Glyph}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="Title" VerticalOptions="Center" TextColor="{StaticResource DarkShade}"/>
+                    <Label x:Name="FlyoutItemLabel" Grid.Column="2" Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="Large" TextColor="{StaticResource DarkShade}"/>
+                </Grid>
                 
-                <Label x:Name="FlyoutItemIcon" Grid.Column="1" Text="{Binding Icon.Glyph}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="Large" VerticalOptions="Center" TextColor="{StaticResource DarkShade}"/>
-                <Label x:Name="FlyoutItemLabel" Grid.Column="2" Text="{Binding Title}" HorizontalOptions="Start" VerticalOptions="Center" FontSize="Large" TextColor="{StaticResource DarkShade}"/>
+
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
