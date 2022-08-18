@@ -17,7 +17,7 @@
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="Shell.ForegroundColor" Value="{StaticResource LightShade}" />
-                <Setter Property="Shell.TitleColor" Value="{StaticResource DarkShade}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource LightShade}" />
                 <Setter Property="Shell.DisabledColor" Value="{StaticResource LightShade}" />
                 <Setter Property="Shell.UnselectedColor" Value="{StaticResource DarkShade}" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
@@ -62,7 +62,7 @@
     </Shell.Resources>
 
     <Shell.FlyoutIcon>
-        <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource Primary}" Size="24"/>
+        <FontImageSource Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title" />
     </Shell.FlyoutIcon>
     <!-- 
         When the Flyout is visible this defines the content to display in the flyout.

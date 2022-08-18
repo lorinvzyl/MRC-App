@@ -8,7 +8,18 @@
     <ContentPage.BindingContext>
         <viewmodels:EventsViewModel/>
     </ContentPage.BindingContext>
-    
+
+    <Shell.TitleView>
+        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions>
+                <!--This should center the item in the middle of the page. Needs further testing.-->
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Events" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Title" TargetType="Label">
