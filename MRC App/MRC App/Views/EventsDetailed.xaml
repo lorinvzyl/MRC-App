@@ -16,9 +16,40 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label/> <!--Placeholder for event title-->
+            
+            <Image/> <!--Placeholder for images, however this will need capabilities of a slideshow-->
+
+            <Label/> <!--Placeholder for event description, possibly also add a read more thing here?-->
+
+            <Frame> <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
+                <Label/> <!--Title-->
+
+                <Grid>
+                    <!--Event details grid-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=""/>
+                        <ColumnDefinition Width=""/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=""/>
+                        <RowDefinition Height=""/>
+                        <RowDefinition Height=""/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="" Grid.Column=""/>
+                    <Label Grid.Row="" Grid.Column=""/>
+
+                    <Label Grid.Row="" Grid.Column=""/>
+                    <Label Grid.Row="" Grid.Column=""/>
+
+                    <Label Grid.Row="" Grid.Column=""/>
+                    <Label Grid.Row="" Grid.Column=""/>
+                </Grid>
+
+                <Button/> <!--Button to RSVP. Not sure how this will interact with the database yet.-->
+            </Frame>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

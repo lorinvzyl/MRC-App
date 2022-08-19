@@ -20,8 +20,12 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <!--Custom overlay documentation does not seem to be correct. I will make the qr scanner purely functional for now.-->
-            <zxing:ZXingScannerView OnScanResult="ZXingScannerView_OnScanResult"/>
+            <Label x:Name="scanResult"/>
+            <!--
+            Custom overlay documentation does not seem to be correct. I will make the qr scanner purely functional for now.
+            Useful documentation seems to be under the "Using the ZXingScanner View/Fragment/Control section in the readme.
+            -->
+            <zxing:ZXingScannerView OnScanResult="ZXingScannerView_OnScanResult" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

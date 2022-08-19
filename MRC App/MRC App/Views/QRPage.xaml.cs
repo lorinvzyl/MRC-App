@@ -29,7 +29,10 @@ namespace MRC_App.Views
 
         private void ZXingScannerView_OnScanResult(ZXing.Result result)
         {
-
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                scanResult.Text = result.Text;
+            });
         }
     }
 }
