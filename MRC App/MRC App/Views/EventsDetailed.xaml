@@ -23,7 +23,7 @@
             <Label/> <!--Placeholder for event description, possibly also add a read more thing here?-->
 
             <Frame> <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
-                <Label/> <!--Title-->
+
 
                 <Grid>
                     <!--Event details grid-->
@@ -35,7 +35,11 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+
+                    <Label/>
+                    <!--Title-->
 
                     <Label Grid.Row="0" Grid.Column="0"/>
                     <Label Grid.Row="0" Grid.Column="1"/>
@@ -45,9 +49,10 @@
 
                     <Label Grid.Row="2" Grid.Column="0"/>
                     <Label Grid.Row="2" Grid.Column="1"/>
-                </Grid>
 
-                <Button/> <!--Button to RSVP. Not sure how this will interact with the database yet.-->
+                    <Button/>
+                    <!--Button to RSVP. Not sure how this will interact with the database yet.-->
+                </Grid>
             </Frame>
 
         </StackLayout>
