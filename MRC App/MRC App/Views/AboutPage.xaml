@@ -14,12 +14,22 @@
         <viewmodels:AboutViewModel/>
     </ContentPage.BindingContext>
 
+    <Shell.TitleView>
+        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions> <!--This should center the item in the middle of the page. Needs further testing.-->
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Home" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="TitleLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="26"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
                 <Setter Property="Margin" Value="15"/>
                 <Setter Property="Padding" Value="0"/>
             </Style>
@@ -33,20 +43,20 @@
                 <Setter Property="Aspect" Value="AspectFill"/>
             </Style>
             <Style x:Key="ImageStackLayoutStyle" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
             </Style>
             <Style x:Key="BlogCardStyle" TargetType="Frame">
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="HeightRequest" Value="280"/>
                 <Setter Property="WidthRequest" Value="202"/>
-                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="HasShadow" Value="False"/>
                 <Setter Property="Margin" Value="20,0,0,0"/>
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
             </Style>
             <Style x:Key="BlogTitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
                 <Setter Property="Margin" Value="15"/>
@@ -59,19 +69,28 @@
             </Style>
             <Style x:Key="ContainerTitleStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="20"/>
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
             <Style x:Key="ContainerTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
             </Style>
             <Style x:Key="BlogTextBackgroundStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
                 <Setter Property="Opacity" Value="0.65"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
-                <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="HeightRequest" Value="95"/>
                 <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+            <Style x:Key="IconLabels" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+            <Style x:Key="Icons" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="Margin" Value="0,4,0,0"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -79,9 +98,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label Text="Discover" Style="{StaticResource TitleLabelStyle}"/>
-
-                <CollectionView ItemsSource="{Binding blog}" HeightRequest="300">
+                <CollectionView Margin="0,25,0,0" ItemsSource="{Binding blog}" HeightRequest="300">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"/>
                     </CollectionView.ItemsLayout>
@@ -95,7 +112,28 @@
                                         </StackLayout>
                                         <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
                                         <StackLayout VerticalOptions="EndAndExpand">
-                                            <Label Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
+                                            <Grid HeightRequest="135" RowSpacing="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="7*"/>
+                                                    <RowDefinition Height="3*"/>
+                                                </Grid.RowDefinitions>
+                                                <ScrollView>
+                                                    <Label Grid.Row="0" VerticalOptions="Start"  Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
+                                                </ScrollView>
+                                                <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                                    <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
+                                                    <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                                    <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
+                                                </Grid>
+                                            </Grid>
+                                            
                                         </StackLayout>
                                         
                                     </Grid>
@@ -116,6 +154,14 @@
                     <StackLayout>
                         <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
                         <Label Text="Verse text here" Style="{StaticResource ContainerTextStyle}"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource ContainerStyle}" HeightRequest="150">
+                    <StackLayout>
+                        <Label Text="Institutions we support" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Style="{StaticResource ContainerTextStyle}"
+                            Text="&#x2022; Institution 1 &#10;&#x2022; Institution 2 &#10;&#x2022; Institution 3 &#10;&#10;If you wish to find out more about these institutions, visit our website page on it here"/>
                     </StackLayout>
                 </Frame>
             </StackLayout>

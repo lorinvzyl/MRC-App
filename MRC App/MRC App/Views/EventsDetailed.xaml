@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MRC_App.Views.EventsDetailed">
+
+    <Shell.TitleView>
+        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions>
+                <!--This should center the item in the middle of the page. Needs further testing.-->
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Events" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label/> <!--Placeholder for event title-->
+            
+            <Image/> <!--Placeholder for images, however this will need capabilities of a slideshow-->
+
+            <Label/> <!--Placeholder for event description, possibly also add a read more thing here?-->
+
+            <Frame> <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
+
+
+                <Grid>
+                    <!--Event details grid-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label/>
+                    <!--Title-->
+
+                    <Label Grid.Row="0" Grid.Column="0"/>
+                    <Label Grid.Row="0" Grid.Column="1"/>
+
+                    <Label Grid.Row="1" Grid.Column="0"/>
+                    <Label Grid.Row="1" Grid.Column="1"/>
+
+                    <Label Grid.Row="2" Grid.Column="0"/>
+                    <Label Grid.Row="2" Grid.Column="1"/>
+
+                    <Button/>
+                    <!--Button to RSVP. Not sure how this will interact with the database yet.-->
+                </Grid>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
