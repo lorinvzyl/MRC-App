@@ -10,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace MRC_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BlogDetailed : ContentPage
+    public partial class BlogDetailed1 : ContentPage
     {
-        public BlogDetailed(string Img)
+        public BlogDetailed1()
         {
             InitializeComponent();
-
         }
     }
 }

@@ -9,7 +9,7 @@
              x:Class="MRC_App.Views.BlogPage">
     
     <ContentPage.BindingContext>
-        <viewmodels:AboutViewModel/>
+        <viewmodels:BlogViewModel/>
     </ContentPage.BindingContext>
         
     <ContentPage.Resources>
@@ -23,7 +23,7 @@
             <Style x:Key="BlogImageFrameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="HeightRequest" Value="140"/>
-                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/> 
                 <Setter Property="Padding" Value="0"/>
             </Style>
             <Style x:Key="BlogImageStyle" TargetType="Image">
@@ -47,9 +47,12 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding blog}" HeightRequest="300">
+        <CollectionView ItemsSource="{Binding blog}" HeightRequest="300" 
+                        SelectionMode="Single"
+                        SelectionChanged="myCollectionView_SelectionChanged">
+            
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"/>
+                <LinearItemsLayout Orientation="Horizontal"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>

@@ -1,17 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--
-    Once the user clicks on a blog from the blog page or recents from the about page,
-    the user will be shown the blog in full detail. ScrollView will definitely be needed here.
--->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
-             x:Class="MRC_App.Views.BlogDetailed">
+             x:Class="MRC_App.Views.BlogDetailed1">
 
     <ContentPage.BindingContext>
         <viewmodels:BlogViewModel/>
     </ContentPage.BindingContext>
-
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -46,6 +41,8 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
+    
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center">
             <Frame HeightRequest="280" WidthRequest="180"
@@ -53,7 +50,7 @@
                    HasShadow="True" Margin="10" CornerRadius="10"
                    HorizontalOptions="CenterAndExpand">
                 <StackLayout BackgroundColor="Black">
-                    <Image Source="https://images.pexels.com/photos/6115945/pexels-photo-6115945.jpeg"
+                    <Image Source="https://images.pexels.com/photos/208216/pexels-photo-208216.jpeg"
                            HeightRequest="350" Opacity="0.8"
                            Aspect="AspectFill"/>
                 </StackLayout>
