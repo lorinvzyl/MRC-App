@@ -55,7 +55,7 @@
                            Aspect="AspectFill"/>
                 </StackLayout>
             </Frame>
-            <StackLayout Grid.Column="1">
+            <StackLayout>
                 <Label Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
                 <Label Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
             </StackLayout>
