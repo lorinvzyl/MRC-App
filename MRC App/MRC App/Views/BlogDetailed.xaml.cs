@@ -12,10 +12,9 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BlogDetailed : ContentPage
     {
-        public BlogDetailed(string Img)
+        public BlogDetailed()
         {
             InitializeComponent();
-
         }
     }
 }

@@ -5,65 +5,12 @@
 -->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.BlogDetailed">
-
-    <ContentPage.BindingContext>
-        <viewmodels:BlogViewModel/>
-    </ContentPage.BindingContext>
-
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="BlogCardStyle" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="15"/>
-                <Setter Property="HeightRequest" Value="140"/>
-                <Setter Property="Margin" Value="20,10,20,10"/>
-                <Setter Property="Padding" Value="10"/>
-            </Style>
-            <Style x:Key="BlogImageFrameStyle" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="15"/>
-                <Setter Property="HeightRequest" Value="140"/>
-                <Setter Property="VerticalOptions" Value="Start"/>
-                <Setter Property="Padding" Value="0"/>
-            </Style>
-            <Style x:Key="BlogImageStyle" TargetType="Image">
-                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
-                <Setter Property="Aspect" Value="AspectFill"/>
-            </Style>
-            <Style x:Key="BlogTitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="FontSize" Value="17"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="Padding" Value="10,0,10,0"/>
-            </Style>
-            <Style x:Key="BlogContentStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
-                <Setter Property="Padding" Value="10,0,10,0"/>
-                <Setter Property="MaxLines" Value="4"/>
-                <Setter Property="LineBreakMode" Value="TailTruncation"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center">
-            <Frame HeightRequest="280" WidthRequest="180"
-                   BackgroundColor="White" Padding="0"
-                   HasShadow="True" Margin="10" CornerRadius="10"
-                   HorizontalOptions="CenterAndExpand">
-                <StackLayout BackgroundColor="Black">
-                    <Image Source="https://images.pexels.com/photos/6115945/pexels-photo-6115945.jpeg"
-                           HeightRequest="350" Opacity="0.8"
-                           Aspect="AspectFill"/>
-                </StackLayout>
-            </Frame>
-            <StackLayout Grid.Column="1">
-                <Label Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
-                <Label Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
-            </StackLayout>
-
-
+        <StackLayout>
+            <Label Text="Detailed Blog"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
