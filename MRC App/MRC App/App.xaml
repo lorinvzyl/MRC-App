@@ -7,7 +7,6 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <!--Colour Palette-->
             <Color x:Key="Primary">#3f8ba7</Color>
             <Color x:Key="DarkDarkShade">#0a0b0b</Color>
             <Color x:Key="DarkShade">#202628</Color>
@@ -17,9 +16,6 @@
             <Color x:Key="Success">#48a46a</Color>
             <Color x:Key="Warning">#c59432</Color>
             <Color x:Key="Danger">#f44336</Color>
-            <!--Added colours-->
-            <Color x:Key="LightDarkShade">#3d3d3d</Color>
-            <Color x:Key="EventIndicator">#9747FF</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">

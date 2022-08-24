@@ -8,38 +8,16 @@
     <ContentPage.BindingContext>
         <viewmodels:EventsViewModel/>
     </ContentPage.BindingContext>
-
-    <Shell.TitleView>
-        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Grid.ColumnDefinitions>
-                <!--This should center the item in the middle of the page. Needs further testing.-->
-                <ColumnDefinition Width="9*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Events" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-        </Grid>
-    </Shell.TitleView>
-
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Title" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="TextColor" Value="{StaticResource DarkDarkShade}"/>
+                <Setter Property="FontSize" Value="14"/>
             </Style>
             <Style x:Key="Body" TargetType="Label">
-                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="FontSize" Value="11"/>
                 <Setter Property="LineBreakMode" Value="WordWrap"/>
-                <Setter Property="TextColor" Value="{StaticResource LightDarkShade}"/>
-                <Setter Property="VerticalTextAlignment" Value="Center"/>
-            </Style>
-            <Style x:Key="BodyLink" TargetType="Label">
-                <Setter Property="FontSize" Value="Small"/>
-                <Setter Property="LineBreakMode" Value="NoWrap"/>
-                <Setter Property="TextDecorations" Value="Underline"/>
-                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
-                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
-                <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -50,81 +28,13 @@
                 ShownDate="2022-05-21"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
-                Events="{Binding Events}"
-                BackgroundColor="{StaticResource LightShade}"
-                SelectedDayBackgroundColor="{StaticResource Primary}"
-                MonthLabelColor="{StaticResource DarkShade}"
-                TodayOutlineColor="{StaticResource DarkAccent}"
-                DeselectedDayTextColor="{StaticResource DarkShade}"
-                SelectedDateColor="{StaticResource Primary}"
-                SelectedDayTextColor="{StaticResource LightShade}"
-                EventIndicatorSelectedTextColor="{StaticResource LightShade}"
-                EventIndicatorTextColor="{StaticResource DarkShade}"
-                EventIndicatorColor="{StaticResource EventIndicator}">
-                <controls:Calendar.HeaderSectionTemplate>
-                    <DataTemplate>
-                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <!--filler-->
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="5*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <!--filler-->
-                            </Grid.ColumnDefinitions>
-
-                            <!--icon for left-->
-                            <Frame Grid.Column="1" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-                                <Label VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"  FontSize="Large" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf104;" TextColor="{StaticResource DarkShade}" InputTransparent="True"/>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding PrevLayoutUnitCommand}"/> <!--Plugin command, allows for changing of months.-->
-                                </Frame.GestureRecognizers>
-                            </Frame>
-                            
-                            
-                            <!--label with month and year together-->
-                            <Label Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Medium" TextColor="{StaticResource DarkShade}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding LayoutUnitText, Mode=TwoWay}"/> <!--plugin command, changes month number to a string-->
-                                        <Span Text=", "/>
-                                        <Span Text="{Binding Year, Mode=TwoWay}"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            
-                            <!--icon for right-->
-                            <Frame Grid.Column="3" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-                                <Label VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf105;" TextColor="{StaticResource DarkShade}" InputTransparent="True"/>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding NextLayoutUnitCommand}"/> <!--plugin command, allows for changing of months.-->
-                                </Frame.GestureRecognizers>
-                            </Frame>
-                            
-
-                        </Grid>
-                    </DataTemplate>
-                </controls:Calendar.HeaderSectionTemplate>
+                Events="{Binding Events}">
                 <controls:Calendar.EventTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="50*"/>
-                                <RowDefinition Height="50*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80*"/>
-                                <ColumnDefinition Width="20*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Name}" Style="{StaticResource Title}"/>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource Body}"/>
-                            <Label Grid.Row="2" Grid.Column="2" Text="RSVP" Style="{StaticResource BodyLink}"/>
-                        </Grid>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" Style="{StaticResource Title}"/>
+                            <Label Text="{Binding Description}" Style="{StaticResource Body}"/>
+                        </StackLayout>
                     </DataTemplate>
                 </controls:Calendar.EventTemplate>
             </controls:Calendar>

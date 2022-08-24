@@ -1,9 +1,6 @@
 ﻿using MRC_App.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,66 +13,44 @@ namespace MRC_App.ViewModels
     {
         public EventsViewModel()
         {
-            Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Info", "Loading events", "Ok"));
-
-            Events = new EventCollection
-            {
-                [DateTime.Now.AddDays(1)] = new List<Events>(GenerateEvents(1, "Cool"))
-            };
+            
         }
 
-        public EventCollection Events { get; set; }
-
-        private IEnumerable<Events> GenerateEvents(int count, string name)
-        {
-            return Enumerable.Range(1, count).Select(e => new Events
-            {
-                Name = $"{name} event{count}",
-                Description = $"This is {name} event{count}'s description"
-            });
-        }
-
-        public CultureInfo Culture => new CultureInfo("en-US");
         public ICommand TodayCommand => new Command(() =>
         {
             Year = DateTime.Today.Year;
             Month = DateTime.Today.Month;
         });
 
-        private int _year;
-        private int _month;
-        public int Year
-        {
-            get => _year;
-            set => SetProperty(ref _year, value);
+        public ICommand EventSelectedCommand => new Command(async (item) => await ExecuteEventSelectedCommand(item));
+
+        private async Task ExecuteEventSelectedCommand(object item)
+        {  
+            throw new NotImplementedException();
         }
+
+        public EventCollection Events { get; set; }
+
+        private int _month = DateTime.Today.Month;
 
         public int Month
         {
-            get => _month;
-            set => SetProperty(ref _month, value);
+            get { return _month; }
+            set { _month = value; }
         }
 
-        private DateTime _minimumDate = new DateTime(2022, 8, 3);
-        public DateTime MinimumDate
+        private int _year = DateTime.Today.Year;
+        public int Year
         {
-            get => _minimumDate;
-            set => SetProperty(ref _minimumDate, value);
+            get { return _year; }
+            set { _year = value; }
         }
 
-        private DateTime _maximumDate = DateTime.Today.AddMonths(5);
-        public DateTime MaximumDate
+        private DateTime? _selectedDate = DateTime.Today;
+        public DateTime? SelectedDate
         {
-            get => _maximumDate;
-            set => SetProperty(ref _maximumDate, value);
-        }
-
-        private async Task ExecuteEventSelectedCommand(object item)
-        {
-            if(item is Events eventModel)
-            {
-                await App.Current.MainPage.DisplayAlert(eventModel.Name, eventModel.Description, "Ok");
-            }
+            get { return _selectedDate; }
+            set { _selectedDate = value; }
         }
     }
 }

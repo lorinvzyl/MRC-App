@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Xamarin.Forms;
 
 namespace MRC_App.Models
 {
@@ -11,8 +10,6 @@ namespace MRC_App.Models
         public string Img { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public int Likes { get; set; }
-        public int Comments { get; set; }
 
     }
 }
