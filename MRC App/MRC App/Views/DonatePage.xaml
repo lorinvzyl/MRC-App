@@ -16,9 +16,84 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Donate"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Frame Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource Primary}" CornerRadius="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" TextColor="{StaticResource LightShade}" FontSize="Subtitle"
+                        Text="Thank you if you wish to donate to our church, insert formalities here. &#x0a;&#x0a;Your donation supports insert communities here.&#x0a;&#x0a;Once you select an amount to donate, you will be redirected to a third party payment service that you have selected below.&#x0a;&#x0a;If you wish to write a special message, do so here:"/>
+                    <Frame Padding="5,0,5,0" Grid.Row="1" CornerRadius="15" BackgroundColor="{StaticResource LightShade}">
+                        <Editor BackgroundColor="{StaticResource LightShade}" Background="{StaticResource LightShade}" />
+                    </Frame>
+                    
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="8*"/>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="8*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand" FontSize="Subtitle" TextColor="{StaticResource LightShade}" Text="Select an amount to donate"/>
+                        <Frame Padding="0" Grid.Row="1" Grid.Column="2" CornerRadius="15" BackgroundColor="{StaticResource LightShade}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label VerticalOptions="Center" Grid.Column="1" Text="R"/>
+                                <Editor Grid.Column="2" BackgroundColor="{StaticResource LightShade}" Background="{StaticResource LightShade}"/>
+                            </Grid>
+                            
+                        </Frame>
+
+
+                        <Frame Padding="0" Grid.Row="3" Grid.Column="0" CornerRadius="15" BackgroundColor="{StaticResource LightShade}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Frame.GestureRecognizers>
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource Glyph="&#xf1f4;" FontFamily="{StaticResource FontAwesomeBrands}" Color="{StaticResource DarkShade}"/>
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+
+                        <Frame Padding="0" Grid.Row="3" Grid.Column="1" CornerRadius="15" BackgroundColor="{StaticResource LightShade}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Frame.GestureRecognizers>
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource Glyph="&#xe079;" FontFamily="{StaticResource FontAwesomeBrands}" Color="{StaticResource DarkShade}"/>
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+
+                        <Frame Padding="0" Grid.Row="3" Grid.Column="2" CornerRadius="15" BackgroundColor="{StaticResource LightShade}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Frame.GestureRecognizers>
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource Glyph="&#xf09d;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource DarkShade}"/>
+                                </Image.Source>
+                            </Image>
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

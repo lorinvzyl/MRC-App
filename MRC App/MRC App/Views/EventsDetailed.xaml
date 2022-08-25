@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.EventsDetailed">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AboutViewModel/>
+    </ContentPage.BindingContext>
 
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -15,46 +20,91 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label/> <!--Placeholder for event title-->
-            
-            <Image/> <!--Placeholder for images, however this will need capabilities of a slideshow-->
-
-            <Label/> <!--Placeholder for event description, possibly also add a read more thing here?-->
-
-            <Frame> <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
-
-
+        <ScrollView>
+            <StackLayout>
                 <Grid>
-                    <!--Event details grid-->
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <!--filler-->
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <!--filler-->
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="300"/>
+                        <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Cool Event1" FontSize="Title" FontAttributes="Bold"/>
+                    <!--Placeholder for event title-->
 
-                    <Label/>
-                    <!--Title-->
+                    <CarouselView Grid.Row="2" Grid.Column="1">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <!--Placeholder for images, however this will need capabilities of a slideshow-->
 
-                    <Label Grid.Row="0" Grid.Column="0"/>
-                    <Label Grid.Row="0" Grid.Column="1"/>
+                    <Label Grid.Row="3" Grid.Column="1" TextColor="Black" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+                    <!--Placeholder for event description, possibly also add a read more thing here?-->
 
-                    <Label Grid.Row="1" Grid.Column="0"/>
-                    <Label Grid.Row="1" Grid.Column="1"/>
+                    <Frame VerticalOptions="End" Padding="10" HeightRequest="230" Grid.Row="4" Grid.Column="1" CornerRadius="15" BackgroundColor="{StaticResource LightAccent}">
+                        <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
+                        <Grid RowSpacing="0" ColumnSpacing="0">
 
-                    <Label Grid.Row="2" Grid.Column="0"/>
-                    <Label Grid.Row="2" Grid.Column="1"/>
+                            <!--Event details grid-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="15*"/>
+                                <ColumnDefinition Width="15*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="15"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
 
-                    <Button/>
-                    <!--Button to RSVP. Not sure how this will interact with the database yet.-->
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Title" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                            <!--Title-->
+
+                            <Label Grid.Row="2" Grid.Column="1" Text="Spots open:" HorizontalOptions="StartAndExpand" FontSize="Subtitle"/>
+                            <Label Grid.Row="2" Grid.Column="2" Text="120" HorizontalOptions="EndAndExpand" FontSize="Subtitle"/>
+
+                            <Label Grid.Row="3" Grid.Column="1" Text="Venue:" HorizontalOptions="StartAndExpand" FontSize="Subtitle"/>
+                            <Label Grid.Row="3" Grid.Column="2" Text="Church Location 1" HorizontalOptions="EndAndExpand" FontSize="Subtitle"/>
+
+                            <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" HorizontalOptions="StartAndExpand" FontSize="Subtitle"/>
+                            <Label Grid.Row="4" Grid.Column="2" Text="24 August" HorizontalOptions="EndAndExpand" FontSize="Subtitle"/>
+
+                            <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="5"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button CornerRadius="15" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Text="RSVP"/>
+                            </Grid>
+
+                            <!--Button to RSVP. Not sure how this will interact with the database yet.-->
+                        </Grid>
+                    </Frame>
                 </Grid>
-            </Frame>
-
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -15,24 +15,32 @@ namespace MRC_App.Views
         public QRPage()
         {
             InitializeComponent();
-            _ = ScanAsync();
+            ScanAsync();
         }
 
-        public async Task<string> ScanAsync()
+        public async void ScanAsync()
         {
-            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
-            scanner.UseCustomOverlay = true;
+            try
+            {
+                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+                var result = await scanner.Scan();
+                if(result != null)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
             //customoverlay does not exist>
-            var result = await scanner.Scan();
-            return null;
+            
         }
 
         private void ZXingScannerView_OnScanResult(ZXing.Result result)
         {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                scanResult.Text = result.Text;
-            });
+            
         }
     }
 }

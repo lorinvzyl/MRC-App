@@ -99,6 +99,12 @@
         </FlyoutItem.Icon>
         <ShellContent Route="QRPage" ContentTemplate="{DataTemplate local:QRPage}"/>
     </FlyoutItem>
+    <FlyoutItem Title="EventDetailed">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf029;" Color="{StaticResource DarkShade}"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="EventsDetailed" ContentTemplate="{DataTemplate local:EventsDetailed}"/>
+    </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     

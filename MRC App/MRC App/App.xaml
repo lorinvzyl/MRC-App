@@ -20,8 +20,9 @@
             <!--Added colours-->
             <Color x:Key="LightDarkShade">#3d3d3d</Color>
             <Color x:Key="EventIndicator">#9747FF</Color>
+            
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -38,6 +39,9 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
             </Style>
 
             <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
