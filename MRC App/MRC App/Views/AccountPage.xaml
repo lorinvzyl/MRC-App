@@ -267,6 +267,8 @@
                             Grid.Row="0"
                             TranslationY=" -280"
                             />
+                    <Label Text="&#xf2ed;" FontFamily="{StaticResource FontAwesomeSolid}" TranslationY="-20"/>
+                    
                     <Button Text=" Delete Account" 
                             BackgroundColor="Red"
                             Grid.Row="1"
