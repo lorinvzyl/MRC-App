@@ -31,10 +31,8 @@ namespace MRC_App.Views
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
-            
-            //customoverlay does not exist>
             
         }
 
