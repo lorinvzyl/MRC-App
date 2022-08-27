@@ -14,6 +14,12 @@
         </Grid>
     </Shell.TitleView>
     
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
             <Frame Margin="20,10,20,10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource Primary}" CornerRadius="15">

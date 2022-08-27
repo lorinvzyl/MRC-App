@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MRC_App.Models
 {
-    internal class Video
+    public class Video
     {
         public string Id { get; set; }
         public string VideoURL { get; set; }

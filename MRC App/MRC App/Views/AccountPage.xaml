@@ -15,6 +15,12 @@
         </Grid>
     </Shell.TitleView>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
 
         <ScrollView VerticalScrollBarVisibility="Always">

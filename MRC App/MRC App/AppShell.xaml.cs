@@ -17,9 +17,11 @@ namespace MRC_App
             Routing.RegisterRoute("BlogPage", typeof(BlogPage));
             Routing.RegisterRoute("DonatePage", typeof(DonatePage));
             Routing.RegisterRoute("EventsPage", typeof(EventsPage));
+            Routing.RegisterRoute("EventsDetailed", typeof(EventsDetailed));
             Routing.RegisterRoute("LoginPage", typeof(LoginPage));
             Routing.RegisterRoute("QRPage", typeof(QRPage));
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));
+            Routing.RegisterRoute("LocationPage", typeof(LocationPage));
         }
 
         private async void Logout_Tapped(object sender, EventArgs e)

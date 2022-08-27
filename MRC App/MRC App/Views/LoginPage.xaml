@@ -9,6 +9,13 @@
              mc:Ignorable="d"
              x:Class="MRC_App.Views.LoginPage"
              Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="20,0,20,0">
             <!--Define rows needed-->

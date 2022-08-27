@@ -18,6 +18,12 @@
         </Grid>
     </Shell.TitleView>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Detailed Blog"

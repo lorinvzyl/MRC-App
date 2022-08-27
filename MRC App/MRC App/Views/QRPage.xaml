@@ -18,6 +18,12 @@
         </Grid>
     </Shell.TitleView>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
             <zxing:ZXingScannerView OnScanResult="ZXingScannerView_OnScanResult" />
