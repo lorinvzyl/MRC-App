@@ -9,7 +9,7 @@ namespace MRC_App.Models
     {
         public int ID { get; set; }
         public string Img { get; set; }
-        public string Title { get; set; }
+        public string BlogTitle { get; set; }
         public string Content { get; set; }
         public int Likes { get; set; }
         public int Comments { get; set; }

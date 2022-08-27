@@ -5,13 +5,13 @@ using Xamarin.Forms;
 
 namespace MRC_App.Models
 {
-    public class Events
+    internal class User
     {
         public int Id { get; set; }
-        public UriImageSource Image { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string Date { get; set; }
-
+        public string Email { get; set; }
+        public string Surname { get; set; }
+        public DateTime Birthday { get; set; }
+        public UriImageSource Profile { get; set; }
     }
 }

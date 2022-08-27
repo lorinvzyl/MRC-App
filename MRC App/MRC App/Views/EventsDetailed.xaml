@@ -1,12 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.EventsDetailed">
-
-    <ContentPage.BindingContext>
-        <viewmodels:AboutViewModel/>
-    </ContentPage.BindingContext>
 
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -97,7 +92,11 @@
                                     <ColumnDefinition Width="7*"/>
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button CornerRadius="15" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Text="RSVP"/>
+                                <Button CornerRadius="15" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Text="RSVP">
+                                    <Button.GestureRecognizers>
+                                        <TapGestureRecognizer/>
+                                    </Button.GestureRecognizers>
+                                </Button>
                             </Grid>
 
                             <!--Button to RSVP. Not sure how this will interact with the database yet.-->

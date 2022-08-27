@@ -4,11 +4,11 @@ using System.Text;
 
 namespace MRC_App.ViewModels
 {
-    internal class QRViewModel : BaseViewModel
+    public class AccountViewModel : BaseViewModel
     {
-        public QRViewModel()
+        public AccountViewModel()
         {
-            Title = "QR";
+
         }
     }
 }

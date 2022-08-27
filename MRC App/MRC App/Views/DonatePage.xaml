@@ -16,7 +16,7 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Frame Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource Primary}" CornerRadius="15">
+            <Frame Margin="20,10,20,10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource Primary}" CornerRadius="15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>

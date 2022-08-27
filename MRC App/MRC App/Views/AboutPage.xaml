@@ -8,11 +8,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.AboutPage">
-    <ContentPage.BindingContext>
-        <viewmodels:AboutViewModel/>
-    </ContentPage.BindingContext>
 
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -150,14 +146,14 @@
                     </StackLayout>
                 </Frame>
 
-                <Frame Style="{StaticResource ContainerStyle}" HeightRequest="150">
+                <Frame Style="{StaticResource ContainerStyle}">
                     <StackLayout>
                         <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
                         <Label Text="Verse text here" Style="{StaticResource ContainerTextStyle}"/>
                     </StackLayout>
                 </Frame>
 
-                <Frame Style="{StaticResource ContainerStyle}" HeightRequest="150">
+                <Frame Style="{StaticResource ContainerStyle}">
                     <StackLayout>
                         <Label Text="Institutions we support" Style="{StaticResource ContainerTitleStyle}"/>
                         <Label Style="{StaticResource ContainerTextStyle}"
