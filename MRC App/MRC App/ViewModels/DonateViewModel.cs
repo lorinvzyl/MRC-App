@@ -8,7 +8,7 @@ namespace MRC_App.ViewModels
     {
         public DonateViewModel()
         {
-            Title = "Donate";
+            Title = "Donate"; /*Currently does nothing*/
         }
     }
 }

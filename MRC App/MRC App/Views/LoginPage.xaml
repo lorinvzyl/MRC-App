@@ -6,10 +6,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              mc:Ignorable="d"
              x:Class="MRC_App.Views.LoginPage"
              Shell.NavBarIsVisible="False">
 
+    <ContentPage.BindingContext>
+        <viewmodel:LoginViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -47,7 +52,7 @@
             <!--Can add a "eye" icon here so they can see the password they entered-->
             
             <!--Button to log into account-->
-            <Button Grid.Row="6" Text="Login" BackgroundColor="{StaticResource Primary}" CornerRadius="20" Command=""/>
+            <Button Grid.Row="6" Text="Login" BackgroundColor="{StaticResource Primary}" CornerRadius="20" Command="{Binding LoginCommand}"/>
             
             <!--Links for user-->
             <Label Grid.Row="7" Text="Forgot password?" FontAttributes="Bold" HorizontalOptions="CenterAndExpand">
@@ -56,7 +61,7 @@
             
             <Label Grid.Row="8" Text="No account? Sign up here" HorizontalOptions="CenterAndExpand">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
         </Grid>

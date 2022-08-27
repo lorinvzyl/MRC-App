@@ -19,6 +19,7 @@ namespace MRC_App.ViewModels
 
         public AboutViewModel()
         {
+            Title = "Home"; /*Currently does nothing*/
             blog = new ObservableCollection<Blog>();
             /*
              * Add video here

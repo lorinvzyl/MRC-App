@@ -7,11 +7,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.BlogPage">
-    
-    <ContentPage.BindingContext>
-        <viewmodels:AboutViewModel/>
-    </ContentPage.BindingContext>
 
+    <ContentPage.BindingContext>
+        <viewmodels:BlogViewModel/>
+    </ContentPage.BindingContext>
+        
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>

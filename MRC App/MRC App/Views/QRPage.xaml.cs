@@ -13,11 +13,9 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QRPage : ContentPage
     {
-        QRViewModel viewModel;
         public QRPage()
         {
             InitializeComponent();
-            BindingContext = viewModel;
         }
 
 

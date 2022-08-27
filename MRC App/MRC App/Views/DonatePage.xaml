@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.DonatePage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:DonateViewModel/>
+    </ContentPage.BindingContext>
     
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -16,13 +21,18 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
-
+            <Style x:Name="ContainerStyle" TargetType="Frame">
+                <Setter Property="Margin" Value="20,10,20,10"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout>
-            <Frame Margin="20,10,20,10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource Primary}" CornerRadius="15">
+            <Frame Style="{StaticResource ContainerStyle}" BackgroundColor="{StaticResource Primary}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"/>

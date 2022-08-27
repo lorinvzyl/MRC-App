@@ -8,7 +8,7 @@ namespace MRC_App.ViewModels
     {
         public QRViewModel()
         {
-            Title = "QR";
+            Title = "QR"; /*Currently does nothing*/
         }
     }
 }

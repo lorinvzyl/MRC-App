@@ -8,7 +8,7 @@ namespace MRC_App.ViewModels
     {
         public RegisterViewModel()
         {
-            Title = "Register";
+            Title = "Register"; /*Currently does nothing*/
         }
     }
 }

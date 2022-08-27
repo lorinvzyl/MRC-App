@@ -8,8 +8,13 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.AboutPage">
 
+    <ContentPage.BindingContext>
+        <viewmodel:AboutViewModel/>
+    </ContentPage.BindingContext>
+    
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions> <!--This should center the item in the middle of the page. Needs further testing.-->
@@ -57,6 +62,7 @@
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
                 <Setter Property="Margin" Value="15"/>
                 <Setter Property="Opacity" Value="1.0"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
             </Style>
             <Style x:Key="ContainerStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="15"/>
@@ -114,7 +120,7 @@
                                                     <RowDefinition Height="3*"/>
                                                 </Grid.RowDefinitions>
                                                 <ScrollView>
-                                                    <Label Grid.Row="0" VerticalOptions="Start"  Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
+                                                    <Label Grid.Row="0"  Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
                                                 </ScrollView>
                                                 <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
                                                     <Grid.ColumnDefinitions>

@@ -13,11 +13,9 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LocationPage : ContentPage
     {
-        LocationViewModel viewModel;
         public LocationPage()
         {
             InitializeComponent();
-            BindingContext = viewModel;
         }
     }
 }

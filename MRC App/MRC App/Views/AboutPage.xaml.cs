@@ -8,11 +8,9 @@ namespace MRC_App.Views
 {
     public partial class AboutPage : ContentPage
     {
-        AboutViewModel viewModel;
         public AboutPage()
         {
             InitializeComponent();
-            BindingContext = viewModel;
         }
     }
 }
