@@ -120,7 +120,7 @@
                                                     <RowDefinition Height="3*"/>
                                                 </Grid.RowDefinitions>
                                                 <ScrollView>
-                                                    <Label Grid.Row="0"  Text="{Binding Title}" Style="{StaticResource BlogTitleStyle}"/>
+                                                    <Label Grid.Row="0"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
                                                 </ScrollView>
                                                 <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
                                                     <Grid.ColumnDefinitions>
