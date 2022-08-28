@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.EventsDetailed">
 
+    <ContentPage.BindingContext>
+        <viewmodel:EventsDetailedViewModel/>
+    </ContentPage.BindingContext>
+    
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
@@ -16,7 +21,39 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-
+            <Style x:Key="EventTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="Title"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="EventGallery" TargetType="Image">
+                <Setter Property="Aspect" Value="Fill"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            </Style>
+            <Style x:Key="RSVPFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="HeightRequest" Value="230"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LightAccent}"/>
+            </Style>
+            <Style x:Key="RSVPLabelLeft" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="FontSize" Value="Subtitle"/>
+            </Style>
+            <Style x:Key="RSVPLabelRight" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="FontSize" Value="Subtitle"/>
+            </Style>
+            <Style x:Key="RSVPLabelTitle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="RSVPButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -39,22 +76,22 @@
                         <RowDefinition Height="300"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="1" Grid.Column="1" Text="Cool Event1" FontSize="Title" FontAttributes="Bold"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventName}" Style="{StaticResource EventTitle}"/>
                     <!--Placeholder for event title-->
 
                     <CarouselView Grid.Row="2" Grid.Column="1">
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
-                                <Image Source="" Aspect="Fill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                <Image Source="" Style="{StaticResource EventGallery}"/>
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
                     <!--Placeholder for images, however this will need capabilities of a slideshow-->
 
-                    <Label Grid.Row="3" Grid.Column="1" TextColor="Black" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding EventDescription}"/>
                     <!--Placeholder for event description, possibly also add a read more thing here?-->
 
-                    <Frame VerticalOptions="End" Padding="10" HeightRequest="230" Grid.Row="4" Grid.Column="1" CornerRadius="15" BackgroundColor="{StaticResource LightAccent}">
+                    <Frame Grid.Row="4" Grid.Column="1" Style="{StaticResource RSVPFrame}">
                         <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
                         <Grid RowSpacing="0" ColumnSpacing="0">
 
@@ -75,17 +112,17 @@
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Title" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"/>
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Title" Style="{StaticResource RSVPLabelTitle}"/>
                             <!--Title-->
 
-                            <Label Grid.Row="2" Grid.Column="1" Text="Spots open:" HorizontalOptions="StartAndExpand" FontSize="Subtitle"/>
-                            <Label Grid.Row="2" Grid.Column="2" Text="120" HorizontalOptions="EndAndExpand" FontSize="Subtitle"/>
+                            <Label Grid.Row="2" Grid.Column="1" Text="Spots open:" Style="{StaticResource RSVPLabelLeft}"/>
+                            <Label Grid.Row="2" Grid.Column="2" Text="120" Style="{StaticResource RSVPLabelRight}"/>
 
-                            <Label Grid.Row="3" Grid.Column="1" Text="Venue:" HorizontalOptions="StartAndExpand" FontSize="Subtitle"/>
-                            <Label Grid.Row="3" Grid.Column="2" Text="Church Location 1" HorizontalOptions="EndAndExpand" FontSize="Subtitle"/>
+                            <Label Grid.Row="3" Grid.Column="1" Text="Venue:" Style="{StaticResource RSVPLabelLeft}"/>
+                            <Label Grid.Row="3" Grid.Column="2" Text="Church Location 1" Style="{StaticResource RSVPLabelRight}"/>
 
-                            <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" HorizontalOptions="StartAndExpand" FontSize="Subtitle"/>
-                            <Label Grid.Row="4" Grid.Column="2" Text="24 August" HorizontalOptions="EndAndExpand" FontSize="Subtitle"/>
+                            <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" Style="{StaticResource RSVPLabelLeft}"/>
+                            <Label Grid.Row="4" Grid.Column="2" Text="24 August" Style="{StaticResource RSVPLabelRight}"/>
 
                             <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
                                 <Grid.RowDefinitions>
@@ -98,7 +135,7 @@
                                     <ColumnDefinition Width="7*"/>
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button CornerRadius="15" VerticalOptions="Center" Grid.Row="1" Grid.Column="1" Text="RSVP">
+                                <Button Grid.Row="1" Grid.Column="1" Text="RSVP" Style="{StaticResource RSVPButton}">
                                     <Button.GestureRecognizers>
                                         <TapGestureRecognizer/>
                                     </Button.GestureRecognizers>

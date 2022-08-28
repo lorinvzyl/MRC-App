@@ -7,7 +7,7 @@
     <ContentPage.BindingContext>
         <viewmodel:LocationViewModel/>
     </ContentPage.BindingContext>
-    
+
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
@@ -21,31 +21,62 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            
+            <Style x:Key="LocationFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="Margin" Value="0,10,0,25"/>
+            </Style>
+            <Style x:Key="LocationTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+            </Style>
+            <Style x:Key="LocationContent" TargetType="Label">
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+            </Style>
+            <Style x:Key="LocationLink" TargetType="Label">
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+                <Setter Property="Margin" Value="0,30,0,0"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView>
+            <CollectionView ItemsSource="{Binding locations}" Margin="20">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame>
-                            <Grid>
-                                <Label Text="{Binding Name}"/>
-                                <Label Text="{Binding PastorName}"/>
+                        <StackLayout>
+                            <Frame Style="{StaticResource LocationFrame}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Name}" Style="{StaticResource LocationTitle}"/>
 
-                                <Label TextDecorations="Underline" Text="Click here to navigate to the church">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer/>
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </Grid>
-                            
-                        </Frame>
+                                    <Label Grid.Row="1" Grid.Column="0" Text="Pastor:" Style="{StaticResource LocationContent}"/>
+                                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding PastorName}" Style="{StaticResource LocationContent}"/>
+
+                                    <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Click here to navigate to the church" Style="{StaticResource LocationLink}">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

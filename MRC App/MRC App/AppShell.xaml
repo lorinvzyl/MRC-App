@@ -99,11 +99,23 @@
         </FlyoutItem.Icon>
         <ShellContent Route="QRPage" ContentTemplate="{DataTemplate local:QRPage}"/>
     </FlyoutItem>
+    <FlyoutItem Title="Locations">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf3c5;" Color="{StaticResource DarkShade}"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="LocationPage" ContentTemplate="{DataTemplate local:LocationPage}"/>
+    </FlyoutItem>
     <FlyoutItem Title="EventDetailed">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf029;" Color="{StaticResource DarkShade}"/>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#x58;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="EventsDetailed" ContentTemplate="{DataTemplate local:EventsDetailed}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="BlogDetailed">
+        <FlyoutItem.Icon>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#x58;" Color="{StaticResource DarkShade}"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="BlogDetailed" ContentTemplate="{DataTemplate local:BlogDetailed}"/>
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

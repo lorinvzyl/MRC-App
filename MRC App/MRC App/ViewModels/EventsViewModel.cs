@@ -1,4 +1,6 @@
 ﻿using MRC_App.Models;
+using MRC_App.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,23 +10,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace MRC_App.ViewModels
 {
     public class EventsViewModel : BaseViewModel
     {
+        public ICommand EventSelectedCommand => new Command(async (item) => await ExecuteEventSelectedCommand(item));
+        public ICommand TodayCommand => new Command(() =>
+        {
+            Year = DateTime.Today.Year;
+            Month = DateTime.Today.Month;
+        });
+        public DateTime Today = DateTime.Today;
         public EventsViewModel()
         {
             Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Info", "Loading events", "Ok"));
 
-            Events = new EventCollection
+            Event = new EventCollection
             {
                 [DateTime.Now.AddDays(1)] = new List<Events>(GenerateEvents(1, "Cool"))
             };
         }
 
-        public EventCollection Events { get; set; }
+        public EventCollection Event { get; set; }
 
         private IEnumerable<Events> GenerateEvents(int count, string name)
         {
@@ -36,11 +46,7 @@ namespace MRC_App.ViewModels
         }
 
         public CultureInfo Culture => new CultureInfo("en-US");
-        public ICommand TodayCommand => new Command(() =>
-        {
-            Year = DateTime.Today.Year;
-            Month = DateTime.Today.Month;
-        });
+        
 
         private int _year;
         private int _month;
@@ -72,10 +78,12 @@ namespace MRC_App.ViewModels
 
         private async Task ExecuteEventSelectedCommand(object item)
         {
-            if(item is Events eventModel)
+            if(item is Events)
             {
-                await App.Current.MainPage.DisplayAlert(eventModel.Name, eventModel.Description, "Ok");
+                var jsonStr = JsonConvert.SerializeObject(item);
+                await Shell.Current.GoToAsync($"{nameof(EventsDetailed)}?Param={jsonStr}");
             }
         }
+
     }
 }
