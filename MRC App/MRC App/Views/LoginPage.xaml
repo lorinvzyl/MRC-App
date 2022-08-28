@@ -59,10 +59,12 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="TextColor" Value="{StaticResource LightDarkShade}"/>
             </Style>
             <Style x:Key="RegisterLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="TextColor" Value="{StaticResource LightDarkShade}"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
