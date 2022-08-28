@@ -19,12 +19,12 @@ namespace MRC_App.ViewModels
 
         private async void OnLoginClicked(object obj)
         {
-            await Shell.Current.GoToAsync($"{nameof(AboutPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
 
         private async void OnRegisterClicked(object obj)
         {
-            await Shell.Current.GoToAsync($"{nameof(RegisterPage)}"); /*Cannot have // prefix, gives errors. */
+            await Shell.Current.GoToAsync($"{nameof(RegisterPage)}"); 
         }
     }
 }

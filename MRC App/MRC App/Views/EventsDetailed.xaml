@@ -8,6 +8,7 @@
         <viewmodel:EventsDetailedViewModel/>
     </ContentPage.BindingContext>
     
+    
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
@@ -62,10 +63,10 @@
             <StackLayout>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="15"/>
                         <!--filler-->
-                        <ColumnDefinition Width="80*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="15"/>
                         <!--filler-->
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>

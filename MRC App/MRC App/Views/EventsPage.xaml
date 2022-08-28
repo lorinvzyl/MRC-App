@@ -9,7 +9,7 @@
     <ContentPage.BindingContext>
         <viewmodel:EventsViewModel/>
     </ContentPage.BindingContext>
-    
+
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>

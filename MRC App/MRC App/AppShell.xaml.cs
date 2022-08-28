@@ -26,7 +26,7 @@ namespace MRC_App
 
         private async void Logout_Tapped(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
 
         private async void Account_Tapped(object sender, EventArgs e)
