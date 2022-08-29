@@ -28,20 +28,23 @@ namespace MRC_App.ViewModels
         {
             Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Info", "Loading events", "Ok"));
 
+            List<string> images = new List<string> { "pexels208216.jpg", "pexels6115945.jpg" };
+
             Event = new EventCollection
             {
-                [DateTime.Now.AddDays(1)] = new List<Events>(GenerateEvents(1, "Cool"))
+                [DateTime.Now.AddDays(1)] = new List<Events>(GenerateEvents(1, "Cool", images))
             };
         }
 
         public EventCollection Event { get; set; }
 
-        private IEnumerable<Events> GenerateEvents(int count, string name)
+        private IEnumerable<Events> GenerateEvents(int count, string name, List<string> images)
         {
             return Enumerable.Range(1, count).Select(e => new Events
             {
                 Name = $"{name} event{count}",
-                Description = $"This is {name} event{count}'s description"
+                Description = $"This is {name} event{count}'s description",
+                Image = images
             });
         }
 
