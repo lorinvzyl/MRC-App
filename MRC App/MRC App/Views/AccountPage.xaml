@@ -32,7 +32,7 @@
                 <Setter Property="Padding" Value="0"/>
             </Style>
             <Style x:Key="HeaderLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
                 <Setter Property="Margin" Value="0"/>
@@ -241,7 +241,7 @@
                 <Switch x:Name="commEmailsSwitch" IsToggled="true" 
                     Grid.Column="1" Grid.Row="0"
                     HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="White" BackgroundColor="White"
+                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     TranslationY="-265"/>
 
                     <!-- Label 2 -->
@@ -255,10 +255,10 @@
                    Grid.Column="0" Grid.Row="1"
                    HorizontalOptions="Start" VerticalOptions="End" 
                        TranslationY="-235"/>
-                    <Switch x:Name="socialEmailsSwitch" IsToggled="False" 
+                    <Switch x:Name="socialEmailsSwitch" IsToggled="True" 
                     Grid.Column="1" Grid.Row="1"
                     HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="White" BackgroundColor="White"
+                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     TranslationY="-240"/>
 
                     <!-- Label 3 -->
@@ -274,7 +274,7 @@
                     <Switch x:Name="recEmailsSwitch" IsToggled="False" 
                     Grid.Column="1" Grid.Row="2"
                     HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="White" BackgroundColor="White"
+                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     TranslationY="-220"/>
 
                     <!-- Label 4 -->
@@ -290,7 +290,7 @@
                     <Switch x:Name="announcementEmailsSwitch" IsToggled="False" 
                     Grid.Column="1" Grid.Row="3"
                     HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="White" BackgroundColor="White"
+                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     TranslationY="-200"/>
 
                     <!-- Label 5-->
@@ -321,9 +321,10 @@
                     <Button Text=" Reset Password"
                             Grid.Row="0"
                             TranslationY=" -280"
+                            BackgroundColor="{StaticResource Primary}"
                             />
                     <Button Text=" Delete Account" 
-                            BackgroundColor="Red"
+                            BackgroundColor="{StaticResource Danger}"
                             Grid.Row="1"
                             TranslationY="-270"/>
                 </Grid>
