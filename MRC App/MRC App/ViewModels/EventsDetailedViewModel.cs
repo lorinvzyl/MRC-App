@@ -43,12 +43,22 @@ namespace MRC_App.ViewModels
             }
         }
 
-
+        private List<string> eventGallery { get; set; }
+        public List<string> EventGallery
+        {
+            get { return eventGallery; }
+            set
+            {
+                eventGallery = value;
+                OnPropertyChanged("EventGallery");
+            }
+        }
         private void PerformOperation(string paramStr)
         {
             var param = JsonConvert.DeserializeObject<Events>(paramStr);
             EventName = param.Name;
             EventDescription = param.Description;
+            EventGallery = param.Image;
         }
     }
 }
