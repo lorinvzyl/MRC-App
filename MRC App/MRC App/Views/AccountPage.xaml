@@ -63,10 +63,10 @@
                     <RowDefinition Height="170"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -261,7 +261,7 @@
                    HorizontalOptions="Start" TranslationY="-250"
                        />
                     <Label Text="Recieve emails with" 
-                           Style="{StaticResource BasicLabelStyle}"
+                           FontSize="Micro"
                    Grid.Column="0" Grid.Row="1"
                    HorizontalOptions="Start" VerticalOptions="End" 
                        TranslationY="-235"/>
@@ -312,31 +312,35 @@
                        />
                 </Grid>
 
-                <Label Text="Account Management"
-                       Style="{StaticResource HeaderLabelStyle}"
-                       HorizontalTextAlignment="Start"
-                       Grid.Row="6"
-                       TranslationY="-180"/>
+                
 
-                <Grid Grid.Row="7">
+                <Grid Grid.Row="6">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height=" 60"/>
+                        <RowDefinition Height=" 60"/>
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <Label Text="Account Management"
+                       Style="{StaticResource HeaderLabelStyle}"
+                       HorizontalTextAlignment="Start"
+                       Grid.Row="0"
+                       TranslationY="-180"/>
                     <Button Text=" Reset Password"
-                            Grid.Row="0"
-                            TranslationY=" -280"
+                            CornerRadius="20"
+                            Grid.Row="1"
+                            TranslationY=" -170"
                             BackgroundColor="{StaticResource Primary}"
                             />
                     <Button Text=" Delete Account" 
+                            CornerRadius="20"
                             BackgroundColor="{StaticResource Danger}"
-                            Grid.Row="1"
-                            TranslationY="-270"/>
+                            Grid.Row="2"
+                            TranslationY="-150"/>
                 </Grid>
 
             </Grid>
