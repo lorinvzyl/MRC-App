@@ -16,5 +16,9 @@ namespace MRC_App.Views
         {
             InitializeComponent();
         }
+        public EventsDetailed(object item)
+        {
+            InitializeComponent();
+        }
     }
 }

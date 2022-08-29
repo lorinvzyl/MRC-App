@@ -1,10 +1,10 @@
-﻿using MRC_App.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using MRC_App.Models;
 
 namespace MRC_App.ViewModels
 {
@@ -19,7 +19,6 @@ namespace MRC_App.ViewModels
 
         public AboutViewModel()
         {
-            Title = "Home"; /*Currently does nothing*/
             blog = new ObservableCollection<Blog>();
             /*
              * Add video here

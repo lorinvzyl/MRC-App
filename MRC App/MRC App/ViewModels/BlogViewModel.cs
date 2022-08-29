@@ -1,12 +1,12 @@
-﻿using MRC_App.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using MRC_App.Models;
 
 namespace MRC_App.ViewModels
 {
-    internal class BlogViewModel : BaseViewModel
+    public class BlogViewModel : BaseViewModel
     {
         private ObservableCollection<Blog> Blog;
         public ObservableCollection<Blog> blog
@@ -17,7 +17,6 @@ namespace MRC_App.ViewModels
 
         public BlogViewModel()
         {
-            Title = "Blog"; /*Currently does nothing*/
             blog = new ObservableCollection<Blog>();
             AddData();
         }

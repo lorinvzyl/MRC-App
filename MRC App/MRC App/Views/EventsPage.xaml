@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              xmlns:controls="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar" 
-             x:Class="MRC_App.Views.EventsPage">
+             x:Class="MRC_App.Views.EventsPage"
+             x:Name="eventsPage">
 
     <ContentPage.BindingContext>
         <viewmodel:EventsViewModel/>
     </ContentPage.BindingContext>
-    
+
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
@@ -47,10 +48,10 @@
     <ContentPage.Content>
         <StackLayout>
             <controls:Calendar 
-                ShownDate="2022-05-21"
+                ShownDate="{Binding Today}"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
-                Events="{Binding Events}"
+                Events="{Binding Event}"
                 BackgroundColor="{StaticResource LightShade}"
                 SelectedDayBackgroundColor="{StaticResource Primary}"
                 MonthLabelColor="{StaticResource DarkShade}"
@@ -108,23 +109,28 @@
                 </controls:Calendar.HeaderSectionTemplate>
                 <controls:Calendar.EventTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"/>
-                                <RowDefinition Height="50*"/>
-                                <RowDefinition Height="50*"/>
-                                <RowDefinition Height="1*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="80*"/>
-                                <ColumnDefinition Width="20*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Name}" Style="{StaticResource Title}"/>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource Body}"/>
-                            <Label Grid.Row="2" Grid.Column="2" Text="RSVP" Style="{StaticResource BodyLink}"/>
-                        </Grid>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="50*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="80*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Name}" Style="{StaticResource Title}"/>
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource Body}"/>
+                                <Label Grid.Row="2" Grid.Column="2" Text="RSVP" Style="{StaticResource BodyLink}"/>
+                            </Grid>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.EventSelectedCommand, Source={x:Reference eventsPage}}" CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
                     </DataTemplate>
                 </controls:Calendar.EventTemplate>
             </controls:Calendar>

@@ -12,6 +12,18 @@
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
+    <Shell.FlyoutIcon>
+        <FontImageSource Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title" />
+    </Shell.FlyoutIcon>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior>
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource Glyph="&#xf053;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title"/>
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
+    </Shell.BackButtonBehavior>
+
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
@@ -32,7 +44,7 @@
             Default Styles for all Flyout Items
             https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
             -->
-            
+
             <!--<Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"></Setter>
             </Style>
@@ -61,14 +73,16 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <Shell.FlyoutIcon>
-        <FontImageSource Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title" />
-    </Shell.FlyoutIcon>
     <!-- 
         When the Flyout is visible this defines the content to display in the flyout.
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
+
+    <ShellItem Route="LoginPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
+    </ShellItem>
+    
     <FlyoutItem Title="Home">
         <FlyoutItem.Icon>
             <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xe3af;" Color="{StaticResource DarkShade}"/>
@@ -99,11 +113,11 @@
         </FlyoutItem.Icon>
         <ShellContent Route="QRPage" ContentTemplate="{DataTemplate local:QRPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="EventDetailed">
+    <FlyoutItem Title="Locations">
         <FlyoutItem.Icon>
-            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf029;" Color="{StaticResource DarkShade}"/>
+            <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf3c5;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
-        <ShellContent Route="EventsDetailed" ContentTemplate="{DataTemplate local:EventsDetailed}"/>
+        <ShellContent Route="LocationPage" ContentTemplate="{DataTemplate local:LocationPage}"/>
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
@@ -116,7 +130,7 @@
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <ShellContent x:Name="Login" Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}"/>
     </TabBar>
 
     <!--

@@ -1,8 +1,8 @@
-﻿using MRC_App.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using MRC_App.Views;
 
 namespace MRC_App.ViewModels
 {
@@ -19,13 +19,12 @@ namespace MRC_App.ViewModels
 
         private async void OnLoginClicked(object obj)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
 
         private async void OnRegisterClicked(object obj)
         {
-            await Shell.Current.GoToAsync($"//{nameof(RegisterPage)}");
+            await Shell.Current.GoToAsync($"{nameof(RegisterPage)}"); 
         }
     }
 }

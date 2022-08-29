@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Xamarin.Forms.Platform.Android;
 
 namespace MRC_App.Droid
 {
@@ -14,9 +15,12 @@ namespace MRC_App.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            this.SetStatusBarColor(Xamarin.Forms.Color.FromHex("#3f8ba7").ToAndroid());
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
