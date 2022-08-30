@@ -1,52 +1,172 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Midrand_Reformed_Church_App.Views.AboutPage"
-             xmlns:vm="clr-namespace:Midrand_Reformed_Church_App.ViewModels"
-             Title="{Binding Title}">
+<!--
+    The purpose of the about page is to provide the user with a quick way to check if any changes have happened.
+    For example, if there is a livestream the user will be provided a small block that notifies them of this.
     
+    This is NOT to provide information on the company, that is better suited to the website.
+-->
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
+             x:Class="MRC_App.Views.AboutPage">
+
     <ContentPage.BindingContext>
-        <vm:AboutViewModel />
+        <viewmodel:AboutViewModel/>
     </ContentPage.BindingContext>
     
+    <Shell.TitleView>
+        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions> <!--This should center the item in the middle of the page. Needs further testing.-->
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Home" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="Accent">#96d1ff</Color>
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
+                <Setter Property="Margin" Value="15"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style x:Key="BlogImageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="280"/>
+                <Setter Property="Opacity" Value="0.85"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="Aspect" Value="AspectFill"/>
+            </Style>
+            <Style x:Key="ImageStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
+            </Style>
+            <Style x:Key="BlogCardStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HeightRequest" Value="280"/>
+                <Setter Property="WidthRequest" Value="202"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+            </Style>
+            <Style x:Key="BlogTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="Margin" Value="15"/>
+                <Setter Property="Opacity" Value="1.0"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+            </Style>
+            <Style x:Key="ContainerStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Margin" Value="20,10,20,10"/>
+            </Style>
+            <Style x:Key="ContainerTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="ContainerTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+            </Style>
+            <Style x:Key="BlogTextBackgroundStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
+                <Setter Property="Opacity" Value="0.65"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="HeightRequest" Value="95"/>
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+            <Style x:Key="IconLabels" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+            <Style x:Key="Icons" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="Margin" Value="0,4,0,0"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
-                </ContentView>
-            </StackLayout>
-        </StackLayout>
-        <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="Start developing now" FontSize="Title"/>
-                <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,24,0,0">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="Learn more at "/>
-                                <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <CollectionView Margin="0,25,0,0" ItemsSource="{Binding blog}" HeightRequest="300">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame Style="{StaticResource BlogCardStyle}">
+                                    <Grid>
+                                        <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
+                                            <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
+                                        </StackLayout>
+                                        <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
+                                        <StackLayout VerticalOptions="EndAndExpand">
+                                            <Grid HeightRequest="135" RowSpacing="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="7*"/>
+                                                    <RowDefinition Height="3*"/>
+                                                </Grid.RowDefinitions>
+                                                <ScrollView>
+                                                    <Label Grid.Row="0"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
+                                                </ScrollView>
+                                                <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                                    <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
+                                                    <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                                    <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
+                                                </Grid>
+                                            </Grid>
+                                            
+                                        </StackLayout>
+                                        
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Frame Style="{StaticResource ContainerStyle}">
+                    <StackLayout>
+                        <Label Text="Livestreams" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Text="Currently not streaming, click here to view the schedule" Style="{StaticResource ContainerTextStyle}"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource ContainerStyle}">
+                    <StackLayout>
+                        <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Text="Verse text here" Style="{StaticResource ContainerTextStyle}"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource ContainerStyle}">
+                    <StackLayout>
+                        <Label Text="Institutions we support" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Style="{StaticResource ContainerTextStyle}"
+                            Text="&#x2022; Institution 1 &#10;&#x2022; Institution 2 &#10;&#x2022; Institution 3 &#10;&#10;If you wish to find out more about these institutions, visit our website page on it here"/>
+                    </StackLayout>
+                </Frame>
             </StackLayout>
         </ScrollView>
-    </Grid>
-
+    </ContentPage.Content>
 </ContentPage>

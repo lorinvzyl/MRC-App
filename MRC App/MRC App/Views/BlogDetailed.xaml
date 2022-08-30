@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Once the user clicks on a blog from the blog page or recents from the about page,
+    the user will be shown the blog in full detail. ScrollView will definitely be needed here.
+-->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            
+             x:Class="MRC_App.Views.BlogDetailed">
+
+
+
+    <Shell.TitleView>
+        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions>
+                <!--This should center the item in the middle of the page. Needs further testing.-->
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Blog" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BlogImageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="280"/>
+                <Setter Property="Opacity" Value="0.85"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="Aspect" Value="AspectFill"/>
+            </Style>
+            <Style x:Key="ImageStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
+            </Style>
+            <Style x:Key="BlogCardStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HeightRequest" Value="290"/>
+                <Setter Property="WidthRequest" Value="315"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+            </Style>
+            <Style x:Key="BlogTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="Margin" Value="12"/>
+                <Setter Property="Opacity" Value="1.0"/>
+            </Style>
+            <Style x:Key="BlogContentStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="HeightRequest" Value="300"/>
+                <Setter Property="Margin" Value="7"/>
+                <Setter Property="Opacity" Value="1.0"/>
+            </Style>
+
+            <Style x:Key="BlogTextBackgroundStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Opacity" Value="0.65"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="HeightRequest" Value="140"/>
+                <Setter Property="Margin" Value="0,3,0,0"/>
+                <Setter Property="CornerRadius" Value="10"/>
+            </Style>
+            <Style x:Key="commentSection" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="Opacity" Value="0.65"/>
+                <Setter Property="Margin" Value="-15,1,-15,0"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="HeightRequest" Value="130"/>
+                <Setter Property="CornerRadius" Value="0"/>
+            </Style>
+            <Style x:Key="ContainerTitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Margin" Value="90,-25,0,0"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+    <ContentPage.Content>
+
+        <ScrollView>
+
+
+
+            <StackLayout Margin="15">
+                <Frame Style="{StaticResource BlogCardStyle}">
+                    <Grid>
+                        <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
+
+                    </Grid>
+                </Frame>
+
+                <StackLayout >
+
+                    <Label  VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
+
+                    <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
+
+                    <Frame Style="{StaticResource BlogTextBackgroundStyle}">
+
+                        <Grid>
+
+                            <StackLayout>
+                                <Label Text="Comments" Style="{StaticResource ContainerTitleStyle}"/>
+                                <Label Grid.Column="0" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0"/>
+                                <Entry Grid.Column="1" FontSize="Medium" Placeholder="Add a comment" HorizontalOptions="FillAndExpand"/>
+                                <Grid BackgroundColor="White" HeightRequest="200" WidthRequest="150" Margin="-5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="&#xf2bd;" TextColor="{StaticResource DarkShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0"/>
+                                    <Label Grid.Column="1" Text="Person 1                    5min ago" TextColor="{StaticResource DarkShade}" FontSize="18" Padding="0,4,0,0" />
+                                    <Label Grid.Row="1" Text="Text" TextColor="{StaticResource DarkShade}" FontSize="18" Padding="0,0,-5,0"/>
+                                </Grid>
+                            </StackLayout>
+
+
+
+                        </Grid>
+
+                    </Frame>
+
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

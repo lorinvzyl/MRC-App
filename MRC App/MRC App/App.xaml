@@ -1,15 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Midrand_Reformed_Church_App.App">
+             x:Class="MRC_App.App">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <!--Colour Palette-->
+            <Color x:Key="Primary">#3f8ba7</Color>
+            <Color x:Key="DarkDarkShade">#0a0b0b</Color>
+            <Color x:Key="DarkShade">#202628</Color>
+            <Color x:Key="DarkAccent">#cba945</Color>
+            <Color x:Key="LightShade">#f5f7f3</Color>
+            <Color x:Key="LightAccent">#97cab8</Color>
+            <Color x:Key="Success">#48a46a</Color>
+            <Color x:Key="Warning">#c59432</Color>
+            <Color x:Key="Danger">#f44336</Color>
+            <!--Added colours-->
+            <Color x:Key="LightDarkShade">#3d3d3d</Color>
+            <Color x:Key="EventIndicator">#9747FF</Color>
+            
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -27,6 +40,27 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <Style TargetType="Label" ApplyToDerivedTypes="True">
+                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
+            </Style>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
+            </Style>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="fa-6-brands.otf#Font Awesome 6 Brands Regular" />
+                <On Platform="iOS" Value="fa-6-brands.otf#Font Awesome 6 Brands Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="fa-6-solid.otf#Font Awesome 6 Free Solid" />
+                <On Platform="iOS" Value="fa-6-solid.otf#Font Awesome 6 Free Solid" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="fa-6-regular.otf#Font Awesome 6 Free Regular" />
+                <On Platform="iOS" Value="fa-6-regular.otf#Font Awesome 6 Free Regular" />
+            </OnPlatform>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

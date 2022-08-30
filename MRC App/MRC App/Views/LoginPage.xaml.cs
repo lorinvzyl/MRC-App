@@ -1,13 +1,13 @@
-﻿using Midrand_Reformed_Church_App.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MRC_App.ViewModels;
 
-namespace Midrand_Reformed_Church_App.Views
+namespace MRC_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
@@ -15,7 +15,6 @@ namespace Midrand_Reformed_Church_App.Views
         public LoginPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
         }
     }
 }
