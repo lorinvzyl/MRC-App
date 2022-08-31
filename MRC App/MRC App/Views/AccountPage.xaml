@@ -198,7 +198,9 @@
                        Style="{StaticResource FrameStyle}"
                        HasShadow="True" >
                     <StackLayout>
-                        <xct:AvatarView Grid.Column="0" Text="BTB" CornerRadius="40" 
+                            <xct:AvatarView Grid.Column="0" Text="&#xf007;" 
+                                            
+                                            CornerRadius="40" 
                                         HorizontalOptions="Start" Padding="1" Size="80" Margin=" 0,0" 
                                         Color="Gray" BorderColor="White"
                                         />
@@ -256,7 +258,7 @@
                 <Switch x:Name="commEmailsSwitch" IsToggled="true" 
                     Grid.Column="1" Grid.Row="1"
                     HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
+                    OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     />
 
                     <!-- Label 2 -->
@@ -274,7 +276,7 @@
                     <Switch x:Name="socialEmailsSwitch" IsToggled="True" 
                     Grid.Column="1" Grid.Row="3"
                     HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
+                    OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     />
 
                     <!-- Label 3 -->
@@ -291,7 +293,7 @@
                     <Switch x:Name="recEmailsSwitch" IsToggled="False" 
                     Grid.Column="1" Grid.Row="5"
                     HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
+                    OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     />
 
                     <!-- Label 4 -->
@@ -308,7 +310,7 @@
                     <Switch x:Name="announcementEmailsSwitch" IsToggled="False" 
                     Grid.Column="1" Grid.Row="7"
                     HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
+                    OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     />
 
                     <!-- Label 5-->
