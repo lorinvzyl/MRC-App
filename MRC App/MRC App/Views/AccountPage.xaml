@@ -28,8 +28,10 @@
                 <Setter Property="FontSize" Value="Medium"/>
                 
                 <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
-                <Setter Property="Margin" Value="5,0,0,0"/>
+                <Setter Property="Margin" Value="8,0,0,0"/>
                 <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="FontSize" Value="Medium"/>
@@ -42,8 +44,10 @@
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
-                <Setter Property="Margin" Value="5,0,0,0"/>
+                <Setter Property="Margin" Value="8,0,0,0"/>
                 <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
             <Style x:Key="FrameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="12"/>
@@ -75,8 +79,7 @@
 
             <Label Grid.Row="0" Text="Account Information" 
                    Style="{StaticResource HeaderLabelStyle}"
-                   HorizontalTextAlignment="Start" 
-                   VerticalTextAlignment="Start"/>
+                   />
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
@@ -94,55 +97,43 @@
                 <Label Text="First Name: "   
                        Style="{StaticResource BasicLabelStyle}"
                     Grid.Row="0" Grid.Column="0"
-                    HorizontalOptions="Start"
-                    
-                    VerticalOptions="StartAndExpand"/>
+                    />
                     <Label Text="Last Name: "  
                     Style="{StaticResource BasicLabelStyle}"
                     Grid.Row="1" Grid.Column="0"
-                    HorizontalOptions="Start"
-                    
-                    VerticalOptions="StartAndExpand"/>
+                    />
                 <Label Text="Email: "   
                    Style="{StaticResource BasicLabelStyle}"
                    Grid.Row="2" Grid.Column="0"    
-                   HorizontalOptions="Start"
-                   
-                   VerticalOptions="StartAndExpand"/>
+                   />
                 <Label Text="Birthday: "   
                    Style="{StaticResource BasicLabelStyle}"
                    Grid.Row="3" Grid.Column="0"
-                   HorizontalOptions="Start"
-                   
-                   VerticalOptions="StartAndExpand"/>
+                   />
                 <!-- Col 2  -->
                 <Label x:Name="firstNameLabel" 
                    Style="{StaticResource BasicLabelStyle}"
                    Grid.Column="1" Grid.Row="0"
                    Text="Bob" 
-                   HorizontalOptions="Start"
-                   VerticalOptions="Start"/>
+                  />
 
                 <Label x:Name="lastNameLabel" 
                 Style="{StaticResource BasicLabelStyle}"
                Grid.Column="1" Grid.Row="1"
                Text="The builder" 
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
+               />
 
                 <Label x:Name="emailLabel" 
                 Style="{StaticResource BasicLabelStyle}"
                Grid.Column="1" Grid.Row="2"
                Text="BobTheBuilder@test.com" 
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
+               />
 
                 <Label x:Name="birthdayLabel" 
                 Style="{StaticResource BasicLabelStyle}"
                Grid.Column="1" Grid.Row="3"
                Text="20/03/1998" 
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
+               />
                 
                 <!-- Col 3 -->
                     <Label x:Name="Pointer1" 
@@ -150,38 +141,34 @@
                     FontAttributes="Bold"
                 Grid.Column="2" Grid.Row="0"
                Text=">" 
-               HorizontalOptions="Center"
-               VerticalOptions="Start"/>
+               />
 
                 <Label x:Name="Pointer2" 
                        Style="{StaticResource BasicLabelStyle}"
                        FontAttributes="Bold"
                Grid.Column="2" Grid.Row="1"
                Text=">" 
-               HorizontalOptions="Center"
-               VerticalOptions="Start"/>
+               />
 
                 <Label x:Name="Pointer3" 
                        Style="{StaticResource BasicLabelStyle}"
                        FontAttributes="Bold"
                Grid.Column="2" Grid.Row="2"
                Text=">" 
-               HorizontalOptions="Center"
-               VerticalOptions="Start"/>
+               />
 
                 <Label x:Name="Pointer4" 
                        Style="{StaticResource BasicLabelStyle}"
                        FontAttributes="Bold"
                Grid.Column="2" Grid.Row="3"
                Text=">" 
-               HorizontalOptions="Center"
-               VerticalOptions="Start"/>
+              />
             </Grid>
 
             <Label Grid.Row="2" 
                    Text="Avatar" 
                    Style="{StaticResource HeaderLabelStyle}"
-                   HorizontalTextAlignment="Start"
+                   
                    
                    />
             <Grid Grid.Row="3">
@@ -212,8 +199,15 @@
                         <Button Grid.Row="2" Grid.Column="0" 
                                 Style="{StaticResource ButtonStyle}"
                                 BackgroundColor="Gray"
-                                Text=" Change Avatar" CornerRadius="40" />
-                    </StackLayout>
+                                Text=" Change Avatar"  
+                                CornerRadius="20"/>
+                            <!--
+                            <Button Grid.Row="2" Grid.Column="1"
+                                Style="{StaticResource ButtonStyle}"
+                                Text="Remove Avatar" 
+                                    BackgroundColor="Gray"/>
+                        -->
+                        </StackLayout>
                     
                     
 
@@ -224,8 +218,7 @@
 
             <Label Grid.Row="4" Text="Newsletter Settings" 
                    Style="{StaticResource HeaderLabelStyle}"
-                   HorizontalTextAlignment="Start" 
-                   VerticalTextAlignment="Start"
+                   
                    />
             <Grid Grid.Row="5">
                 <Grid.RowDefinitions>
@@ -248,12 +241,12 @@
                 <Label Text="Communcation Emails" 
                        Style="{StaticResource BasicLabelStyle}"
                    Grid.Column="0" Grid.Row="0" 
-                   HorizontalOptions="Start" VerticalOptions="Start"
+                   
                        />
                 <Label Text="Recieve emails with" FontSize="Micro"
                    Grid.Column="0" Grid.Row="1"
-                       Margin="5,0,0,0"
-                   HorizontalOptions="Start" VerticalOptions="End" 
+                       Margin="8,0,0,0"
+                   
                        />
                 <Switch x:Name="commEmailsSwitch" IsToggled="true" 
                     Grid.Column="1" Grid.Row="1"
@@ -265,30 +258,33 @@
                     <Label Text="Social Emails" 
                            Style="{StaticResource BasicLabelStyle}"
                    Grid.Column="0" Grid.Row="2" 
-                   HorizontalOptions="Start" 
+                    
                        />
                     <Label Text="Recieve emails with" 
                            FontSize="Micro"
                    Grid.Column="0" Grid.Row="3"
-                           Margin="5,0,0,0"
-                   HorizontalOptions="Start" VerticalOptions="End" 
+                           Margin="8,0,0,0"
+                    
                        />
                     <Switch x:Name="socialEmailsSwitch" IsToggled="True" 
                     Grid.Column="1" Grid.Row="3"
-                    HorizontalOptions="End" 
+                     HorizontalOptions="End"
                     OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     />
+
+                    
+
 
                     <!-- Label 3 -->
                     <Label Text="Recommendation Emails" 
                            Style="{StaticResource BasicLabelStyle}"
                    Grid.Column="0" Grid.Row="4" 
-                   HorizontalOptions="Start" 
+                    
                        />
                     <Label Text="Recieve emails with suggested events" FontSize="Micro"
                    Grid.Column="0" Grid.Row="5"
-                           Margin="5,0,0,0"
-                   HorizontalOptions="Start" VerticalOptions="End" 
+                           Margin="8,0,0,0"
+                    
                        />
                     <Switch x:Name="recEmailsSwitch" IsToggled="False" 
                     Grid.Column="1" Grid.Row="5"
@@ -300,12 +296,12 @@
                     <Label Text="Announcement and Update Emails" 
                            Style="{StaticResource BasicLabelStyle}"
                    Grid.Column="0" Grid.Row="6" 
-                   HorizontalOptions="Start" 
+                    
                        />
                     <Label Text="Receive emails with product updates, newest features, imrpovements and bug fixes" FontSize="Micro"
                    Grid.Column="0" Grid.Row="7"
-                           Margin="5,0,0,0"
-                   HorizontalOptions="Start" VerticalOptions="End" 
+                           Margin="8,0,0,0"
+                    
                        />
                     <Switch x:Name="announcementEmailsSwitch" IsToggled="False" 
                     Grid.Column="1" Grid.Row="7"
@@ -316,7 +312,7 @@
                     <!-- Label 5-->
                     <Label Text="Unsubscribe from all newsletter emails" FontSize="Small" FontAttributes="Bold" TextDecorations="Underline"
                            HorizontalOptions="Start"
-                           Margin="5,0,0,0"
+                           Margin="8,0,0,0"
                            TextColor="{StaticResource Primary}"
                    Grid.Column="0" Grid.Row="8" 
                     
@@ -338,7 +334,7 @@
 
                     <Label Text="Account Management"
                        Style="{StaticResource HeaderLabelStyle}"
-                       HorizontalTextAlignment="Start"
+                       
                        Grid.Row="0"
                        />
                     <Button Text=" Reset Password"
@@ -347,11 +343,27 @@
                             
                             BackgroundColor="{StaticResource Primary}"
                             />
-                    <Button Text=" Delete Account" 
-                            CornerRadius="20"
-                            BackgroundColor="{StaticResource Danger}"
-                            Grid.Row="2"
-                            />
+                    <Frame Grid.Row="1" CornerRadius="15" BackgroundColor="{StaticResource Primary}">
+                        <StackLayout>
+                            <Label Text="&#xf023; Reset password" FontFamily="{StaticResource FontAwesomeSolid}"
+                                    
+                                   TextColor="{StaticResource LightShade}" 
+                                   Style="{StaticResource BasicLabelStyle}"
+                                   HorizontalOptions="Center"/>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Grid.Row="2" CornerRadius="15" BackgroundColor="{StaticResource Danger}">
+                        <StackLayout>
+                            <Label Text="&#xf2ed; Delete account" FontFamily="{StaticResource FontAwesomeSolid}"
+                                    
+                                   TextColor="{StaticResource LightShade}" 
+                                   Style="{StaticResource BasicLabelStyle}"
+                                   HorizontalOptions="Center"/>
+                            
+                        </StackLayout>
+                    </Frame>
                 </Grid>
 
             </Grid>
