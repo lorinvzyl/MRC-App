@@ -198,7 +198,7 @@
                        Style="{StaticResource FrameStyle}"
                        HasShadow="True" >
                     <StackLayout>
-                            <xct:AvatarView Grid.Column="0" Text="&#xf007;" 
+                            <xct:AvatarView Grid.Column="0" Text="&#xf007; " FontFamily="{StaticResource FontAwesomeRegular}" 
                                             
                                             CornerRadius="40" 
                                         HorizontalOptions="Start" Padding="1" Size="80" Margin=" 0,0" 
