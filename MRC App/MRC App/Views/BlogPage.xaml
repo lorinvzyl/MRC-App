@@ -3,15 +3,15 @@
     The purpose of the blog page is for users to view written texts from the pastor, whether that be educational or spiritual blocks of text.
     I do not think I need to provide an example of what this is like, everyone's seen a blog before.
 -->
-    <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.BlogPage">
 
     <ContentPage.BindingContext>
-        <viewmodels:BlogViewModel/>
+        <viewmodels:AboutViewModel/>
     </ContentPage.BindingContext>
-        
+
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
@@ -25,61 +25,114 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="BlogCardStyle" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="15"/>
-                <Setter Property="HeightRequest" Value="140"/>
-                <Setter Property="Margin" Value="20,10,20,10"/>
-                <Setter Property="Padding" Value="10"/>
-            </Style>
-            <Style x:Key="BlogImageFrameStyle" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="15"/>
-                <Setter Property="HeightRequest" Value="140"/>
-                <Setter Property="VerticalOptions" Value="Start"/>
-                <Setter Property="Padding" Value="0"/>
-            </Style>
             <Style x:Key="BlogImageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="280"/>
+                <Setter Property="Opacity" Value="0.85"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
                 <Setter Property="Aspect" Value="AspectFill"/>
             </Style>
+            <Style x:Key="ImageStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
+            </Style>
+            <Style x:Key="BlogCardStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HeightRequest" Value="290"/>
+                <Setter Property="WidthRequest" Value="315"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+            </Style>
             <Style x:Key="BlogTitleStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="FontSize" Value="17"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="Padding" Value="10,0,10,0"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="Margin" Value="12"/>
+                <Setter Property="Opacity" Value="1.0"/>
             </Style>
             <Style x:Key="BlogContentStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
-                <Setter Property="Padding" Value="10,0,10,0"/>
-                <Setter Property="MaxLines" Value="4"/>
-                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="Opacity" Value="1.0"/>
+            </Style>
+
+            <Style x:Key="BlogTextBackgroundStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
+                <Setter Property="Opacity" Value="0.65"/>
+                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
+                <Setter Property="HeightRequest" Value="110"/>
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+            <Style x:Key="IconLabels" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+            <Style x:Key="Icons" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="Margin" Value="0,4,0,0"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding blog}" HeightRequest="300">
+        <CollectionView
+             SelectionMode="Single"
+             SelectionChanged="CollectionView_SelectedChanged"
+            Margin="0,25,0,0" ItemsSource="{Binding blog}" 
+            HeightRequest="300" >
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"/>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <StackLayout Margin="0,0,0,25">
                         <Frame Style="{StaticResource BlogCardStyle}">
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" WidthRequest="100">
-                                    <Frame Style="{StaticResource BlogImageFrameStyle}">
-                                        <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
-                                    </Frame>
+                                <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
+                                    <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
                                 </StackLayout>
-                                <StackLayout Grid.Column="1">
-                                    <Label Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
-                                    <Label Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
+                                <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
+
+                                <StackLayout VerticalOptions="EndAndExpand">
+
+                                    <Grid HeightRequest="150" RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="7*"/>
+                                            <RowDefinition Height="3*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackLayout>
+
+                                            <Label  VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
+                                            <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
+                                        </StackLayout>
+
+
+
+
+
+                                        <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     "EndAndExpand" Margin="0,0,15,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                            <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
+                                            <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                            <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
+                                        </Grid>
+                                    </Grid>
+
                                 </StackLayout>
+
                             </Grid>
                         </Frame>
                     </StackLayout>
