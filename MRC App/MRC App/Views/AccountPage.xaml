@@ -192,14 +192,14 @@
                                         Color="Gray" BorderColor="White"
                                         />
                         <Label Grid.Column="1"
-                            Text="We recommend&#10;an image&#10;of atleast 600x240.&#10;You can upload a PNG or JPEG&#10;under 2MB." 
-                               FontSize="Small" 
+                            Text="We recommend an image&#10;of atleast 600x240.&#10;You can upload a PNG or JPEG&#10;under 2MB." 
+                               FontSize="Medium" 
                                HorizontalOptions="End" />
 
                         <Button Grid.Row="2" Grid.Column="0" 
                                 Style="{StaticResource ButtonStyle}"
-                                BackgroundColor="Gray"
-                                Text=" Change Avatar"  
+                                BackgroundColor="{StaticResource LightShade}"
+                                Text=" Change Avatar"  TextColor="{StaticResource Primary}"
                                 CornerRadius="20"/>
                             <!--
                             <Button Grid.Row="2" Grid.Column="1"
@@ -356,6 +356,7 @@
 
                     <Frame Grid.Row="2" CornerRadius="15" BackgroundColor="{StaticResource Danger}">
                         <StackLayout>
+                            
                             <Label Text="&#xf2ed; Delete account" FontFamily="{StaticResource FontAwesomeSolid}"
                                     
                                    TextColor="{StaticResource LightShade}" 
