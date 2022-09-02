@@ -30,8 +30,20 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout>
-            <zxing:ZXingScannerView OnScanResult="ZXingScannerView_OnScanResult" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="scanResult" Grid.Row="1" Grid.ColumnSpan="3"/>
+            <zxing:ZXingScannerView Grid.RowSpan="3" Grid.ColumnSpan="3" OnScanResult="ZXingScannerView_OnScanResult"/>
+            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
