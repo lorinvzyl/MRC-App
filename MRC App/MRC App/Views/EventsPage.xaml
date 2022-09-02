@@ -46,7 +46,7 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="5,-10,5,0"> <!--This adds spaces between edges of the pages-->
             <controls:Calendar 
                 ShownDate="{Binding Today}"
                 VerticalOptions="FillAndExpand"
