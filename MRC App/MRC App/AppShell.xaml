@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:MRC_App.Views"
+       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
        Title="MRC_App"
        x:Class="MRC_App.AppShell"
        FlyoutBackground="{StaticResource LightShade}">
@@ -139,17 +140,17 @@
     -->
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="170">
+            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="170" Padding="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Account_Tapped"/>
                 </Grid.GestureRecognizers>
                 
                 <!--<xct:AvatarView/>-->
-                <Label Grid.Column="0" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="70"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,-10,0"/>
+                <xct:AvatarView Grid.Column="0" Text="&#xf2bd;" FontSize="75" TextColor="{StaticResource LightShade}" Color="{StaticResource Primary}" FontFamily="{StaticResource FontAwesomeSolid}" Size="75" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="10,0,0,0"/>
                 <Label Grid.Column="1" FontSize="Large" Padding="10,0" VerticalOptions="Center" Text="Bob Johnson" TextColor="{StaticResource LightShade}"/>
             </Grid>
         </DataTemplate>
