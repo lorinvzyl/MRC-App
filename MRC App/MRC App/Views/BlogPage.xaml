@@ -9,7 +9,7 @@
              x:Class="MRC_App.Views.BlogPage">
 
     <ContentPage.BindingContext>
-        <viewmodels:AboutViewModel/>
+        <viewmodels:BlogViewModel/>
     </ContentPage.BindingContext>
 
     <Shell.TitleView>

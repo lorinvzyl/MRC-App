@@ -7,7 +7,14 @@
     <ContentPage.BindingContext>
         <viewmodel:EventsDetailedViewModel/>
     </ContentPage.BindingContext>
-    
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior>
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource Glyph="&#xf060;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}"/>
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
+    </Shell.BackButtonBehavior>
     
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">

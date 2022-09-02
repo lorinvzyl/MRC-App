@@ -13,16 +13,8 @@
     -->
 
     <Shell.FlyoutIcon>
-        <FontImageSource Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title" />
+        <FontImageSource Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title"  />
     </Shell.FlyoutIcon>
-
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior>
-            <BackButtonBehavior.IconOverride>
-                <FontImageSource Glyph="&#xf053;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title"/>
-            </BackButtonBehavior.IconOverride>
-        </BackButtonBehavior>
-    </Shell.BackButtonBehavior>
 
     <Shell.Resources>
         <ResourceDictionary>
