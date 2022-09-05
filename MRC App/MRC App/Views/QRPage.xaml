@@ -43,7 +43,6 @@
             </Grid.ColumnDefinitions>
             <Label x:Name="scanResult" Grid.Row="1" Grid.ColumnSpan="3"/>
             <zxing:ZXingScannerView Grid.RowSpan="3" Grid.ColumnSpan="3" OnScanResult="ZXingScannerView_OnScanResult"/>
-            
         </Grid>
     </ContentPage.Content>
 </ContentPage>
