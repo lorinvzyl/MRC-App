@@ -26,6 +26,9 @@ namespace MRC_App.iOS
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
             LoadApplication(new App());
 
+            // Render added to facilitate the custom switches 
+            Switch.iOS.CustomSwitchRenderer.Init();
+
             return base.FinishedLaunching(app, options);
         }
     }
