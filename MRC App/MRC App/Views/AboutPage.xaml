@@ -100,13 +100,22 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <CollectionView Margin="0,25,0,0" ItemsSource="{Binding blog}" HeightRequest="300">
+                <CollectionView Margin="0,25,0,0" ItemsSource="{Binding blog}" HeightRequest="300" SelectionChanged="ItemSelected_CollectionView" SelectionMode="Single">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
                                 <Frame Style="{StaticResource BlogCardStyle}">
                                     <Grid>
                                         <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
