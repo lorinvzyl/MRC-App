@@ -11,6 +11,16 @@ namespace MRC_App.Controls
         public CSwitch()
         {
             InitializeComponent();
+            SwitchPanUpdate += (sender, e) =>
+            {
+                Color fromBackgroundColor = IsToggled ? Color.FromHex("#001f48") : Color.White;
+                Color toBackgroundColor = IsToggled ? Color.White : Color.FromHex("#001f48");
+
+                double t = e.Percentage * 0.01;
+
+                Flex.TranslationX = -(e.TranslateX + e.XRef);
+                BackgroundColor = ColorAnimationUtil.ColorAnimation(fromBackgroundColor, toBackgroundColor, t);
+            };
         }
     }
 }
