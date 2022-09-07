@@ -17,5 +17,7 @@ namespace MRC_App.Views
         {
             InitializeComponent();
         }
+
+      
     }
 }

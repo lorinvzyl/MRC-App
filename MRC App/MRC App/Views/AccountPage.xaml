@@ -311,7 +311,7 @@
                     <switch:CustomSwitch Grid.Column="1" Grid.Row="6"
                         IsToggled =" false"
                                          Toggled="Switch_OnToggled"
-                                         ToggledCommand="{Binding ToggleCommand}"
+                                         ToggledCommand="{Binding ToggledCommand}"
                                       />
 
                     <!-- Label 5-->
