@@ -308,12 +308,7 @@
                     HorizontalOptions="End" 
                     OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
                     />
-                    <switch:CustomSwitch Grid.Column="1" Grid.Row="6"
-                        IsToggled =" false"
-                                         Toggled="Switch_OnToggled"
-                                         ToggledCommand="{Binding ToggledCommand}"
-                                      />
-
+                    
                     <!-- Label 5-->
                     <Label Text="Unsubscribe from all newsletter emails" FontSize="Small" FontAttributes="Bold" TextDecorations="Underline"
                            HorizontalOptions="Start"
