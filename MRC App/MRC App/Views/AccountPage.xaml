@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:switch="clr-namespace:Switch;assembly=Switch" xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
+             xmlns:switch="clr-namespace:Switch;assembly=Switch" xmlns:viewmodel="clr-namespace:MRC_App.ViewModels" xmlns:Controls="clr-namespace:MRC_App.Controls"
              x:Class="MRC_App.Views.AccountPage">
 
     <ContentPage.BindingContext>
@@ -96,72 +96,72 @@
                 <!--Col 1 labels -->
                 <Label Text="First Name: "   
                        Style="{StaticResource BasicLabelStyle}"
-                    Grid.Row="0" Grid.Column="0"
+                       Grid.Row="0" Grid.Column="0"
                     />
                     <Label Text="Last Name: "  
-                    Style="{StaticResource BasicLabelStyle}"
-                    Grid.Row="1" Grid.Column="0"
+                           Style="{StaticResource BasicLabelStyle}"
+                           Grid.Row="1" Grid.Column="0"
                     />
                 <Label Text="Email: "   
-                   Style="{StaticResource BasicLabelStyle}"
-                   Grid.Row="2" Grid.Column="0"    
+                       Style="{StaticResource BasicLabelStyle}"
+                       Grid.Row="2" Grid.Column="0"    
                    />
                 <Label Text="Birthday: "   
-                   Style="{StaticResource BasicLabelStyle}"
-                   Grid.Row="3" Grid.Column="0"
+                       Style="{StaticResource BasicLabelStyle}"
+                       Grid.Row="3" Grid.Column="0"
                    />
                 <!-- Col 2  -->
                 <Label x:Name="firstNameLabel" 
-                   Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="1" Grid.Row="0"
-                   Text="Bob" 
+                       Style="{StaticResource BasicLabelStyle}"
+                       Grid.Column="1" Grid.Row="0"
+                       Text="Bob" 
                   />
 
                 <Label x:Name="lastNameLabel" 
-                Style="{StaticResource BasicLabelStyle}"
-               Grid.Column="1" Grid.Row="1"
-               Text="The builder" 
+                       Style="{StaticResource BasicLabelStyle}"
+                       Grid.Column="1" Grid.Row="1"
+                       Text="The builder" 
                />
 
                 <Label x:Name="emailLabel" 
-                Style="{StaticResource BasicLabelStyle}"
-               Grid.Column="1" Grid.Row="2"
-               Text="BobTheBuilder@test.com" 
+                       Style="{StaticResource BasicLabelStyle}"
+                       Grid.Column="1" Grid.Row="2"
+                       Text="BobTheBuilder@test.com" 
                />
 
                 <Label x:Name="birthdayLabel" 
-                Style="{StaticResource BasicLabelStyle}"
-               Grid.Column="1" Grid.Row="3"
-               Text="20/03/1998" 
+                        Style="{StaticResource BasicLabelStyle}"
+                        Grid.Column="1" Grid.Row="3"
+                        Text="20/03/1998" 
                />
                 
                 <!-- Col 3 -->
                     <Label x:Name="Pointer1" 
-                    Style="{StaticResource BasicLabelStyle}"
-                    FontAttributes="Bold"
-                Grid.Column="2" Grid.Row="0"
-               Text=">" 
+                           Style="{StaticResource BasicLabelStyle}"
+                           FontAttributes="Bold"
+                           Grid.Column="2" Grid.Row="0"
+                           Text=">" 
                />
 
                 <Label x:Name="Pointer2" 
                        Style="{StaticResource BasicLabelStyle}"
                        FontAttributes="Bold"
-               Grid.Column="2" Grid.Row="1"
-               Text=">" 
+                       Grid.Column="2" Grid.Row="1"
+                       Text=">" 
                />
 
                 <Label x:Name="Pointer3" 
                        Style="{StaticResource BasicLabelStyle}"
                        FontAttributes="Bold"
-               Grid.Column="2" Grid.Row="2"
-               Text=">" 
+                       Grid.Column="2" Grid.Row="2"
+                       Text=">" 
                />
 
                 <Label x:Name="Pointer4" 
                        Style="{StaticResource BasicLabelStyle}"
                        FontAttributes="Bold"
-               Grid.Column="2" Grid.Row="3"
-               Text=">" 
+                       Grid.Column="2" Grid.Row="3"
+                       Text=">" 
               />
             </Grid>
 
@@ -185,14 +185,13 @@
                        Style="{StaticResource FrameStyle}"
                        HasShadow="True" >
                     <StackLayout>
-                            <xct:AvatarView Grid.Column="0" Text="&#xf007; " FontFamily="{StaticResource FontAwesomeRegular}" 
-                                            
-                                            CornerRadius="40" 
+                            <xct:AvatarView Grid.Column="0" Text="&#xf007; " FontFamily="{StaticResource FontAwesomeRegular}"   
+                                        CornerRadius="40" 
                                         HorizontalOptions="Start" Padding="1" Size="80" Margin=" 0,0" 
                                         Color="Gray" BorderColor="White"
                                         />
                         <Label Grid.Column="1"
-                            Text="We recommend an image&#10;of atleast 600x240.&#10;You can upload a PNG or JPEG&#10;under 2MB." 
+                               Text="We recommend an image&#10;of atleast 600x240.&#10;You can upload a PNG or JPEG&#10;under 2MB." 
                                FontSize="Medium" 
                                HorizontalOptions="End" />
 
@@ -222,13 +221,13 @@
                    />
             <Grid Grid.Row="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="18"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="18"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="18"/>
-                        <RowDefinition Height="23"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="20"/>
                     </Grid.RowDefinitions>
@@ -240,78 +239,80 @@
                 <!-- Label 1 -->
                 <Label Text="Communcation Emails" 
                        Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="0" Grid.Row="0" 
+                       Grid.Column="0" Grid.Row="0" 
                    
                        />
                 <Label Text="Recieve emails with" FontSize="Micro"
-                   Grid.Column="0" Grid.Row="1"
+                       Grid.Column="0" Grid.Row="1"
                        Margin="8,0,0,0"
                    
                        />
-                <Switch x:Name="commEmailsSwitch" IsToggled="true" 
-                    Grid.Column="1" Grid.Row="1"
-                    HorizontalOptions="End" 
-                    OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
-                    />
+               
+                <Controls:CSwitch x:Name="commEmailsSwitch"
+                                  Grid.Column="1" Grid.Row="0"
+                                  IsToggled ="True"
+                                  Toggled="Switch_OnToggled"
+                                  ToggledCommand="{Binding ToggleCommand}"
+                        />
 
                     <!-- Label 2 -->
                     <Label Text="Social Emails" 
                            Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="0" Grid.Row="2" 
+                           Grid.Column="0" Grid.Row="2" 
                     
                        />
                     <Label Text="Recieve emails with" 
                            FontSize="Micro"
-                   Grid.Column="0" Grid.Row="3"
+                           Grid.Column="0" Grid.Row="3"
                            Margin="8,0,0,0"
                     
                        />
-                    <Switch x:Name="socialEmailsSwitch" IsToggled="True" 
-                    Grid.Column="1" Grid.Row="3"
-                     HorizontalOptions="End"
-                    OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
-                    />
-
+                    
+                    <Controls:CSwitch x:Name="socialEmailsSwitch"
+                                      Grid.Column="1" Grid.Row="2"
+                                      IsToggled =" false"
+                                      Toggled="Switch_OnToggled"
+                                      ToggledCommand="{Binding ToggleCommand}"
+                                      />
                     
 
 
                     <!-- Label 3 -->
                     <Label Text="Recommendation Emails" 
                            Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="0" Grid.Row="4" 
+                           Grid.Column="0" Grid.Row="4" 
                     
                        />
                     <Label Text="Recieve emails with suggested events" FontSize="Micro"
-                   Grid.Column="0" Grid.Row="5"
+                           Grid.Column="0" Grid.Row="5"
                            Margin="8,0,0,0"
                     
                        />
-                    <Switch x:Name="recEmailsSwitch" IsToggled="False" 
-                    Grid.Column="1" Grid.Row="5"
-                    HorizontalOptions="End" 
-                    OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
-                    />
+                    
+                    <Controls:CSwitch x:Name="recEmailsSwitch"
+                                      Grid.Column="1" Grid.Row="4"
+                                      IsToggled =" false"
+                                      Toggled="Switch_OnToggled"
+                                      ToggledCommand="{Binding ToggleCommand}"
+                                      />
 
                     <!-- Label 4 -->
                     <Label Text="Announcement and Update Emails" 
                            Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="0" Grid.Row="6" 
+                           Grid.Column="0" Grid.Row="6" 
                     
                        />
                     <Label Text="Receive emails with product updates, newest features, imrpovements and bug fixes" FontSize="Micro"
-                   Grid.Column="0" Grid.Row="7"
+                           Grid.Column="0" Grid.Row="7"
                            Margin="8,0,0,0"
                     
                        />
-                    <Switch x:Name="announcementEmailsSwitch" IsToggled="False" 
-                    Grid.Column="1" Grid.Row="7"
-                    HorizontalOptions="End" 
-                    OnColor="{StaticResource Primary}" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
-                    />
-                    <switch:CustomSwitch Grid.Column="1" Grid.Row="6"
-                        IsToggled =" false"
-                                         Toggled="Switch_OnToggled"
-                                         ToggledCommand="{Binding ToggledCommand}"
+                    
+                    <Controls:CSwitch x:Name="announcementEmailsSwitch"
+                                      Grid.Column="1" Grid.Row="6"
+                                      IsToggled =" false"
+                                      Toggled="Switch_OnToggled"
+                                      ToggledCommand="{Binding ToggleCommand}"
                                       />
 
                     <!-- Label 5-->
@@ -319,7 +320,7 @@
                            HorizontalOptions="Start"
                            Margin="8,0,0,0"
                            TextColor="{StaticResource Primary}"
-                   Grid.Column="0" Grid.Row="8" 
+                           Grid.Column="0" Grid.Row="8" 
                     
                        />
                 </Grid>
