@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Midrand_Reformed_Church_App.Droid.Renderers
+namespace MRC_App.Droid.Renderers
 {
     internal class QROverlayRenderer
     {
