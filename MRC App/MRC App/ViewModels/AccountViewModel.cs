@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Acr.UserDialogs;
+
+using System.Threading.Tasks; 
 
 namespace MRC_App.ViewModels
 {
@@ -10,26 +13,20 @@ namespace MRC_App.ViewModels
     {
         public AccountViewModel()
         {
-
+            ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
+            public bool EnableCommands { get; set; }
+        public bool EnableEvents { get; set; }
 
-        private Command toggledCommand;
+        public ICommand ToggleCommand { get; }
 
-        public ICommand ToggledCommand
+        public async Task Toggled(bool newValue)
         {
-            get
+            if (EnableCommands)
             {
-                if (toggledCommand == null)
-                {
-                    toggledCommand = new Command(Toggled);
-                }
-
-                return toggledCommand;
+                await UserDialogs.Instance.AlertAsync($"New value: {newValue}", "Switch toggled (Command)").ConfigureAwait(false);
             }
         }
-
-        private void Toggled()
-        {
-        }
     }
-}
+    }
+
