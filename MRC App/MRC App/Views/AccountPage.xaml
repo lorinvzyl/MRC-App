@@ -315,6 +315,15 @@
                                       ToggledCommand="{Binding ToggleCommand}"
                                       />
 
+                                         ToggledCommand="{Binding ToggledCommand}"
+                                      />
+
+                                         ToggledCommand="{Binding ToggledCommand}"
+                                      />
+
+                                         ToggledCommand="{Binding ToggledCommand}"
+                                      />
+
                     <!-- Label 5-->
                     <Label Text="Unsubscribe from all newsletter emails" FontSize="Small" FontAttributes="Bold" TextDecorations="Underline"
                            HorizontalOptions="Start"
