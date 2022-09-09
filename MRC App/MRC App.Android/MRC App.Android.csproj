@@ -80,7 +80,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\QROverlayRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
-    <Compile Include="Views\NativeQROverlay.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\fa-6-brands.otf" />
@@ -153,5 +152,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\pexels208216.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
