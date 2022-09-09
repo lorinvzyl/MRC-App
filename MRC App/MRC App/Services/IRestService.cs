@@ -9,7 +9,7 @@ namespace MRC_App.Services
     public interface IRestService
     {
         Task DeleteUser(int id);
-        Task Login(string email, string password);
+        Task Login(string email, string password); //Will need to return a bool likely
         Task UpdateUser(User user);
         Task<User> GetUser(int id);
         Task<User> GetUserByEmail(string email);
