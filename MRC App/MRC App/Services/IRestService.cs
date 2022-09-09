@@ -11,14 +11,14 @@ namespace MRC_App.Services
         Task DeleteUser(int id);
         Task Login(string email, string password);
         Task UpdateUser(User user);
-        Task<List<User>> GetUser(int id);
-        Task<List<User>> GetUserByEmail(string email);
+        Task<User> GetUser(int id);
+        Task<User> GetUserByEmail(string email);
         Task Register(User user);
         Task<List<Blog>> GetBlogs();
-        Task<List<Blog>> GetEvents();
+        Task<List<Events>> GetEvents();
         Task Donate(int id, int amount, string message);
         Task Attend(int UserId, DateTime date);
-        Task<List<Video>> GetLivestream(bool isLive);
+        Task<Video> GetLivestream(bool isLive);
         Task<List<Comments>> GetBlogComments(int blogId);
         //Task<List<Replies>> GetBlogReplies(int blogId);
         Task PutBlogComment(int blogId, int userId, string comment);
