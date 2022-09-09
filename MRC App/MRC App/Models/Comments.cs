@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MRC_App.Models
 {
-    public class BlogComments
+    public class Comments
     {
         public int Id { get; set; }
         public int BlogId { get; set; }

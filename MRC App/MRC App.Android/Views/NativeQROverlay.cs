@@ -114,6 +114,8 @@ namespace MRC_App.Controls
             Android.Graphics.Rect rect = new Android.Graphics.Rect((int)(width/4),(int)(height/3), (int)(width/4 + width/2), (int)(height/3 + width/2));
             RectF rectF = new RectF(rect);
             osCanvas.DrawRoundRect(rectF,15,15,paint);
+
+            
         }
 
         protected override void OnLayout(bool changed, int l, int t, int r, int b)
