@@ -2,16 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:switch="clr-namespace:Switch;assembly=Switch" xmlns:viewmodel="clr-namespace:MRC_App.ViewModels" xmlns:Controls="clr-namespace:MRC_App.Controls"
+             xmlns:switch="clr-namespace:Switch;assembly=Switch" 
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels" 
+             xmlns:Controls="clr-namespace:MRC_App.Controls"
              x:Class="MRC_App.Views.AccountPage">
 
     <ContentPage.BindingContext>
         <viewmodel:AccountViewModel/>
     </ContentPage.BindingContext>
 
- 
-
-        <Shell.TitleView>
+    <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
                 <!--This should center the item in the middle of the page. Needs further testing.-->
