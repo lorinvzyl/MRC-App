@@ -34,13 +34,35 @@ namespace MRC_App.Views
             }
         }
 
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void ChangeAvatarBtn_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveAvatarBtn_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
         /*
         private async void Button_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AccessibilityTestPage());
         }
         */
-        
-      
+
+
     }
 }

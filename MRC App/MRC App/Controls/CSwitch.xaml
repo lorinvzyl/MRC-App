@@ -5,14 +5,14 @@
                     x:Class="MRC_App.Controls.CSwitch"
     BackgroundColor="Red"
                      CornerRadius="20"
-                     HeightRequest="29"
+                     HeightRequest="20"
                      KnobColor="{StaticResource LightShade}"
-                     KnobCornerRadius="18"
-                     KnobHeight="18"
+                     KnobCornerRadius="10"
+                     KnobHeight="14"
                      KnobLimit="Centered"
-                     KnobWidth="18"
+                     KnobWidth="14"
                      VibrateDuration="20"
-                     WidthRequest="60" >
+                     WidthRequest="45" >
     <switch:CustomSwitch.KnobContent>
         <StackLayout Orientation="Horizontal">
             <FlexLayout x:Name="Flex"
