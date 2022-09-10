@@ -281,6 +281,7 @@
                                       IsToggled ="True"
                                       Toggled="Switch_OnToggled"
                                       ToggledCommand="{Binding ToggleCommand}"
+                                     
                             />
 
                         <!-- Label 2 -->

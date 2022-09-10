@@ -27,21 +27,21 @@ namespace MRC_App.ViewModels
             {
                 Id = 0,
                 Name = "Church Location 1",
-                Location = "8 Kristal Crescent",
+                churchLocation = "8 Kristal Crescent",
                 PastorName = "John"
             });
             locations.Add(new Location
             {
                 Id = 1,
                 Name = "Church Location 2",
-                Location = "8 Kristal Crescent",
+                churchLocation = "8 Kristal Crescent",
                 PastorName = "Bob"
             });
             locations.Add(new Location
             {
                 Id = 2,
                 Name = "Church Location 3",
-                Location = "8 Kristal Crescent",
+                churchLocation = "8 Kristal Crescent",
                 PastorName = "Kirby"
             });
         }
