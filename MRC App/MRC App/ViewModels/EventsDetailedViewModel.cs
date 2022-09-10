@@ -55,7 +55,7 @@ namespace MRC_App.ViewModels
         }
         private void PerformOperation(string paramStr)
         {
-            var param = JsonConvert.DeserializeObject<Events>(paramStr);
+            var param = JsonConvert.DeserializeObject<Event>(paramStr);
             EventName = param.Name;
             EventDescription = param.Description;
             EventGallery = param.Image;
