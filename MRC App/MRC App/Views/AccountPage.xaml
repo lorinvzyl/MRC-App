@@ -390,7 +390,7 @@
                                        FontSize="Medium"
                                        HorizontalOptions="Start"/>
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                    <TapGestureRecognizer Tapped="ResetPasswordLblGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
                             </Grid>
                             
@@ -413,7 +413,7 @@
                                         FontSize="Medium"
                                         HorizontalOptions="Start"/>
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    <TapGestureRecognizer Tapped="DeleteAccountLblGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
                             </Grid>
                         </Frame>
