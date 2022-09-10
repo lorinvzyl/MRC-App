@@ -40,10 +40,10 @@
             <Style x:Key="BlogCardStyle" TargetType="Frame">
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="HeightRequest" Value="290"/>
-                <Setter Property="WidthRequest" Value="315"/>
+                <Setter Property="WidthRequest" Value="330"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
-                <Setter Property="HasShadow" Value="False"/>
-                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Margin" Value="10,0,0,0"/>
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
             </Style>
@@ -81,7 +81,7 @@
             </Style>
             <Style x:Key="ContainerTitleStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="20"/>
-                <Setter Property="Margin" Value="90,-25,0,0"/>
+
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
@@ -95,53 +95,86 @@
     <ContentPage.Content>
 
         <ScrollView>
+            <StackLayout>
 
 
 
-            <StackLayout Margin="15">
-                <Frame Style="{StaticResource BlogCardStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="15"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Margin="15" Grid.Column="1">
+
+                        <Frame Style="{StaticResource BlogCardStyle}">
+
+                            <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
+
+
+                        </Frame>
+
+                        <StackLayout >
+
+                            <Label  VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
+
+                            <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
+
+
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </Grid>
+
+                <StackLayout>
+
+
                     <Grid>
-                        <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
 
-                    </Grid>
-                </Frame>
-
-                <StackLayout >
-
-                    <Label  VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
-
-                    <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
-
-                    <Frame Style="{StaticResource BlogTextBackgroundStyle}">
-
-                        <Grid>
+                        <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="10">
 
                             <StackLayout>
-                                <Label Text="Comments" Style="{StaticResource ContainerTitleStyle}"/>
-                                <Label Grid.Column="0" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0"/>
-                                <Entry Grid.Column="1" FontSize="Medium" Placeholder="Add a comment" HorizontalOptions="FillAndExpand"/>
-                                <Grid BackgroundColor="White" HeightRequest="200" WidthRequest="150" Margin="-5">
+                                <Label Text="Comments" Style="{StaticResource ContainerTitleStyle}" HorizontalOptions="Center"/>
+                                <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1"/>
                                         <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Column="0" Text="&#xf2bd;" TextColor="{StaticResource DarkShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0"/>
-                                    <Label Grid.Column="1" Text="Person 1                    5min ago" TextColor="{StaticResource DarkShade}" FontSize="18" Padding="0,4,0,0" />
-                                    <Label Grid.Row="1" Text="Text" TextColor="{StaticResource DarkShade}" FontSize="18" Padding="0,0,-5,0"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+
+                                    </Grid.RowDefinitions>
+
+                                    <Entry Grid.Column="2" FontSize="Medium" Placeholder="Add a comment" HorizontalOptions="FillAndExpand"/>
+                                    <Label Grid.Column="1" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                </Grid>
+                                <Grid BackgroundColor="White">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="1" Text="&#xf2bd;" TextColor="{StaticResource DarkShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0"/>
+                                    <Label Grid.Column="2" Text="James " TextColor="{StaticResource DarkShade}" FontSize="18" Padding="0,4,0,0" />
+                                    <Label Grid.Column="3" Text="5 min ago " TextColor="{StaticResource DarkShade}" FontSize="15" Padding="0,4,0,0" />
+                                    <Label Grid.Row="1" Grid.Column="2" Text="Wonderful and interesting blog....." TextColor="{StaticResource DarkShade}" FontSize="18" />
+
+
                                 </Grid>
                             </StackLayout>
 
-
-
-                        </Grid>
-
-                    </Frame>
-
-
+                        </Frame>
+                    </Grid>
                 </StackLayout>
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -9,15 +9,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="MRC_App.Views.AboutPage">
 
     <ContentPage.BindingContext>
         <viewmodel:AboutViewModel/>
     </ContentPage.BindingContext>
-    
+
     <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Grid.ColumnDefinitions> <!--This should center the item in the middle of the page. Needs further testing.-->
+            <Grid.ColumnDefinitions>
+                <!--This should center the item in the middle of the page. Needs further testing.-->
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
@@ -75,7 +77,7 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
             <Style x:Key="ContainerTextStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="16"/>
                 <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
             </Style>
             <Style x:Key="BlogTextBackgroundStyle" TargetType="Frame">
@@ -94,6 +96,12 @@
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="Margin" Value="0,4,0,0"/>
             </Style>
+            <Style x:Key="Videostyle" TargetType="xct:MediaElement">
+                <Setter Property="AutoPlay" Value="False"/>
+                <Setter Property="HeightRequest" Value="200"/>
+                <Setter Property="WidthRequest"  Value="300"/>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -144,9 +152,9 @@
                                                     <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
                                                 </Grid>
                                             </Grid>
-                                            
+
                                         </StackLayout>
-                                        
+
                                     </Grid>
                                 </Frame>
                             </StackLayout>
@@ -155,16 +163,19 @@
                 </CollectionView>
 
                 <Frame Style="{StaticResource ContainerStyle}">
+
                     <StackLayout>
                         <Label Text="Livestreams" Style="{StaticResource ContainerTitleStyle}"/>
-                        <Label Text="Currently not streaming, click here to view the schedule" Style="{StaticResource ContainerTextStyle}"/>
+                        <xct:MediaElement Source="https://sec.ch9.ms/ch9/5d93/a1eab4bf-3288-4faf-81c4-294402a85d93/XamarinShow_mid.mp4" Style="{StaticResource Videostyle}" AutoPlay="False"/>
                     </StackLayout>
+
                 </Frame>
 
                 <Frame Style="{StaticResource ContainerStyle}">
                     <StackLayout>
                         <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
-                        <Label Text="Verse text here" Style="{StaticResource ContainerTextStyle}"/>
+                        <Label Text="Every word of God is pure; He is a shield to those who put their trust in Him." Style="{StaticResource ContainerTextStyle}"/>
+                        <Label Text="Proverbs 30: 5-5" Style="{StaticResource ContainerTitleStyle}"/>
                     </StackLayout>
                 </Frame>
 
