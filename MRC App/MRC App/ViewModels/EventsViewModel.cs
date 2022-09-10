@@ -32,15 +32,15 @@ namespace MRC_App.ViewModels
 
             Event = new EventCollection
             {
-                [DateTime.Now.AddDays(1)] = new List<Events>(GenerateEvents(1, "Cool", images))
+                [DateTime.Now.AddDays(1)] = new List<Event>(GenerateEvents(1, "Cool", images))
             };
         }
 
         public EventCollection Event { get; set; }
 
-        private IEnumerable<Events> GenerateEvents(int count, string name, List<string> images)
+        private IEnumerable<Event> GenerateEvents(int count, string name, List<string> images)
         {
-            return Enumerable.Range(1, count).Select(e => new Events
+            return Enumerable.Range(1, count).Select(e => new Event
             {
                 Name = $"{name} event{count}",
                 Description = $"This is {name} event{count}'s description",
@@ -81,7 +81,7 @@ namespace MRC_App.ViewModels
 
         private async Task ExecuteEventSelectedCommand(object item)
         {
-            if(item is Events)
+            if(item is Event)
             {
                 var jsonStr = JsonConvert.SerializeObject(item);
                 await Shell.Current.GoToAsync($"{nameof(EventsDetailed)}?Param={jsonStr}");

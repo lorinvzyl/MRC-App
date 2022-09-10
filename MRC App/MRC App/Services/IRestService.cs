@@ -22,22 +22,22 @@ namespace MRC_App.Services
         //interacts with user table
         Task<List<Blog>> GetBlogs();
         //interacts with blog table
-        Task<List<Events>> GetEvents();
+        Task<List<Event>> GetEvents();
         //interacts with event table
-        Task Donate(Donations donations);
+        Task Donate(Donation donations);
         //Interacts with donation table
         Task Attend(int UserId, DateTime date);
         //interacts with userevent table?
         Task<Video> GetLivestream(bool isLive);
         //Interacts with video table
-        Task<List<Comments>> GetBlogComments(int blogId);
+        Task<List<Comment>> GetBlogComments(int blogId);
         //Communicates with comment and the reply tables?
         //Task<List<Replies>> GetBlogReplies(int blogId);
-        Task PutBlogComment(int blogId, int userId, string comment);
+        Task PutBlogComment(Comment comment);
         //Adds a general comment, interacts with comments.
-        Task PutBlogReply(int blogId, int userId, int commentId , string reply);
+        Task PutBlogReply(Reply reply);
         //Adds a reply to a comment, sends commentId as parent. Interacts with reply table?
-        Task<List<Locations>> GetChurchLocations();
+        Task<List<Location>> GetChurchLocations();
         //Interacts with location table?
         Task UpdateNewsletter(int userId);
         //Communicates with user table

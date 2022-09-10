@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MRC_App.Models
 {
-    public class Donations
+    public class Donation
     {
         public int Id { get; set; }
         public int UserID { get; set; }

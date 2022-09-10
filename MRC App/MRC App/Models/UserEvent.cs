@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MRC_App.Models
 {
-    public class Attendance
+    public class UserEvent
     {
         public int Id { get; set; }
         public DateTime Day { get; set; }

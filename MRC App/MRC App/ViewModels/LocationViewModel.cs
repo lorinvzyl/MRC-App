@@ -8,8 +8,8 @@ namespace MRC_App.ViewModels
 {
     public class LocationViewModel : BaseViewModel
     {
-        private ObservableCollection<Locations> Locations;
-        public ObservableCollection<Locations> locations
+        private ObservableCollection<Location> Locations;
+        public ObservableCollection<Location> locations
         {
             get { return Locations; }
             set { Locations = value; }
@@ -17,27 +17,27 @@ namespace MRC_App.ViewModels
 
         public LocationViewModel()
         { 
-            locations = new ObservableCollection<Locations>();
+            locations = new ObservableCollection<Location>();
             AddData();
         }
 
         private void AddData()
         {
-            locations.Add(new Locations
+            locations.Add(new Location
             {
                 Id = 0,
                 Name = "Church Location 1",
                 Location = "8 Kristal Crescent",
                 PastorName = "John"
             });
-            locations.Add(new Locations
+            locations.Add(new Location
             {
                 Id = 1,
                 Name = "Church Location 2",
                 Location = "8 Kristal Crescent",
                 PastorName = "Bob"
             });
-            locations.Add(new Locations
+            locations.Add(new Location
             {
                 Id = 2,
                 Name = "Church Location 3",
