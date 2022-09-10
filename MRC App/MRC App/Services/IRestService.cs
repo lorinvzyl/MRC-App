@@ -10,7 +10,7 @@ namespace MRC_App.Services
     {
         Task DeleteUser(int id);
         //interacts with user table
-        Task Login(string email, string password); //Will need to return a bool likely
+        Task<bool> Login(string email, string password);
         //interacts with user table
         Task UpdateUser(User user);
         //interacts with user table
