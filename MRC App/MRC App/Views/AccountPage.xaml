@@ -384,13 +384,14 @@
                                        HorizontalOptions="EndAndExpand"
                                         FontSize="Medium"
                                        TextColor="{StaticResource LightShade}"/> 
-                                <Label Text=" Reset Password" 
+                                <Label x:Name="ResetPasswordLbl"
+                                       Text=" Reset Password" 
                                        Grid.Column="1"
                                        TextColor="{StaticResource LightShade}" 
                                        FontSize="Medium"
                                        HorizontalOptions="Start"/>
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                    <TapGestureRecognizer Tapped="ResetPasswordLblGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
                             </Grid>
                             
@@ -408,12 +409,13 @@
                                        FontSize="Medium"
                                        HorizontalOptions="EndAndExpand"
                                        />
-                                <Label  Text="Delete Account" Grid.Column="1"
+                                <Label  x:Name="DeleteAccountLbl"
+                                        Text="Delete Account" Grid.Column="1"
                                         TextColor="{StaticResource LightShade}" 
                                         FontSize="Medium"
                                         HorizontalOptions="Start"/>
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    <TapGestureRecognizer Tapped="DeleteAccountLblGestureRecognizer_Tapped"/>
                                 </Grid.GestureRecognizers>
                             </Grid>
                         </Frame>
