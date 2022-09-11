@@ -19,6 +19,7 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="invertBoolConverter"/>
             <Style x:Key="PageGrid" TargetType="Grid">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
@@ -70,9 +71,16 @@
 
             <Style x:Key="InvalidEmailStyle" TargetType="Entry">
                 <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+                
             </Style>
             <Style x:Key="ValidEmailStyle" TargetType="Entry">
-                <Setter Property="TextColor" Value="LawnGreen"/>
+                <Setter Property="TextColor" Value="{StaticResource DarkDarkShade}"/>
+            </Style>
+            <Style x:Key="InvalidPasswordStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+            </Style>
+            <Style x:Key="ValidPasswordStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource DarkDarkShade}"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -81,6 +89,7 @@
         <Grid Style="{StaticResource PageGrid}" RowSpacing="20" Padding="20,0,20,0">
             <!--Define rows needed-->
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -104,29 +113,56 @@
             <Entry x:Name="EmailEntry" Grid.Row="3" Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
                 <Entry.Behaviors>
                     <xct:EmailValidationBehavior
-                        InvalidStyle="{StaticResource InvalidEmailStyle}" IsValid="False"
-                        Flags="ValidateOnAttaching"
+                        InvalidStyle="{StaticResource InvalidEmailStyle}" 
+                        ValidStyle="{StaticResource ValidEmailStyle}"
+                        DecorationFlags="Trim" Flags="ValidateOnFocusing"
+                        IsValid="{Binding EmailValid}"
                         />
-                    <!-- 
-                    <xct:RequiredStringValidationBehavior
-                        InvalidStyle="{StaticResource InvalidEmailStyle}"
-                        RequiredString="OK"
-                         />
-                    -->
+                    
                 </Entry.Behaviors>
             </Entry>
-            <Entry x:Name="PasswordEntry" Grid.Row="4" Margin="0,-20,0,0" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/>
+            <Label Grid.Row="4" Text="Email is not in valid format" TextColor="{StaticResource Danger}" IsVisible="{Binding EmailValid, Converter={StaticResource invertBoolConverter}}"/>
+            
+            
+            <Entry x:Name="PasswordEntry" Grid.Row="5" Margin="0,-20,0,0" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
+                <Entry.Behaviors>
+                    <xct:MultiValidationBehavior 
+                        InvalidStyle="{StaticResource InvalidPasswordStyle}"
+                        ValidStyle="{StaticResource ValidPasswordStyle}"
+                        >
+                        
+                        <xct:TextValidationBehavior
+                            MinimumLength="6" />
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="Digit"
+                           MinimumCharacterCount="1" 
+                            />
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="LowercaseLetter" 
+                           MinimumCharacterCount="1" />
+                        <xct:CharactersValidationBehavior
+                           CharacterType="UppercaseLetter" 
+                           MinimumCharacterCount="1" />
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="NonAlphanumericSymbol" 
+                           MinimumCharacterCount="1" />
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="Whitespace" 
+                           MaximumCharacterCount="0" />
+                    </xct:MultiValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
             <!--Can add a "eye" icon here so they can see the password they entered-->
             
             <!--Button to log into account-->
-            <Button Grid.Row="6" Text="Login" Command="{Binding LoginCommand}" Style="{StaticResource LoginButton}"/>
+            <Button Grid.Row="7" Text="Login" Command="{Binding LoginCommand}" Style="{StaticResource LoginButton}"/>
             
             <!--Links for user-->
-            <Label Grid.Row="7" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
+            <Label Grid.Row="8" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
             
             </Label>
             
-            <Label Grid.Row="8" Text="No account? Sign up here" Style="{StaticResource RegisterLabel}">
+            <Label Grid.Row="9" Text="No account? Sign up here" Style="{StaticResource RegisterLabel}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                 </Label.GestureRecognizers>
