@@ -9,6 +9,7 @@
              xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              mc:Ignorable="d"
              x:Class="MRC_App.Views.LoginPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutBehavior="Disabled">
 
@@ -18,6 +19,7 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="invertBoolConverter"/>
             <Style x:Key="PageGrid" TargetType="Grid">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
@@ -66,13 +68,124 @@
                 <Setter Property="FontSize" Value="Small"/>
                 <Setter Property="TextColor" Value="{StaticResource LightDarkShade}"/>
             </Style>
+
+            <Style x:Key="InvalidEmailStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+                
+            </Style>
+            <Style x:Key="ValidEmailStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource DarkDarkShade}"/>
+            </Style>
+            <Style x:Key="InvalidPasswordStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+            </Style>
+            <Style x:Key="ValidPasswordStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource DarkDarkShade}"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid Style="{StaticResource PageGrid}" RowSpacing="20" Padding="20,0,20,0">
+        <Grid Style="{StaticResource PageGrid}" RowSpacing="0" Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
+            </Grid.ColumnDefinitions>
             <!--Define rows needed-->
             <Grid.RowDefinitions>
+                <RowDefinition Height="17*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource BrandIconBackground}">
+                <Label Text="&#xf51d;" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource BrandIcon}"/>
+            </StackLayout>
+
+            <!--Information block header text-->
+            <Label Grid.Row="2" Grid.Column="1" Text="Welcome!" Style="{StaticResource HeaderTextTitle}"/>
+            <Label Grid.Row="3" Grid.Column="1" Text="Log into your account" Style="{StaticResource HeaderTextSubtitle}"/>
+            <!--Enter email and password-->
+            <Entry x:Name="EmailEntry" Grid.Row="4" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
+                <Entry.Behaviors>
+                    <xct:EmailValidationBehavior
+                        InvalidStyle="{StaticResource InvalidEmailStyle}" 
+                        ValidStyle="{StaticResource ValidEmailStyle}"
+                        DecorationFlags="Trim" Flags="ValidateOnFocusing"
+                        IsValid="{Binding EmailValid}"
+                        />
+
+                    <xct:RequiredStringValidationBehavior
+                        InvalidStyle="{StaticResource InvalidEmailStyle}"
+                        RequiredString="OK"
+                         />
+                </Entry.Behaviors>
+            </Entry>
+            
+            <Label Grid.Row="5" Grid.Column="1"  Text="Email is not in valid format" TextColor="{StaticResource Danger}" IsVisible="{Binding EmailValid, Converter={StaticResource invertBoolConverter}}"/>
+
+            <Entry x:Name="PasswordEntry" Grid.Row="6" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
+                <Entry.Behaviors>
+                    <xct:MultiValidationBehavior 
+                        InvalidStyle="{StaticResource InvalidPasswordStyle}"
+                        ValidStyle="{StaticResource ValidPasswordStyle}"
+                        >
+
+                        <xct:TextValidationBehavior
+                            MinimumLength="6" />
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="Digit"
+                           MinimumCharacterCount="1" 
+                            />
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="LowercaseLetter" 
+                           MinimumCharacterCount="1" />
+                        <xct:CharactersValidationBehavior
+                           CharacterType="UppercaseLetter" 
+                           MinimumCharacterCount="1" />
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="NonAlphanumericSymbol" 
+                           MinimumCharacterCount="1" />
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="Whitespace" 
+                           MaximumCharacterCount="0" />
+                    </xct:MultiValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+            
+            <!--Button to log into account-->
+            <Button Grid.Row="8" Grid.Column="1" Text="Login" Command="{Binding LoginCommand}"  Style="{StaticResource LoginButton}"/>
+
+            <!--Links for user-->
+            <Label Grid.Row="10" Grid.Column="1" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
+
+            </Label>
+
+            <Label Grid.Row="11" Grid.Column="1" Text="No account? Sign up here" Style="{StaticResource RegisterLabel}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </ContentPage.Content>
+    
+    <!--<ContentPage.Content>
+        <Grid Style="{StaticResource PageGrid}" RowSpacing="20" Padding="20,0,20,0">
+            Define rows needed
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -84,32 +197,47 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
-            <!--Header-->
+            Header
             <StackLayout Grid.Row="0" Padding="20" Margin="-20,0" Style="{StaticResource BrandIconBackground}">
                 <Label Text="&#xf51d;" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource BrandIcon}"/>
             </StackLayout>
                
-            <!--Information block header text-->
+            Information block header text
             <Label Grid.Row="1" Text="Welcome!" Margin="0,50,0,0" Style="{StaticResource HeaderTextTitle}"/>
             <Label Grid.Row="2" Text="Log into your account" Margin="0,-15,0,0" Style="{StaticResource HeaderTextSubtitle}"/>
-            <!--Enter email and password-->
-            <Entry Grid.Row="3" Placeholder="Email" Style="{StaticResource AccountDetails}"/>
-            <Entry Grid.Row="4" Margin="0,-20,0,0" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/>
-            <!--Can add a "eye" icon here so they can see the password they entered-->
+            Enter email and password
+            <Entry x:Name="EmailEntry" Grid.Row="3" Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
+                <Entry.Behaviors>
+                    <xct:EmailValidationBehavior
+                        InvalidStyle="{StaticResource InvalidEmailStyle}" 
+                        ValidStyle="{StaticResource ValidEmailStyle}"
+                        DecorationFlags="Trim" Flags="ValidateOnFocusing"
+                        IsValid="{Binding EmailValid}"
+                        />
+                    
+                    <xct:RequiredStringValidationBehavior
+                        InvalidStyle="{StaticResource InvalidEmailStyle}"
+                        RequiredString="OK"
+                         />
+                    
+                </Entry.Behaviors>
+            </Entry>
+            <Entry x:Name="PasswordEntry" Grid.Row="4" Margin="0,-20,0,0" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/>
+            Can add a "eye" icon here so they can see the password they entered
             
-            <!--Button to log into account-->
+            Button to log into account
             <Button Grid.Row="6" Text="Login" Command="{Binding LoginCommand}" Style="{StaticResource LoginButton}"/>
             
-            <!--Links for user-->
+            Links for user
             <Label Grid.Row="7" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
             
             </Label>
             
-            <Label Grid.Row="8" Text="No account? Sign up here" Style="{StaticResource RegisterLabel}">
+            <Label Grid.Row="9" Text="No account? Sign up here" Style="{StaticResource RegisterLabel}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                 </Label.GestureRecognizers>
             </Label>
         </Grid>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>

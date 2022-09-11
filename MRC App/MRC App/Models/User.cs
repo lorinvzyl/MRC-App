@@ -11,7 +11,7 @@ namespace MRC_App.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Surname { get; set; }
-        public DateTime Birthday { get; set; }
-        public UriImageSource Profile { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string password { get; set; }
     }
 }

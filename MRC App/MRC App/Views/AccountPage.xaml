@@ -2,16 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
+             xmlns:switch="clr-namespace:Switch;assembly=Switch" 
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels" 
+             xmlns:Controls="clr-namespace:MRC_App.Controls"
              x:Class="MRC_App.Views.AccountPage">
 
     <ContentPage.BindingContext>
         <viewmodel:AccountViewModel/>
     </ContentPage.BindingContext>
 
- 
-
-        <Shell.TitleView>
+    <Shell.TitleView>
         <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Grid.ColumnDefinitions>
                 <!--This should center the item in the middle of the page. Needs further testing.-->
@@ -28,11 +28,13 @@
                 <Setter Property="FontSize" Value="Medium"/>
                 
                 <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
-                <Setter Property="Margin" Value="5,0,0,0"/>
+                <Setter Property="Margin" Value="8,0,0,0"/>
                 <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
             <Style x:Key="ButtonStyle" TargetType="Button">
-                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontSize" Value="Small"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
                  
                 <Setter Property="Margin" Value="0"/>
@@ -42,8 +44,10 @@
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
-                <Setter Property="Margin" Value="5,0,0,0"/>
+                <Setter Property="Margin" Value="8,0,0,0"/>
                 <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
             <Style x:Key="FrameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="12"/>
@@ -55,305 +59,368 @@
     <ContentPage.Content>
 
         <ScrollView VerticalScrollBarVisibility="Always">
-        <Grid>
-            <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="95"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="180"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="260"/>
-                    <RowDefinition Height="5"/>
-                    <RowDefinition Height="160"/>
-                    
-                    
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Text="Account Information" 
-                   Style="{StaticResource HeaderLabelStyle}"
-                   HorizontalTextAlignment="Start" 
-                   VerticalTextAlignment="Start"/>
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition  Height="20"/>
-                    <RowDefinition  Height="20"/>
-                    <RowDefinition  Height="20"/>
-                </Grid.RowDefinitions>
+            <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
                 </Grid.ColumnDefinitions>
-
-                <!--Col 1 labels -->
-                <Label Text="First Name: "   
-                       Style="{StaticResource BasicLabelStyle}"
-                    Grid.Row="0" Grid.Column="0"
-                    HorizontalOptions="Start"
-                    
-                    VerticalOptions="StartAndExpand"/>
-                    <Label Text="Last Name: "  
-                    Style="{StaticResource BasicLabelStyle}"
-                    Grid.Row="1" Grid.Column="0"
-                    HorizontalOptions="Start"
-                    
-                    VerticalOptions="StartAndExpand"/>
-                <Label Text="Email: "   
-                   Style="{StaticResource BasicLabelStyle}"
-                   Grid.Row="2" Grid.Column="0"    
-                   HorizontalOptions="Start"
-                   
-                   VerticalOptions="StartAndExpand"/>
-                <Label Text="Birthday: "   
-                   Style="{StaticResource BasicLabelStyle}"
-                   Grid.Row="3" Grid.Column="0"
-                   HorizontalOptions="Start"
-                   
-                   VerticalOptions="StartAndExpand"/>
-                <!-- Col 2  -->
-                <Label x:Name="firstNameLabel" 
-                   Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="1" Grid.Row="0"
-                   Text="Bob" 
-                   HorizontalOptions="Start"
-                   VerticalOptions="Start"/>
-
-                <Label x:Name="lastNameLabel" 
-                Style="{StaticResource BasicLabelStyle}"
-               Grid.Column="1" Grid.Row="1"
-               Text="The builder" 
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
-
-                <Label x:Name="emailLabel" 
-                Style="{StaticResource BasicLabelStyle}"
-               Grid.Column="1" Grid.Row="2"
-               Text="BobTheBuilder@test.com" 
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
-
-                <Label x:Name="birthdayLabel" 
-                Style="{StaticResource BasicLabelStyle}"
-               Grid.Column="1" Grid.Row="3"
-               Text="20/03/1998" 
-               HorizontalOptions="Start"
-               VerticalOptions="Start"/>
-                
-                <!-- Col 3 -->
-                    <Label x:Name="Pointer1" 
-                    Style="{StaticResource BasicLabelStyle}"
-                    FontAttributes="Bold"
-                Grid.Column="2" Grid.Row="0"
-               Text=">" 
-               HorizontalOptions="Center"
-               VerticalOptions="Start"/>
-
-                <Label x:Name="Pointer2" 
-                       Style="{StaticResource BasicLabelStyle}"
-                       FontAttributes="Bold"
-               Grid.Column="2" Grid.Row="1"
-               Text=">" 
-               HorizontalOptions="Center"
-               VerticalOptions="Start"/>
-
-                <Label x:Name="Pointer3" 
-                       Style="{StaticResource BasicLabelStyle}"
-                       FontAttributes="Bold"
-               Grid.Column="2" Grid.Row="2"
-               Text=">" 
-               HorizontalOptions="Center"
-               VerticalOptions="Start"/>
-
-                <Label x:Name="Pointer4" 
-                       Style="{StaticResource BasicLabelStyle}"
-                       FontAttributes="Bold"
-               Grid.Column="2" Grid.Row="3"
-               Text=">" 
-               HorizontalOptions="Center"
-               VerticalOptions="Start"/>
-            </Grid>
-
-            <Label Grid.Row="2" 
-                   Text="Avatar" 
-                   Style="{StaticResource HeaderLabelStyle}"
-                   HorizontalTextAlignment="Start"
-                   
-                   />
-            <Grid Grid.Row="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition  Height="*"/>
-                    <RowDefinition  Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"
-                       Style="{StaticResource FrameStyle}"
-                       HasShadow="True" >
-                    <StackLayout>
-                        <xct:AvatarView Grid.Column="0" Text="BTB" CornerRadius="40" 
-                                        HorizontalOptions="Start" Padding="1" Size="80" Margin=" 0,0" 
-                                        Color="Gray" BorderColor="White"
-                                        />
-                        <Label Grid.Column="1"
-                            Text="We recommend&#10;an image&#10;of atleast 600x240.&#10;You can upload a PNG or JPEG&#10;under 2MB." 
-                               FontSize="Small" 
-                               HorizontalOptions="End" />
-
-                        <Button Grid.Row="2" Grid.Column="0" 
-                                Style="{StaticResource ButtonStyle}"
-                                BackgroundColor="Gray"
-                                Text=" Change Avatar" CornerRadius="40" />
-                    </StackLayout>
-                    
-                    
-
-                </Frame>
-
-                
-            </Grid>
-
-            <Label Grid.Row="4" Text="Newsletter Settings" 
-                   Style="{StaticResource HeaderLabelStyle}"
-                   HorizontalTextAlignment="Start" 
-                   VerticalTextAlignment="Start"
-                   />
-            <Grid Grid.Row="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20"/>
-                    <RowDefinition Height="18"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="18"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="18"/>
-                        <RowDefinition Height="23"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="20"/>
-                    </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Label 1 -->
-                <Label Text="Communcation Emails" 
-                       Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="0" Grid.Row="0" 
-                   HorizontalOptions="Start" VerticalOptions="Start"
-                       />
-                <Label Text="Recieve emails with" FontSize="Micro"
-                   Grid.Column="0" Grid.Row="1"
-                       Margin="5,0,0,0"
-                   HorizontalOptions="Start" VerticalOptions="End" 
-                       />
-                <Switch x:Name="commEmailsSwitch" IsToggled="true" 
-                    Grid.Column="1" Grid.Row="1"
-                    HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
-                    />
-
-                    <!-- Label 2 -->
-                    <Label Text="Social Emails" 
-                           Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="0" Grid.Row="2" 
-                   HorizontalOptions="Start" 
-                       />
-                    <Label Text="Recieve emails with" 
-                           FontSize="Micro"
-                   Grid.Column="0" Grid.Row="3"
-                           Margin="5,0,0,0"
-                   HorizontalOptions="Start" VerticalOptions="End" 
-                       />
-                    <Switch x:Name="socialEmailsSwitch" IsToggled="True" 
-                    Grid.Column="1" Grid.Row="3"
-                    HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
-                    />
-
-                    <!-- Label 3 -->
-                    <Label Text="Recommendation Emails" 
-                           Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="0" Grid.Row="4" 
-                   HorizontalOptions="Start" 
-                       />
-                    <Label Text="Recieve emails with suggested events" FontSize="Micro"
-                   Grid.Column="0" Grid.Row="5"
-                           Margin="5,0,0,0"
-                   HorizontalOptions="Start" VerticalOptions="End" 
-                       />
-                    <Switch x:Name="recEmailsSwitch" IsToggled="False" 
-                    Grid.Column="1" Grid.Row="5"
-                    HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
-                    />
-
-                    <!-- Label 4 -->
-                    <Label Text="Announcement and Update Emails" 
-                           Style="{StaticResource BasicLabelStyle}"
-                   Grid.Column="0" Grid.Row="6" 
-                   HorizontalOptions="Start" 
-                       />
-                    <Label Text="Receive emails with product updates, newest features, imrpovements and bug fixes" FontSize="Micro"
-                   Grid.Column="0" Grid.Row="7"
-                           Margin="5,0,0,0"
-                   HorizontalOptions="Start" VerticalOptions="End" 
-                       />
-                    <Switch x:Name="announcementEmailsSwitch" IsToggled="False" 
-                    Grid.Column="1" Grid.Row="7"
-                    HorizontalOptions="End" 
-                    OnColor="LimeGreen" ThumbColor="{StaticResource LightShade}" BackgroundColor="{StaticResource LightShade}"
-                    />
-
-                    <!-- Label 5-->
-                    <Label Text="Unsubscribe from all newsletter emails" FontSize="Small" FontAttributes="Bold" TextDecorations="Underline"
-                           HorizontalOptions="Start"
-                           Margin="5,0,0,0"
-                           TextColor="{StaticResource Primary}"
-                   Grid.Column="0" Grid.Row="8" 
-                    
-                       />
-                </Grid>
-
-                
-
-                <Grid Grid.Row="6">
+                <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="95"/>
                         <RowDefinition Height="25"/>
-                        <RowDefinition Height=" 60"/>
-                        <RowDefinition Height=" 60"/>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="260"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="160"/>
+
+
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="Account Management"
+                    <Label Grid.Row="0" Text="Account Information" 
                        Style="{StaticResource HeaderLabelStyle}"
-                       HorizontalTextAlignment="Start"
-                       Grid.Row="0"
                        />
-                    <Button Text=" Reset Password"
-                            CornerRadius="20"
-                            Grid.Row="1"
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition  Height="20"/>
+                            <RowDefinition  Height="20"/>
+                            <RowDefinition  Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Col 1 labels -->
+                        <Label Text="First Name: "   
+                           Style="{StaticResource BasicLabelStyle}"
+                           Grid.Row="0" Grid.Column="0"
+                        />
+                        <Label Text="Last Name: "  
+                               Style="{StaticResource BasicLabelStyle}"
+                               Grid.Row="1" Grid.Column="0"
+                        />
+                        <Label Text="Email: "   
+                           Style="{StaticResource BasicLabelStyle}"
+                           Grid.Row="2" Grid.Column="0"    
+                       />
+                        <Label Text="Birthday: "   
+                           Style="{StaticResource BasicLabelStyle}"
+                           Grid.Row="3" Grid.Column="0"
+                       />
+                        <!-- Col 2  -->
+                        <Label x:Name="firstNameLabel" 
+                           Style="{StaticResource BasicLabelStyle}"
+                           Grid.Column="1" Grid.Row="0"
+                           Text="Bob" 
+                      />
+
+                        <Label x:Name="lastNameLabel" 
+                           Style="{StaticResource BasicLabelStyle}"
+                           Grid.Column="1" Grid.Row="1"
+                           Text="The builder" 
+                   />
+
+                        <Label x:Name="emailLabel" 
+                           Style="{StaticResource BasicLabelStyle}"
+                           Grid.Column="1" Grid.Row="2"
+                           Text="BobTheBuilder@test.com" 
+                   />
+
+                        <Label x:Name="birthdayLabel" 
+                            Style="{StaticResource BasicLabelStyle}"
+                            Grid.Column="1" Grid.Row="3"
+                            Text="20/03/1998" 
+                   />
+
+                        <!-- Col 3 -->
+                        <Label x:Name="Pointer1" 
+                               Style="{StaticResource BasicLabelStyle}"
+                               FontAttributes="Bold"
+                               Grid.Column="2" Grid.Row="0"
+                               Text=">" 
+                   />
+
+                        <Label x:Name="Pointer2" 
+                           Style="{StaticResource BasicLabelStyle}"
+                           FontAttributes="Bold"
+                           Grid.Column="2" Grid.Row="1"
+                           Text=">" 
+                   />
+
+                        <Label x:Name="Pointer3" 
+                           Style="{StaticResource BasicLabelStyle}"
+                           FontAttributes="Bold"
+                           Grid.Column="2" Grid.Row="2"
+                           Text=">" 
+                   />
+
+                        <Label x:Name="Pointer4" 
+                           Style="{StaticResource BasicLabelStyle}"
+                           FontAttributes="Bold"
+                           Grid.Column="2" Grid.Row="3"
+                           Text=">" 
+                  />
+                    </Grid>
+
+                    <Label Grid.Row="2" 
+                       Text="Avatar" 
+                       Style="{StaticResource HeaderLabelStyle}"
+                   
+                   
+                       />
+                    <Grid Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition  Height="*"/>
+                            <RowDefinition  Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                           Style="{StaticResource FrameStyle}"
+                           HasShadow="True" >
+                            <StackLayout>
+                                <xct:AvatarView Grid.Column="0" Text="&#xf007; " FontFamily="{StaticResource FontAwesomeRegular}"   
+                                            CornerRadius="40" 
+                                            HorizontalOptions="Start" Padding="1" Size="80" Margin=" 0,0" 
+                                            Color="{StaticResource LightShade}" BorderColor="{StaticResource DarkShade}"
+                                            />
+                                <Label Grid.Column="1" TextColor="{StaticResource LightShade}"
+                                   Text="We recommend an image&#10;of atleast 600x240.&#10;You can upload a PNG or JPEG&#10;under 2MB." 
+                                   FontSize="Medium" 
+                                   HorizontalOptions="End" />
+
+                                <Grid Grid.Row="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button x:Name="RemoveAvatarBtn"  
+                                    Grid.Column="0" Grid.Row="0"
+                                    Style="{StaticResource ButtonStyle}"
+                                    BackgroundColor="{StaticResource LightShade}"
+                                    Text="Remove Avatar"  TextColor="{StaticResource Primary}"
+                                    Clicked="RemoveAvatarBtn_Clicked"
+                                    CornerRadius="20"
+                                    />
+
+                                    <Button x:Name="ChangeAvatarBtn" 
+                                    Grid.Column="2" Grid.Row="0"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Text="Change Avatar" 
+                                    TextColor="{StaticResource Primary}"
+                                    BackgroundColor="{StaticResource LightShade}"
+                                    CornerRadius="20"         
+                                    Clicked="ChangeAvatarBtn_Clicked"
+                                             />
+                                </Grid>
+
+                                
+                                
+                            </StackLayout>
+
+
+
+                        </Frame>
+
+
+                    </Grid>
+
+                    <Label Grid.Row="4" Text="Newsletter Settings" 
+                       Style="{StaticResource HeaderLabelStyle}"
+                   
+                       />
+                    <Grid Grid.Row="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="15"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="15"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="15"/>
+                            <RowDefinition Height="22"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Label 1 -->
+                        <Label Text="Communcation Emails" 
+                           Style="{StaticResource BasicLabelStyle}"
+                           Grid.Column="0" Grid.Row="0" 
+                   
+                           />
+                        <Label Text="Recieve emails with" FontSize="Micro"
+                           Grid.Column="0" Grid.Row="1"
+                           Margin="8,0,0,0"
+                   
+                           />
+
+                        <Controls:CSwitch x:Name="commEmailsSwitch"
+                                      Grid.Column="1" Grid.Row="0"
+                                      IsToggled ="True"
+                                      Toggled="Switch_OnToggled"
+                                      ToggledCommand="{Binding ToggleCommand}"
+                            />
+
+                        <!-- Label 2 -->
+                        <Label Text="Social Emails" 
+                               Style="{StaticResource BasicLabelStyle}"
+                               Grid.Column="0" Grid.Row="2" 
+                    
+                           />
+                        <Label Text="Recieve emails with" 
+                               FontSize="Micro"
+                               Grid.Column="0" Grid.Row="3"
+                               Margin="8,0,0,0"
+                    
+                           />
+
+                        <Controls:CSwitch x:Name="socialEmailsSwitch"
+                                          Grid.Column="1" Grid.Row="2"
+                                          IsToggled =" false"
+                                          Toggled="Switch_OnToggled"
+                                          ToggledCommand="{Binding ToggleCommand}"
+                                          />
+
+
+
+                        <!-- Label 3 -->
+                        <Label Text="Recommendation Emails" 
+                               Style="{StaticResource BasicLabelStyle}"
+                               Grid.Column="0" Grid.Row="4" 
+                    
+                           />
+                        <Label Text="Recieve emails with suggested events" FontSize="Micro"
+                               Grid.Column="0" Grid.Row="5"
+                               Margin="8,0,0,0"
+                    
+                           />
+
+                        <Controls:CSwitch x:Name="recEmailsSwitch"
+                                          Grid.Column="1" Grid.Row="4"
+                                          IsToggled =" false"
+                                          Toggled="Switch_OnToggled"
+                                          ToggledCommand="{Binding ToggleCommand}"
+                                          />
+
+                        <!-- Label 4 -->
+                        <Label Text="Announcement and Update Emails" 
+                               Style="{StaticResource BasicLabelStyle}"
+                               Grid.Column="0" Grid.Row="6" 
+                    
+                           />
+                        <Label Text="Receive emails with product updates, newest features, imrpovements and bug fixes" FontSize="Micro"
+                               Grid.Column="0" Grid.Row="7"
+                               Margin="8,0,0,0"
+                    
+                           />
+
+                        <Controls:CSwitch x:Name="announcementEmailsSwitch"
+                                          Grid.Column="1" Grid.Row="6"
+                                          IsToggled =" false"
+                                          Toggled="Switch_OnToggled"
+                                          ToggledCommand="{Binding ToggleCommand}"
+                                          />
+
+
+
+                        <!-- Label 5-->
+                        <Label Text="Unsubscribe from all newsletter emails" FontSize="Small" FontAttributes="Bold" TextDecorations="Underline"
+                               HorizontalOptions="Start"
+                               Margin="8,0,0,0"
+                               TextColor="{StaticResource Primary}"
+                               Grid.Column="0" Grid.Row="8" 
+                    
+                           />
+                    </Grid>
+
+
+
+                    <Grid Grid.Row="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height=" 60"/>
+                            <RowDefinition Height=" 60"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Account Management"
+                           Style="{StaticResource HeaderLabelStyle}"
+                       
+                           Grid.Row="0"
+                           />
+                        
+                        <Frame Grid.Row="1"  BackgroundColor="{StaticResource Primary}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="&#xf023;" FontFamily="{StaticResource FontAwesomeSolid}"
+                                       HorizontalOptions="EndAndExpand"
+                                        FontSize="Medium"
+                                       TextColor="{StaticResource LightShade}"/> 
+                                <Label Text=" Reset Password" 
+                                       Grid.Column="1"
+                                       TextColor="{StaticResource LightShade}" 
+                                       FontSize="Medium"
+                                       HorizontalOptions="Start"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ResetPasswordLblGestureRecognizer_Tapped"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
                             
-                            BackgroundColor="{StaticResource Primary}"
-                            />
-                    <Button Text=" Delete Account" 
-                            CornerRadius="20"
-                            BackgroundColor="{StaticResource Danger}"
-                            Grid.Row="2"
-                            />
+                        </Frame>
+
+                        <Frame Grid.Row="2"  BackgroundColor="{StaticResource Danger}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="&#xf2ed;" FontFamily="{StaticResource FontAwesomeSolid}"
+                                       TextColor="{StaticResource LightShade}"
+                                       Grid.Column="0"
+                                       FontSize="Medium"
+                                       HorizontalOptions="EndAndExpand"
+                                       />
+                                <Label  Text="Delete Account" Grid.Column="1"
+                                        TextColor="{StaticResource LightShade}" 
+                                        FontSize="Medium"
+                                        HorizontalOptions="Start"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="DeleteAccountLblGestureRecognizer_Tapped"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+
                 </Grid>
-
             </Grid>
-
 
         </ScrollView>
     </ContentPage.Content>

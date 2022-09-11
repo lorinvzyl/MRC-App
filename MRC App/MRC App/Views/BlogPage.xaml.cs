@@ -21,12 +21,13 @@ namespace MRC_App.Views
         }
         async void CollectionView_SelectedChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            var detail = e.CurrentSelection.FirstOrDefault() as Blog;
-            if (detail == null)
+            if (!(e.CurrentSelection.FirstOrDefault() is Blog detail))
                 return;
-            var detailspage = new BlogDetailed();
-            detailspage.BindingContext = detail;
+
+            var detailspage = new BlogDetailed
+            {
+                BindingContext = detail
+            };
 
             await Navigation.PushAsync(detailspage);
             ((CollectionView)sender).SelectedItem = null;
