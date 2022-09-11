@@ -27,5 +27,17 @@ namespace MRC_App.ViewModels
         {
             await Shell.Current.GoToAsync($"{nameof(RegisterPage)}"); 
         }
+
+        private bool emailValid { get; set; }
+
+        public bool EmailValid
+        {
+            get => emailValid;
+            set
+            {
+                emailValid = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
