@@ -20,7 +20,6 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
             </Style>
             <Style x:Key="BrandIconBackground" TargetType="StackLayout">
-                <Setter Property="HeightRequest" Value="250"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
@@ -36,6 +35,7 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource LightDarkShade}"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
             <Style x:Key="HeaderTextSubtitle" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"/>
@@ -62,42 +62,49 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid Style="{StaticResource PageGrid}" RowSpacing="0" Padding="20,0,20,0">
+        <Grid Style="{StaticResource PageGrid}" RowSpacing="0" Padding="0">
             <!--Define rows needed-->
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="15"/>
+            </Grid.ColumnDefinitions>
             
             <!--Header-->
-            <StackLayout Grid.Row="0" Padding="20" Margin="-20,0" Style="{StaticResource BrandIconBackground}">
+            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource BrandIconBackground}">
                 <Label Text="&#xf51d;" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource BrandIcon}"/>
             </StackLayout>
             
             <!--Information block header text-->
-            <Label Grid.Row="1" Text="Welcome!" Margin="0,40,0,0" FontSize="24" Style="{StaticResource HeaderTextTitle}"/>
-            <Label Grid.Row="2" Text="Register your account" Margin="0,5,0,20" Style="{StaticResource HeaderTextSubtitle}"/>
+            <Label Grid.Row="2" Grid.Column="1" Text="Welcome!" FontSize="24" Style="{StaticResource HeaderTextTitle}"/>
+            <Label Grid.Row="3" Grid.Column="1" Text="Register your account" Style="{StaticResource HeaderTextSubtitle}"/>
             
             <!--Entry for user details-->
             <!-- Need an entry for their email and password currently, however more entries are likely required.-->
-            <Entry x:Name="FName"  Grid.Row="3" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
-            <Entry x:Name="LName" Grid.Row="4" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
-            <Entry x:Name="Birth" Grid.Row="5" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
-            <Label Grid.Row="6" Margin="5,-7,0,0" Text="DD/MM/YYYY" Style="{StaticResource AccountDetailsLabel}"/>
-            <Entry x:Name="Email" Grid.Row="7" Placeholder="Email" Style="{StaticResource AccountDetails}"/>
-            <Entry x:Name="Password" Grid.Row="8" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/> <!--Can add a "eye" icon here so they can see the password they entered-->
+            <Entry x:Name="FName" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
+            <Entry x:Name="LName" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
+            <Entry x:Name="Birth" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
+            <Label Grid.Row="7" Text="DD/MM/YYYY" Grid.Column="1" Margin="4,-5,0,0"  Style="{StaticResource AccountDetailsLabel}"/>
+            <Entry x:Name="Email" Grid.Row="8" Grid.Column="1" Placeholder="Email" Style="{StaticResource AccountDetails}"/>
+            <Entry x:Name="Password" Grid.Row="9" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/> <!--Can add a "eye" icon here so they can see the password they entered-->
             
             <!--Register button-->
-            <Button Grid.Row="9" Margin="0,40,0,0" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>
+            <Button Grid.Row="11" Grid.Column="1" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

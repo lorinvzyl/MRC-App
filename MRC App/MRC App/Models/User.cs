@@ -12,7 +12,7 @@ namespace MRC_App.Models
         public string Email { get; set; }
         public string Surname { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public byte[] HashedPassword { get; set; }
+        public string HashedPassword { get; set; }
 
     }
 }

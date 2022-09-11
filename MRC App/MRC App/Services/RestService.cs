@@ -38,5 +38,21 @@ namespace MRC_App.Services
             registered = true;
             return registered;
         }
+
+        public static async Task<bool> LoginUser(User user)
+        {
+            bool login = false;
+            var json = JsonConvert.SerializeObject(user);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("api/Users/login", content);
+
+            if(!response.IsSuccessStatusCode)
+            {
+                return login;
+            }
+            login = true;
+            return login;
+        }
     }
 }
