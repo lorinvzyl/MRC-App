@@ -69,11 +69,9 @@
                                     <Label Grid.Row="1" Grid.Column="0" Text="Pastor:" Style="{StaticResource LocationContent}"/>
                                     <Label Grid.Row="1" Grid.Column="1" Text="{Binding PastorName}" Style="{StaticResource LocationContent}"/>
 
-                                    <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Click here to navigate to the church" Style="{StaticResource LocationLink}">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
+                                    <Button Grid.Row="2" Grid.ColumnSpan="2" Text="Click here to navigate to the church" Clicked="PopupNavigation" Style="{StaticResource LocationLink}"/>
+
+
                                 </Grid>
                             </Frame>
                         </StackLayout>

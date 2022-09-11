@@ -27,21 +27,21 @@ namespace MRC_App.ViewModels
             {
                 Id = 0,
                 Name = "Church Location 1",
-                MapsURL = "8 Kristal Crescent",
+                MapsURL = "http://maps.google.com/?daddr=Reformed+Church+Rabie+Ridge",
                 PastorName = "John"
             });
             locations.Add(new Location
             {
                 Id = 1,
                 Name = "Church Location 2",
-                MapsURL = "8 Kristal Crescent",
+                MapsURL = "http://maps.google.com/?daddr=The+English+Reformed+Church",
                 PastorName = "Bob"
             });
             locations.Add(new Location
             {
                 Id = 2,
                 Name = "Church Location 3",
-                MapsURL = "8 Kristal Crescent",
+                MapsURL = "http://maps.google.com/?daddr=Uniting+Reformed+Church+In+Southern+Africa",
                 PastorName = "Kirby"
             });
         }

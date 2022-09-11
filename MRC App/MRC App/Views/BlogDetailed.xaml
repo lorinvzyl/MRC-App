@@ -151,6 +151,7 @@
                                     <Label Grid.Column="1" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center"/>
 
                                 </Grid>
+                                
                                 <Grid BackgroundColor="White">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1"/>
