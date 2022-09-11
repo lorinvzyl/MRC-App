@@ -105,7 +105,7 @@
             <!--Can add a "eye" icon here so they can see the password they entered-->
 
             <!--Register button-->
-            <Button Grid.Row="11" Grid.Column="1" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>
+            <Button Grid.Row="11" Grid.Column="1" Text="Register" Command="{Binding RegisterCommand}" Style="{StaticResource RegisterButton}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
