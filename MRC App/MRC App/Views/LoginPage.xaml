@@ -169,7 +169,7 @@
             <Label Grid.Row="6" Grid.Column="1" Text="Error" Margin="0,5,0,0" VerticalOptions="Start" HorizontalOptions="StartAndExpand"/>
 
             <!--Button to log into account-->
-            <Button Grid.Row="7" Grid.Column="1" Text="Login" Clicked="Login_Clicked" Style="{StaticResource LoginButton}"/>
+            <Button Grid.Row="7" Grid.Column="1" Text="Login" Command="{Binding LoginCommand}"  Style="{StaticResource LoginButton}"/>
 
             <!--Links for user-->
             <Label Grid.Row="9" Grid.Column="1" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
