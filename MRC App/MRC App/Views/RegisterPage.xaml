@@ -89,12 +89,12 @@
             
             <!--Entry for user details-->
             <!-- Need an entry for their email and password currently, however more entries are likely required.-->
-            <Entry Grid.Row="3" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
-            <Entry Grid.Row="4" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
-            <Entry Grid.Row="5" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
+            <Entry x:Name="FName"  Grid.Row="3" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
+            <Entry x:Name="LName" Grid.Row="4" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
+            <Entry x:Name="Birth" Grid.Row="5" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
             <Label Grid.Row="6" Margin="5,-7,0,0" Text="DD/MM/YYYY" Style="{StaticResource AccountDetailsLabel}"/>
-            <Entry Grid.Row="7" Placeholder="Email" Style="{StaticResource AccountDetails}"/>
-            <Entry Grid.Row="8" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/> <!--Can add a "eye" icon here so they can see the password they entered-->
+            <Entry x:Name="Email" Grid.Row="7" Placeholder="Email" Style="{StaticResource AccountDetails}"/>
+            <Entry x:Name="Password" Grid.Row="8" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/> <!--Can add a "eye" icon here so they can see the password they entered-->
             
             <!--Register button-->
             <Button Grid.Row="9" Margin="0,40,0,0" Text="Register" Command="{Binding RegisterCommand}" Style="{StaticResource RegisterButton}"/>

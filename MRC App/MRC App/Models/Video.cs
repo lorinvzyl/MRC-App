@@ -6,7 +6,7 @@ namespace MRC_App.Models
 {
     public class Video
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string VideoURL { get; set; }
     }
 }

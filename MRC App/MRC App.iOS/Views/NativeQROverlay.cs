@@ -31,7 +31,7 @@ namespace MRC_App.iOS.Views
         CAShapeLayer overlayLayer = null;
 
         public float Opacity { get; set; } = 0.5f;
-        public UIColor OverlayBackgroundColor { get; set; } = UIColor.Clear;
+        public UIColor OverlayBackgroundColor { get; set; } = UIColor.FromRGB(61,61,61);
         public OverlayShape OverlayShape { get; set; } = OverlayShape.Rectangle;
 
 
@@ -39,7 +39,7 @@ namespace MRC_App.iOS.Views
         {
             UIBezierPath path = UIBezierPath.FromRoundedRect(new CGRect(Frame.X, Frame.Y, this.Frame.Width, this.Frame.Height), 0);
 
-            path.AppendPath(UIBezierPath.FromRoundedRect(new CGRect(this.Frame.Width/4, this.Frame.Height/3, (this.Frame.Width/4 + this.Frame.Width/2), (this.Frame.Height/3 + this.Frame.Width/2)), 15));
+            path.AppendPath(UIBezierPath.FromRoundedRect(new CGRect(this.Frame.Width/5, this.Frame.Height/3.4, (this.Frame.Width/5 + this.Frame.Width/5*3), (this.Frame.Height/3.4 + this.Frame.Width/5*3)), 15));
 
             path.UsesEvenOddFillRule = true;
 

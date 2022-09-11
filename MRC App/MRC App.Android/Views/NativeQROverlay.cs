@@ -37,7 +37,7 @@ namespace MRC_App.Controls
             }
         }
 
-        Android.Graphics.Color overlayColor = Android.Graphics.Color.Gray;
+        Android.Graphics.Color overlayColor = Android.Graphics.Color.ParseColor("#3d3d3d");
         public Android.Graphics.Color OverlayBackgroundColor
         {
             get { return overlayColor; }
@@ -45,7 +45,6 @@ namespace MRC_App.Controls
             {
                 overlayColor = value;
                 Redraw();
-
             }
         }
 
@@ -111,7 +110,7 @@ namespace MRC_App.Controls
 
             paint.SetXfermode(new PorterDuffXfermode(PorterDuff.Mode.Clear));
 
-            Android.Graphics.Rect rect = new Android.Graphics.Rect((int)(width/4),(int)(height/3), (int)(width/4 + width/2), (int)(height/3 + width/2));
+            Android.Graphics.Rect rect = new Android.Graphics.Rect((int)(width/5),(int)(height/3.4), (int)(width/5 + width/5*3), (int)(height/3.4 + width/5*3));
             RectF rectF = new RectF(rect);
             osCanvas.DrawRoundRect(rectF,15,15,paint);
 
