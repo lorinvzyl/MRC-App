@@ -23,8 +23,9 @@ namespace MRC_App.Services
             };
         }
 
-        public static async Task RegisterUser(User user)
+        public static async Task<bool> RegisterUser(User user)
         {
+            bool registered = false;
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -32,8 +33,10 @@ namespace MRC_App.Services
 
             if(!response.IsSuccessStatusCode)
             {
-                //do something if it fails
+                return registered;
             }
+            registered = true;
+            return registered;
         }
     }
 }

@@ -97,7 +97,7 @@
             <Entry x:Name="Password" Grid.Row="8" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/> <!--Can add a "eye" icon here so they can see the password they entered-->
             
             <!--Register button-->
-            <Button Grid.Row="9" Margin="0,40,0,0" Text="Register" Command="{Binding RegisterCommand}" Style="{StaticResource RegisterButton}"/>
+            <Button Grid.Row="9" Margin="0,40,0,0" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -43,11 +43,13 @@ namespace MRC_App.iOS.Views
 
             path.UsesEvenOddFillRule = true;
 
-            CAShapeLayer fillLayer = new CAShapeLayer();
-            fillLayer.Path = path.CGPath;
-            fillLayer.FillRule = CAShapeLayer.FillRuleEvenOdd;
-            fillLayer.FillColor = OverlayBackgroundColor.CGColor;
-            fillLayer.Opacity = Opacity;
+            CAShapeLayer fillLayer = new CAShapeLayer
+            {
+                Path = path.CGPath,
+                FillRule = CAShapeLayer.FillRuleEvenOdd,
+                FillColor = OverlayBackgroundColor.CGColor,
+                Opacity = Opacity
+            };
             overlayLayer = fillLayer;
             Layer.AddSublayer(fillLayer);
 
