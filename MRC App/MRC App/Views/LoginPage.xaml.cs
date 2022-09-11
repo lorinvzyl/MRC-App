@@ -12,9 +12,21 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        private bool emailValid { get; set; }
+
+        public bool EmailValid
+        {
+            get => emailValid;
+            set
+            {
+                emailValid = value;
+                OnPropertyChanged(); 
+            }
+        }
         public LoginPage()
         {
             InitializeComponent();
+            BindingContext = this;
         }
     }
 }
