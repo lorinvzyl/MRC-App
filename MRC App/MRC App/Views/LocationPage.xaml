@@ -62,7 +62,7 @@
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Name}" Style="{StaticResource LocationTitle}"/>
 
