@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
    This is quite obvious. 
 -->
@@ -20,7 +20,6 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
             </Style>
             <Style x:Key="BrandIconBackground" TargetType="StackLayout">
-                <Setter Property="HeightRequest" Value="250"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
@@ -36,6 +35,7 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource LightDarkShade}"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
             <Style x:Key="HeaderTextSubtitle" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"/>
@@ -84,7 +84,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="15"/>
             </Grid.ColumnDefinitions>
-
+            
             <!--Header-->
             <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource BrandIconBackground}">
                 <Label Text="&#xf51d;" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource BrandIcon}"/>
@@ -99,13 +99,15 @@
             <Entry x:Name="FName" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
             <Entry x:Name="LName" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
             <Entry x:Name="Birth" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
-            <Label Grid.Row="7" Text="DD/MM/YYYY" Grid.Column="1" Margin="4,-5,0,0"  Style="{StaticResource AccountDetailsLabel}"/>
+
+            <Label Grid.Row="7" Text="YYYY/MM/DD" Grid.Column="1" Margin="4,-5,0,0"  Style="{StaticResource AccountDetailsLabel}"/>
             <Entry x:Name="Email" Grid.Row="8" Grid.Column="1" Placeholder="Email" Style="{StaticResource AccountDetails}"/>
             <Entry x:Name="Password" Grid.Row="9" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/>
             <!--Can add a "eye" icon here so they can see the password they entered-->
 
             <!--Register button-->
-            <Button Grid.Row="11" Grid.Column="1" Text="Register" Command="{Binding RegisterCommand}" Style="{StaticResource RegisterButton}"/>
+            <Button Grid.Row="11" Grid.Column="1" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
