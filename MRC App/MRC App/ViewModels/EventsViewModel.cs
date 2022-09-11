@@ -48,9 +48,6 @@ namespace MRC_App.ViewModels
             });
         }
 
-        public CultureInfo Culture => new CultureInfo("en-US");
-        
-
         private int _year;
         private int _month;
         public int Year

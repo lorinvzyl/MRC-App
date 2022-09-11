@@ -105,7 +105,7 @@
             <Entry x:Name="PasswordEnt" Grid.Row="4" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/>
             <!--Can add a "eye" icon here so they can see the password they entered-->
 
-            <Label Grid.Row="5" Grid.Column="1" Text="Error" Margin="0,5,0,0" VerticalOptions="Start" HorizontalOptions="StartAndExpand"/>
+            <Label Grid.Row="5" Grid.Column="1" Text="{Binding Today}" Margin="0,5,0,0" VerticalOptions="Start" HorizontalOptions="StartAndExpand"/>
 
             <!--Button to log into account-->
             <Button Grid.Row="6" Grid.Column="1" Text="Login" Clicked="Login_Clicked" Style="{StaticResource LoginButton}"/>

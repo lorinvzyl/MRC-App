@@ -11,6 +11,7 @@ namespace MRC_App.ViewModels
         public Command LoginCommand { get; }
         public Command RegisterCommand { get; }
 
+
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
