@@ -5,7 +5,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Acr.UserDialogs;
 
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using MRC_App.Services;
 
 namespace MRC_App.ViewModels
 {
@@ -15,7 +16,7 @@ namespace MRC_App.ViewModels
         {
             ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
-            public bool EnableCommands { get; set; }
+        public bool EnableCommands { get; set; }
         public bool EnableEvents { get; set; }
 
         public ICommand ToggleCommand { get; }
@@ -27,6 +28,15 @@ namespace MRC_App.ViewModels
                 await UserDialogs.Instance.AlertAsync($"New value: {newValue}", "Switch toggled (Command)").ConfigureAwait(false);
             }
         }
+
+        public async Task<bool> DeleteUser(string email)
+        {
+            var delete = false;
+            if (email != null)
+                delete = await RestService.DeleteUser(email);
+
+            return delete;
+        }
     }
-    }
+}
 
