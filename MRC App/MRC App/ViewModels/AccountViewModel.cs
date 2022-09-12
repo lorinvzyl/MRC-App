@@ -7,6 +7,7 @@ using Acr.UserDialogs;
 
 using System.Threading.Tasks;
 using MRC_App.Services;
+using MRC_App.Models;
 
 namespace MRC_App.ViewModels
 {
@@ -31,11 +32,35 @@ namespace MRC_App.ViewModels
 
         public async Task<bool> DeleteUser(string email)
         {
+            if (email == null)
+                return false;
+
             var delete = false;
             if (email != null)
                 delete = await RestService.DeleteUser(email);
 
             return delete;
+        }
+
+        public async Task<bool> UpdateUser(string email, string name, string surname, DateTime dateOfBirth, bool isNewsletter)
+        {
+            if (email == null || name == null || surname == null || dateOfBirth == null)
+                return false;
+
+            var update = false;
+
+            User user = new User(){
+                Name = name,
+                Email = email,
+                Surname = surname,
+                DateOfBirth = dateOfBirth,
+                isNewsletter = isNewsletter
+            };
+
+            if (email != null)
+                update = await RestService.UpdateUser(email, user);
+
+            return update;
         }
     }
 }

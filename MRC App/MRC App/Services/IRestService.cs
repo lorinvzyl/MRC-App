@@ -34,8 +34,6 @@ namespace MRC_App.Services
         //Communicates with comment and the reply tables?
         Task AddBlogComment(Comment comment); //need to implement this
         //Adds a general comment, interacts with comments.
-        Task AddBlogReply(Reply reply); //need to implement this
-        //Adds a reply to a comment, sends commentId as parent. Interacts with reply table?
         Task<List<Location>> GetChurchLocations(); //need to implement this
         //Interacts with location table?
         Task UpdateNewsletter(int userId); //need to implement this

@@ -1,4 +1,5 @@
 ﻿using MRC_App.Models;
+using MRC_App.Services;
 using MRC_App.Views;
 using Newtonsoft.Json;
 using System;
@@ -30,21 +31,25 @@ namespace MRC_App.ViewModels
 
             List<string> images = new List<string> { "pexels208216.jpg", "pexels6115945.jpg" };
 
-            Event = new EventCollection
+            Event = new EventCollection();
+
+            Controls.Collection<Event> _event = RestService.GetEvents().Result;
+            foreach (var item in _event)
             {
-                [DateTime.Now.AddDays(1)] = new List<Event>(GenerateEvents(1, "Cool", images))
-            };
+                Event.Add(DateTime.Parse(item.Date), new List<Event>(GenerateEvents(item)));
+            }
         }
 
         public EventCollection Event { get; set; }
 
-        private IEnumerable<Event> GenerateEvents(int count, string name, List<string> images)
+        private IEnumerable<Event> GenerateEvents(Event item)
         {
-            return Enumerable.Range(1, count).Select(e => new Event
+            return Enumerable.Range(0, 1).Select(e => new Event
             {
-                Name = $"{name} event{count}",
-                Description = $"This is {name} event{count}'s description",
-                Image = images
+                Id = item.Id,
+                Name = $"{item.Name}",
+                Description = $"{item.Description}",
+                Image = item.Image
             });
         }
 
@@ -84,6 +89,5 @@ namespace MRC_App.ViewModels
                 await Shell.Current.GoToAsync($"{nameof(EventsDetailed)}?Param={jsonStr}");
             }
         }
-
     }
 }

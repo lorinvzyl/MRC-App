@@ -53,6 +53,7 @@ namespace MRC_App.ViewModels
                 OnPropertyChanged("EventGallery");
             }
         }
+
         private void PerformOperation(string paramStr)
         {
             var param = JsonConvert.DeserializeObject<Event>(paramStr);
