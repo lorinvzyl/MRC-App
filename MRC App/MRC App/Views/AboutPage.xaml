@@ -165,8 +165,8 @@
                 <Frame Style="{StaticResource ContainerStyle}">
 
                     <StackLayout>
-                        <Label Text="Latest Video" Style="{StaticResource ContainerTitleStyle}"/>
-                        <xct:MediaElement Source="https://sec.ch9.ms/ch9/5d93/a1eab4bf-3288-4faf-81c4-294402a85d93/XamarinShow_mid.mp4" AutoPlay="False" IsLooping="False" Style="{StaticResource Videostyle}" />
+                        <Label Text="Livestreams" Style="{StaticResource ContainerTitleStyle}"/>
+                        <xct:MediaElement Source="https://sec.ch9.ms/ch9/5d93/a1eab4bf-3288-4faf-81c4-294402a85d93/XamarinShow_mid.mp4" AutoPlay="False" Style="{StaticResource Videostyle}" />
                     </StackLayout>
 
                 </Frame>

@@ -27,15 +27,13 @@ namespace MRC_App.Views
                 Surname = LName.Text,
                 Email = Email.Text,
                 DateOfBirth = DateTime.Parse(Birth.Text),
-                Password = Password.Text
+                HashedPassword = Password.Text,
+                Id = 1
             };
             var registered = false;
 
             if(user != null)
                 registered = await RestService.RegisterUser(user);
-
-            user.Password = null;
-
             if (registered)
             {
                 RegisterViewModel viewModel = new RegisterViewModel();
