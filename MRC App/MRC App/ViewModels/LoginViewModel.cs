@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using MRC_App.Views;
+using System.Threading.Tasks;
+using MRC_App.Models;
+using MRC_App.Services;
 
 namespace MRC_App.ViewModels
 {
@@ -37,6 +40,20 @@ namespace MRC_App.ViewModels
             {
                 emailValid = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public async Task LoginUser(User user)
+        {
+
+            if (user == null)
+                return;
+
+            var login = await RestService.LoginUser(user);
+
+            if(login)
+            {
+                LoginCommand.Execute(user);
             }
         }
     }

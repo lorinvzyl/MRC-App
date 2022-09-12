@@ -14,9 +14,12 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
+        RegisterViewModel viewModel;
         public RegisterPage()
         {
             InitializeComponent();
+            viewModel = new RegisterViewModel();
+            BindingContext = viewModel;
         }
 
         private async void Register_Clicked(object sender, EventArgs e)
@@ -29,18 +32,8 @@ namespace MRC_App.Views
                 DateOfBirth = DateTime.Parse(Birth.Text),
                 Password = Password.Text
             };
-            var registered = false;
-
-            if(user != null)
-                registered = await RestService.RegisterUser(user);
-
-            user.Password = null;
-
-            if (registered)
-            {
-                RegisterViewModel viewModel = new RegisterViewModel();
-                viewModel.RegisterCommand.Execute(viewModel);
-            }
+            
+            await viewModel.RegisterUser(user);
         }
     }
 }
