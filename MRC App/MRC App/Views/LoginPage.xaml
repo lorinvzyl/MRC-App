@@ -98,9 +98,9 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="10"/>
+                <RowDefinition Height="15"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="10"/>
+                <RowDefinition Height="15"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="2*"/>
