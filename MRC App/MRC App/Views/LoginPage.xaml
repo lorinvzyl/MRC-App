@@ -98,8 +98,9 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="2*"/>
@@ -117,7 +118,7 @@
             <Label Grid.Row="2" Grid.Column="1" Text="Welcome!" Style="{StaticResource HeaderTextTitle}"/>
             <Label Grid.Row="3" Grid.Column="1" Text="Log into your account" Style="{StaticResource HeaderTextSubtitle}"/>
             <!--Enter email and password-->
-            <Entry x:Name="EmailEnt" Grid.Row="4" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
+            <Entry x:Name="EmailEnt" Grid.Row="4" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEnt}">
                 <Entry.Behaviors>
                     <xct:EmailValidationBehavior
                         InvalidStyle="{StaticResource InvalidEmailStyle}" 
@@ -165,14 +166,14 @@
             </Entry>
             
             <!--Button to log into account-->
-            <Button Grid.Row="8" Grid.Column="1" Text="Login" Clicked="Login_Clicked" Style="{StaticResource LoginButton}"/>
+            <Button Grid.Row="9" Grid.Column="1" Text="Login" Clicked="Login_Clicked" Style="{StaticResource LoginButton}"/>
 
             <!--Links for user-->
-            <Label Grid.Row="10" Grid.Column="1" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
+            <Label Grid.Row="11" Grid.Column="1" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
 
             </Label>
 
-            <Label Grid.Row="11" Grid.Column="1" Text="No account? Sign up here" Style="{StaticResource RegisterLabel}">
+            <Label Grid.Row="12" Grid.Column="1" Text="No account? Sign up here" Style="{StaticResource RegisterLabel}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                 </Label.GestureRecognizers>
