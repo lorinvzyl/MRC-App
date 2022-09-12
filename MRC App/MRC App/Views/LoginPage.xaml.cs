@@ -28,5 +28,12 @@ namespace MRC_App.Views
             InitializeComponent();
             BindingContext = this;
         }
+
+        private void Login_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
