@@ -14,11 +14,22 @@ namespace MRC_App.ViewModels
         public Command LoginCommand { get; }
         public Command RegisterCommand { get; }
 
+        private string error { get; set; }
+        public string Error 
+        { 
+            get { return error; }
+            set
+            {
+                error = value;
+                OnPropertyChanged("Error");
+            }
+        }
 
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
             RegisterCommand = new Command(OnRegisterClicked);
+            Error = "";
         }
 
         private async void OnLoginClicked(object obj)
@@ -45,7 +56,7 @@ namespace MRC_App.ViewModels
 
         public async Task LoginUser(User user)
         {
-
+            Error = "";
             if (user == null)
                 return;
 
@@ -54,6 +65,10 @@ namespace MRC_App.ViewModels
             if(login)
             {
                 LoginCommand.Execute(user);
+            }
+            else
+            {
+                Error = "Incorrect password/email.";
             }
         }
     }

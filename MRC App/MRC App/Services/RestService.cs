@@ -11,7 +11,6 @@ namespace MRC_App.Services
     public class RestService
     {
         static HttpClient client;
-        JsonSerializer serializerOptions;
         static string BaseUrl = "http://10.0.2.2:32223/";
 
         static RestService()
@@ -54,10 +53,10 @@ namespace MRC_App.Services
             return login;
         }
 
-        public static async Task<Controls.Collection<Blog>> GetBlogs()
+        public static async Task<IEnumerable<Blog>> GetBlogs()
         {
             var json = await client.GetStringAsync("api/Blogs");
-            var blogs = JsonConvert.DeserializeObject<Controls.Collection<Blog>>(json);
+            var blogs = JsonConvert.DeserializeObject<IEnumerable<Blog>>(json);
             return blogs;
         }
 
@@ -68,10 +67,10 @@ namespace MRC_App.Services
             return user;
         }
 
-        public static async Task<Controls.Collection<Event>> GetEvents()
+        public static async Task<IEnumerable<Event>> GetEvents()
         {
             var json = await client.GetStringAsync("api/Events");
-            var events = JsonConvert.DeserializeObject<Controls.Collection<Event>>(json);
+            var events = JsonConvert.DeserializeObject<IEnumerable<Event>>(json);
             return events;
         }
 
@@ -151,10 +150,10 @@ namespace MRC_App.Services
             return attend;
         }
 
-        public static async Task<Controls.Collection<Comment>> GetBlogComments(int blogId)
+        public static async Task<IEnumerable<Comment>> GetBlogComments(int blogId)
         {
             var json = await client.GetStringAsync($"api/Comments/blogId={blogId}");
-            var blogComments = JsonConvert.DeserializeObject<Controls.Collection<Comment>>(json);
+            var blogComments = JsonConvert.DeserializeObject<IEnumerable<Comment>>(json);
 
             return blogComments;
         }
@@ -179,10 +178,10 @@ namespace MRC_App.Services
             return commented;
         }
 
-        public static async Task<Controls.Collection<Location>> GetChurchLocations()
+        public static async Task<IEnumerable<Location>> GetChurchLocations()
         {
             var json = await client.GetStringAsync("api/Locations");
-            var locations = JsonConvert.DeserializeObject<Controls.Collection<Location>>(json);
+            var locations = JsonConvert.DeserializeObject<IEnumerable<Location>>(json);
 
             return locations;
         }

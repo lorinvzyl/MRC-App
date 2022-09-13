@@ -22,17 +22,17 @@ namespace MRC_App.ViewModels
             blog = new ObservableCollection<BlogComment>();
         }
 
-
+        /*
         public async Task GetComments(int blogId)
         {
             if (blogId == null)
                 return;
 
         }
-
+        */
         public async Task<bool> AddBlogComment(int blogId, string commentText, int parentId, string user)
         {
-            if (blog == null || commentText == null || parentId == null || user == null)
+            if (blog == null || commentText == null || user == null)
                 return false;
 
             Comment comment = new Comment()

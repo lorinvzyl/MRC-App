@@ -33,23 +33,33 @@ namespace MRC_App.ViewModels
 
             Event = new EventCollection();
 
-            Controls.Collection<Event> _event = RestService.GetEvents().Result;
-            foreach (var item in _event)
-            {
-                Event.Add(DateTime.Parse(item.Date), new List<Event>(GenerateEvents(item)));
-            }
+            GenerateEvents();
         }
 
         public EventCollection Event { get; set; }
 
-        private IEnumerable<Event> GenerateEvents(Event item)
+        async Task GenerateEvents()
+        {
+            IEnumerable<Event> _event = await RestService.GetEvents();
+
+            foreach (var item in _event)
+            {
+                Event.Add(item.EventDate, new List<Event>(GenerateEvent(item)));
+            }
+        }
+
+        private IEnumerable<Event> GenerateEvent(Event item)
         {
             return Enumerable.Range(0, 1).Select(e => new Event
             {
                 Id = item.Id,
-                Name = $"{item.Name}",
-                Description = $"{item.Description}",
-                Image = item.Image
+                EventName = item.EventName,
+                EventDescription = item.EventDescription,
+                SpacesAvailable = item.SpacesAvailable,
+                SpacesTaken = item.SpacesTaken,
+                RSVPCloseDate = item.RSVPCloseDate,
+                EventDate = item.EventDate,
+                Venue = item.Venue
             });
         }
 

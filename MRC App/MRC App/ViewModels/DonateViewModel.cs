@@ -15,7 +15,7 @@ namespace MRC_App.ViewModels
 
         public async Task<bool> Donate(int amount, string message, string email)
         {
-            if (amount == null || message == null || email == null)
+            if (message == null || email == null)
                 return false;
 
             Donation donation = new Donation()
