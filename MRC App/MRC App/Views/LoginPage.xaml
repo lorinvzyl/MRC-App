@@ -93,7 +93,7 @@
             </Grid.ColumnDefinitions>
             <!--Define rows needed-->
             <Grid.RowDefinitions>
-                <RowDefinition Height="13*"/>          
+                <RowDefinition Height="13*"/> <!--Aligns with register page icon.-->
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
