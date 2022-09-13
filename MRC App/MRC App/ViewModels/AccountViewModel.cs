@@ -35,10 +35,7 @@ namespace MRC_App.ViewModels
             if (email == null)
                 return false;
 
-            var delete = false;
-            if (email != null)
-                delete = await RestService.DeleteUser(email);
-
+            var delete = await RestService.DeleteUser(email);
             return delete;
         }
 
@@ -46,8 +43,6 @@ namespace MRC_App.ViewModels
         {
             if (email == null || name == null || surname == null || dateOfBirth == null)
                 return false;
-
-            var update = false;
 
             User user = new User(){
                 Name = name,
@@ -57,8 +52,7 @@ namespace MRC_App.ViewModels
                 isNewsletter = isNewsletter
             };
 
-            if (email != null)
-                update = await RestService.UpdateUser(email, user);
+            var update = await RestService.UpdateUser(email, user);
 
             return update;
         }

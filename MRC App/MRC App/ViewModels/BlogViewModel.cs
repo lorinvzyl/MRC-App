@@ -11,13 +11,6 @@ namespace MRC_App.ViewModels
 {
     public class BlogViewModel : BaseViewModel
     {
-        private ObservableRangeCollection<Comment> blogComment;
-        public ObservableRangeCollection<Comment> BlogComment
-        {
-            get { return blogComment; }
-            set { blogComment = value; }
-        }
-
         private ObservableRangeCollection<Blog> blogs;
         public ObservableRangeCollection<Blog> Blogs
         {
@@ -27,35 +20,9 @@ namespace MRC_App.ViewModels
 
         public BlogViewModel()
         {
-            BlogComment = new ObservableRangeCollection<Comment>();
             Blogs = new ObservableRangeCollection<Blog>();
 
             AddBlogs();
-        }
-
-        /*
-        public async Task GetComments(int blogId)
-        {
-            if (blogId == null)
-                return;
-
-        }
-        */
-        public async Task<bool> AddBlogComment(int blogId, string commentText, int parentId, string user)
-        {
-            if (commentText == null || user == null)
-                return false;
-
-            Comment comment = new Comment()
-            {
-                BlogId = blogId,
-                CommentText = commentText,
-                ParentId = parentId,
-                User = user
-            };
-
-            var result = await RestService.AddBlogComment(comment);
-            return result;
         }
 
         async Task AddBlogs()
