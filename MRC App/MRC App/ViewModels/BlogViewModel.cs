@@ -5,21 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 using MRC_App.Models;
 using MRC_App.Services;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace MRC_App.ViewModels
 {
     public class BlogViewModel : BaseViewModel
     {
-        private ObservableCollection<BlogComment> Blog;
-        public ObservableCollection<BlogComment> blog
+        private ObservableRangeCollection<Comment> blogComment;
+        public ObservableRangeCollection<Comment> BlogComment
         {
-            get { return Blog; }
-            set { Blog = value; }
+            get { return blogComment; }
+            set { blogComment = value; }
+        }
+
+        private ObservableRangeCollection<Blog> blogs;
+        public ObservableRangeCollection<Blog> Blogs
+        {
+            get { return blogs; }
+            set { blogs = value; }
         }
 
         public BlogViewModel()
         {
-            blog = new ObservableCollection<BlogComment>();
+            BlogComment = new ObservableRangeCollection<Comment>();
+            Blogs = new ObservableRangeCollection<Blog>();
+
+            AddBlogs();
         }
 
         /*
@@ -32,7 +43,7 @@ namespace MRC_App.ViewModels
         */
         public async Task<bool> AddBlogComment(int blogId, string commentText, int parentId, string user)
         {
-            if (blog == null || commentText == null || user == null)
+            if (commentText == null || user == null)
                 return false;
 
             Comment comment = new Comment()
@@ -45,6 +56,24 @@ namespace MRC_App.ViewModels
 
             var result = await RestService.AddBlogComment(comment);
             return result;
+        }
+
+        async Task AddBlogs()
+        {
+            var result = await RestService.GetBlogs();
+            Blogs.AddRange(result);
+        }
+
+        async Task Refresh()
+        {
+            IsBusy = true;
+
+            Blogs.Clear();
+
+            var result = await RestService.GetBlogs();
+            Blogs.AddRange(result);
+
+            IsBusy = false;
         }
     }
 }

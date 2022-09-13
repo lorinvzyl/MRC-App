@@ -11,18 +11,18 @@ namespace MRC_App.ViewModels
 {
     public class LocationViewModel : BaseViewModel
     {
-        private ObservableRangeCollection<Location> Locations;
-        public ObservableRangeCollection<Location> locations
+        private ObservableRangeCollection<Location> locations;
+        public ObservableRangeCollection<Location> Locations
         {
-            get { return Locations; }
-            set { Locations = value; }
+            get { return locations; }
+            set { locations = value; }
         }
 
         public AsyncCommand RefreshCommand { get; }
 
         public LocationViewModel()
         { 
-            locations = new ObservableRangeCollection<Location>();
+            Locations = new ObservableRangeCollection<Location>();
             RefreshCommand = new AsyncCommand(Refresh);
 
             AddData();

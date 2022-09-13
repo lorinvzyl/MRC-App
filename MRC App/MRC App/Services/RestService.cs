@@ -185,5 +185,13 @@ namespace MRC_App.Services
 
             return locations;
         }
+
+        public static async Task<IEnumerable<Blog>> GetBlogsCount(int count)
+        {
+            var json = await client.GetStringAsync($"api/Blogs/count={count}");
+            var blogs = JsonConvert.DeserializeObject<IEnumerable<Blog>>(json);
+
+            return blogs;
+        }
     }
 }

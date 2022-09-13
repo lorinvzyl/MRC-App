@@ -15,6 +15,7 @@ namespace MRC_App.ViewModels
 
         public async Task<bool> Donate(int amount, string message, string email)
         {
+            //Add third party payment here, if successful, continue with adding with database
             if (message == null || email == null)
                 return false;
 
@@ -22,7 +23,7 @@ namespace MRC_App.ViewModels
             {
                 Amount = amount,
                 Message = message,
-                Email = email
+                UserEmail = email
             };
 
             var result = await RestService.Donate(donation);

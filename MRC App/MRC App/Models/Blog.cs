@@ -7,10 +7,12 @@ namespace MRC_App.Models
 {
     public class Blog
     {
-        public int ID { get; set; }
-        public string Img { get; set; }
+        public int Id { get; set; }
+        public string ImagePath { get; set; }
         public string BlogTitle { get; set; }
         public string Content { get; set; }
+        public string Author { get; set; }
+        public string Description { get; set; }
         public int Likes { get; set; }
         public int Comments { get; set; }
 
