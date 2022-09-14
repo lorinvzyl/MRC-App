@@ -3,11 +3,34 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using MRC_App.Views;
+using System.Text.RegularExpressions;
 
 namespace MRC_App.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
+        private bool emailValid { get; set; }
+        public bool EmailValid
+        {
+            get => emailValid;
+            set
+            {
+                emailValid = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string error;
+        public string Error
+        {
+            get => error;
+            set
+            {
+                error = value;
+                OnPropertyChanged("Error");
+            }
+        }
+
         public Command RegisterCommand { get; }
         public RegisterViewModel()
         {

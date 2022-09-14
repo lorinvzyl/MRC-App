@@ -6,10 +6,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              mc:Ignorable="d"
              x:Class="MRC_App.Views.LoginPage"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutBehavior="Disabled">
 
@@ -119,6 +119,7 @@
             <Entry x:Name="EmailEntry" Grid.Row="4" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
                 <Entry.Behaviors>
                     <xct:EmailValidationBehavior
+                        MinimumLength="1"
                         InvalidStyle="{StaticResource EntryErrorStyle}" 
                         DecorationFlags="Trim" 
                         Flags="ValidateOnValueChanging"
@@ -131,7 +132,7 @@
             <Entry x:Name="PasswordEntry" Grid.Row="6" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
                 <Entry.Behaviors>
                     <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" ValidStyle="{StaticResource EntryValidStyle}">
-                        <xct:TextValidationBehavior MinimumLength="6"/>
+                        <xct:TextValidationBehavior MinimumLength="8"/>
                         <xct:CharactersValidationBehavior 
                            CharacterType="Digit"
                            MinimumCharacterCount="1"/>
