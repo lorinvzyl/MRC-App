@@ -11,6 +11,17 @@ namespace MRC_App.ViewModels
         public Command LoginCommand { get; }
         public Command RegisterCommand { get; }
 
+        private string error { get; set; }
+        public string Error
+        {
+            get { return error; }
+            set
+            {
+                error = value;
+                OnPropertyChanged("Error");
+            }
+        }
+
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
