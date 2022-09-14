@@ -15,7 +15,7 @@ namespace MRC_App.ViewModels
         {
             ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
-            public bool EnableCommands { get; set; }
+        public bool EnableCommands { get; set; }
         public bool EnableEvents { get; set; }
 
         public ICommand ToggleCommand { get; }
