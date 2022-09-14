@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
    This is quite obvious. 
 -->
@@ -21,7 +21,6 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
             </Style>
             <Style x:Key="BrandIconBackground" TargetType="StackLayout">
-                <Setter Property="HeightRequest" Value="250"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
@@ -37,6 +36,7 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="TextColor" Value="{StaticResource LightDarkShade}"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
             <Style x:Key="HeaderTextSubtitle" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"/>
@@ -95,7 +95,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="15"/>
             </Grid.ColumnDefinitions>
-
+            
             <!--Header-->
             <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource BrandIconBackground}">
                 <Label Text="&#xf51d;" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource BrandIcon}"/>
@@ -148,7 +148,8 @@
             <Label Grid.Row="10" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
             <!--Register button-->
-            <Button Grid.Row="11" Grid.Column="1" Text="Register" Command="{Binding RegisterCommand}" Style="{StaticResource RegisterButton}"/>
+            <Button Grid.Row="11" Grid.Column="1" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

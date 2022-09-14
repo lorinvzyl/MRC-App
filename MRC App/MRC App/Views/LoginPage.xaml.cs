@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MRC_App.ViewModels;
+using MRC_App.Models;
+using MRC_App.Services;
 
 namespace MRC_App.Views
 {
@@ -18,11 +20,24 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        private void Login_Clicked(object sender, EventArgs e)
+        private async void Login_Clicked(object sender, EventArgs e)
         {
+            User user = new User()
+            {
+                Email = EmailEnt.Text,
+                HashedPassword = PasswordEnt.Text
+            };
 
+            var login = false;
+
+            if (user != null)
+                login = await RestService.LoginUser(user);
+
+            if (login)
+            {
+                LoginViewModel viewModel = new LoginViewModel();
+                viewModel.LoginCommand.Execute(viewModel);
+            }
         }
-
-        
     }
 }

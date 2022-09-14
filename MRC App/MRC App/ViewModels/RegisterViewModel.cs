@@ -4,11 +4,13 @@ using System.Text;
 using Xamarin.Forms;
 using MRC_App.Views;
 using System.Text.RegularExpressions;
+using MRC_App.Models;
 
 namespace MRC_App.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
+
         public Command RegisterCommand { get; }
         public RegisterViewModel()
         {
