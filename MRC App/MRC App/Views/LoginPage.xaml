@@ -69,18 +69,18 @@
                 <Setter Property="TextColor" Value="{StaticResource LightDarkShade}"/>
             </Style>
 
-            <Style x:Key="InvalidEmailStyle" TargetType="Entry">
+            <Style x:Key="EntryErrorStyle" TargetType="Entry">
                 <Setter Property="TextColor" Value="{StaticResource Danger}"/>
                 
             </Style>
-            <Style x:Key="ValidEmailStyle" TargetType="Entry">
+            <Style x:Key="EntryValidStyle" TargetType="Entry">
                 <Setter Property="TextColor" Value="{StaticResource DarkDarkShade}"/>
             </Style>
-            <Style x:Key="InvalidPasswordStyle" TargetType="Entry">
+            <Style x:Key="ErrorStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Danger}"/>
-            </Style>
-            <Style x:Key="ValidPasswordStyle" TargetType="Entry">
-                <Setter Property="TextColor" Value="{StaticResource DarkDarkShade}"/>
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -94,18 +94,18 @@
             </Grid.ColumnDefinitions>
             <!--Define rows needed-->
             <Grid.RowDefinitions>
-                <RowDefinition Height="17*"/>
+                <RowDefinition Height="13*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="15"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="1.4*"/>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="3*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
@@ -121,14 +121,14 @@
             <Entry x:Name="EmailEntry" Grid.Row="4" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
                 <Entry.Behaviors>
                     <xct:EmailValidationBehavior
-                        InvalidStyle="{StaticResource InvalidEmailStyle}" 
-                        ValidStyle="{StaticResource ValidEmailStyle}"
+                        InvalidStyle="{StaticResource EntryErrorStyle}" 
+                        ValidStyle="{StaticResource EntryValidStyle}"
                         DecorationFlags="Trim" Flags="ValidateOnFocusing"
                         IsValid="{Binding EmailValid}"
                         />
 
                     <xct:RequiredStringValidationBehavior
-                        InvalidStyle="{StaticResource InvalidEmailStyle}"
+                        InvalidStyle="{StaticResource EntryErrorStyle}"
                         RequiredString="OK"
                          />
                 </Entry.Behaviors>
@@ -139,8 +139,8 @@
             <Entry x:Name="PasswordEntry" Grid.Row="6" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
                 <Entry.Behaviors>
                     <xct:MultiValidationBehavior 
-                        InvalidStyle="{StaticResource InvalidPasswordStyle}"
-                        ValidStyle="{StaticResource ValidPasswordStyle}"
+                        InvalidStyle="{StaticResource EntryErrorStyle}"
+                        ValidStyle="{StaticResource EntryValidStyle}"
                         >
 
                         <xct:TextValidationBehavior
@@ -164,7 +164,9 @@
                     </xct:MultiValidationBehavior>
                 </Entry.Behaviors>
             </Entry>
-            
+
+            <Label Grid.Row="7" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
+
             <!--Button to log into account-->
             <Button Grid.Row="8" Grid.Column="1" Text="Login" Command="{Binding LoginCommand}"  Style="{StaticResource LoginButton}"/>
 
