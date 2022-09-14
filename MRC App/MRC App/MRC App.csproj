@@ -11,6 +11,7 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.564" />
     <PackageReference Include="IeuanWalker.CustomSwitch" Version="2.2.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="sameerIOTApps.Plugin.SecureStorage" Version="2.5.0" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.4" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />  

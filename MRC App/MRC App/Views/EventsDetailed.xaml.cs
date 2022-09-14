@@ -20,5 +20,10 @@ namespace MRC_App.Views
         {
             InitializeComponent();
         }
+
+        private void RSVP_Tapped(object sender, EventArgs e)
+        {
+
+        }
     }
 }
