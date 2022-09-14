@@ -71,6 +71,7 @@ namespace MRC_App.ViewModels
                 CrossSecureStorage.Current.SetValue("Surname", user.Surname);
                 CrossSecureStorage.Current.SetValue("Newsletter", user.isNewsletter.ToString());
                 CrossSecureStorage.Current.SetValue("Birth", user.DateOfBirth.ToString());
+                CrossSecureStorage.Current.SetValue("Password", user.Password);
 
                 LoginCommand.Execute(user);
             }
