@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms.Platform.Android;
 using Acr.UserDialogs;
+using Plugin.SecureStorage;
 
 namespace MRC_App.Droid
 {
@@ -19,9 +20,10 @@ namespace MRC_App.Droid
             this.SetStatusBarColor(Xamarin.Forms.Color.FromHex("#3f8ba7").ToAndroid());
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
             UserDialogs.Init(this);
+            SecureStorageImplementation.StorageType = StorageTypes.PasswordProtectedFile;
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App());
         }

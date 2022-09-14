@@ -8,33 +8,36 @@ using MRC_App.Models;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.ObjectModel;
 using MRC_App.Services;
+using YoutubeExplode;
+using YoutubeExplode.Videos.Streams;
 
 namespace MRC_App.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
-        private ObservableRangeCollection<Blog> Blog;
-        private ObservableCollection<Video> Video;
+        private ObservableRangeCollection<Blog> blog;
+        private string video;
 
-        public ObservableRangeCollection<Blog> blog
+        public ObservableRangeCollection<Blog> Blog
         {
-            get { return Blog; }
-            set { Blog = value; }
+            get { return blog; }
+            set { blog = value; }
         }
 
-        public ObservableCollection<Video> video
+        public string Video 
         {
-            get { return Video; }
-            set { Video = value; }
+            get { return video; }
+            set { video = value; }
         }
 
 
         public AboutViewModel()
         {
             blog = new ObservableRangeCollection<Blog>();
-            video = new ObservableCollection<Video>();
+            video = new string("");
             
             GetBlogs();
+            GetVideo();
         }
 
         private async Task GetBlogs()
@@ -43,15 +46,33 @@ namespace MRC_App.ViewModels
             Blog.AddRange(blogs);
         }
 
+        private async Task GetVideo()
+        {
+            var video = await RestService.GetLastVideo();
+
+            var youtube = new YoutubeClient();
+
+            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.VideoURL);
+            var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
+
+            if(streamInfo != null)
+            {
+                var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
+                var source = streamInfo.Url;
+
+                Video = source;
+            }
+        }
+
         public async Task Refresh()
         {
             IsBusy = true;
 
             Blog.Clear();
-            Video.Clear();
+            Video = null;
 
-            var blogs = await RestService.GetBlogs();
-            //var video = await RestService.GetLastVideo();
+            GetVideo();
+            GetBlogs();
 
             IsBusy = false;
         }

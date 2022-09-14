@@ -67,11 +67,30 @@ namespace MRC_App.Services
             return user;
         }
 
+        public static async Task<User> GetUser(int id)
+        {
+            var json = await client.GetStringAsync($"spi/Users/{id}");
+            var user = JsonConvert.DeserializeObject<User>(json);
+            return user;
+        }
+
         public static async Task<IEnumerable<Event>> GetEvents()
         {
             var json = await client.GetStringAsync("api/Events");
             var events = JsonConvert.DeserializeObject<IEnumerable<Event>>(json);
             return events;
+        }
+
+        public static async Task<bool> UpdateEvent(int id, Event _event)
+        {
+            var json = JsonConvert.SerializeObject(_event);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync($"api/Events{id}", content);
+
+            if (!response.IsSuccessStatusCode)
+                return false;
+            return true;
         }
 
         public static async Task<bool> Donate(Donation donation)
@@ -188,6 +207,14 @@ namespace MRC_App.Services
             var blogs = JsonConvert.DeserializeObject<IEnumerable<Blog>>(json);
 
             return blogs;
+        }
+
+        public static async Task<Video> GetLastVideo()
+        {
+            var json = await client.GetStringAsync("api/Videos/last");
+            var video = JsonConvert.DeserializeObject<Video>(json);
+
+            return video;
         }
     }
 }

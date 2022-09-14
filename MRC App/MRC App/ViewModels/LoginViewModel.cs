@@ -6,6 +6,7 @@ using MRC_App.Views;
 using System.Threading.Tasks;
 using MRC_App.Models;
 using MRC_App.Services;
+using Plugin.SecureStorage;
 
 namespace MRC_App.ViewModels
 {
@@ -64,6 +65,13 @@ namespace MRC_App.ViewModels
 
             if(login)
             {
+                CrossSecureStorage.Current.SetValue("Email",user.Email);
+                CrossSecureStorage.Current.SetValue("Id", user.Id.ToString());
+                CrossSecureStorage.Current.SetValue("Name", user.Name);
+                CrossSecureStorage.Current.SetValue("Surname", user.Surname);
+                CrossSecureStorage.Current.SetValue("Newsletter", user.isNewsletter.ToString());
+                CrossSecureStorage.Current.SetValue("Birth", user.DateOfBirth.ToString());
+
                 LoginCommand.Execute(user);
             }
             else

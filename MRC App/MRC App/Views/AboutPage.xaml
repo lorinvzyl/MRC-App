@@ -164,7 +164,7 @@
 
                     <StackLayout>
                         <Label Text="Latest Video" Style="{StaticResource ContainerTitleStyle}"/>
-                        <xct:MediaElement x:Name="mediaSource" MediaOpened="mediaSource_MediaOpened"  Style="{StaticResource Videostyle}"/>
+                        <xct:MediaElement x:Name="mediaSource" Source="{Binding Video}" MediaOpened="mediaSource_MediaOpened"  Style="{StaticResource Videostyle}"/>
                     </StackLayout>
 
                 </Frame>
