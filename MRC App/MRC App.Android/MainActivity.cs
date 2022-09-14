@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms.Platform.Android;
+using Acr.UserDialogs;
 
 namespace MRC_App.Droid
 {
@@ -20,6 +21,7 @@ namespace MRC_App.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
+            UserDialogs.Init(this);
 
             LoadApplication(new App());
         }
