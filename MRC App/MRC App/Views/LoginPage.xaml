@@ -71,9 +71,6 @@
             <Style x:Key="EntryErrorStyle" TargetType="Entry">
                 <Setter Property="TextColor" Value="{StaticResource Danger}"/>
             </Style>
-            <Style x:Key="EntryValidStyle" TargetType="Entry">
-                <Setter Property="TextColor" Value="{StaticResource DarkDarkShade}"/>
-            </Style>
             <Style x:Key="ErrorStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource Danger}"/>
                 <Setter Property="FontSize" Value="Small"/>
@@ -131,7 +128,7 @@
 
             <Entry x:Name="PasswordEntry" Grid.Row="6" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
                 <Entry.Behaviors>
-                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" ValidStyle="{StaticResource EntryValidStyle}">
+                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}">
                         <xct:TextValidationBehavior MinimumLength="8"/>
                         <xct:CharactersValidationBehavior 
                            CharacterType="Digit"
