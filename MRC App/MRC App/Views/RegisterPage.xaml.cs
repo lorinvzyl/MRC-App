@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -30,9 +31,9 @@ namespace MRC_App.Views
                 Surname = LName.Text,
                 Email = Email.Text,
                 DateOfBirth = DateTime.Parse(Birth.Text),
-                Password = Password.Text
+                HashedPassword = Password.Text,
+                Id = 1
             };
-            
             await viewModel.RegisterUser(user);
         }
     }

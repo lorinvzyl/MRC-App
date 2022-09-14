@@ -106,11 +106,11 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="15"/>
+                        <ColumnDefinition Width="1" />
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="15"/>
                     </Grid.ColumnDefinitions>
-                    <StackLayout Margin="0,15,0,0" Grid.Column="1">
+                    <StackLayout Margin="15" Grid.Column="1">
 
                         <Frame Style="{StaticResource BlogCardStyle}">
 
@@ -132,7 +132,7 @@
                     </StackLayout>
                 </Grid>
 
-                <StackLayout Margin="0,0,0,-20">
+                <StackLayout>
 
 
                     <Grid>

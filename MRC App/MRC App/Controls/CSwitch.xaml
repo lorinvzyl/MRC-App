@@ -19,8 +19,7 @@
                         Margin="10,0"
                         AlignItems="Center"
                         JustifyContent="SpaceBetween"
-                        WidthRequest="60">
-                
+                        WidthRequest="65">
             </FlexLayout>
         </StackLayout>
     </switch:CustomSwitch.KnobContent>

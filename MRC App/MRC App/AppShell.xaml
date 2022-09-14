@@ -144,7 +144,7 @@
     -->
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="170" Padding="0">
+            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="200" Padding="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>

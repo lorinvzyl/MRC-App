@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.DonatePage">
 
@@ -34,7 +35,7 @@
                 <Setter Property="Margin" Value="0,0,0,10"/>
             </Style>
             <Style x:Key="TextBoxContainer" TargetType="Frame">
-                <Setter Property="Padding" Value="5,0,5,0"/>
+                <Setter Property="Padding" Value="5,0,0,0"/>
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
             </Style>
@@ -52,6 +53,9 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="Padding" Value="0"/>
             </Style>
+            <Style x:Key="EntryErrorStyle" TargetType="Editor">
+                <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -68,7 +72,7 @@
                         <Label Grid.Row="0" Style="{StaticResource GratitudeMessage}"
                         Text="Thank you if you wish to donate to our church, insert formalities here. &#x0a;&#x0a;Your donation supports insert communities here.&#x0a;&#x0a;Once you select an amount to donate, you will be redirected to a third party payment service that you have selected below.&#x0a;&#x0a;If you wish to write a special message, do so here:"/>
                         <Frame Grid.Row="1" Style="{StaticResource TextBoxContainer}">
-                            <Editor Style="{StaticResource TextBox}" />
+                            <Editor Style="{StaticResource TextBox}" BackgroundColor="Transparent"/>
                         </Frame>
 
 
@@ -80,20 +84,25 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="10"/>
-                                <RowDefinition Height="40"/>                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="40"/>                                
+                                <RowDefinition Height="10"/>
                                 <RowDefinition Height="40"/>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource DonateLabel}"/>
                             <Frame Grid.Row="1" Grid.Column="2" Style="{StaticResource DonateContainer}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="8*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label VerticalOptions="Center" Grid.Column="1" Text="R"/>
-                                    <Editor Grid.Column="2" MaxLength="4"/>
+                                    <Label VerticalOptions="Center" Grid.Column="1" Text="R" FontSize="Medium"/>
+                                    <Editor Grid.Column="2" MaxLength="4">
+                                        <Editor.Behaviors>
+                                            <xct:NumericValidationBehavior Flags="ValidateOnValueChanging" MinimumValue="1" InvalidStyle="{StaticResource EntryErrorStyle}"/>
+                                        </Editor.Behaviors>
+                                    </Editor>
                                 </Grid>
 
                             </Frame>

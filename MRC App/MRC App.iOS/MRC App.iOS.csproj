@@ -152,6 +152,9 @@
     <PackageReference Include="Xamarin.Plugin.Calendar">
       <Version>2.0.9699</Version>
     </PackageReference>
+    <PackageReference Include="YoutubeExplode">
+      <Version>6.2.1</Version>
+    </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>3.1.0-beta2</Version>
     </PackageReference>

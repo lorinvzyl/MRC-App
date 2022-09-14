@@ -8,8 +8,8 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.AboutPage">
 
     <ContentPage.BindingContext>
@@ -152,9 +152,7 @@
                                                     <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
                                                 </Grid>
                                             </Grid>
-
                                         </StackLayout>
-
                                     </Grid>
                                 </Frame>
                             </StackLayout>
@@ -166,7 +164,7 @@
 
                     <StackLayout>
                         <Label Text="Latest Video" Style="{StaticResource ContainerTitleStyle}"/>
-                        <!--<xct:MediaElement Source="https://sec.ch9.ms/ch9/5d93/a1eab4bf-3288-4faf-81c4-294402a85d93/XamarinShow_mid.mp4" AutoPlay="False" IsLooping="False" Style="{StaticResource Videostyle}" />-->
+                        <xct:MediaElement x:Name="mediaSource" MediaOpened="mediaSource_MediaOpened"  Style="{StaticResource Videostyle}"/>
                     </StackLayout>
 
                 </Frame>

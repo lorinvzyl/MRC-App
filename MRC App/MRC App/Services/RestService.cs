@@ -77,10 +77,6 @@ namespace MRC_App.Services
         public static async Task<bool> Donate(Donation donation)
         {
             bool donated = false;
-
-            if (donation == null)
-                return donated;
-
             var json = JsonConvert.SerializeObject(donation);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -92,7 +88,7 @@ namespace MRC_App.Services
             donated = true;
             return donated;
         }
-
+        
         public static async Task<bool> DeleteUser(string email)
         {
             bool deleted = false;

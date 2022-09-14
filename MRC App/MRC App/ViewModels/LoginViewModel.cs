@@ -15,8 +15,8 @@ namespace MRC_App.ViewModels
         public Command RegisterCommand { get; }
 
         private string error { get; set; }
-        public string Error 
-        { 
+        public string Error
+        {
             get { return error; }
             set
             {
