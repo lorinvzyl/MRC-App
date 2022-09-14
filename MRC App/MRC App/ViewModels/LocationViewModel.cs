@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MRC_App.ViewModels
 {
@@ -44,6 +45,11 @@ namespace MRC_App.ViewModels
                 MapsURL = "http://maps.google.com/?daddr=Uniting+Reformed+Church+In+Southern+Africa",
                 PastorName = "Kirby"
             });
+        }
+
+        public async Task SupportedLaunchers()
+        {
+
         }
     }
 }

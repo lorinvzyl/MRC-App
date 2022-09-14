@@ -5,6 +5,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:DataType="viewmodel:RegisterViewModel"
              x:Class="MRC_App.Views.RegisterPage"
              Shell.NavBarIsVisible="False"
              Shell.FlyoutBehavior="Disabled">
@@ -58,6 +59,15 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                 <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
             </Style>
+            <Style x:Key="EntryErrorStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+            </Style>
+            <Style x:Key="ErrorStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -65,7 +75,8 @@
         <Grid Style="{StaticResource PageGrid}" RowSpacing="0" Padding="0">
             <!--Define rows needed-->
             <Grid.RowDefinitions>
-                <RowDefinition Height="23*"/>
+                <RowDefinition Height="20*"/>
+                <!--Aligns with login page icon.-->
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="3*"/>
@@ -99,11 +110,42 @@
             <Entry x:Name="FName" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
             <Entry x:Name="LName" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
             <Entry x:Name="Birth" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
-
             <Label Grid.Row="7" Text="YYYY/MM/DD" Grid.Column="1" Margin="4,-5,0,0"  Style="{StaticResource AccountDetailsLabel}"/>
-            <Entry x:Name="Email" Grid.Row="8" Grid.Column="1" Placeholder="Email" Style="{StaticResource AccountDetails}"/>
-            <Entry x:Name="Password" Grid.Row="9" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}"/>
+            <Entry x:Name="EmailEntry" Grid.Row="8" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
+                <Entry.Behaviors>
+                    <xct:EmailValidationBehavior
+                        MinimumLength="1"
+                        InvalidStyle="{StaticResource EntryErrorStyle}" 
+                        DecorationFlags="Trim" 
+                        Flags="ValidateOnValueChanging"
+                        IsValid="{Binding EmailValid}"/>
+                </Entry.Behaviors>
+            </Entry>
+            <Entry x:Name="PasswordEntry" Grid.Row="9" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
+                <Entry.Behaviors>
+                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}">
+                        <xct:TextValidationBehavior MinimumLength="8"/>
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="Digit"
+                           MinimumCharacterCount="1"/>
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="LowercaseLetter" 
+                           MinimumCharacterCount="1"/>
+                        <xct:CharactersValidationBehavior
+                           CharacterType="UppercaseLetter" 
+                           MinimumCharacterCount="1"/>
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="NonAlphanumericSymbol" 
+                           MinimumCharacterCount="1"/>
+                        <xct:CharactersValidationBehavior 
+                           CharacterType="Whitespace" 
+                           MaximumCharacterCount="0"/>
+                    </xct:MultiValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
             <!--Can add a "eye" icon here so they can see the password they entered-->
+
+            <Label Grid.Row="10" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
             <!--Register button-->
             <Button Grid.Row="11" Grid.Column="1" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>

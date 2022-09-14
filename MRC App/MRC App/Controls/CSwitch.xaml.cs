@@ -13,8 +13,8 @@ namespace MRC_App.Controls
             InitializeComponent();
             SwitchPanUpdate += (sender, e) =>
             {
-                Color fromBackgroundColor = IsToggled ? Color.FromHex("#3f8ba7") : Color.DarkGray;
-                Color toBackgroundColor = IsToggled ? Color.Green : Color.FromHex("#3f8ba7");
+                Color fromBackgroundColor = IsToggled ? Color.FromHex("#3f8ba7") : Color.FromHex("#0a0b0b");
+                Color toBackgroundColor = IsToggled ? Color.FromHex("#0a0b0b") : Color.FromHex("#3f8ba7");
 
                 double t = e.Percentage * 0.01;
 
