@@ -14,10 +14,12 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        
+        LoginViewModel viewModel;
         public LoginPage()
         {
             InitializeComponent();
+            viewModel = new LoginViewModel();
+            BindingContext = viewModel;
         }
 
         private async void Login_Clicked(object sender, EventArgs e)
@@ -28,16 +30,7 @@ namespace MRC_App.Views
                 HashedPassword = PasswordEnt.Text
             };
 
-            var login = false;
-
-            if (user != null)
-                login = await RestService.LoginUser(user);
-
-            if (login)
-            {
-                LoginViewModel viewModel = new LoginViewModel();
-                viewModel.LoginCommand.Execute(viewModel);
-            }
+            await viewModel.LoginUser(user);
         }
     }
 }

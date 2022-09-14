@@ -75,8 +75,7 @@
         <Grid Style="{StaticResource PageGrid}" RowSpacing="0" Padding="0">
             <!--Define rows needed-->
             <Grid.RowDefinitions>
-                <RowDefinition Height="20*"/>
-                <!--Aligns with login page icon.-->
+                <RowDefinition Height="20*"/> <!--Aligns with login page icon.-->
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="3*"/>

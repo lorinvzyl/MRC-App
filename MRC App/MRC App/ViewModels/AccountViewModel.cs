@@ -5,7 +5,9 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Acr.UserDialogs;
 
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+using MRC_App.Services;
+using MRC_App.Models;
 
 namespace MRC_App.ViewModels
 {
@@ -27,6 +29,33 @@ namespace MRC_App.ViewModels
                 await UserDialogs.Instance.AlertAsync($"New value: {newValue}", "Switch toggled (Command)").ConfigureAwait(false);
             }
         }
+
+        public async Task<bool> DeleteUser(string email)
+        {
+            if (email == null)
+                return false;
+
+            var delete = await RestService.DeleteUser(email);
+            return delete;
+        }
+
+        public async Task<bool> UpdateUser(string email, string name, string surname, DateTime dateOfBirth, bool isNewsletter)
+        {
+            if (email == null || name == null || surname == null || dateOfBirth == null)
+                return false;
+
+            User user = new User(){
+                Name = name,
+                Email = email,
+                Surname = surname,
+                DateOfBirth = dateOfBirth,
+                isNewsletter = isNewsletter
+            };
+
+            var update = await RestService.UpdateUser(email, user);
+
+            return update;
+        }
     }
-    }
+}
 
