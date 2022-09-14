@@ -47,11 +47,11 @@
             </Style>
             <Style x:Key="RSVPLabelLeft" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
-                <Setter Property="FontSize" Value="Subtitle"/>
+                <Setter Property="FontSize" Value="Medium"/>
             </Style>
             <Style x:Key="RSVPLabelRight" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
-                <Setter Property="FontSize" Value="Subtitle"/>
+                <Setter Property="FontSize" Value="Medium"/>
             </Style>
             <Style x:Key="RSVPLabelTitle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Center"/>
@@ -79,8 +79,8 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="250"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="270"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventName}" Style="{StaticResource EventTitle}"/>
                 <!--Placeholder for event title-->
@@ -102,7 +102,7 @@
                 </CollectionView>
                 <!--Placeholder for images, however this will need capabilities of a slideshow-->
 
-                <Label Margin="0,15,0,0" Grid.Row="3" Grid.Column="1" Text="{Binding EventDescription}"/>
+                <Label Margin="0,15,0,0" Grid.Row="3" Grid.Column="1" FontSize="Header" Text="{Binding EventDescription}"/>
                 <!--Placeholder for event description, possibly also add a read more thing here?-->
                 <StackLayout Padding="0" Grid.Row="4" Grid.Column="1" VerticalOptions="EndAndExpand">
                     <Frame Style="{StaticResource RSVPFrame}">
@@ -131,7 +131,7 @@
                             <Label Grid.Row="2" Grid.Column="2" Text="120" Style="{StaticResource RSVPLabelRight}"/>
 
                             <Label Grid.Row="3" Grid.Column="1" Text="Venue:" Style="{StaticResource RSVPLabelLeft}"/>
-                            <Label Grid.Row="3" Grid.Column="2" Text="Church Location 1" Style="{StaticResource RSVPLabelRight}"/>
+                            <Label Grid.Row="3" Grid.Column="2" Text="Church Location 1" TextDecorations="Underline" Style="{StaticResource RSVPLabelRight}"/>
 
                             <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" Style="{StaticResource RSVPLabelLeft}"/>
                             <Label Grid.Row="4" Grid.Column="2" Text="24 August" Style="{StaticResource RSVPLabelRight}"/>
@@ -147,7 +147,7 @@
                                     <ColumnDefinition Width="7*"/>
                                     <ColumnDefinition Width="5*"/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="End" Text="RSVP" Style="{StaticResource RSVPButton}">
+                                <Button Grid.Row="1" Grid.Column="1" Padding="0" HorizontalOptions="Center" WidthRequest="100" VerticalOptions="End" Text="RSVP" Style="{StaticResource RSVPButton}">
                                     <Button.GestureRecognizers>
                                         <TapGestureRecognizer/>
                                     </Button.GestureRecognizers>
