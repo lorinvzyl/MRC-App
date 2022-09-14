@@ -152,9 +152,7 @@
                                                     <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
                                                 </Grid>
                                             </Grid>
-
                                         </StackLayout>
-
                                     </Grid>
                                 </Frame>
                             </StackLayout>
