@@ -16,5 +16,15 @@ namespace MRC_App.Views
         {
             InitializeComponent();
         }
+
+        public AccountEdit(string key, string value)
+        {
+            
+        }
+
+        public AccountEdit(string key, DateTime value)
+        {
+
+        }
     }
 }

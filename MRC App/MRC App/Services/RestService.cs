@@ -55,29 +55,46 @@ namespace MRC_App.Services
 
         public static async Task<IEnumerable<Blog>> GetBlogs()
         {
-            var json = await client.GetStringAsync("api/Blogs");
-            var blogs = JsonConvert.DeserializeObject<IEnumerable<Blog>>(json);
+            var json = await client.GetAsync("api/Blogs");
+
+            if (!json.IsSuccessStatusCode)
+                return null;
+
+            string urlContent = await json.Content.ReadAsStringAsync();
+            var blogs = JsonConvert.DeserializeObject<IEnumerable<Blog>>(urlContent);
             return blogs;
         }
 
         public static async Task<User> GetUserByEmail(string email)
         {
-            var json = await client.GetStringAsync($"api/Users/email={email}");
-            var user = JsonConvert.DeserializeObject<User>(json);
+            var json = await client.GetAsync($"api/Users/email={email}");
+            if (!json.IsSuccessStatusCode)
+                return null;
+
+            string urlContent = await json.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<User>(urlContent);
             return user;
         }
 
         public static async Task<User> GetUser(int id)
         {
-            var json = await client.GetStringAsync($"spi/Users/{id}");
-            var user = JsonConvert.DeserializeObject<User>(json);
+            var json = await client.GetAsync($"spi/Users/{id}");
+            if (!json.IsSuccessStatusCode)
+                return null;
+
+            string urlContent = await json.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<User>(urlContent);
             return user;
         }
 
         public static async Task<IEnumerable<Event>> GetEvents()
         {
-            var json = await client.GetStringAsync("api/Events");
-            var events = JsonConvert.DeserializeObject<IEnumerable<Event>>(json);
+            var json = await client.GetAsync("api/Events");
+            if (!json.IsSuccessStatusCode)
+                return null;
+
+            string urlContent = await json.Content.ReadAsStringAsync();
+            var events = JsonConvert.DeserializeObject<IEnumerable<Event>>(urlContent);
             return events;
         }
 
@@ -167,8 +184,12 @@ namespace MRC_App.Services
 
         public static async Task<IEnumerable<Comment>> GetBlogComments(int blogId)
         {
-            var json = await client.GetStringAsync($"api/Comments/blogId={blogId}");
-            var blogComments = JsonConvert.DeserializeObject<IEnumerable<Comment>>(json);
+            var json = await client.GetAsync($"api/Comments/blogId={blogId}");
+            if (!json.IsSuccessStatusCode)
+                return null;
+
+            string urlContent = await json.Content.ReadAsStringAsync();
+            var blogComments = JsonConvert.DeserializeObject<IEnumerable<Comment>>(urlContent);
 
             return blogComments;
         }
@@ -195,24 +216,39 @@ namespace MRC_App.Services
 
         public static async Task<IEnumerable<Location>> GetChurchLocations()
         {
-            var json = await client.GetStringAsync("api/Locations");
-            var locations = JsonConvert.DeserializeObject<IEnumerable<Location>>(json);
+            var json = await client.GetAsync("api/Locations");
+            if (!json.IsSuccessStatusCode)
+                return null;
+
+            string urlContent = await json.Content.ReadAsStringAsync();
+            var locations = JsonConvert.DeserializeObject<IEnumerable<Location>>(urlContent);
 
             return locations;
         }
 
         public static async Task<IEnumerable<Blog>> GetBlogsCount(int count)
         {
-            var json = await client.GetStringAsync($"api/Blogs/count={count}");
-            var blogs = JsonConvert.DeserializeObject<IEnumerable<Blog>>(json);
+            var json = await client.GetAsync($"api/Blogs/count={count}");
+            if (!json.IsSuccessStatusCode)
+                return null;
+
+            string urlContent = await json.Content.ReadAsStringAsync();
+            var blogs = JsonConvert.DeserializeObject<IEnumerable<Blog>>(urlContent);
 
             return blogs;
         }
 
         public static async Task<Video> GetLastVideo()
         {
-            var json = await client.GetStringAsync("api/Videos/last");
-            var video = JsonConvert.DeserializeObject<Video>(json);
+            var json = await client.GetAsync("api/Videos/last");
+            if (!json.IsSuccessStatusCode)
+                return null;
+
+            string urlContent = await json.Content.ReadAsStringAsync();
+            var video = JsonConvert.DeserializeObject<Video>(urlContent);
+
+            if (video == null)
+                return null;
 
             return video;
         }

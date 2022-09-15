@@ -30,12 +30,18 @@ namespace MRC_App.ViewModels
             set { video = value; }
         }
 
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set { isVisible = value; }
+        }
+
 
         public AboutViewModel()
         {
+            IsVisible = false;
             blog = new ObservableRangeCollection<Blog>();
-            video = new string("");
-            
             GetBlogs();
             GetVideo();
         }
@@ -52,6 +58,22 @@ namespace MRC_App.ViewModels
 
             var youtube = new YoutubeClient();
 
+            if (video == null)
+            {
+                string vid = "IEKHzbwWSr4";
+                var streamMani = await youtube.Videos.Streams.GetManifestAsync(vid);
+                var streamIn = streamMani.GetMuxedStreams().GetWithHighestVideoQuality();
+                
+                if(streamIn != null)
+                {
+                    var stream = await youtube.Videos.Streams.GetAsync(streamIn);
+                    var source = streamIn.Url;
+
+                    Video = source;
+                    return;
+                }
+            }
+
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.VideoURL);
             var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
 
@@ -61,6 +83,7 @@ namespace MRC_App.ViewModels
                 var source = streamInfo.Url;
 
                 Video = source;
+                IsVisible = true;
             }
         }
 
@@ -71,8 +94,8 @@ namespace MRC_App.ViewModels
             Blog.Clear();
             Video = null;
 
-            GetVideo();
-            GetBlogs();
+            await GetVideo();
+            await GetBlogs();
 
             IsBusy = false;
         }

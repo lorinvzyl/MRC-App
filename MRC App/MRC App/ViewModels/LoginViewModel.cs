@@ -6,7 +6,7 @@ using MRC_App.Views;
 using System.Threading.Tasks;
 using MRC_App.Models;
 using MRC_App.Services;
-using Plugin.SecureStorage;
+using Xamarin.Essentials;
 
 namespace MRC_App.ViewModels
 {
@@ -65,14 +65,20 @@ namespace MRC_App.ViewModels
 
             if(login)
             {
-                CrossSecureStorage.Current.SetValue("Email",user.Email);
-                CrossSecureStorage.Current.SetValue("Id", user.Id.ToString());
-                CrossSecureStorage.Current.SetValue("Name", user.Name);
-                CrossSecureStorage.Current.SetValue("Surname", user.Surname);
-                CrossSecureStorage.Current.SetValue("Newsletter", user.isNewsletter.ToString());
-                CrossSecureStorage.Current.SetValue("Birth", user.DateOfBirth.ToString());
-                CrossSecureStorage.Current.SetValue("Password", user.Password);
+                User _user = await RestService.GetUserByEmail(user.Email);
+                try
+                {
+                    await SecureStorage.SetAsync("Id", _user.Id.ToString());
+                    await SecureStorage.SetAsync("Name", _user.Name);
+                    await SecureStorage.SetAsync("Surname", _user.Surname);
+                    await SecureStorage.SetAsync("Email", _user.Email);
+                    await SecureStorage.SetAsync("Birth", _user.DateOfBirth.ToString());
+                    await SecureStorage.SetAsync("Newsletter", _user.isNewsletter.ToString());
+                }
+                catch(Exception ex)
+                {
 
+                }
                 LoginCommand.Execute(user);
             }
             else

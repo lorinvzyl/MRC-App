@@ -44,7 +44,25 @@ namespace MRC_App.Views
 
         }
 
-        
+        private async void EditName_Tapped(object sender, EventArgs e)
+        {
+           // await Navigation.PushAsync(new AccountEdit("First Name:", name));
+        }
+
+        private async void EditSurname_Tapped(object sender, EventArgs e)
+        {
+           // await Navigation.PushAsync(new AccountEdit("Last Name:", surname));
+        }
+
+        private async void EditEmail_Tapped(object sender, EventArgs e)
+        {
+            //await Navigation.PushAsync(new AccountEdit("Email:", email));
+        }
+
+        private async void EditBirthday_Tapped(object sender, EventArgs e)
+        {
+            //await Navigation.PushAsync(new AccountEdit("Birthday:", birthday));
+        }
 
         private void ChangeAvatarBtn_Clicked(object sender, EventArgs e)
         {
