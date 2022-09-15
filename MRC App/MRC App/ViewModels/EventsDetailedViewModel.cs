@@ -1,8 +1,11 @@
 ﻿using MRC_App.Models;
+using MRC_App.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MRC_App.ViewModels
@@ -10,6 +13,13 @@ namespace MRC_App.ViewModels
     [QueryProperty(nameof(Param), nameof(Param))]
     public class EventsDetailedViewModel : BaseViewModel
     {
+        public Command tapCommand;
+
+        public EventsDetailedViewModel()
+        {
+            tapCommand = new Command(OnRSVPClicked);
+        }
+
         string param = "";
         public string Param
         {
@@ -128,5 +138,32 @@ namespace MRC_App.ViewModels
             EventDate = param.EventDate;
             Id = param.Id;
         }
+
+        private async void OnRSVPClicked(object obj)
+        {
+            Event _event = new Event()
+            {
+                EventName = EventName,
+                EventDescription = EventDescription,
+                EventDate = EventDate,
+                Id = Id,
+                RSVPCloseDate = RSVPCloseDate,
+                SpacesAvailable = SpacesAvailable-1,
+                SpacesTaken = SpacesTaken+1,
+                Venue = Venue
+            };
+
+            var response = await RestService.UpdateEvent(_event.Id, _event);
+
+            if(!response)
+            {
+                //error pop up
+            }
+            else
+            {
+                //success pop up
+            }
+        }
+
     }
 }

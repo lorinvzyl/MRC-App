@@ -21,12 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Xamarin.iOS">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\Xamarin.iOS\v1.0\Xamarin.iOS.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>

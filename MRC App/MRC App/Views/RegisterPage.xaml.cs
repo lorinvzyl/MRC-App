@@ -29,9 +29,9 @@ namespace MRC_App.Views
             {
                 Name = FName.Text,
                 Surname = LName.Text,
-                Email = Email.Text,
+                Email = EmailEntry.Text,
                 DateOfBirth = DateTime.Parse(Birth.Text),
-                HashedPassword = Password.Text,
+                Password = PasswordEntry.Text,
                 Id = 1
             };
             await viewModel.RegisterUser(user);

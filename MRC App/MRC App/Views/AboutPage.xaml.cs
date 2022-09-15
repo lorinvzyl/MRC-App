@@ -17,11 +17,6 @@ namespace MRC_App.Views
         public AboutPage()
         {
             InitializeComponent();
-
-            var videoId = "mpDfgAjWz-Q";
-            
-            GetYoutubeUrl(videoId);
-            
         }
 
         async void ItemSelected_CollectionView(object sender, SelectionChangedEventArgs e)
@@ -36,24 +31,6 @@ namespace MRC_App.Views
 
             await Navigation.PushAsync(blogdetailed);
             ((CollectionView)sender).SelectedItem = null;
-        }
-
-        public async Task GetYoutubeUrl(string video)
-        {
-            var youtube = new YoutubeClient();
-
-            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(
-                    video
-                );
-            var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
-
-            if (streamInfo != null)
-            {
-                var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
-                var source = streamInfo.Url;
-
-                mediaSource.Source = source;
-            }
         }
 
         private void mediaSource_MediaOpened(object sender, EventArgs e)

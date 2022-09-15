@@ -44,6 +44,7 @@ namespace MRC_App.ViewModels
                 error = value;
                 OnPropertyChanged("Error");
             }
+        }
         public async Task RegisterUser(User user)
         {
             if (user == null)

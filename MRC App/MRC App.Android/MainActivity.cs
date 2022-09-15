@@ -19,9 +19,10 @@ namespace MRC_App.Droid
             this.SetStatusBarColor(Xamarin.Forms.Color.FromHex("#3f8ba7").ToAndroid());
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
             UserDialogs.Init(this);
+            
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App());
         }

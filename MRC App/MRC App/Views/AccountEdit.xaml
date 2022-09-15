@@ -4,9 +4,10 @@
              x:Class="MRC_App.Views.AccountEdit">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid ColumnDefinitions="50, *">
+                <Label Grid.Column="0" Text=""/>
+                <Entry Grid.Column="1" Text=""/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

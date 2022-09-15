@@ -26,8 +26,8 @@ namespace MRC_App.Views
         {
             User user = new User()
             {
-                Email = EmailEnt.Text,
-                HashedPassword = PasswordEnt.Text
+                Email = EmailEntry.Text,
+                Password = PasswordEntry.Text
             };
 
             await viewModel.LoginUser(user);
