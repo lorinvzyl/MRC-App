@@ -46,7 +46,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView ItemsSource="{Binding locations}" Margin="20">
+            <CollectionView ItemsSource="{Binding locations}" Margin="20" SelectedItem="CollectionView_ItemSelected">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
