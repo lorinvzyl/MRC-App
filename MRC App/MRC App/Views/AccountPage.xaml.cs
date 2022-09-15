@@ -46,26 +46,18 @@ namespace MRC_App.Views
 
         private async void EditName_Tapped(object sender, EventArgs e)
         {
-            var name = SecureStorage.GetAsync("Name").Result;
-            await Navigation.PushAsync(new AccountEdit("First Name:", name));
         }
 
         private async void EditSurname_Tapped(object sender, EventArgs e)
         {
-            var surname = SecureStorage.GetAsync("Surname").Result;
-            await Navigation.PushAsync(new AccountEdit("Last Name:", surname));
         }
 
         private async void EditEmail_Tapped(object sender, EventArgs e)
         {
-            var email = SecureStorage.GetAsync("Email").Result;
-            await Navigation.PushAsync(new AccountEdit("Email:", email));
         }
 
         private async void EditBirthday_Tapped(object sender, EventArgs e)
         {
-            var birthday = SecureStorage.GetAsync("Birth").Result;
-            await Navigation.PushAsync(new AccountEdit("Birthday:", birthday));
         }
 
         private void ChangeAvatarBtn_Clicked(object sender, EventArgs e)
