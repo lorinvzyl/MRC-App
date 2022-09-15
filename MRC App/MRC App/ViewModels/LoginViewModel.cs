@@ -35,6 +35,8 @@ namespace MRC_App.ViewModels
 
         private async void OnLoginClicked(object obj)
         {
+            var appshell = Xamarin.Forms.Shell.Current as AppShell;
+            appshell.SetUsername();
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
 
@@ -65,20 +67,24 @@ namespace MRC_App.ViewModels
 
             if(login)
             {
-                User _user = await RestService.GetUserByEmail(user.Email);
-                try
+                var _user = await RestService.GetUserByEmail(user.Email);
+                if(_user != null)
                 {
-                    await SecureStorage.SetAsync("Id", _user.Id.ToString());
-                    await SecureStorage.SetAsync("Name", _user.Name);
-                    await SecureStorage.SetAsync("Surname", _user.Surname);
-                    await SecureStorage.SetAsync("Email", _user.Email);
-                    await SecureStorage.SetAsync("Birth", _user.DateOfBirth.ToString());
-                    await SecureStorage.SetAsync("Newsletter", _user.isNewsletter.ToString());
-                }
-                catch(Exception ex)
-                {
+                    try
+                    {
+                        await SecureStorage.SetAsync("Id", _user.Id.ToString());
+                        await SecureStorage.SetAsync("Name", _user.Name);
+                        await SecureStorage.SetAsync("Surname", _user.Surname);
+                        await SecureStorage.SetAsync("Email", _user.Email);
+                        await SecureStorage.SetAsync("Birth", _user.DateOfBirth.ToString());
+                        await SecureStorage.SetAsync("Newsletter", _user.isNewsletter.ToString());
+                    }
+                    catch (Exception ex)
+                    {
 
+                    }
                 }
+
                 LoginCommand.Execute(user);
             }
             else
