@@ -1,4 +1,5 @@
 ﻿using MRC_App.Models;
+using MRC_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,9 +25,23 @@ namespace MRC_App.ViewModels
             Comments = new ObservableRangeCollection<Comment>();
         }
 
-        private async Task AddData()
+        public async Task<bool> AddBlogComment(int blogId, string commentText, int parentId, string user)
         {
+            if (commentText == null || user == null)
+                return false;
 
+            Comment comment = new Comment()
+            {
+                BlogId = blogId,
+                CommentText = commentText,
+                ParentId = parentId,
+                User = user
+            };
+
+            var result = await RestService.AddBlogComment(comment);
+            return result;
         }
+
+        //GetComments
     }
 }

@@ -4,12 +4,16 @@ using System.Text;
 
 namespace MRC_App.Models
 {
-    public class Comment
+    public class BlogComment
     {
+        public BlogComment()
+        {
+            Replies = new HashSet<Comment>();
+        }
         public int Id { get; set; }
-        public int BlogId { get; set; }
         public string CommentText { get; set; }
-        public int ParentId { get; set; }
         public string User { get; set; }
+        public int BlogId { get; set; }
+        public ICollection<Comment> Replies { get; set; }
     }
 }

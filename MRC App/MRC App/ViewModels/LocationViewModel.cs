@@ -1,50 +1,50 @@
 ﻿using MRC_App.Models;
+using MRC_App.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace MRC_App.ViewModels
 {
     public class LocationViewModel : BaseViewModel
     {
-        private ObservableCollection<Location> Locations;
-        public ObservableCollection<Location> locations
+        private ObservableRangeCollection<Location> locations;
+        public ObservableRangeCollection<Location> Locations
         {
-            get { return Locations; }
-            set { Locations = value; }
+            get { return locations; }
+            set { locations = value; }
         }
+
+        public AsyncCommand RefreshCommand { get; }
 
         public LocationViewModel()
         { 
-            locations = new ObservableCollection<Location>();
+            Locations = new ObservableRangeCollection<Location>();
+            RefreshCommand = new AsyncCommand(Refresh);
+
             AddData();
         }
 
-        private void AddData()
+        async Task Refresh()
         {
-            locations.Add(new Location
-            {
-                Id = 0,
-                Name = "Church Location 1",
-                MapsURL = "http://maps.google.com/?daddr=Reformed+Church+Rabie+Ridge",
-                PastorName = "John"
-            });
-            locations.Add(new Location
-            {
-                Id = 1,
-                Name = "Church Location 2",
-                MapsURL = "http://maps.google.com/?daddr=The+English+Reformed+Church",
-                PastorName = "Bob"
-            });
-            locations.Add(new Location
-            {
-                Id = 2,
-                Name = "Church Location 3",
-                MapsURL = "http://maps.google.com/?daddr=Uniting+Reformed+Church+In+Southern+Africa",
-                PastorName = "Kirby"
-            });
+            IsBusy = true;
+
+            Locations.Clear();
+
+            var locations = await RestService.GetChurchLocations();
+
+            Locations.AddRange(locations);
+
+            IsBusy = false;
+        }
+
+        async Task AddData()
+        {
+            var locations = await RestService.GetChurchLocations();
+            Locations.AddRange(locations);
         }
 
         public async Task SupportedLaunchers()

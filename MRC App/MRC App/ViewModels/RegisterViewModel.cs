@@ -4,11 +4,15 @@ using System.Text;
 using Xamarin.Forms;
 using MRC_App.Views;
 using System.Text.RegularExpressions;
+using MRC_App.Models;
+using System.Threading.Tasks;
+using MRC_App.Services;
 
 namespace MRC_App.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
+
         public Command RegisterCommand { get; }
         public RegisterViewModel()
         {
@@ -40,6 +44,15 @@ namespace MRC_App.ViewModels
                 error = value;
                 OnPropertyChanged("Error");
             }
+        public async Task RegisterUser(User user)
+        {
+            if (user == null)
+                return;
+
+            var registration = await RestService.RegisterUser(user);
+
+            if (registration)
+                RegisterCommand.Execute(registration);
         }
     }
 }

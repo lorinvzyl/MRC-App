@@ -107,7 +107,7 @@
 
                             </Frame>
 
-
+                            <!--Change this into collectionview with 3 columns-->
                             <Frame Grid.Row="3" Grid.Column="0" Style="{StaticResource DonateContainer}">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer/>
