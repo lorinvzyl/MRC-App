@@ -35,7 +35,7 @@
         <ResourceDictionary>
             <Style x:Key="BlogImageStyle" TargetType="Image">
                 <Setter Property="WidthRequest" Value="280"/>
-                <Setter Property="Opacity" Value="0.85"/>
+                <Setter Property="Opacity" Value="1"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
                 <Setter Property="Aspect" Value="AspectFill"/>
             </Style>
@@ -48,7 +48,6 @@
                 <Setter Property="WidthRequest" Value="330"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="HasShadow" Value="True"/>
-                <Setter Property="Margin" Value="10,0,0,0"/>
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
             </Style>
@@ -56,7 +55,7 @@
                 <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
                 <Setter Property="FontSize" Value="18"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
-                <Setter Property="Margin" Value="12"/>
+                <Setter Property="Margin" Value="0,12,0,12"/>
                 <Setter Property="Opacity" Value="1.0"/>
             </Style>
             <Style x:Key="BlogContentStyle" TargetType="Label">
@@ -64,7 +63,6 @@
                 <Setter Property="FontSize" Value="13"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
                 <Setter Property="HeightRequest" Value="300"/>
-                <Setter Property="Margin" Value="7"/>
                 <Setter Property="Opacity" Value="1.0"/>
             </Style>
 
@@ -73,7 +71,6 @@
                 <Setter Property="Opacity" Value="0.65"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
                 <Setter Property="HeightRequest" Value="140"/>
-                <Setter Property="Margin" Value="0,3,0,0"/>
                 <Setter Property="CornerRadius" Value="10"/>
             </Style>
             <Style x:Key="commentSection" TargetType="Frame">
@@ -86,7 +83,6 @@
             </Style>
             <Style x:Key="ContainerTitleStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="20"/>
-
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
@@ -106,7 +102,7 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1" />
+                        <ColumnDefinition Width="15" />
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="15"/>
                     </Grid.ColumnDefinitions>
@@ -135,58 +131,27 @@
                 <StackLayout>
 
 
-                    <Grid>
+                    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Margin="0,0,0,-20" Padding="0" HeightRequest="250">
+                        <Grid ColumnDefinitions="20,*,20" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
+                            <Label Grid.Column="1" Grid.Row="1" Text="Comments" Style="{StaticResource ContainerTitleStyle}" HorizontalOptions="Center"/>
 
-                        <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="10">
+                            <Entry Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                            <ListView>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}">
+                                            <Grid ColumnDefinitions="15,*,15" RowDefinitions="*,*,*">
+                                                <Label Text="Hi" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                                <Label Text="Hoi" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                                <Label Grid.Row="2" Grid.Column="1"/>
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
 
-                            <StackLayout>
-                                <Label Text="Comments" Style="{StaticResource ContainerTitleStyle}" HorizontalOptions="Center"/>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1"/>
-                                        <ColumnDefinition Width="30"/>
-
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-
-                                    </Grid.RowDefinitions>
-
-                                    <Entry Grid.Column="2" FontSize="Medium" Placeholder="Add a comment" HorizontalOptions="FillAndExpand"/>
-                                    <Label Grid.Column="1" Text="&#xf2bd;" TextColor="{StaticResource LightShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center"/>
-
-                                </Grid>
-                                
-                                <Grid BackgroundColor="White">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="200"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="2"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="*"/>
-
-                                    </Grid.RowDefinitions>
-
-                                    <Label Grid.Column="0" Text="&#xf2bd;" TextColor="{StaticResource DarkShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0"/>
-                                    <Label Grid.Column="1" Text="James " TextColor="{StaticResource DarkShade}" FontSize="18" Padding="0,0,0,0" />
-                                    <Label Grid.Column="2" Text="5 min ago " TextColor="{StaticResource DarkShade}" FontSize="12" Padding="0,0,0,0" HorizontalOptions="End"/>
-                                    <Label Grid.Row="1" Grid.Column="1" Text="Wonderful and interesting blog....." TextColor="{StaticResource DarkShade}" FontSize="15" />
-                                    <BoxView Grid.Row="2" HeightRequest="1" Color="{StaticResource LightShade}" IsVisible="True" Grid.ColumnSpan="3"/>
-                                    <Label Grid.Column="0" Grid.Row="3" Text="&#xf2bd;" TextColor="{StaticResource DarkShade}" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25"  WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center" Padding="0,0,0,0"/>
-                                    <Label Grid.Column="1" Grid.Row="3" Text="Andy" TextColor="{StaticResource DarkShade}" FontSize="18" Padding="0,0,0,0" />
-                                    <Label Grid.Column="2" Grid.Row="3" Text="10 min ago " TextColor="{StaticResource DarkShade}" FontSize="12" Padding="0,0,0,0" HorizontalOptions="End"/>
-                                    <Label Grid.Row="4" Grid.Column="1" Text="Love the explanation on the blog ....." TextColor="{StaticResource DarkShade}" FontSize="15" />
-
-                                </Grid>
-                            </StackLayout>
-
-                        </Frame>
-                    </Grid>
+                        </Grid>
+                    </Frame>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

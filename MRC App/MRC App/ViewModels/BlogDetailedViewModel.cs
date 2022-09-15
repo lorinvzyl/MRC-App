@@ -8,18 +8,21 @@ using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace MRC_App.ViewModels
 {
-    public class BlogDetailedViewModel
+    public class BlogDetailedViewModel : BaseViewModel
     {
-        private ObservableRangeCollection<Comment> blogComment;
-        public ObservableRangeCollection<Comment> BlogComment
+        private ObservableRangeCollection<Comment> comments;
+        public ObservableRangeCollection<Comment> Comments
         {
-            get { return blogComment; }
-            set { blogComment = value; }
+            get { return comments; }
+            set 
+            { 
+                comments = value;
+                OnPropertyChanged();
+            }
         }
-
         public BlogDetailedViewModel()
         {
-            BlogComment = new ObservableRangeCollection<Comment>();
+            Comments = new ObservableRangeCollection<Comment>();
         }
 
         public async Task<bool> AddBlogComment(int blogId, string commentText, int parentId, string user)
