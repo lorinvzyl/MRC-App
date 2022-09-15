@@ -2,6 +2,7 @@
 using MRC_App.Views;
 using System;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace MRC_App
@@ -29,10 +30,29 @@ namespace MRC_App
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
 
+        public void SetUsername()
+        {
+            var name = SecureStorage.GetAsync("Name").Result;
+            var surname = SecureStorage.GetAsync("Surname").Result;
+
+            Username = $"{name} {surname}";
+        }
+
         private async void Account_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
             Shell.Current.FlyoutIsPresented = false;
+        }
+
+        private string username;
+        public string Username
+        {
+            get { return username; }
+            set 
+            { 
+                username = value; 
+                OnPropertyChanged("Username");
+            }
         }
     }
 }

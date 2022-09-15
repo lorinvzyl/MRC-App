@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MRC_App.Controls.SuccessPopUp">
+             x:Class="MRC_App.Controls.DonationPopUp">
     <ContentPage.Content>
-        <Frame BackgroundColor="{StaticResource LightShade}" BorderColor="{StaticResource Primary}">
+        <Frame BackgroundColor="{StaticResource LightShade}" BorderColor="{StaticResource Primary}" CornerRadius="15">
             <Grid RowDefinitions="*,*,*">
-                <Label Grid.Row="0" Text="Success!" TextColor="{StaticResource DarkShade}"/>
-                <Label Grid.Row="1" Text="You RSVP'd for Cool event 1" TextColor="{StaticResource DarkShade}"/>
+                <Label Grid.Row="0" Text="Error!" TextColor="{StaticResource Danger}"/>
+                <Label Grid.Row="1" Text="Enter an amount first" TextColor="{StaticResource DarkShade}"/>
                 <Button Grid.Row="2" WidthRequest="100" Text="Okay" BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource LightShade}"/>
             </Grid>
         </Frame>

@@ -46,9 +46,9 @@
 
     <ContentPage.Content>
 
-        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" SelectedItem="CollectionView_ItemSelected">
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
             <StackLayout>
-                <CollectionView ItemsSource="{Binding locations}" Margin="20">
+                <CollectionView ItemsSource="{Binding Locations}" Margin="20" SelectedItem="CollectionView_ItemSelected">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"/>
                     </CollectionView.ItemsLayout>

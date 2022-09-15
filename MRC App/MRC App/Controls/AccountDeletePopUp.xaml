@@ -3,10 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MRC_App.Controls.AccountDeletePopUp">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15">
+            <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*">
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Warning!" TextColor="{StaticResource LightShade}"/>
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Account deletion is permanent." TextColor="{StaticResource LightShade}"/>
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Enter your password to delete your account:" TextColor="{StaticResource LightShade}"/>
+
+                <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="{StaticResource LightShade}" TextColor="{StaticResource LightShade}" Placeholder="Password" IsPassword="True"/>
+
+                <Button Grid.Row="4" Grid.Column="0" Text="Cancel" BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource LightShade}"/>
+                <Button Grid.Row="4" Grid.Column="1" Text="Confirm" BackgroundColor="{StaticResource LightShade}" TextColor="{StaticResource Primary}"/>
+            </Grid>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
