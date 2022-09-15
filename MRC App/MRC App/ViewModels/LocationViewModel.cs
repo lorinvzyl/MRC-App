@@ -46,10 +46,5 @@ namespace MRC_App.ViewModels
             var locations = await RestService.GetChurchLocations();
             Locations.AddRange(locations);
         }
-
-        public async Task SupportedLaunchers()
-        {
-
-        }
     }
 }

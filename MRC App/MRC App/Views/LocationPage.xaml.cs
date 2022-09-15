@@ -19,11 +19,6 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        async void PopupNavigation(System.Object sender, System.EventArgs e)
-        {
-            await Launcher.OpenAsync("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge");
-        }
-
         async void CollectionView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var location = e.SelectedItem as Models.Location;
