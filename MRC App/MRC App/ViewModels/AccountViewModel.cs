@@ -8,6 +8,8 @@ using Acr.UserDialogs;
 using System.Threading.Tasks;
 using MRC_App.Services;
 using MRC_App.Models;
+using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 
 namespace MRC_App.ViewModels
 {
@@ -15,6 +17,11 @@ namespace MRC_App.ViewModels
     {
         public AccountViewModel()
         {
+            Name.Add(new string(SecureStorage.GetAsync("Name").Result));
+            Surname.Add(new string(SecureStorage.GetAsync("Surname").Result));
+            Email.Add(new string(SecureStorage.GetAsync("Email").Result));
+            DateOfBirth.Add(new string(SecureStorage.GetAsync("Birth").Result));
+
             ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
         public bool EnableCommands { get; set; }
@@ -55,6 +62,51 @@ namespace MRC_App.ViewModels
             var update = await RestService.UpdateUser(email, user);
 
             return update;
+        }
+
+        private ObservableCollection<string> name;
+        private ObservableCollection<string> surname;
+        private ObservableCollection<string> dateOfBirth;
+        private ObservableCollection<string> email;
+
+        public ObservableCollection<string> Name
+        {
+            get { return name; }
+            set 
+            { 
+                name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        public ObservableCollection<string> Surname
+        {
+            get { return surname; }
+            set
+            {
+                surname = value;
+                OnPropertyChanged("Surname");
+            }
+        }
+
+        public ObservableCollection<string> Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                OnPropertyChanged("Email");
+            }
+        }
+
+        public ObservableCollection<string> DateOfBirth
+        {
+            get { return dateOfBirth; }
+            set
+            {
+                dateOfBirth = value;
+                OnPropertyChanged("DateOfBirth");
+            }
         }
     }
 }

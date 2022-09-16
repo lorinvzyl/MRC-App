@@ -2,6 +2,7 @@
 using MRC_App.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -34,8 +35,8 @@ namespace MRC_App
         {
             var name = SecureStorage.GetAsync("Name").Result;
             var surname = SecureStorage.GetAsync("Surname").Result;
-
-            Username = $"{name} {surname}";
+            
+            Username.Add(new string($"{name} {surname}"));
         }
 
         private async void Account_Tapped(object sender, EventArgs e)
@@ -44,8 +45,8 @@ namespace MRC_App
             Shell.Current.FlyoutIsPresented = false;
         }
 
-        private string username;
-        public string Username
+        private ObservableCollection<string> username;
+        public ObservableCollection<string> Username
         {
             get { return username; }
             set 
