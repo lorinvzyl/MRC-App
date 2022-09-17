@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:MRC_App.Views"
        xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+       xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
        Title="MRC_App"
        x:Class="MRC_App.AppShell"
        FlyoutBackground="{StaticResource LightShade}">
@@ -155,7 +156,7 @@
                 
                 <!--<xct:AvatarView/>-->
                 <xct:AvatarView Grid.Column="0" Text="&#xf2bd;" FontSize="75" TextColor="{StaticResource LightShade}" Color="{StaticResource Primary}" FontFamily="{StaticResource FontAwesomeSolid}" Size="75" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="10,0,0,0"/>
-                <Label x:Name="Username" Grid.Column="1" FontSize="Large" Padding="10,0" VerticalOptions="Center" TextColor="{StaticResource LightShade}"/>
+                <Label Grid.Column="1" FontSize="Large" Padding="10,0" VerticalOptions="Center" Text="{Binding Username}" TextColor="{StaticResource LightShade}"/>
             </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>

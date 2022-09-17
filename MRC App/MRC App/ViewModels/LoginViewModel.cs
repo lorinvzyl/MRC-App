@@ -35,8 +35,6 @@ namespace MRC_App.ViewModels
 
         private async void OnLoginClicked(object obj)
         {
-            var appshell = Xamarin.Forms.Shell.Current as AppShell;
-            appshell.SetUsername();
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
 
@@ -78,6 +76,7 @@ namespace MRC_App.ViewModels
                         await SecureStorage.SetAsync("Email", _user.Email);
                         await SecureStorage.SetAsync("Birth", _user.DateOfBirth.ToString());
                         await SecureStorage.SetAsync("Newsletter", _user.isNewsletter.ToString());
+                        await SecureStorage.SetAsync("ProfileImage", _user.ProfilePicURL);
                     }
                     catch (Exception ex)
                     {

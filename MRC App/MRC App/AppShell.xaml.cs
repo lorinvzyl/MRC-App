@@ -3,12 +3,13 @@ using MRC_App.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace MRC_App
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Shell
     {
         public AppShell()
         {
@@ -25,7 +26,12 @@ namespace MRC_App
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));
             Routing.RegisterRoute("LocationPage", typeof(LocationPage));
 
-            Username = "";
+            Task.Run(async () =>
+            {
+                SetUsername();
+            });
+
+            this.BindingContext = this;
         }
 
         private async void Logout_Tapped(object sender, EventArgs e)
@@ -37,7 +43,6 @@ namespace MRC_App
         {
             var name = SecureStorage.GetAsync("Name").Result;
             var surname = SecureStorage.GetAsync("Surname").Result;
-            
             Username = $"{name} {surname}";
         }
 
@@ -52,7 +57,7 @@ namespace MRC_App
         {
             get { return username; }
             set 
-            { 
+            {
                 username = value; 
                 OnPropertyChanged("Username");
             }

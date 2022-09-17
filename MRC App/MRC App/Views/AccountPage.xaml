@@ -118,10 +118,10 @@
                             <Label Grid.Row="3" Grid.Column="0" Text="Email:" Style="{StaticResource AccountLabelStyle}"/>
                             <Label Grid.Row="4" Grid.Column="0" Text="Birthday:" Style="{StaticResource AccountLabelStyle}"/>
                             <!-- Col 2 -->
-                            <Label x:Name="firstNameLabel" Grid.Column="1" Grid.Row="1" Text="Bob" Style="{StaticResource AccountLabelStyle}"/>
-                            <Label x:Name="lastNameLabel" Grid.Column="1" Grid.Row="2" Text="The builder" Style="{StaticResource AccountLabelStyle}"/>
-                            <Label x:Name="emailLabel" Grid.Column="1" Grid.Row="3" Text="BobTheBuilder@test.com" Style="{StaticResource AccountLabelStyle}"/>
-                            <Label x:Name="birthdayLabel" Grid.Column="1" Grid.Row="4" Text="20/03/1998" Style="{StaticResource AccountLabelStyle}"/>
+                            <Label x:Name="firstNameLabel" Grid.Column="1" Grid.Row="1" Text="{Binding Name}" Style="{StaticResource AccountLabelStyle}"/>
+                            <Label x:Name="lastNameLabel" Grid.Column="1" Grid.Row="2" Text="{Binding Surname}" Style="{StaticResource AccountLabelStyle}"/>
+                            <Label x:Name="emailLabel" Grid.Column="1" Grid.Row="3" Text="{Binding Email}" Style="{StaticResource AccountLabelStyle}"/>
+                            <Label x:Name="birthdayLabel" Grid.Column="1" Grid.Row="4" Text="{Binding DateOfBirth}" Style="{StaticResource AccountLabelStyle}"/>
                             <!-- Col 3 -->
                             <Label x:Name="firstNameEdit" Grid.Column="2" Grid.Row="1" Text="&#xf054;" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource AccountIconStyle}">
                                 <Label.GestureRecognizers>

@@ -17,15 +17,11 @@ namespace MRC_App.ViewModels
     {
         public AccountViewModel()
         {
-            Name = new ObservableCollection<string>();
-            Surname = new ObservableCollection<string>();
-            Email = new ObservableCollection<string>();
-            DateOfBirth = new ObservableCollection<string>();
 
-            Name.Add(new string(SecureStorage.GetAsync("Name").Result));
-            Surname.Add(new string(SecureStorage.GetAsync("Surname").Result));
-            Email.Add(new string(SecureStorage.GetAsync("Email").Result));
-            DateOfBirth.Add(new string(SecureStorage.GetAsync("Birth").Result));
+            Name = SecureStorage.GetAsync("Name").Result;
+            Surname = SecureStorage.GetAsync("Surname").Result;
+            Email = SecureStorage.GetAsync("Email").Result;
+            DateOfBirth = SecureStorage.GetAsync("Birth").Result[..10];
 
             ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
@@ -69,12 +65,12 @@ namespace MRC_App.ViewModels
             return update;
         }
 
-        private ObservableCollection<string> name;
-        private ObservableCollection<string> surname;
-        private ObservableCollection<string> dateOfBirth;
-        private ObservableCollection<string> email;
+        private string name;
+        private string surname;
+        private string dateOfBirth;
+        private string email;
 
-        public ObservableCollection<string> Name
+        public string Name
         {
             get { return name; }
             set 
@@ -84,7 +80,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        public ObservableCollection<string> Surname
+        public string Surname
         {
             get { return surname; }
             set
@@ -94,7 +90,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        public ObservableCollection<string> Email
+        public string Email
         {
             get { return email; }
             set
@@ -104,7 +100,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        public ObservableCollection<string> DateOfBirth
+        public string DateOfBirth
         {
             get { return dateOfBirth; }
             set
