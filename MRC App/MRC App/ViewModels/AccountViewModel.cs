@@ -17,6 +17,11 @@ namespace MRC_App.ViewModels
     {
         public AccountViewModel()
         {
+            Name = new ObservableCollection<string>();
+            Surname = new ObservableCollection<string>();
+            Email = new ObservableCollection<string>();
+            DateOfBirth = new ObservableCollection<string>();
+
             Name.Add(new string(SecureStorage.GetAsync("Name").Result));
             Surname.Add(new string(SecureStorage.GetAsync("Surname").Result));
             Email.Add(new string(SecureStorage.GetAsync("Email").Result));

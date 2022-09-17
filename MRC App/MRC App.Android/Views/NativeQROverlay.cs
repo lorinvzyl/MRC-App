@@ -10,7 +10,7 @@ namespace MRC_App.Controls
     public class NativeQROverlay : Android.Views.View
     {
         Bitmap windowFrame;
-        float overlayOpacity = 0.5f;
+        float overlayOpacity = 0.4f;
         bool showOverlay = false;
 
         public bool ShowOverlay
@@ -108,10 +108,18 @@ namespace MRC_App.Controls
 
             osCanvas.DrawRect(outerRectangle, paint);
 
+            Android.Graphics.Rect rect1 = new Android.Graphics.Rect((int)((width / 5) - 10), (int)((height / 3.4)-10), (int)((width / 5 + width / 5 * 3)+10), (int)((height / 3.4 + width / 5 * 3)+10));
+            RectF rectF1 = new RectF(rect1);
+
+            paint.SetARGB(255, 63, 139, 167);
+
+            osCanvas.DrawRoundRect(rectF1, 15, 15, paint);
+
             paint.SetXfermode(new PorterDuffXfermode(PorterDuff.Mode.Clear));
 
-            Android.Graphics.Rect rect = new Android.Graphics.Rect((int)(width/5),(int)(height/3.4), (int)(width/5 + width/5*3), (int)(height/3.4 + width/5*3));
+            Android.Graphics.Rect rect = new Android.Graphics.Rect((int)(width / 5), (int)(height / 3.4), (int)(width / 5 + width / 5 * 3), (int)(height / 3.4 + width / 5 * 3));
             RectF rectF = new RectF(rect);
+
             osCanvas.DrawRoundRect(rectF,15,15,paint);
 
             

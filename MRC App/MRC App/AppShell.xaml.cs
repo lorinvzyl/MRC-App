@@ -24,6 +24,8 @@ namespace MRC_App
             Routing.RegisterRoute("QRPage", typeof(QRPage));
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));
             Routing.RegisterRoute("LocationPage", typeof(LocationPage));
+
+            Username = "";
         }
 
         private async void Logout_Tapped(object sender, EventArgs e)
@@ -36,7 +38,7 @@ namespace MRC_App
             var name = SecureStorage.GetAsync("Name").Result;
             var surname = SecureStorage.GetAsync("Surname").Result;
             
-            Username.Add(new string($"{name} {surname}"));
+            Username = $"{name} {surname}";
         }
 
         private async void Account_Tapped(object sender, EventArgs e)
@@ -45,8 +47,8 @@ namespace MRC_App
             Shell.Current.FlyoutIsPresented = false;
         }
 
-        private ObservableCollection<string> username;
-        public ObservableCollection<string> Username
+        private string username;
+        public string Username
         {
             get { return username; }
             set 
