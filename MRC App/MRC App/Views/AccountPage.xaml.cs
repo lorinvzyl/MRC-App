@@ -21,9 +21,9 @@ namespace MRC_App.Views
         {
             InitializeComponent();
 
-            // initializing the viewModel varible
+            // initializing the viewModel variable
             BindingContext = _viewModel = new AccountViewModel();
-
+            _viewModel.UpdateData();
         }
 
         // creating the switch_Ontoggled properties. 
@@ -66,7 +66,7 @@ namespace MRC_App.Views
         private async void EditBirthday_Tapped(object sender, EventArgs e)
         {
             var birthday = SecureStorage.GetAsync("Birth").Result;
-            await Navigation.PushAsync(new AccountEdit("Birthday:", birthday));
+            await Navigation.PushAsync(new AccountEdit("Birthday:", birthday.Substring(1,10)));
         }
 
         private void ChangeAvatarBtn_Clicked(object sender, EventArgs e)

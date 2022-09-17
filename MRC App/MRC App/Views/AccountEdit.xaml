@@ -1,12 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
              x:Class="MRC_App.Views.AccountEdit">
+    <ContentPage.BindingContext>
+        <viewmodel:AccountEditViewModel/>
+    </ContentPage.BindingContext>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding UpdateUser}">
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource Glyph="&#xf060;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}"/>
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
+    </Shell.BackButtonBehavior>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Grid ColumnDefinitions="50, *">
-                <Label Grid.Column="0" Text=""/>
-                <Entry Grid.Column="1" Text=""/>
+            <Grid ColumnDefinitions="15,110, *,15" Margin="0,15,0,0">
+                <Label FontSize="Medium" Grid.Column="1" Text="{Binding Key}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                <Entry FontSize="Medium" Grid.Column="2" Text="{Binding Value, Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" WidthRequest="300"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

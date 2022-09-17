@@ -78,7 +78,7 @@ namespace MRC_App.Services
 
         public static async Task<User> GetUser(int id)
         {
-            var json = await client.GetAsync($"spi/Users/{id}");
+            var json = await client.GetAsync($"api/Users/{id}");
             if (!json.IsSuccessStatusCode)
                 return null;
 
@@ -142,17 +142,17 @@ namespace MRC_App.Services
             return deleted;
         }
 
-        public static async Task<bool> UpdateUser(string email, User user)
+        public static async Task<bool> UpdateUser(int id, User user)
         {
             bool updated = false;
 
-            if (user == null || email == null)
+            if (user == null || id == null)
                 return updated;
 
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"api/Users/email={email}", content);
+            var response = await client.PutAsync($"api/Users/{id}", content);
 
             if (!response.IsSuccessStatusCode)
                 return updated;

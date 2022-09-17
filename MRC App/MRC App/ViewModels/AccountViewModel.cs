@@ -47,8 +47,9 @@ namespace MRC_App.ViewModels
             return delete;
         }
 
-        public async Task<bool> UpdateUser(string email, string name, string surname, DateTime dateOfBirth, bool isNewsletter)
+        public async Task<bool> UpdateUser(int id, string name, string surname, DateTime dateOfBirth, bool isNewsletter)
         {
+            //need to update this method
             if (email == null || name == null || surname == null || dateOfBirth == null)
                 return false;
 
@@ -60,9 +61,17 @@ namespace MRC_App.ViewModels
                 isNewsletter = isNewsletter
             };
 
-            var update = await RestService.UpdateUser(email, user);
+            var update = await RestService.UpdateUser(id, user);
 
             return update;
+        }
+
+        public async Task UpdateData()
+        {
+            Name = SecureStorage.GetAsync("Name").Result;
+            Surname = SecureStorage.GetAsync("Surname").Result;
+            Email = SecureStorage.GetAsync("Email").Result;
+            DateOfBirth = SecureStorage.GetAsync("Birth").Result[..10];
         }
 
         private string name;
