@@ -61,6 +61,7 @@ namespace MRC_App.ViewModels
 
             AccountViewModel viewModel = new AccountViewModel();
             viewModel.UpdateData();
+
             await Shell.Current.GoToAsync("..");
             //return to previous page of the stack
         }

@@ -22,6 +22,7 @@ namespace MRC_App.ViewModels
             Surname = SecureStorage.GetAsync("Surname").Result;
             Email = SecureStorage.GetAsync("Email").Result;
             DateOfBirth = SecureStorage.GetAsync("Birth").Result[..10];
+            ProfilePicURL = SecureStorage.GetAsync("ProfileImage").Result;
 
             ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
@@ -116,6 +117,16 @@ namespace MRC_App.ViewModels
             {
                 dateOfBirth = value;
                 OnPropertyChanged("DateOfBirth");
+            }
+        }
+        private string profilePicURL;
+        public string ProfilePicURL
+        {
+            get { return profilePicURL; }
+            set
+            {
+                profilePicURL = value;
+                OnPropertyChanged("ProfilePicURL");
             }
         }
     }
