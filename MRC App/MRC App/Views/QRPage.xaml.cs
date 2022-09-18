@@ -20,9 +20,6 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        private void ZXingScannerView_OnScanResult(ZXing.Result result)
-        {
-            scanResult.Text = result.Text;
-        }
+        
     }
 }
