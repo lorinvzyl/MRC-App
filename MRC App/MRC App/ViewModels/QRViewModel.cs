@@ -38,11 +38,5 @@ namespace MRC_App.ViewModels
                 //error
             }
         }
-
-        public void ZXingScannerView_OnScanResult(ZXing.Result result)
-        {
-            QRViewModel qrViewModel = new QRViewModel();
-            qrViewModel.AttendEvent(result.Text);
-        }
     }
 }

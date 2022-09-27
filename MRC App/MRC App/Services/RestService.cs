@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,6 +25,7 @@ namespace MRC_App.Services
         public static async Task<bool> RegisterUser(User user)
         {
             bool registered = false;
+
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -123,6 +125,41 @@ namespace MRC_App.Services
 
             donated = true;
             return donated;
+        }
+
+        
+
+        public static async Task OzowRequest()
+        {
+            //Set variables here, amount will be set by passing in entry value.
+
+            string siteCode = "";
+            string countryCode = "";
+            string currencyCode = "";
+            decimal amount = (decimal)2.5;
+            string transactionReference = "";
+            string bankReference = "";
+            bool isTest = true;
+            string secret = "";
+            string hashCheck;
+
+            var concat = new String($"{siteCode}{countryCode}{currencyCode}{amount}{transactionReference}{bankReference}{isTest}");
+
+            concat.ToLower();
+
+            var json = JsonConvert.SerializeObject(concat);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("https://pay.ozow.com", content);
+
+            concat = $"{concat}{secret}";
+
+            var data = Encoding.UTF8.GetBytes(concat);
+
+            using (SHA512 shaM = new SHA512Managed())
+            {
+                hashCheck = shaM.ComputeHash(data).ToString();
+            }
         }
         
         public static async Task<bool> DeleteUser(string email)

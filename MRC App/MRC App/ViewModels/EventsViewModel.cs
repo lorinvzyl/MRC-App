@@ -29,8 +29,6 @@ namespace MRC_App.ViewModels
         {
             Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Info", "Loading events", "Ok"));
 
-            List<string> images = new List<string> { "pexels208216.jpg", "pexels6115945.jpg" };
-
             Event = new EventCollection();
 
             GenerateEvents();

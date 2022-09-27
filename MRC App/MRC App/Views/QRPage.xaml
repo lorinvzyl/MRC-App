@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label x:Name="scanResult" Grid.Row="1" Grid.ColumnSpan="3"/>
-            <zxing:ZXingScannerView Grid.RowSpan="3" Grid.ColumnSpan="3" OnScanResult="{Binding ZXingScannerView_OnScanResult}"/>
+            <zxing:ZXingScannerView Grid.RowSpan="3" Grid.ColumnSpan="3" OnScanResult="ZXingScannerView_OnScanResult"/>
             <controls:BaseQROverlay Shape="Rectangle" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" OverlayOpacity="0.8" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
         </Grid>
     </ContentPage.Content>

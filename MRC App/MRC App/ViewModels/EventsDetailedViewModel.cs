@@ -13,7 +13,7 @@ namespace MRC_App.ViewModels
     [QueryProperty(nameof(Param), nameof(Param))]
     public class EventsDetailedViewModel : BaseViewModel
     {
-        public Command tapCommand;
+        public ICommand tapCommand;
 
         public EventsDetailedViewModel()
         {
