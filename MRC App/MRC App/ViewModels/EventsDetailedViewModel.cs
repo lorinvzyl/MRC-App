@@ -3,9 +3,11 @@ using MRC_App.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace MRC_App.ViewModels
@@ -13,11 +15,12 @@ namespace MRC_App.ViewModels
     [QueryProperty(nameof(Param), nameof(Param))]
     public class EventsDetailedViewModel : BaseViewModel
     {
-        public ICommand tapCommand;
+        public ICommand TapCommand;
 
         public EventsDetailedViewModel()
         {
-            tapCommand = new Command(OnRSVPClicked);
+            SelectedEvent = new ObservableCollection<Event>();
+            TapCommand = new Command(OnRSVPClicked);
         }
 
         string param = "";
@@ -32,126 +35,37 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private int id { get; set; }
-        public int Id
+        private ObservableCollection<Event> selectedEvent;
+        public ObservableCollection<Event> SelectedEvent
         {
-            get => id;
-            set => id = value;
-        }
-
-        private string eventName { get; set; }
-        public string EventName
-        {
-            get { return eventName; }
+            get => selectedEvent;
             set
             {
-                eventName = value;
-                OnPropertyChanged("EventName");
-            }
-        }
-        private string eventDescription { get; set; }
-        public string EventDescription
-        {
-            get { return eventDescription; }
-            set
-            {
-                eventDescription = value;
-                OnPropertyChanged("EventDescription");
-            }
-        }
-
-        private List<string> eventGallery { get; set; }
-        public List<string> EventGallery
-        {
-            get { return eventGallery; }
-            set
-            {
-                eventGallery = value;
-                OnPropertyChanged("EventGallery");
-            }
-        }
-
-        private int spacesAvailable { get; set; }
-        public int SpacesAvailable
-        {
-            get { return spacesAvailable; }
-            set
-            {
-                spacesAvailable = value;
-                OnPropertyChanged("SpacesAvailable");
-            }
-        }
-
-        private int spacesTaken { get; set; }
-        public int SpacesTaken
-        {
-            get { return spacesTaken; }
-            set
-            {
-                SpacesTaken = value;
-                OnPropertyChanged("SpacesTaken");
-            }
-        }
-
-        private string venue { get; set; }
-        public string Venue
-        {
-            get { return venue; }
-            set
-            {
-                venue = value;
-                OnPropertyChanged("Venue");
-            }
-        }
-
-        private DateTime rsvpCloseDate { get; set; }
-        public DateTime RSVPCloseDate
-        {
-            get { return rsvpCloseDate; }
-            set
-            {
-                rsvpCloseDate = value;
-                OnPropertyChanged("RSVPCloseDate");
-            }
-        }
-
-        private DateTime eventDate { get; set; }
-        public DateTime EventDate
-        {
-            get { return eventDate; }
-            set
-            {
-                EventDate = value;
-                OnPropertyChanged("EventDate");
+                selectedEvent = value;
+                OnPropertyChanged();
             }
         }
 
         private void PerformOperation(string paramStr)
         {
             var param = JsonConvert.DeserializeObject<Event>(paramStr);
-            EventName = param.EventName;
-            EventDescription = param.EventDescription;
-            SpacesTaken = param.SpacesTaken;
-            SpacesAvailable = param.SpacesAvailable;
-            Venue = param.Venue;
-            RSVPCloseDate = param.RSVPCloseDate;
-            EventDate = param.EventDate;
-            Id = param.Id;
+            SelectedEvent.Add(param);
         }
 
         private async void OnRSVPClicked(object obj)
         {
-            Event _event = new Event()
+            Event _event = new Event();
+            foreach(var item in SelectedEvent)
             {
-                EventName = EventName,
-                EventDescription = EventDescription,
-                EventDate = EventDate,
-                Id = Id,
-                RSVPCloseDate = RSVPCloseDate,
-                SpacesAvailable = SpacesAvailable-1,
-                SpacesTaken = SpacesTaken+1,
-                Venue = Venue
-            };
+                _event.EventName = item.EventName;
+                _event.EventDescription = item.EventDescription;
+                _event.EventDate = item.EventDate;
+                _event.Id = item.Id;
+                _event.RSVPCloseDate = item.RSVPCloseDate;
+                _event.SpacesAvailable = item.SpacesAvailable - 1;
+                _event.SpacesTaken = item.SpacesTaken + 1;
+                _event.Venue = item.Venue;
+            }
 
             var response = await RestService.UpdateEvent(_event.Id, _event);
 

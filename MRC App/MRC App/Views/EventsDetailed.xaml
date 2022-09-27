@@ -67,97 +67,87 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15"/>
-                    <!--filler-->
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="15"/>
-                    <!--filler-->
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="250"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="270"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventName}" Style="{StaticResource EventTitle}"/>
-                <!--Placeholder for event title-->
-
-                <CollectionView Grid.Row="2" Grid.Column="1" ItemsSource="{Binding EventGallery}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal"/>
-                    </CollectionView.ItemsLayout>
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding SelectedEvent}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Padding="0,0,10,0" HorizontalOptions="EndAndExpand">
-                                <Frame CornerRadius="15" Padding="0" HeightRequest="250" WidthRequest="350" HasShadow="True">
-                                    <Image Source="{Binding .}" Aspect="Fill" Style="{StaticResource EventGallery}"/>
-                                </Frame>
-                            </StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15"/>
+                                    <!--filler-->
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <!--filler-->
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="250"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="270"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventName}" Style="{StaticResource EventTitle}"/>
+                                
+                                <!--Placeholder for images, however this will need capabilities of a slideshow-->
 
+                                <Label Margin="0,15,0,0" Grid.Row="3" Grid.Column="1" FontSize="Header" Text="{Binding EventDescription}"/>
+                                
+                                <Frame Style="{StaticResource RSVPFrame}" Grid.Row="4" Grid.Column="1" VerticalOptions="End">
+                                    <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
+                                    <Grid RowSpacing="0" ColumnSpacing="0">
+                                        <!--Event details grid-->
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="15*"/>
+                                            <ColumnDefinition Width="15*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="15"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="50"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Title" Style="{StaticResource RSVPLabelTitle}"/>
+                                        <!--Title-->
+
+                                        <Label Grid.Row="2" Grid.Column="1" Text="Spots open:" Style="{StaticResource RSVPLabelLeft}"/>
+                                        <Label Grid.Row="2" Grid.Column="2" Text="120" Style="{StaticResource RSVPLabelRight}"/>
+
+                                        <Label Grid.Row="3" Grid.Column="1" Text="Venue:" Style="{StaticResource RSVPLabelLeft}"/>
+                                        <Label Grid.Row="3" Grid.Column="2" Text="Church Location 1" TextDecorations="Underline" Style="{StaticResource RSVPLabelRight}"/>
+
+                                        <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" Style="{StaticResource RSVPLabelLeft}"/>
+                                        <Label Grid.Row="4" Grid.Column="2" Text="24 August" Style="{StaticResource RSVPLabelRight}"/>
+
+                                        <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="10"/>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="5"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="7*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Row="1" Grid.Column="1" Padding="0" HorizontalOptions="Center" WidthRequest="100" VerticalOptions="End" Text="RSVP" Style="{StaticResource RSVPButton}">
+                                                <Button.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding TapCommand}"/>
+                                                </Button.GestureRecognizers>
+                                            </Button>
+                                        </Grid>
+                                        <!--Button to RSVP. Not sure how this will interact with the database yet.-->
+                                    </Grid>
+                                </Frame>
+                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <!--Placeholder for images, however this will need capabilities of a slideshow-->
-
-                <Label Margin="0,15,0,0" Grid.Row="3" Grid.Column="1" FontSize="Header" Text="{Binding EventDescription}"/>
-                <!--Placeholder for event description, possibly also add a read more thing here?-->
-                <StackLayout Padding="0" Grid.Row="4" Grid.Column="1" VerticalOptions="EndAndExpand">
-                    <Frame Style="{StaticResource RSVPFrame}">
-                        <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
-                        <Grid RowSpacing="0" ColumnSpacing="0">
-                            <!--Event details grid-->
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="15*"/>
-                                <ColumnDefinition Width="15*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="15"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="50"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Title" Style="{StaticResource RSVPLabelTitle}"/>
-                            <!--Title-->
-
-                            <Label Grid.Row="2" Grid.Column="1" Text="Spots open:" Style="{StaticResource RSVPLabelLeft}"/>
-                            <Label Grid.Row="2" Grid.Column="2" Text="120" Style="{StaticResource RSVPLabelRight}"/>
-
-                            <Label Grid.Row="3" Grid.Column="1" Text="Venue:" Style="{StaticResource RSVPLabelLeft}"/>
-                            <Label Grid.Row="3" Grid.Column="2" Text="Church Location 1" TextDecorations="Underline" Style="{StaticResource RSVPLabelRight}"/>
-
-                            <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" Style="{StaticResource RSVPLabelLeft}"/>
-                            <Label Grid.Row="4" Grid.Column="2" Text="24 August" Style="{StaticResource RSVPLabelRight}"/>
-
-                            <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="10"/>
-                                    <RowDefinition Height="40"/>
-                                    <RowDefinition Height="5"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="7*"/>
-                                    <ColumnDefinition Width="5*"/>
-                                </Grid.ColumnDefinitions>
-                                <Button Grid.Row="1" Grid.Column="1" Padding="0" HorizontalOptions="Center" WidthRequest="100" VerticalOptions="End" Text="RSVP" Style="{StaticResource RSVPButton}">
-                                    <Button.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding tapCommand}"/>
-                                    </Button.GestureRecognizers>
-                                </Button>
-                            </Grid>
-                            <!--Button to RSVP. Not sure how this will interact with the database yet.-->
-                        </Grid>
-                    </Frame>
-                </StackLayout>
-            </Grid>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
