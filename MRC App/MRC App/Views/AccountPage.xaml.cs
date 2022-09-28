@@ -20,10 +20,6 @@ namespace MRC_App.Views
         public AccountPage()
         {
             InitializeComponent();
-
-            // initializing the viewModel variable
-            BindingContext = _viewModel = new AccountViewModel();
-            _viewModel.UpdateData();
         }
 
         // creating the switch_Ontoggled properties. 
@@ -78,14 +74,5 @@ namespace MRC_App.Views
         {
 
         }
-
-        /*
-        private async void Button_OnClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AccessibilityTestPage());
-        }
-        */
-
-
     }
 }

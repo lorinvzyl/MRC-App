@@ -59,8 +59,11 @@ namespace MRC_App.ViewModels
                     break;
             }
 
-            AccountViewModel viewModel = new AccountViewModel();
-            viewModel.UpdateData();
+            var appshell = Xamarin.Forms.Shell.Current as AppShell;
+            await Task.Run(() => appshell.SetUser());
+
+            var account = new AccountViewModel();
+            account.UpdateData(); //does not work currently?
 
             await Shell.Current.GoToAsync("..");
             //return to previous page of the stack

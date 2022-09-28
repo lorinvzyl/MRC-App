@@ -28,7 +28,7 @@ namespace MRC_App
 
             Task.Run(async () =>
             {
-                SetUsername();
+                SetUser();
             });
 
             this.BindingContext = this;
@@ -39,11 +39,14 @@ namespace MRC_App
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
 
-        public void SetUsername()
+        public void SetUser()
         {
             var name = SecureStorage.GetAsync("Name").Result;
             var surname = SecureStorage.GetAsync("Surname").Result;
             Username = $"{name} {surname}";
+
+            var profile = SecureStorage.GetAsync("ProfileImage").Result;
+            ProfileUrl = profile;
         }
 
         private async void Account_Tapped(object sender, EventArgs e)
@@ -60,6 +63,17 @@ namespace MRC_App
             {
                 username = value; 
                 OnPropertyChanged("Username");
+            }
+        }
+
+        private string profileUrl;
+        public string ProfileUrl
+        {
+            get { return profileUrl; }
+            set
+            {
+                profileUrl = value;
+                OnPropertyChanged("ProfileUrl");
             }
         }
     }

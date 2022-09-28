@@ -74,7 +74,6 @@
             </Style>
             <Style x:Key="AvatarStyle" TargetType="xct:AvatarView">
                 <Setter Property="Padding" Value="0"/>
-                <Setter Property="FontSize" Value="80"/>
                 <Setter Property="Size" Value="80"/>
                 <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="Color" Value="{StaticResource Primary}"/>
@@ -107,7 +106,7 @@
 
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Always">
-            <StackLayout>
+            <StackLayout Margin="0,0,0,15">
                 <Grid RowDefinitions="Auto, 250, 120, *" ColumnDefinitions="15,*,15">
                     <StackLayout Grid.Column="1" Grid.Row="0" Margin="0,15,0,0">
                         <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" ColumnDefinitions="4*, 7*, *">
@@ -151,8 +150,7 @@
                             <Label Grid.Row="0" Text="Avatar" Style="{StaticResource HeaderLabelStyle}"/>
                             <Frame Grid.Row="1" Style="{StaticResource AvatarFrameStyle}">
                                 <Grid RowDefinitions="110,40" ColumnDefinitions="Auto,*,15,15,*,*" RowSpacing="0" Padding="0">
-                                    <xct:AvatarView Grid.Column="0" Grid.Row="0" Source="{Binding ProfilePicURL}" Text="{Binding ProfilePicURL}" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource AvatarStyle}">
-                                    </xct:AvatarView>
+                                    <xct:AvatarView Grid.Column="0" Grid.Row="0" Source="{Binding ProfilePicURL}" Style="{StaticResource AvatarStyle}"/>
                                     <Label Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="0" Text="We recommend an image of atleast 600x240. You can upload a PNG or JPEG under 2MB." Style="{StaticResource AvatarLabelStyle}" Margin="10,0,0,0"/>
 
                                     <Button x:Name="RemoveAvatarBtn" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource ButtonStyle}" BackgroundColor="{StaticResource LightShade}" Text="Remove Avatar" Clicked="RemoveAvatarBtn_Clicked"/>
