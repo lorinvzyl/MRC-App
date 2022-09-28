@@ -99,7 +99,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="15*"/>
-                                            <ColumnDefinition Width="15*"/>
+                                            <ColumnDefinition Width="21*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
@@ -115,13 +115,13 @@
                                         <!--Title-->
 
                                         <Label Grid.Row="2" Grid.Column="1" Text="Spots open:" Style="{StaticResource RSVPLabelLeft}"/>
-                                        <Label Grid.Row="2" Grid.Column="2" Text="120" Style="{StaticResource RSVPLabelRight}"/>
+                                        <Label Grid.Row="2" Grid.Column="2" Text="{Binding SpacesAvailable}" Style="{StaticResource RSVPLabelRight}"/>
 
                                         <Label Grid.Row="3" Grid.Column="1" Text="Venue:" Style="{StaticResource RSVPLabelLeft}"/>
                                         <Label Grid.Row="3" Grid.Column="2" Text="Church Location 1" TextDecorations="Underline" Style="{StaticResource RSVPLabelRight}"/>
 
                                         <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" Style="{StaticResource RSVPLabelLeft}"/>
-                                        <Label Grid.Row="4" Grid.Column="2" Text="24 August" Style="{StaticResource RSVPLabelRight}"/>
+                                        <Label Grid.Row="4" Grid.Column="2" Text="{Binding RSVPCloseDate}" Style="{StaticResource RSVPLabelRight}"/>
 
                                         <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
                                             <Grid.RowDefinitions>
