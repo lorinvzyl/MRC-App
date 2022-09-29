@@ -136,20 +136,19 @@
                             <Label Grid.Column="1" Grid.Row="1" Text="Comments" Style="{StaticResource ContainerTitleStyle}" HorizontalOptions="Center"/>
 
                             <Entry Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
-                            <ListView>
-                                <ListView.ItemTemplate>
+                            <CollectionView Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Comments}">
+                                <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}">
-                                            <Grid ColumnDefinitions="15,*,15" RowDefinitions="*,*,*">
-                                                <Label Text="Hi" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                                                <Label Text="Hoi" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                            <Grid ColumnDefinitions="15,*,15" RowDefinitions="*,*,10">
+                                                <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                                <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
                                                 <Label Grid.Row="2" Grid.Column="1"/>
                                             </Grid>
                                         </Frame>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
                         </Grid>
                     </Frame>
                 </StackLayout>

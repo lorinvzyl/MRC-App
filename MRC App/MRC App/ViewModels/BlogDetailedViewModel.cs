@@ -56,7 +56,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private void PerformOperation(string paramStr)
+        private async void PerformOperation(string paramStr)
         {
             var param = JsonConvert.DeserializeObject<Blog>(paramStr);
             Id = param.Id;
@@ -65,6 +65,13 @@ namespace MRC_App.ViewModels
             Description = param.Description;
             Author = param.Author;
             ImagePath = param.ImagePath;
+
+            GetComments(param.Id);
+        }
+
+        private async void GetComments(int blogId)
+        {
+            Comments.AddRange(await RestService.GetBlogComments(blogId));
         }
 
         //GetComments
