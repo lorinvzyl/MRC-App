@@ -9,6 +9,7 @@ using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.UI.Views;
+using Newtonsoft.Json;
 
 namespace MRC_App.Views
 {
@@ -24,12 +25,8 @@ namespace MRC_App.Views
             if (!(e.CurrentSelection.FirstOrDefault() is Blog blog))
                 return;
 
-            var blogdetailed = new BlogDetailed
-            {
-                BindingContext = blog
-            };
-
-            await Navigation.PushAsync(blogdetailed);
+            var json = JsonConvert.SerializeObject(blog);
+            await Shell.Current.GoToAsync($"{nameof(BlogDetailed)}?Param={json}");
             ((CollectionView)sender).SelectedItem = null;
         }
 
