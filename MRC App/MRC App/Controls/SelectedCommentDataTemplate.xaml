@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MRC_App.Controls.SelectedCommentDataTemplate">
+    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Margin="0,0,0,-20" Padding="0" HeightRequest="250">
+        <Grid ColumnDefinitions="20,*,20" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
+            <Label Grid.Column="1" Grid.Row="1" Text="Comments" Style="{StaticResource ContainerTitleStyle}" HorizontalOptions="Center"/>
+
+            <Entry Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+
+            <StackLayout Grid.Column="1" Grid.Row="4" BindableLayout.ItemsSource="{Binding SelectedComment}">
+                <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}">
+                    <Grid ColumnDefinitions="15,*,15" RowDefinitions="15,Auto,5,Auto">
+                        <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                        <Line Grid.Row="2" Grid.Column="1"/>
+
+                        <CollectionView Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Replies}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}">
+                                        <Grid ColumnDefinitions="15,*,15" RowDefinitions="15,Auto,5">
+                                            <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                            <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                            <Line Grid.Row="2" Grid.Column="1"/>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </Frame>
+</DataTemplate>

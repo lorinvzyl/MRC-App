@@ -42,7 +42,7 @@ namespace MRC_App.ViewModels
             set
             {
                 error = value;
-                OnPropertyChanged("Error");
+                OnPropertyChanged(nameof(Error));
             }
         }
         public async Task RegisterUser(User user)

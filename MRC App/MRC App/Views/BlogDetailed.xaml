@@ -65,7 +65,6 @@
                 <Setter Property="HeightRequest" Value="300"/>
                 <Setter Property="Opacity" Value="1.0"/>
             </Style>
-
             <Style x:Key="BlogTextBackgroundStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                 <Setter Property="Opacity" Value="0.65"/>
@@ -86,20 +85,12 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
-
-
         </ResourceDictionary>
     </ContentPage.Resources>
 
-
-
     <ContentPage.Content>
-
         <ScrollView>
             <StackLayout>
-
-
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15" />
@@ -107,35 +98,23 @@
                         <ColumnDefinition Width="15"/>
                     </Grid.ColumnDefinitions>
                     <StackLayout Margin="15" Grid.Column="1">
-
                         <Frame Style="{StaticResource BlogCardStyle}">
-
                             <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
-
-
                         </Frame>
-
+                        
                         <StackLayout >
-
                             <Label  VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
-
                             <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
-
-
-
                         </StackLayout>
 
                     </StackLayout>
                 </Grid>
-
                 <StackLayout>
-
-
                     <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Margin="0,0,0,-20" Padding="0" HeightRequest="250">
                         <Grid ColumnDefinitions="20,*,20" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
                             <Label Grid.Column="1" Grid.Row="1" Text="Comments" Style="{StaticResource ContainerTitleStyle}" HorizontalOptions="Center"/>
-
                             <Entry Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                            
                             <CollectionView Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Comments}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>

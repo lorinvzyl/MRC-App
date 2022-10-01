@@ -74,5 +74,13 @@ namespace MRC_App.Views
         {
 
         }
+
+        protected override void OnAppearing()
+        {
+            AccountViewModel viewModel = new AccountViewModel();
+            viewModel.UpdateData();
+
+            this.BindingContext = viewModel;
+        }
     }
 }

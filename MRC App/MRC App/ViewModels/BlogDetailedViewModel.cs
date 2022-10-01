@@ -1,8 +1,10 @@
-﻿using MRC_App.Models;
+﻿using MRC_App.Controls;
+using MRC_App.Models;
 using MRC_App.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.ObjectModel;
@@ -13,6 +15,9 @@ namespace MRC_App.ViewModels
     [QueryProperty(nameof(Param), nameof(Param))]
     public class BlogDetailedViewModel : BaseViewModel
     {
+        public NormalCommentDataTemplate Normal { get; set; }
+        public SelectedCommentDataTemplate Selected { get; set; }
+
         private ObservableRangeCollection<Comment> comments;
         public ObservableRangeCollection<Comment> Comments
         {
@@ -20,9 +25,21 @@ namespace MRC_App.ViewModels
             set 
             { 
                 comments = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(Comments));
             }
         }
+
+        public ObservableCollection<Comment> selectedComment;
+        public ObservableCollection<Comment> SelectedComment
+        {
+            get { return selectedComment; }
+            set
+            {
+                selectedComment = value;
+                OnPropertyChanged(nameof(SelectedComment));
+            }
+        }
+
         public BlogDetailedViewModel()
         {
             Comments = new ObservableRangeCollection<Comment>();

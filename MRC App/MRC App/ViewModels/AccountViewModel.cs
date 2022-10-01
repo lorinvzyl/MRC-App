@@ -17,13 +17,6 @@ namespace MRC_App.ViewModels
     {
         public AccountViewModel()
         {
-
-            Name = SecureStorage.GetAsync("Name").Result;
-            Surname = SecureStorage.GetAsync("Surname").Result;
-            Email = SecureStorage.GetAsync("Email").Result;
-            DateOfBirth = SecureStorage.GetAsync("Birth").Result[..10];
-            ProfilePicURL = SecureStorage.GetAsync("ProfileImage").Result;
-
             ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
         public bool EnableCommands { get; set; }
@@ -38,6 +31,8 @@ namespace MRC_App.ViewModels
                 await UserDialogs.Instance.AlertAsync($"New value: {newValue}", "Switch toggled (Command)").ConfigureAwait(false);
             }
         }
+
+        
 
         public async Task<bool> DeleteUser(string email)
         {
@@ -86,7 +81,7 @@ namespace MRC_App.ViewModels
             set 
             { 
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -96,7 +91,7 @@ namespace MRC_App.ViewModels
             set
             {
                 surname = value;
-                OnPropertyChanged("Surname");
+                OnPropertyChanged(nameof(Surname));
             }
         }
 
@@ -106,7 +101,7 @@ namespace MRC_App.ViewModels
             set
             {
                 email = value;
-                OnPropertyChanged("Email");
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -116,7 +111,7 @@ namespace MRC_App.ViewModels
             set
             {
                 dateOfBirth = value;
-                OnPropertyChanged("DateOfBirth");
+                OnPropertyChanged(nameof(DateOfBirth));
             }
         }
         private string profilePicURL;
@@ -126,7 +121,7 @@ namespace MRC_App.ViewModels
             set
             {
                 profilePicURL = value;
-                OnPropertyChanged("ProfilePicURL");
+                OnPropertyChanged(nameof(ProfilePicURL));
             }
         }
     }

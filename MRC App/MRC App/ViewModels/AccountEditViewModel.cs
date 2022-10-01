@@ -1,5 +1,6 @@
 ﻿using MRC_App.Models;
 using MRC_App.Services;
+using MRC_App.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -59,13 +60,13 @@ namespace MRC_App.ViewModels
                     break;
             }
 
-            var appshell = Xamarin.Forms.Shell.Current as AppShell;
+            var appshell = Shell.Current as AppShell;
             await Task.Run(() => appshell.SetUser());
 
-            var account = new AccountViewModel();
-            account.UpdateData(); //does not work currently?
-
-            await Shell.Current.GoToAsync("..");
+            //var account = new AccountViewModel();
+            //account.UpdateData(); //does not work currently?
+            
+            await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
             //return to previous page of the stack
         }
 
