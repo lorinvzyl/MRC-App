@@ -1,6 +1,7 @@
 ﻿using MRC_App.Controls;
 using MRC_App.Models;
 using MRC_App.Services;
+using MRC_App.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace MRC_App.ViewModels
@@ -15,9 +17,6 @@ namespace MRC_App.ViewModels
     [QueryProperty(nameof(Param), nameof(Param))]
     public class BlogDetailedViewModel : BaseViewModel
     {
-        public NormalCommentDataTemplate Normal { get; set; }
-        public SelectedCommentDataTemplate Selected { get; set; }
-
         private ObservableRangeCollection<Comment> comments;
         public ObservableRangeCollection<Comment> Comments
         {
@@ -29,37 +28,28 @@ namespace MRC_App.ViewModels
             }
         }
 
-        public ObservableCollection<Comment> selectedComment;
-        public ObservableCollection<Comment> SelectedComment
-        {
-            get { return selectedComment; }
-            set
-            {
-                selectedComment = value;
-                OnPropertyChanged(nameof(SelectedComment));
-            }
-        }
-
         public BlogDetailedViewModel()
         {
             Comments = new ObservableRangeCollection<Comment>();
         }
 
-        public async Task<bool> AddBlogComment(int blogId, string commentText, string user)
+        public async Task<bool> AddBlogComment(string commentText)
         {
-            if (commentText == null || user == null)
+            if (commentText == null)
                 return false;
 
             Comment comment = new Comment()
             {
-                BlogId = blogId,
+                BlogId = Id,
                 CommentText = commentText,
-                UserName = user
+                UserName = SecureStorage.GetAsync("Name").Result
             };
 
             var result = await RestService.AddBlogComment(comment);
             return result;
         }
+
+        //AddCommentReply needs 
 
         string param = "";
         public string Param
@@ -83,15 +73,20 @@ namespace MRC_App.ViewModels
             Author = param.Author;
             ImagePath = param.ImagePath;
 
+            BlogDetailed blogDetailed = new BlogDetailed();
+            blogDetailed.BlogId = Id;
+            
             GetComments(param.Id);
         }
+
+        public bool Expanded { get; set; }
 
         private async void GetComments(int blogId)
         {
             Comments.AddRange(await RestService.GetBlogComments(blogId));
         }
 
-        //GetComments
+        //Comments
         private int id;
         public int Id
         {

@@ -8,12 +8,12 @@ namespace MRC_App.Models
     {
         public Comment()
         {
-            Replies = new HashSet<Reply>();
+            Reply = new HashSet<Reply>();
         }
         public int Id { get; set; }
         public string CommentText { get; set; }
         public string UserName { get; set; }
         public int BlogId { get; set; }
-        public ICollection<Reply> Replies { get; set; }
+        public ICollection<Reply> Reply { get; set; }
     }
 }

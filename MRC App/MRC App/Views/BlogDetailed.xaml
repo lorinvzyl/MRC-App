@@ -6,7 +6,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
-             x:Class="MRC_App.Views.BlogDetailed">
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="MRC_App.Views.BlogDetailed"
+             x:Name="detail">
 
     <ContentPage.BindingContext>
         <viewmodel:BlogDetailedViewModel/>
@@ -99,35 +101,61 @@
                     </Grid.ColumnDefinitions>
                     <StackLayout Margin="15" Grid.Column="1">
                         <Frame Style="{StaticResource BlogCardStyle}">
-                            <Image Source="{Binding Img}" Style="{StaticResource BlogImageStyle}"/>
+                            <Image Source="{Binding ImagePath}" Style="{StaticResource BlogImageStyle}"/>
                         </Frame>
-                        
-                        <StackLayout >
-                            <Label  VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
+
+                        <StackLayout>
+                            <Label VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
                             <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
                         </StackLayout>
 
                     </StackLayout>
                 </Grid>
-                <StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand" x:Name="FrameStackLayout">
                     <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Margin="0,0,0,-20" Padding="0" HeightRequest="250">
                         <Grid ColumnDefinitions="20,*,20" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
-                            <Label Grid.Column="1" Grid.Row="1" Text="Comments" Style="{StaticResource ContainerTitleStyle}" HorizontalOptions="Center"/>
-                            <Entry Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
-                            
-                            <CollectionView Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Comments}">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}">
-                                            <Grid ColumnDefinitions="15,*,15" RowDefinitions="*,*,10">
-                                                <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                                                <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
-                                                <Label Grid.Row="2" Grid.Column="1"/>
-                                            </Grid>
-                                        </Frame>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
+                            <Label Grid.Column="1" Grid.Row="1" Text="Comments" FontSize="20" TextColor="{StaticResource LightShade}" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                            <Entry x:Name="CommentEntry" Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"/>
+                            <Frame Grid.Column="1" Grid.Row="4" CornerRadius="0" Padding="0">
+                                <CollectionView ItemsSource="{Binding Comments}" Margin="0,15,0,15">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <xct:Expander IsExpanded="{Binding Source={x:Reference detail}, Path=BindingContext.Expanded}">
+                                                    <xct:Expander.Header>
+                                                        <Grid ColumnDefinitions="15,*,15" RowDefinitions="25,Auto,11">
+                                                            <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                                            <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                                            <BoxView Grid.Row="2" Grid.Column="0" Margin="0,5,0,5" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
+                                                        </Grid>
+                                                    </xct:Expander.Header>
+                                                    <xct:Expander.ContentTemplate>
+                                                        <DataTemplate>
+                                                            <StackLayout>
+                                                                <Entry x:Name="ReplyEntry" Placeholder="Add a reply" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"/>
+                                                                <Grid RowDefinitions="Auto">
+                                                                    <CollectionView ItemsSource="{Binding Reply}" Grid.Row="0">
+                                                                        <CollectionView.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <Grid ColumnDefinitions="30,*,15" RowDefinitions="25, Auto, 11">
+                                                                                    <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                                                                    <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                                                                    <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
+                                                                                </Grid>
+                                                                            </DataTemplate>
+                                                                        </CollectionView.ItemTemplate>
+                                                                    </CollectionView>
+                                                                </Grid>
+                                                            </StackLayout>
+                                                        </DataTemplate>
+                                                    </xct:Expander.ContentTemplate>
+                                                </xct:Expander>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </Frame>
                         </Grid>
                     </Frame>
                 </StackLayout>
