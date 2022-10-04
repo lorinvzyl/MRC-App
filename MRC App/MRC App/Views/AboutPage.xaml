@@ -108,7 +108,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="0,0,0,10">
-                <CollectionView Margin="0,25,20,0" ItemsSource="{Binding Blog}" HeightRequest="300" SelectionChanged="ItemSelected_CollectionView" SelectionMode="Single">
+                <CollectionView Margin="0,25,20,0" ItemsSource="{Binding Blog}" HeightRequest="300" SelectionChanged="CollectionView_SelectedChanged" SelectionMode="Single">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"/>
                     </CollectionView.ItemsLayout>

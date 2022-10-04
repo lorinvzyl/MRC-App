@@ -31,8 +31,7 @@ namespace MRC_App.Views
             BlogDetailedViewModel blogDetailedViewModel = new BlogDetailedViewModel();
             InitializeComponent();
             CommentEntry.Completed += (sender, e) => blogDetailedViewModel.AddBlogComment(CommentEntry.Text);
-            //ReplyEntry.Completed += (sender, e) => EntryReplyCompleted(ReplyEntry.Text,sender, e);
-            //not sure how to send current comment through for reply to be added.
+            
         }
     }
 }

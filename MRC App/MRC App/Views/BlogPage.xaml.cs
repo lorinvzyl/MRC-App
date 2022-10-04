@@ -18,7 +18,6 @@ namespace MRC_App.Views
         public BlogPage()
         {
             InitializeComponent();
-
         }
         async void CollectionView_SelectedChanged(object sender, SelectionChangedEventArgs e)
         {

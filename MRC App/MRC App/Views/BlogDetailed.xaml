@@ -87,6 +87,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -118,15 +119,18 @@
 
                             <Entry x:Name="CommentEntry" Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"/>
                             <Frame Grid.Column="1" Grid.Row="4" CornerRadius="0" Padding="0">
-                                <CollectionView ItemsSource="{Binding Comments}" Margin="0,15,0,15">
+                                <CollectionView ItemsSource="{Binding Comments}" Margin="0,15,0,15" SelectionMode="Single">
+                                    <CollectionView.Behaviors>
+                                        <xct:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding ItemSelectedCommand}" EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"/>
+                                    </CollectionView.Behaviors>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <StackLayout>
                                                 <xct:Expander IsExpanded="{Binding Source={x:Reference detail}, Path=BindingContext.Expanded}">
                                                     <xct:Expander.Header>
                                                         <Grid ColumnDefinitions="15,*,15" RowDefinitions="25,Auto,11">
-                                                            <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                                                            <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                                            <Label x:Name="user" Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                                            <Label x:Name="text" Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
                                                             <BoxView Grid.Row="2" Grid.Column="0" Margin="0,5,0,5" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
                                                         </Grid>
                                                     </xct:Expander.Header>
@@ -134,19 +138,17 @@
                                                         <DataTemplate>
                                                             <StackLayout>
                                                                 <Entry x:Name="ReplyEntry" Placeholder="Add a reply" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill"/>
-                                                                <Grid RowDefinitions="Auto">
-                                                                    <CollectionView ItemsSource="{Binding Reply}" Grid.Row="0">
-                                                                        <CollectionView.ItemTemplate>
-                                                                            <DataTemplate>
-                                                                                <Grid ColumnDefinitions="30,*,15" RowDefinitions="25, Auto, 11">
-                                                                                    <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                                                                                    <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
-                                                                                    <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
-                                                                                </Grid>
-                                                                            </DataTemplate>
-                                                                        </CollectionView.ItemTemplate>
-                                                                    </CollectionView>
-                                                                </Grid>
+                                                                <FlexLayout x:Name="ReplyList" Direction="Column" AutomationId="ReplyList" BindableLayout.ItemsSource="{Binding Reply}">
+                                                                    <BindableLayout.ItemTemplate>
+                                                                        <DataTemplate>
+                                                                            <Grid ColumnDefinitions="30,*,15" RowDefinitions="25, Auto, 11">
+                                                                                <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                                                                <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                                                                <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
+                                                                            </Grid>
+                                                                        </DataTemplate>
+                                                                    </BindableLayout.ItemTemplate>
+                                                                </FlexLayout>
                                                             </StackLayout>
                                                         </DataTemplate>
                                                     </xct:Expander.ContentTemplate>

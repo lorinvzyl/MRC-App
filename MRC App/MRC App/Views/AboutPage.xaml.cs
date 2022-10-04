@@ -20,7 +20,7 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        async void ItemSelected_CollectionView(object sender, SelectionChangedEventArgs e)
+        async void CollectionView_SelectedChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!(e.CurrentSelection.FirstOrDefault() is Blog blog))
                 return;

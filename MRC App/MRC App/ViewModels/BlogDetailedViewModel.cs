@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -49,7 +50,10 @@ namespace MRC_App.ViewModels
             return result;
         }
 
-        //AddCommentReply needs 
+        public async Task<bool> AddCommentReply(string commentText, string replyText, string user)
+        {
+            return false;
+        }
 
         string param = "";
         public string Param
@@ -80,6 +84,9 @@ namespace MRC_App.ViewModels
         }
 
         public bool Expanded { get; set; }
+
+        public ICommand ItemSelectedCommand { get; } =
+            CommandFactory.Create<Comment>(comment => Application.Current.MainPage.DisplayAlert("Item Tapped: ", comment?.UserName, "Cancel"));
 
         private async void GetComments(int blogId)
         {
