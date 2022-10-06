@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRC App.iOS", "MRC App\MRC 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRC App", "MRC App\MRC App\MRC App.csproj", "{D94812DC-781E-4A4A-8AF8-CCB80EEF87FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{4E915A60-36A0-400D-91D7-3EE34F63916F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,18 @@ Global
 		{D94812DC-781E-4A4A-8AF8-CCB80EEF87FE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{D94812DC-781E-4A4A-8AF8-CCB80EEF87FE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{D94812DC-781E-4A4A-8AF8-CCB80EEF87FE}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Release|iPhone.Build.0 = Release|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4E915A60-36A0-400D-91D7-3EE34F63916F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
