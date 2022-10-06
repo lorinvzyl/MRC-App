@@ -216,6 +216,25 @@ namespace MRC_App.Services
             return commented;
         }
 
+        public static async Task<bool> AddBlogReply(Comment comment)
+        {
+            var replied = false;
+
+            if (comment == null)
+                return replied;
+
+            var json = JsonConvert.SerializeObject(comment);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync($"api/Comments/{comment.Id}", content);
+
+            if(!response.IsSuccessStatusCode)
+                return replied;
+
+            replied = true;
+            return replied;
+        }
+
         public static async Task<IEnumerable<Location>> GetChurchLocations()
         {
             var json = await client.GetAsync("api/Locations");

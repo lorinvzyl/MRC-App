@@ -28,10 +28,15 @@ namespace MRC_App.Views
         }
         public BlogDetailed()
         {
-            BlogDetailedViewModel blogDetailedViewModel = new BlogDetailedViewModel();
             InitializeComponent();
-            CommentEntry.Completed += (sender, e) => blogDetailedViewModel.AddBlogComment(CommentEntry.Text);
-            
+            _ = InitialiseEntry();
+        }
+
+        public async Task InitialiseEntry()
+        {
+            BlogDetailedViewModel blogDetailedViewModel = new BlogDetailedViewModel();
+            CommentEntry.Completed += async (sender, e) => await blogDetailedViewModel.AddBlogComment(CommentEntry.Text);
+            //ReplyEntry.Completed += async (sender, e) => await blogDetailedViewModel.AddCommentReply(RepEntry.Text); //Does not recognise this to be a valid item for some reason.
         }
     }
 }

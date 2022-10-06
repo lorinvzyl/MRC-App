@@ -29,9 +29,21 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private ObservableCollection<Comment> selectedComment;
+        public ObservableCollection<Comment> SelectedComment
+        {
+            get { return selectedComment; }
+            set
+            {
+                selectedComment = value;
+                OnPropertyChanged(nameof(SelectedComment));
+            }
+        }
+
         public BlogDetailedViewModel()
         {
             Comments = new ObservableRangeCollection<Comment>();
+            SelectedComment = new ObservableCollection<Comment>();
         }
 
         public async Task<bool> AddBlogComment(string commentText)
@@ -50,9 +62,34 @@ namespace MRC_App.ViewModels
             return result;
         }
 
-        public async Task<bool> AddCommentReply(string commentText, string replyText, string user)
+        public async Task AddCommentReply(string replyText)
         {
-            return false;
+            Comment comment = new Comment();
+            foreach (var item in SelectedComment)
+            {
+                comment.UserName = item.UserName;
+                comment.CommentText = item.CommentText;
+                comment.Id = item.Id;
+                comment.BlogId = item.BlogId;
+            }
+
+            Reply reply = new Reply()
+            {
+                UserName = SecureStorage.GetAsync("Name").Result,
+                CommentText = replyText,
+                CommentId = comment.Id
+            };
+
+            ICollection<Reply> replies = new List<Reply>((IEnumerable<Reply>)reply);
+
+            comment.Reply = replies;
+
+            var response = await RestService.AddBlogReply(comment);
+
+            if(response)
+            {
+                //do something
+            }
         }
 
         string param = "";
@@ -85,8 +122,17 @@ namespace MRC_App.ViewModels
 
         public bool Expanded { get; set; }
 
-        public ICommand ItemSelectedCommand { get; } =
-            CommandFactory.Create<Comment>(comment => Application.Current.MainPage.DisplayAlert("Item Tapped: ", comment?.UserName, "Cancel"));
+        public ICommand ItemSelectedCommand => new Command(async (item) => await SetComment(item));
+
+        private async Task SetComment(object item)
+        {
+            if(item is Comment)
+            {
+                Comment comment = (Comment)item;
+                SelectedComment.Clear();
+                SelectedComment.Add(comment);
+            }
+        }
 
         private async void GetComments(int blogId)
         {
