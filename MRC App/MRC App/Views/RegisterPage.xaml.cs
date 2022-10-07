@@ -18,5 +18,10 @@ namespace MRC_App.Views
         {
             InitializeComponent();
         }
+
+        private async void RegisterBtnClicked(object sender, EventArgs e)
+        {
+             await DisplayAlert("Update", "User has been registered successfully.", "Ok");
+        }
     }
 }

@@ -148,7 +148,7 @@
             <Label Grid.Row="10" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
             <!--Register button-->
-            <Button Grid.Row="11" Grid.Column="1" Text="Register" Command="{Binding RegisterCommand}" Style="{StaticResource RegisterButton}"/>
+            <Button Grid.Row="11" Grid.Column="1" Text="Register" Command="{Binding RegisterCommand}" Style="{StaticResource RegisterButton}" Clicked="RegisterBtnClicked"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
