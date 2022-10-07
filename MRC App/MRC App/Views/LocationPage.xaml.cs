@@ -21,14 +21,14 @@ namespace MRC_App.Views
 
         async void PopupNavigation(System.Object sender, System.EventArgs e)
         {
-            var action = await DisplayActionSheet("ActionSheet: Open with", "Cancel", null, "Google Maps", "Waze");
+            var action = await DisplayActionSheet("Open with", "Cancel", null, "Google Maps", "Waze");
             switch (action)
             {
                 case "Google Maps":
-                    Device.OpenUri(new Uri("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge"));
+                   await Launcher.OpenAsync("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge");
                     break;
                 case "Waze":
-                    Device.OpenUri(new Uri("https://waze.com/ul"));
+                   await Launcher.OpenAsync("https://waze.com/ul");
                     break;
 
             }
