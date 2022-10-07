@@ -21,7 +21,18 @@ namespace MRC_App.Views
 
         async void PopupNavigation(System.Object sender, System.EventArgs e)
         {
-            await Launcher.OpenAsync("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge");
+            var action = await DisplayActionSheet("ActionSheet: Open with", "Cancel", null, "Google Maps", "Waze");
+            switch (action)
+            {
+                case "Google Maps":
+                    Device.OpenUri(new Uri("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge"));
+                    break;
+                case "Waze":
+                    Device.OpenUri(new Uri("https://waze.com/ul"));
+                    break;
+
+            }
+            //await Launcher.OpenAsync("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge");
         }
 
         async void CollectionView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
