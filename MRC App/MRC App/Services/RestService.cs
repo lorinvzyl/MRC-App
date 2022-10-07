@@ -12,7 +12,8 @@ namespace MRC_App.Services
     public class RestService
     {
         static HttpClient client;
-        static string BaseUrl = "http://10.0.2.2:32223/";
+        //static string BaseUrl = "http://10.0.2.2:32223/";
+        static string BaseUrl = "https://reformedchurchmidrandapi.azurewebsites.net";
 
         static RestService()
         {
