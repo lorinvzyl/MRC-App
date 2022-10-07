@@ -34,14 +34,20 @@ namespace MRC_App.Views
             }
         }
 
-        private void DeleteAccountLblGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void DeleteAccountLblGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            
+            bool answer = await DisplayAlert("Warning!", "Are you sure you want to delete your account?", "Yes", "No");
         }
+        /*
+       private async void Button_OnClicked(object sender, EventArgs e)
+       {
+           await Navigation.PushAsync(new AccessibilityTestPage());
+       }
+       */
 
-        private void ResetPasswordLblGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void ResetPasswordLblGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-
+            bool answer = await DisplayAlert("Warning!", "Are you sure you want to reset your account pasword?", "Yes", "No");
         }
 
         private async void EditName_Tapped(object sender, EventArgs e)
@@ -70,12 +76,7 @@ namespace MRC_App.Views
 
         }
 
-        /*
-        private async void Button_OnClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AccessibilityTestPage());
-        }
-        */
+       
 
 
     }
