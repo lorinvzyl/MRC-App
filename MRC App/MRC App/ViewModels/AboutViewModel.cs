@@ -46,13 +46,13 @@ namespace MRC_App.ViewModels
             GetVideo();
         }
 
-        private async Task GetBlogs()
+        public async Task GetBlogs()
         {
             var blogs = await RestService.GetBlogsCount(3);
             Blog.AddRange(blogs);
         }
 
-        private async Task GetVideo()
+        public async Task GetVideo()
         {
             var video = await RestService.GetLastVideo();
 
