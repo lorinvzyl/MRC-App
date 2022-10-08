@@ -7,7 +7,7 @@ using Xamarin.CommunityToolkit.ObjectModel;
 using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
 
-namespace MRC_App.Tests
+namespace MRC_App.UnitTests
 {
     [TestClass]
     public class Unit_Tests
@@ -339,6 +339,5 @@ namespace MRC_App.Tests
         }
 
         //Destruct Testing
-        
     }
 }
