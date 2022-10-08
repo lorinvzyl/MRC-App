@@ -67,7 +67,7 @@ namespace MRC_App.ViewModels
             Name = SecureStorage.GetAsync("Name").Result;
             Surname = SecureStorage.GetAsync("Surname").Result;
             Email = SecureStorage.GetAsync("Email").Result;
-            DateOfBirth = SecureStorage.GetAsync("Birth").Result[..10];
+            DateOfBirth = SecureStorage.GetAsync("Birth").Result.Substring(0,10);
         }
 
         private string name;
