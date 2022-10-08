@@ -1,19 +1,20 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MRC_App.ViewModels;
 using System;
+using System.Collections.Generic;
 using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace MRC_App.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class Unit_Tests
     {
         [TestMethod]
         public void AddBlogTest()
         {
             //Arrange
             var avm = new AboutViewModel();
-            var blog = new ObservableRangeCollection<MRC_App.Models.Blog>();
+            var blog = new List<MRC_App.Models.Blog>();
 
             //Act
             blog.Add(new MRC_App.Models.Blog
@@ -26,7 +27,9 @@ namespace MRC_App.Tests
                 Id = 1
             });
 
-            avm.Blog = blog;
+            IEnumerable<MRC_App.Models.Blog> blogs = blog;
+
+            avm.Blog.AddRange(blogs);
 
             //Assert
             Assert.IsNotNull(avm.Blog);
