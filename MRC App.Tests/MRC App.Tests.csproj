@@ -118,6 +118,9 @@
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.5.0.0.2515\lib\netstandard2.0\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Plugin.Calendar, Version=2.0.9699.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Plugin.Calendar.2.0.9699\lib\netstandard2.0\Xamarin.Plugin.Calendar.dll</HintPath>
+    </Reference>
     <Reference Include="YoutubeExplode, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\YoutubeExplode.6.2.2\lib\net461\YoutubeExplode.dll</HintPath>
       <Private>True</Private>

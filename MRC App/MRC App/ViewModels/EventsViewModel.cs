@@ -34,6 +34,11 @@ namespace MRC_App.ViewModels
             GenerateEvents();
         }
 
+        public EventsViewModel(bool isTest)
+        {
+            Event = new EventCollection();
+        }
+
         public EventCollection Event { get; set; }
 
         async Task GenerateEvents()
@@ -46,7 +51,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private IEnumerable<Event> GenerateEvent(Event item)
+        public IEnumerable<Event> GenerateEvent(Event item)
         {
             return Enumerable.Range(0, 1).Select(e => new Event
             {

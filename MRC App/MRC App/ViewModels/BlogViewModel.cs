@@ -25,6 +25,11 @@ namespace MRC_App.ViewModels
             AddBlogs();
         }
 
+        public BlogViewModel(bool isTest)
+        {
+            Blogs = new ObservableRangeCollection<Blog>();
+        }
+
         async Task AddBlogs()
         {
             var result = await RestService.GetBlogs();

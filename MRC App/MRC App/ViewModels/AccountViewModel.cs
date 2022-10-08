@@ -29,10 +29,42 @@ namespace MRC_App.ViewModels
             if (EnableCommands)
             {
                 await UserDialogs.Instance.AlertAsync($"New value: {newValue}", "Switch toggled (Command)").ConfigureAwait(false);
+                UpdateNewsletter(newValue);
             }
         }
 
-        
+        public async Task UpdateNewsletter(bool isNewsletter)
+        {
+            var id = SecureStorage.GetAsync("Id").Result;
+            var name = SecureStorage.GetAsync("Name").Result;
+            var surname = SecureStorage.GetAsync("Surname").Result;
+            var email = SecureStorage.GetAsync("Email").Result;
+            var birth = SecureStorage.GetAsync("Birth").Result;
+            var newsletter = isNewsletter;
+            var profile = SecureStorage.GetAsync("ProfileImage").Result;
+
+            User user = new User()
+            {
+                Id = Int32.Parse(id),
+                Name = name,
+                Surname = surname,
+                Email = email,
+                DateOfBirth = DateTime.Parse(birth),
+                isNewsletter = newsletter,
+                ProfilePicURL = profile,
+            };
+
+            var response = await RestService.UpdateUser(user.Id, user);
+            
+            if(response)
+            {
+                //success
+            }
+            else
+            {
+                //error
+            }
+        }
 
         public async Task<bool> DeleteUser(string email)
         {

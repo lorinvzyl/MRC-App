@@ -28,6 +28,12 @@ namespace MRC_App.ViewModels
             AddData();
         }
 
+        public LocationViewModel(bool isTest)
+        {
+            Locations = new ObservableRangeCollection<Location>();
+            RefreshCommand = new AsyncCommand(Refresh);
+        }
+
         async Task Refresh()
         {
             IsBusy = true;
