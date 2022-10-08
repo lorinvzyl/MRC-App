@@ -41,9 +41,15 @@ namespace MRC_App.ViewModels
         public AboutViewModel()
         {
             IsVisible = false;
-            blog = new ObservableRangeCollection<Blog>();
+            Blog = new ObservableRangeCollection<Blog>();
             GetBlogs();
             GetVideo();
+        }
+
+        public AboutViewModel(bool isTest)
+        {
+            isVisible = false;
+            Blog = new ObservableRangeCollection<Blog>();
         }
 
         public async Task GetBlogs()
