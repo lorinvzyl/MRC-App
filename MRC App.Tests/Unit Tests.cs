@@ -45,7 +45,6 @@ namespace MRC_App.Tests
             BlogViewModel bvm = new BlogViewModel(true); //passing in true in order to not call default constructor, which calls the database.
             var blog = new List<Models.Blog>();
 
-            //Act
             blog.Add(new Models.Blog
             {
                 Author = "Pastor",
@@ -58,7 +57,7 @@ namespace MRC_App.Tests
 
             IEnumerable<MRC_App.Models.Blog> blogs = blog;
 
-            
+            //Act
             bvm.Blogs.AddRange(blogs);
 
             //Assert
@@ -71,7 +70,6 @@ namespace MRC_App.Tests
             //Arrange
             AboutViewModel avm = new AboutViewModel(true);
 
-            //Act
             Models.Video vid = new Models.Video
             {
                 VideoURL = "Xu5rKjAqY6U",
@@ -89,6 +87,7 @@ namespace MRC_App.Tests
                 vid.VideoURL = source;
             }
 
+            //Act
             avm.Video = vid.VideoURL;
 
             //Assert
@@ -103,7 +102,6 @@ namespace MRC_App.Tests
             List<Models.Event> events = new List<Models.Event>();
             IEnumerable<Models.Event> _event;
 
-            //Act
             events.Add(new Models.Event()
             {
                 EventDate = DateTime.Now,
@@ -118,6 +116,7 @@ namespace MRC_App.Tests
 
             _event = events;
 
+            //Act
             foreach(var item in _event)
             {
                 evm.Event.Add(item.EventDate, new List<Models.Event>(evm.GenerateEvent(item)));
@@ -133,7 +132,6 @@ namespace MRC_App.Tests
             //Arrange
             EventsDetailedViewModel edvm = new EventsDetailedViewModel();
 
-            //Act
             Models.Event _event = new Models.Event()
             {
                 EventDate = DateTime.Now,
@@ -146,6 +144,7 @@ namespace MRC_App.Tests
                 Venue = "Location"
             };
 
+            //Act
             edvm.SelectedEvent.Add(_event);
 
             //Assert
@@ -161,7 +160,6 @@ namespace MRC_App.Tests
             List<Models.Comment> comment = new List<Models.Comment>();
             List<Models.Reply> reply = new List<Models.Reply>();
 
-            //Act
             reply.Add(new Models.Reply()
             {
                 CommentText = "CommentText2",
@@ -181,6 +179,7 @@ namespace MRC_App.Tests
 
             comments = comment;
 
+            //Act
             bdvm.Comments.AddRange(comments);
 
             //Assert
@@ -194,7 +193,6 @@ namespace MRC_App.Tests
             BlogDetailedViewModel bdvm = new BlogDetailedViewModel();
             List<Models.Reply> reply = new List<Models.Reply>();
 
-            //Act
             reply.Add(new Models.Reply()
             {
                 CommentText = "CommentText2",
@@ -214,6 +212,7 @@ namespace MRC_App.Tests
                 UserName = "Ree1"
             };
 
+            //Act
             bdvm.SelectedComment.Add(comment);
 
             //Assert
@@ -228,7 +227,6 @@ namespace MRC_App.Tests
             IEnumerable<Models.Location> locations;
             List<Models.Location> location = new List<Models.Location>();
 
-            //Act
             location.Add(new Models.Location()
             {
                 MapsURL = "string",
@@ -239,6 +237,7 @@ namespace MRC_App.Tests
 
             locations = location;
 
+            //Act
             lvm.Locations.AddRange(locations);
 
             //Assert
@@ -262,7 +261,6 @@ namespace MRC_App.Tests
             //Arrange
             EventsViewModel evm = new EventsViewModel(true);
 
-            //Act
             Models.Event _event = new Models.Event()
             {
                 EventDate = DateTime.Now,
@@ -275,7 +273,7 @@ namespace MRC_App.Tests
                 Venue = "Location"
             };
 
-            //Assert
+            //Act & Assert
             Assert.IsTrue(evm.EventSelectedCommand.CanExecute(_event));
         }
 
@@ -308,14 +306,13 @@ namespace MRC_App.Tests
             //Arrange
             LoginViewModel lvm = new LoginViewModel();
 
-            //Act
             Models.User user = new Models.User
             {
                 Email = "randomdude@gmail.com",
                 Password = "password"
             };
 
-            //Assert
+            //Act & Assert
             Assert.IsTrue(lvm.LoginCommand.CanExecute(user));
         }
 
@@ -335,14 +332,13 @@ namespace MRC_App.Tests
             //Arrange
             RegisterViewModel rvm = new RegisterViewModel();
 
-            //Act
             bool registration = true;
 
-            //Assert
+            //Act & Assert
             Assert.IsTrue(rvm.RegisterCommand.CanExecute(registration));
         }
 
         //Destruct Testing
-
+        
     }
 }
