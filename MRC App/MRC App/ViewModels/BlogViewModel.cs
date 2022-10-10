@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MRC_App.Models;
 using MRC_App.Services;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace MRC_App.ViewModels
 {
@@ -18,9 +20,12 @@ namespace MRC_App.ViewModels
             set { blogs = value; }
         }
 
+        public ICommand RefreshCommand;
+
         public BlogViewModel()
         {
             Blogs = new ObservableRangeCollection<Blog>();
+            RefreshCommand = new Command(Refresh);
 
             AddBlogs();
         }
@@ -36,7 +41,7 @@ namespace MRC_App.ViewModels
             Blogs.AddRange(result);
         }
 
-        async Task Refresh()
+        async void Refresh(object obj)
         {
             IsBusy = true;
 

@@ -102,10 +102,10 @@ namespace MRC_App.ViewModels
             DateOfBirth = SecureStorage.GetAsync("Birth").Result.Substring(0,10);
         }
 
-        private string name;
-        private string surname;
-        private string dateOfBirth;
-        private string email;
+        private static string name;
+        private static string surname;
+        private static string dateOfBirth;
+        private static string email;
 
         public string Name
         {

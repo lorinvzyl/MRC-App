@@ -29,8 +29,8 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private ObservableCollection<Comment> selectedComment;
-        public ObservableCollection<Comment> SelectedComment
+        private Comment selectedComment;
+        public Comment SelectedComment
         {
             get { return selectedComment; }
             set
@@ -40,43 +40,41 @@ namespace MRC_App.ViewModels
             }
         }
 
+        public ICommand CommentCompleted;
+        public ICommand ReplyCompleted;
+
         public BlogDetailedViewModel()
         {
             Comments = new ObservableRangeCollection<Comment>();
-            SelectedComment = new ObservableCollection<Comment>();
+            CommentCompleted = new Command(AddBlogComment);
         }
 
-        public async Task<bool> AddBlogComment(string commentText)
+        public async void AddBlogComment(object obj)
         {
-            if (commentText == null)
-                return false;
-
             Comment comment = new Comment()
             {
                 BlogId = Id,
-                CommentText = commentText,
+                CommentText = CommentText,
                 UserName = SecureStorage.GetAsync("Name").Result
             };
 
-            var result = await RestService.AddBlogComment(comment);
-            return result;
+            await RestService.AddBlogComment(comment);
         }
 
-        public async Task AddCommentReply(string replyText)
+        public async void AddCommentReply(object obj)
         {
-            Comment comment = new Comment();
-            foreach (var item in SelectedComment)
+            Comment comment = new Comment()
             {
-                comment.UserName = item.UserName;
-                comment.CommentText = item.CommentText;
-                comment.Id = item.Id;
-                comment.BlogId = item.BlogId;
-            }
+                UserName = selectedComment.UserName,
+                CommentText = selectedComment.CommentText,
+                Id = selectedComment.Id,
+                BlogId = selectedComment.BlogId
+            };
 
             Reply reply = new Reply()
             {
                 UserName = SecureStorage.GetAsync("Name").Result,
-                CommentText = replyText,
+                CommentText = ReplyText,
                 CommentId = comment.Id
             };
 
@@ -128,9 +126,7 @@ namespace MRC_App.ViewModels
         {
             if(item is Comment)
             {
-                Comment comment = (Comment)item;
-                SelectedComment.Clear();
-                SelectedComment.Add(comment);
+                SelectedComment = (Comment)item;
             }
         }
 
@@ -138,6 +134,29 @@ namespace MRC_App.ViewModels
         {
             Comments.AddRange(await RestService.GetBlogComments(blogId));
         }
+
+        private string replyText;
+        public string ReplyText
+        {
+            get => replyText;
+            set
+            {
+                replyText = value;
+                OnPropertyChanged(nameof(ReplyText));
+            }
+        }
+
+        private string commentText;
+        public string CommentText
+        {
+            get { return commentText; }
+            set
+            {
+                commentText = value;
+                OnPropertyChanged(nameof(CommentText));
+            }
+        }
+
 
         //Comments
         private int id;

@@ -213,10 +213,10 @@ namespace MRC_App.UnitTests
             };
 
             //Act
-            bdvm.SelectedComment.Add(comment);
+            bdvm.SelectedComment = comment;
 
             //Assert
-            Assert.IsTrue(bdvm.SelectedComment.Count == 1);
+            Assert.IsTrue(bdvm.SelectedComment != null);
         }
 
         [TestMethod]
@@ -283,11 +283,14 @@ namespace MRC_App.UnitTests
             //Arrange
             EventsViewModel evm = new EventsViewModel(true);
 
+            var year = DateTime.Today.Year;
+            var month = DateTime.Today.Month;
+
             //Act
             evm.TodayCommand.Execute(evm);
 
             //Assert
-            Assert.IsTrue(evm.Year != null && evm.Month != null);
+            Assert.IsTrue(evm.Year == year && evm.Month == month);
         }
 
         [TestMethod]

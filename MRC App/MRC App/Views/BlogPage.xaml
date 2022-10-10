@@ -83,75 +83,77 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <CollectionView
+        <RefreshView Command="{Binding }">
+            <CollectionView
              SelectionMode="Single"
              SelectionChanged="CollectionView_SelectedChanged"
             Margin="0,25,0,0" ItemsSource="{Binding Blogs}" 
             HeightRequest="300" >
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Margin="0,0,0,25">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualState Name="Selected">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="Transparent"/>
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1" />
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="10"/>
-                            </Grid.ColumnDefinitions>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="0,0,0,25">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="Transparent"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1" />
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                </Grid.ColumnDefinitions>
 
-                            <Frame Style="{StaticResource BlogCardStyle}" Grid.Column="1">
-                                <Grid>
-                                    <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
-                                        <Image Source="{Binding ImagePath}" Style="{StaticResource BlogImageStyle}"/>
-                                    </StackLayout>
-                                    <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
+                                <Frame Style="{StaticResource BlogCardStyle}" Grid.Column="1">
+                                    <Grid>
+                                        <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
+                                            <Image Source="{Binding ImagePath}" Style="{StaticResource BlogImageStyle}"/>
+                                        </StackLayout>
+                                        <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
 
-                                    <StackLayout VerticalOptions="EndAndExpand">
+                                        <StackLayout VerticalOptions="EndAndExpand">
 
-                                        <Grid HeightRequest="150" RowSpacing="0" Padding="0">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="60"/>
-                                                <RowDefinition Height="50"/>
-                                                <RowDefinition Height="30"/>
-                                            </Grid.RowDefinitions>
+                                            <Grid HeightRequest="150" RowSpacing="0" Padding="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="60"/>
+                                                    <RowDefinition Height="50"/>
+                                                    <RowDefinition Height="30"/>
+                                                </Grid.RowDefinitions>
 
-                                            <Label Grid.Row="0" VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
-                                            <Label Grid.Row="1" VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}" LineBreakMode="TailTruncation" MaxLines="2"/>
+                                                <Label Grid.Row="0" VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
+                                                <Label Grid.Row="1" VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}" LineBreakMode="TailTruncation" MaxLines="2"/>
 
-                                            <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" RowSpacing="0" Padding="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" RowSpacing="0" Padding="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
 
-                                                <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
-                                                <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
-                                                <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
-                                                <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
+                                                    <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                                    <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
+                                                    <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
+                                                    <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
 
-                                    </StackLayout>
+                                        </StackLayout>
 
-                                </Grid>
-                            </Frame>
-                        </Grid>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

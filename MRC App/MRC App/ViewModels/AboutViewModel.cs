@@ -37,11 +37,14 @@ namespace MRC_App.ViewModels
             set { isVisible = value; }
         }
 
+        public ICommand RefreshCommand;
 
         public AboutViewModel()
         {
             IsVisible = false;
             Blog = new ObservableRangeCollection<Blog>();
+            RefreshCommand = new Command(Refresh);
+
             GetBlogs();
             GetVideo();
         }
@@ -50,6 +53,7 @@ namespace MRC_App.ViewModels
         {
             isVisible = false;
             Blog = new ObservableRangeCollection<Blog>();
+            RefreshCommand = new Command(Refresh);
         }
 
         public async Task GetBlogs()
@@ -93,12 +97,13 @@ namespace MRC_App.ViewModels
             }
         }
 
-        public async Task Refresh()
+        public async void Refresh(object obj)
         {
             IsBusy = true;
 
             Blog.Clear();
-            Video = null;
+            Video = String.Empty;
+            IsVisible = false;
 
             await GetVideo();
             await GetBlogs();

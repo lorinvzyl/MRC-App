@@ -149,7 +149,7 @@ namespace MRC_App.Services
         {
             bool updated = false;
 
-            if (user == null || id == null)
+            if (user == null || id != user.Id)
                 return updated;
 
             var json = JsonConvert.SerializeObject(user);

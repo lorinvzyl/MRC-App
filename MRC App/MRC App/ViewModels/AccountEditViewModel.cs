@@ -63,8 +63,8 @@ namespace MRC_App.ViewModels
             var appshell = Shell.Current as AppShell;
             await Task.Run(() => appshell.SetUser());
 
-            //var account = new AccountViewModel();
-            //account.UpdateData(); //does not work currently?
+            var account = new AccountViewModel();
+            account.UpdateData();
             
             await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
             //return to previous page of the stack

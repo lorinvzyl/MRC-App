@@ -104,41 +104,14 @@
                                         </Editor.Behaviors>
                                     </Editor>
                                 </Grid>
-
                             </Frame>
 
                             <!--Change this into collectionview with 3 columns?-->
-                            <Frame Grid.Row="3" Grid.Column="0" Style="{StaticResource DonateContainer}">
+                            <Frame Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource DonateContainer}">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer/>
                                 </Frame.GestureRecognizers>
-                                <Image>
-                                    <Image.Source>
-                                        <FontImageSource Glyph="&#xf1f4;" FontFamily="{StaticResource FontAwesomeBrands}" Color="{StaticResource DarkShade}"/>
-                                    </Image.Source>
-                                </Image>
-                            </Frame>
-
-                            <Frame Grid.Row="3" Grid.Column="1" Style="{StaticResource DonateContainer}">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer/>
-                                </Frame.GestureRecognizers>
-                                <Image>
-                                    <Image.Source>
-                                        <FontImageSource Glyph="&#xe079;" FontFamily="{StaticResource FontAwesomeBrands}" Color="{StaticResource DarkShade}"/>
-                                    </Image.Source>
-                                </Image>
-                            </Frame>
-
-                            <Frame Grid.Row="3" Grid.Column="2" Style="{StaticResource DonateContainer}">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer/>
-                                </Frame.GestureRecognizers>
-                                <Image>
-                                    <Image.Source>
-                                        <FontImageSource Glyph="&#xf09d;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource DarkShade}"/>
-                                    </Image.Source>
-                                </Image>
+                                <Label Text="Donate" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
                             </Frame>
                         </Grid>
                     </Grid>
