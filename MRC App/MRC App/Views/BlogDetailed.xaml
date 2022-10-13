@@ -117,7 +117,7 @@
                         <Grid ColumnDefinitions="20,*,20" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
                             <Label Grid.Column="1" Grid.Row="1" Text="Comments" FontSize="20" TextColor="{StaticResource LightShade}" FontAttributes="Bold" HorizontalOptions="Center"/>
 
-                            <Entry x:Name="Comment" Text="{Binding CommentText, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                            <Entry AutomationId="BlogComment" x:Name="Comment" Text="{Binding CommentText, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
                                 <Entry.Behaviors>
                                     <xct:EventToCommandBehavior EventName="Completed" Command="{Binding CommentCompleted}"/>
                                 </Entry.Behaviors>
@@ -141,7 +141,7 @@
                                                     <xct:Expander.ContentTemplate>
                                                         <DataTemplate>
                                                             <StackLayout>
-                                                                <Entry Placeholder="Add a reply" Text="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyText}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                                                                <Entry AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyText}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
                                                                     <Entry.Behaviors>
                                                                         <xct:EventToCommandBehavior EventName="Completed" Command="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyCompleted}"/>
                                                                     </Entry.Behaviors>

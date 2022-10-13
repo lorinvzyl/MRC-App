@@ -1,4 +1,4 @@
-﻿using MRC_App.Controls;
+﻿ using MRC_App.Controls;
 using MRC_App.Models;
 using MRC_App.Services;
 using MRC_App.Views;
@@ -156,7 +156,6 @@ namespace MRC_App.ViewModels
                 OnPropertyChanged(nameof(CommentText));
             }
         }
-
 
         //Comments
         private int id;

@@ -106,11 +106,11 @@
 
             <!--Entry for user details-->
             <!-- Need an entry for their email and password currently, however more entries are likely required.-->
-            <Entry x:Name="FName" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
-            <Entry x:Name="LName" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
-            <Entry x:Name="Birth" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
+            <Entry AutomationId="RegisterFName" x:Name="FName" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
+            <Entry AutomationId="RegisterLName" x:Name="LName" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
+            <Entry AutomationId="RegisterBirth" x:Name="Birth" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
             <Label Grid.Row="7" Text="YYYY/MM/DD" Grid.Column="1" Margin="4,-5,0,0"  Style="{StaticResource AccountDetailsLabel}"/>
-            <Entry x:Name="EmailEntry" Grid.Row="8" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
+            <Entry AutomationId="RegisterEmail" x:Name="EmailEntry" Grid.Row="8" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
                 <Entry.Behaviors>
                     <xct:EmailValidationBehavior
                         MinimumLength="1"
@@ -120,7 +120,7 @@
                         IsValid="{Binding EmailValid}"/>
                 </Entry.Behaviors>
             </Entry>
-            <Entry x:Name="PasswordEntry" Grid.Row="9" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
+            <Entry AutomationId="RegisterPassword" x:Name="PasswordEntry" Grid.Row="9" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
                 <Entry.Behaviors>
                     <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}">
                         <xct:TextValidationBehavior MinimumLength="8"/>
@@ -147,7 +147,7 @@
             <Label Grid.Row="10" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
             <!--Register button-->
-            <Button Grid.Row="11" Grid.Column="1" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>
+            <Button AutomationId="RegisterButton" Grid.Row="11" Grid.Column="1" Text="Register" Clicked="Register_Clicked" Style="{StaticResource RegisterButton}"/>
 
         </Grid>
     </ContentPage.Content>
