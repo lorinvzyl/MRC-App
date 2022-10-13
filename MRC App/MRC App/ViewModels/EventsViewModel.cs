@@ -24,6 +24,7 @@ namespace MRC_App.ViewModels
             Year = DateTime.Today.Year;
             Month = DateTime.Today.Month;
         });
+
         public DateTime Today = DateTime.Today;
         public EventsViewModel()
         {

@@ -292,55 +292,5 @@ namespace MRC_App.UnitTests
             //Assert
             Assert.IsTrue(evm.Year == year && evm.Month == month);
         }
-
-        [TestMethod]
-        public void canLocationRefreshCommand()
-        {
-            //Arrange
-            LocationViewModel lvm = new LocationViewModel();
-
-            //Act & Assert
-            Assert.IsTrue(lvm.RefreshCommand.CanExecute(lvm));
-        }
-
-        [TestMethod]
-        public void CanLogin()
-        {
-            //Arrange
-            LoginViewModel lvm = new LoginViewModel();
-
-            Models.User user = new Models.User
-            {
-                Email = "randomdude@gmail.com",
-                Password = "password"
-            };
-
-            //Act & Assert
-            Assert.IsTrue(lvm.LoginCommand.CanExecute(user));
-        }
-
-        [TestMethod]
-        public void CanLoginRegister()
-        {
-            //Arrange
-            LoginViewModel lvm = new LoginViewModel();
-
-            //Act & Assert
-            Assert.IsTrue(lvm.RegisterCommand.CanExecute(lvm));
-        }
-
-        [TestMethod]
-        public void CanRegister()
-        {
-            //Arrange
-            RegisterViewModel rvm = new RegisterViewModel();
-
-            bool registration = true;
-
-            //Act & Assert
-            Assert.IsTrue(rvm.RegisterCommand.CanExecute(registration));
-        }
-
-        //Destruct Testing
     }
 }

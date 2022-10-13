@@ -21,13 +21,20 @@ namespace MRC_App.ViewModels
         public ObservableRangeCollection<Blog> Blog
         {
             get { return blog; }
-            set { blog = value; }
+            set 
+            { 
+                blog = value;
+            }
         }
 
         public string Video 
         {
             get { return video; }
-            set { video = value; }
+            set 
+            { 
+                if(!String.IsNullOrEmpty(value))
+                    video = value; 
+            }
         }
 
         private bool isVisible;
