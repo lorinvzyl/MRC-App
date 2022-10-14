@@ -82,7 +82,6 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="10"/>
                                     <RowDefinition Height="30"/>
-                                    <RowDefinition Height="250"/>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="270"/>
                                 </Grid.RowDefinitions>
@@ -90,7 +89,7 @@
                                 
                                 <!--Placeholder for images, however this will need capabilities of a slideshow-->
 
-                                <Label Margin="0,15,0,0" Grid.Row="3" Grid.Column="1" FontSize="Header" Text="{Binding EventDescription}"/>
+                                <Label Margin="0,15,0,0" Grid.Row="2" Grid.Column="1" FontSize="Header" Text="{Binding EventDescription}"/>
                                 
                                 <Frame Style="{StaticResource RSVPFrame}" Grid.Row="4" Grid.Column="1" VerticalOptions="End">
                                     <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->

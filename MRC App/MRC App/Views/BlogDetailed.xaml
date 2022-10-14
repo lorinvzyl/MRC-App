@@ -107,68 +107,86 @@
 
                         <StackLayout>
                             <Label VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
-                            <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}"/>
+                            <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}" MaxLines="{Binding TextLines}"/>
+                            <Label VerticalOptions="End" HorizontalOptions="CenterAndExpand" Text="{Binding ContentLength}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer/>
+                                </Label.GestureRecognizers>
+                            </Label>
                         </StackLayout>
+                        
+                    </StackLayout>
+                    <StackLayout Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="EndAndExpand" x:Name="FrameStackLayout">
+                        <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Margin="0,0,0,-20" Padding="0" HeightRequest="250">
+                            <Grid ColumnDefinitions="15,*,15" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
+                                <Label Grid.Column="1" Grid.Row="1" Text="Comments" FontSize="20" TextColor="{StaticResource LightShade}" FontAttributes="Bold" HorizontalOptions="Center"/>
 
+                                <Entry AutomationId="BlogComment" x:Name="Comment" Text="{Binding CommentText, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                                    <Entry.Behaviors>
+                                        <xct:EventToCommandBehavior EventName="Completed" Command="{Binding CommentCompleted}"/>
+                                    </Entry.Behaviors>
+                                </Entry>
+                                <Frame Grid.Column="1" Grid.Row="4" CornerRadius="0" Padding="0">
+                                    <CollectionView ItemsSource="{Binding Comments}" Margin="0,15,0,15" SelectionMode="Single" SelectionChangedCommand="{Binding ItemSelectedCommand}" SelectedItem="{Binding SelectedComment, Mode=TwoWay}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout>
+                                                    <xct:Expander IsExpanded="{Binding Expanded}">
+                                                        <xct:Expander.Header>
+                                                            <Grid ColumnDefinitions="15,*,15" RowDefinitions="25,Auto,11">
+                                                                <Label x:Name="user" Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                                                <Label x:Name="text" Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                                                <BoxView Grid.Row="2" Grid.Column="0" Margin="0,5,0,5" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
+                                                            </Grid>
+                                                        </xct:Expander.Header>
+                                                        <xct:Expander.ContentTemplate>
+                                                            <DataTemplate>
+                                                                <StackLayout>
+                                                                    <Entry AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyText}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                                                                        <Entry.Behaviors>
+                                                                            <xct:EventToCommandBehavior EventName="Completed" Command="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyCompleted}"/>
+                                                                        </Entry.Behaviors>
+                                                                    </Entry>
+                                                                    <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
+                                                                    <FlexLayout x:Name="ReplyList" Direction="Column" AutomationId="ReplyList" BindableLayout.ItemsSource="{Binding Reply}">
+                                                                        <BindableLayout.ItemTemplate>
+                                                                            <DataTemplate>
+                                                                                <Grid ColumnDefinitions="30,*,15" RowDefinitions="25, Auto, 11">
+                                                                                    <VisualStateManager.VisualStateGroups>
+                                                                                        <VisualStateGroup Name="CommonStates">
+                                                                                            <VisualState Name="Selected">
+                                                                                                <VisualState.Setters>
+                                                                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                                                </VisualState.Setters>
+                                                                                            </VisualState>
+                                                                                        </VisualStateGroup>
+                                                                                    </VisualStateManager.VisualStateGroups>
+                                                                                    <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                                                                                    <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
+                                                                                    <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
+                                                                                </Grid>
+                                                                            </DataTemplate>
+                                                                        </BindableLayout.ItemTemplate>
+                                                                    </FlexLayout>
+                                                                </StackLayout>
+                                                            </DataTemplate>
+                                                        </xct:Expander.ContentTemplate>
+                                                    </xct:Expander>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                        <CollectionView.EmptyView>
+                                            <StackLayout>
+                                                <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="No comments found" FontSize="Title" TextColor="{StaticResource DarkShade}" Opacity="0.8"/>
+                                            </StackLayout>
+                                        </CollectionView.EmptyView>
+                                    </CollectionView>
+                                </Frame>
+                            </Grid>
+                        </Frame>
                     </StackLayout>
                 </Grid>
-                <StackLayout VerticalOptions="EndAndExpand" x:Name="FrameStackLayout">
-                    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Margin="0,0,0,-20" Padding="0" HeightRequest="250">
-                        <Grid ColumnDefinitions="20,*,20" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
-                            <Label Grid.Column="1" Grid.Row="1" Text="Comments" FontSize="20" TextColor="{StaticResource LightShade}" FontAttributes="Bold" HorizontalOptions="Center"/>
-
-                            <Entry AutomationId="BlogComment" x:Name="Comment" Text="{Binding CommentText, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
-                                <Entry.Behaviors>
-                                    <xct:EventToCommandBehavior EventName="Completed" Command="{Binding CommentCompleted}"/>
-                                </Entry.Behaviors>
-                            </Entry>
-                            <Frame Grid.Column="1" Grid.Row="4" CornerRadius="0" Padding="0">
-                                <CollectionView ItemsSource="{Binding Comments}" Margin="0,15,0,15" SelectionMode="Single">
-                                    <CollectionView.Behaviors>
-                                        <xct:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding ItemSelectedCommand}" EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"/>
-                                    </CollectionView.Behaviors>
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout>
-                                                <xct:Expander IsExpanded="{Binding Source={x:Reference detail}, Path=BindingContext.Expanded}">
-                                                    <xct:Expander.Header>
-                                                        <Grid ColumnDefinitions="15,*,15" RowDefinitions="25,Auto,11">
-                                                            <Label x:Name="user" Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                                                            <Label x:Name="text" Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
-                                                            <BoxView Grid.Row="2" Grid.Column="0" Margin="0,5,0,5" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
-                                                        </Grid>
-                                                    </xct:Expander.Header>
-                                                    <xct:Expander.ContentTemplate>
-                                                        <DataTemplate>
-                                                            <StackLayout>
-                                                                <Entry AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyText}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
-                                                                    <Entry.Behaviors>
-                                                                        <xct:EventToCommandBehavior EventName="Completed" Command="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyCompleted}"/>
-                                                                    </Entry.Behaviors>
-                                                                </Entry>
-                                                                <FlexLayout x:Name="ReplyList" Direction="Column" AutomationId="ReplyList" BindableLayout.ItemsSource="{Binding Reply}">
-                                                                    <BindableLayout.ItemTemplate>
-                                                                        <DataTemplate>
-                                                                            <Grid ColumnDefinitions="30,*,15" RowDefinitions="25, Auto, 11">
-                                                                                <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                                                                                <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
-                                                                                <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
-                                                                            </Grid>
-                                                                        </DataTemplate>
-                                                                    </BindableLayout.ItemTemplate>
-                                                                </FlexLayout>
-                                                            </StackLayout>
-                                                        </DataTemplate>
-                                                    </xct:Expander.ContentTemplate>
-                                                </xct:Expander>
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                            </Frame>
-                        </Grid>
-                    </Frame>
-                </StackLayout>
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

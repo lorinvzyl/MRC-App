@@ -107,7 +107,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <RefreshView>
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
                 <StackLayout Padding="0,0,0,10">
 
                     <CollectionView Margin="0,25,20,0" ItemsSource="{Binding Blog}" HeightRequest="300" SelectionChanged="CollectionView_SelectedChanged" SelectionMode="Single">
@@ -133,42 +133,31 @@
                                             </StackLayout>
                                             <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
                                             <StackLayout VerticalOptions="EndAndExpand">
-                                                <Grid HeightRequest="135" RowSpacing="0">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="7*"/>
-                                                        <RowDefinition Height="3*"/>
-                                                    </Grid.RowDefinitions>
-                                                    <ScrollView>
-                                                        <Label Grid.Row="0" Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
-                                                    </ScrollView>
-                                                    <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                            <ColumnDefinition Width="Auto"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
-                                                        <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
-                                                        <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
-                                                        <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
-                                                    </Grid>
-                                                </Grid>
+                                                <ScrollView HeightRequest="135">
+                                                    <Label Grid.Row="0" Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
+                                                </ScrollView>
                                             </StackLayout>
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <Frame Style="{StaticResource BlogCardStyle}">
+                                    <StackLayout Style="{StaticResource ImageStackLayoutStyle}" Opacity="0.8">
+                                        <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="No blogs found" FontSize="Title" TextColor="{StaticResource LightShade}" Opacity="0.8"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </CollectionView.EmptyView>
                     </CollectionView>
 
                     <Frame Style="{StaticResource ContainerStyle}">
-
                         <StackLayout>
                             <Label Text="Latest Video" Style="{StaticResource ContainerTitleStyle}"/>
-                            <xct:MediaElement x:Name="mediaSource" Source="{Binding Video}" IsVisible="{Binding IsVisible}" Style="{StaticResource Videostyle}"/>
+                            <xct:MediaElement x:Name="mediaSource" Source="{Binding Video}" IsVisible="{Binding IsVisible}" Style="{StaticResource Videostyle}" Speed="0" AutoPlay="False"/>
                         </StackLayout>
-
                     </Frame>
 
                     <Frame Style="{StaticResource ContainerStyle}">

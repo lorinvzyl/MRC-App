@@ -15,7 +15,11 @@ namespace MRC_App.ViewModels
         public ObservableRangeCollection<Location> Locations
         {
             get { return locations; }
-            set { locations = value; }
+            set 
+            {
+                locations = value;
+                OnPropertyChanged(nameof(Locations));
+            }
         }
 
         public AsyncCommand RefreshCommand { get; }

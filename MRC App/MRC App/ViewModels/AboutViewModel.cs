@@ -22,8 +22,9 @@ namespace MRC_App.ViewModels
         {
             get { return blog; }
             set 
-            { 
+            {
                 blog = value;
+                OnPropertyChanged(nameof(Blog));
             }
         }
 
@@ -33,7 +34,10 @@ namespace MRC_App.ViewModels
             set 
             { 
                 if(!String.IsNullOrEmpty(value))
-                    video = value; 
+                {
+                    video = value;
+                    OnPropertyChanged(nameof(Video));
+                }
             }
         }
 
@@ -41,7 +45,11 @@ namespace MRC_App.ViewModels
         public bool IsVisible
         {
             get { return isVisible; }
-            set { isVisible = value; }
+            set 
+            {                    
+                isVisible = value; 
+                OnPropertyChanged(nameof(IsVisible));
+            }
         }
 
         public ICommand RefreshCommand;
@@ -73,6 +81,11 @@ namespace MRC_App.ViewModels
         {
             var video = await RestService.GetLastVideo();
 
+            await SetUpVideo(video);
+        }
+
+        public async Task SetUpVideo(Video video)
+        {
             var youtube = new YoutubeClient();
 
             if (video == null)
@@ -80,10 +93,9 @@ namespace MRC_App.ViewModels
                 string vid = "IEKHzbwWSr4";
                 var streamMani = await youtube.Videos.Streams.GetManifestAsync(vid);
                 var streamIn = streamMani.GetMuxedStreams().GetWithHighestVideoQuality();
-                
-                if(streamIn != null)
+
+                if (streamIn != null)
                 {
-                    var stream = await youtube.Videos.Streams.GetAsync(streamIn);
                     var source = streamIn.Url;
 
                     Video = source;
@@ -94,9 +106,8 @@ namespace MRC_App.ViewModels
             var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.VideoURL);
             var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
 
-            if(streamInfo != null)
+            if (streamInfo != null)
             {
-                var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
                 var source = streamInfo.Url;
 
                 Video = source;

@@ -16,7 +16,7 @@ namespace MRC_App.ViewModels
 
         public async Task AttendEvent(string result)
         {
-            if (result != "Attend")
+            if (result.EndsWith("Attend"))
                 return;
 
             var email = SecureStorage.GetAsync("Email").Result;

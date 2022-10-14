@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -23,7 +24,7 @@ namespace MRC_App.ViewModels
         {
             get { return comments; }
             set 
-            { 
+            {
                 comments = value;
                 OnPropertyChanged(nameof(Comments));
             }
@@ -35,8 +36,11 @@ namespace MRC_App.ViewModels
             get { return selectedComment; }
             set
             {
-                selectedComment = value;
-                OnPropertyChanged(nameof(SelectedComment));
+                if(selectedComment != value)
+                {
+                    selectedComment = value;
+                    OnPropertyChanged(nameof(SelectedComment));
+                }
             }
         }
 
@@ -114,27 +118,60 @@ namespace MRC_App.ViewModels
 
             BlogDetailed blogDetailed = new BlogDetailed();
             blogDetailed.BlogId = Id;
-            
+
             GetComments(param.Id);
         }
 
-        public bool Expanded { get; set; }
+        public ICommand ReadMoreLess => new Command(ReadMoreLessMethod);
+
+        private void ReadMoreLessMethod(object obj)
+        {
+            if (TextLines == 20)
+                TextLines = 0; 
+            else
+                TextLines = 20;
+        }
+
+        private int textLines;
+        public int TextLines
+        {
+            get { return textLines; }
+            set
+            {
+                SetProperty(ref textLines, value);
+            }
+        }
+
+        private string contentLength;
+        public string ContentLength
+        {
+            get { return contentLength; }
+            set
+            {
+                SetProperty(ref contentLength, value);
+            }
+        }
+
+        
 
         public ICommand ItemSelectedCommand => new Command(async (item) => await SetComment(item));
 
         private async Task SetComment(object item)
         {
-            if(item is Comment)
+            if(item is Comment comment)
             {
-                SelectedComment = (Comment)item;
+                SelectedComment = comment;
             }
         }
 
         private async void GetComments(int blogId)
         {
-            Comments.AddRange(await RestService.GetBlogComments(blogId));
+            var blogs = await RestService.GetBlogComments(blogId);
+            if(blogs != null)
+                Comments.AddRange(blogs);
         }
 
+        //Entry
         private string replyText;
         public string ReplyText
         {
@@ -143,6 +180,37 @@ namespace MRC_App.ViewModels
             {
                 replyText = value;
                 OnPropertyChanged(nameof(ReplyText));
+            }
+        }
+
+        int i = 0;
+
+        private void Expander_Tapped(object sender, EventArgs e)
+        {
+            var expander = sender as Expander;
+            var comment = expander.Header as Label;
+            var list = Comments;
+            foreach (var item in list)
+            {
+                if (item.CommentText == comment.Text)
+                {
+                    item.Expanded = true;
+                    SelectedComment = item;
+
+                    if (i >= 1)
+                    {
+                        var commentlist = new List<Comment>(Comments);
+
+                        foreach (var item1 in commentlist)
+                        {
+                            if (item1.CommentText != comment.Text)
+                            {
+                                item1.Expanded = false;
+                            }
+                        }
+                        //BindableLayout.SetItemsSource(collectionview, bdvm.Comments);
+                    }
+                }
             }
         }
 

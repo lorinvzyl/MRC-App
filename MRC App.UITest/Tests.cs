@@ -8,7 +8,7 @@ using Xamarin.UITest.Queries;
 namespace MRC_App.UITest
 {
     [TestFixture(Platform.Android)]
-    [TestFixture(Platform.iOS)]
+    //[TestFixture(Platform.iOS)]
     public class Tests
     {
         IApp app;
@@ -26,10 +26,22 @@ namespace MRC_App.UITest
         }
 
         [Test]
-        public void WelcomeTextIsDisplayed()
+        public void LoginIsDisplayed()
         {
-            AppResult[] results = app.WaitForElement(c => c.Marked("Welcome to Xamarin.Forms!"));
-            app.Screenshot("Welcome screen.");
+            AppResult[] results = app.WaitForElement(c => c.Marked("Log into your account"));
+            app.Screenshot("Login screen.");
+
+            Assert.IsTrue(results.Any());
+        }
+
+        [Test]
+        public void RegisterIsDisplayed()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+            app.Tap(c => c.Text("No account? Sign up here"));
+            AppResult[] results = app.WaitForElement(c => c.Marked("Register your account"));
+
+            app.Screenshot("Register screen.");
 
             Assert.IsTrue(results.Any());
         }

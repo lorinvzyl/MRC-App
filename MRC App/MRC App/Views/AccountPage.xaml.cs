@@ -15,20 +15,11 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AccountPage : ContentPage
     {
-        private readonly AccountViewModel _viewModel; 
+        private readonly AccountViewModel _viewModel = new AccountViewModel(); 
 
         public AccountPage()
         {
             InitializeComponent();
-        }
-
-        // creating the switch_Ontoggled properties. 
-        private async void Switch_OnToggled(object sender, ToggledEventArgs e)
-        {
-            if (_viewModel.EnableEvents)
-            {
-                await UserDialogs.Instance.AlertAsync($"New value: {e.Value}", "Switch toggled(Event)").ConfigureAwait(false);
-            }
         }
 
         private void DeleteAccountLblGestureRecognizer_Tapped(object sender, EventArgs e)

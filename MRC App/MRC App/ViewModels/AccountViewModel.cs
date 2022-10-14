@@ -19,51 +19,18 @@ namespace MRC_App.ViewModels
         {
             ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
-        public bool EnableCommands { get; set; }
-        public bool EnableEvents { get; set; }
 
         public ICommand ToggleCommand { get; }
 
         public async Task Toggled(bool newValue)
         {
-            if (EnableCommands)
-            {
-                await UserDialogs.Instance.AlertAsync($"New value: {newValue}", "Switch toggled (Command)").ConfigureAwait(false);
-                UpdateNewsletter(newValue);
-            }
+            await UpdateNewsletter(newValue);
         }
 
         public async Task UpdateNewsletter(bool isNewsletter)
         {
-            var id = SecureStorage.GetAsync("Id").Result;
-            var name = SecureStorage.GetAsync("Name").Result;
-            var surname = SecureStorage.GetAsync("Surname").Result;
-            var email = SecureStorage.GetAsync("Email").Result;
-            var birth = SecureStorage.GetAsync("Birth").Result;
-            var newsletter = isNewsletter;
-            var profile = SecureStorage.GetAsync("ProfileImage").Result;
-
-            User user = new User()
-            {
-                Id = Int32.Parse(id),
-                Name = name,
-                Surname = surname,
-                Email = email,
-                DateOfBirth = DateTime.Parse(birth),
-                isNewsletter = newsletter,
-                ProfilePicURL = profile,
-            };
-
-            var response = await RestService.UpdateUser(user.Id, user);
-            
-            if(response)
-            {
-                //success
-            }
-            else
-            {
-                //error
-            }
+            await SecureStorage.SetAsync("Newsletter", isNewsletter.ToString());
+            UpdateUser();
         }
 
         public async Task<bool> DeleteUser(string email)
@@ -75,23 +42,24 @@ namespace MRC_App.ViewModels
             return delete;
         }
 
-        public async Task<bool> UpdateUser(int id, string name, string surname, DateTime dateOfBirth, bool isNewsletter)
+        public async Task UpdateUser()
         {
-            //need to update this method
-            if (email == null || name == null || surname == null || dateOfBirth == null)
-                return false;
-
             User user = new User(){
-                Name = name,
-                Email = email,
-                Surname = surname,
-                DateOfBirth = dateOfBirth,
-                isNewsletter = isNewsletter
+                Id = Int32.Parse(SecureStorage.GetAsync("Id").Result),
+                Name = SecureStorage.GetAsync("Name").Result,
+                Surname = SecureStorage.GetAsync("Surname").Result,
+                Email = SecureStorage.GetAsync("Email").Result,
+                DateOfBirth = DateTime.Parse(SecureStorage.GetAsync("Birth").Result),
+                isNewsletter = Boolean.Parse(SecureStorage.GetAsync("Newsletter").Result),
+                ProfilePicURL = SecureStorage.GetAsync("ProfileImage").Result
             };
 
-            var update = await RestService.UpdateUser(id, user);
+            var update = await RestService.UpdateUser(user.Id, user);
 
-            return update;
+            if(update)
+            {
+                await UpdateData();
+            }
         }
 
         public async Task UpdateData()
@@ -106,6 +74,7 @@ namespace MRC_App.ViewModels
         private static string surname;
         private static string dateOfBirth;
         private static string email;
+        private static bool isNewsletter;
 
         public string Name
         {
@@ -154,6 +123,16 @@ namespace MRC_App.ViewModels
             {
                 profilePicURL = value;
                 OnPropertyChanged(nameof(ProfilePicURL));
+            }
+        }
+
+        public bool IsNewsletter
+        {
+            get { return isNewsletter; }
+            set
+            {
+                isNewsletter = value;
+                OnPropertyChanged(nameof(IsNewsletter));
             }
         }
     }

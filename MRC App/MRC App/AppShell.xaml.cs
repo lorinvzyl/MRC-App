@@ -44,9 +44,6 @@ namespace MRC_App
             var name = SecureStorage.GetAsync("Name").Result;
             var surname = SecureStorage.GetAsync("Surname").Result;
             Username = $"{name} {surname}";
-
-            var profile = SecureStorage.GetAsync("ProfileImage").Result;
-            ProfileUrl = profile;
         }
 
         private async void Account_Tapped(object sender, EventArgs e)

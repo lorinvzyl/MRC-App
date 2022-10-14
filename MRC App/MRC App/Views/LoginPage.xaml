@@ -114,22 +114,23 @@
             <Label Grid.Row="2" Grid.Column="1" Text="Welcome!" Style="{StaticResource HeaderTextTitle}"/>
             <Label Grid.Row="3" Grid.Column="1" Text="Log into your account" Style="{StaticResource HeaderTextSubtitle}"/>
             <!--Enter email and password-->
-            <Entry AutomationId="LoginEmail" x:Name="EmailEntry" Grid.Row="4" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
+            <Entry AutomationId="LoginEmail" Grid.Row="4" Grid.Column="1" Text="{Binding Email, Mode=OneWayToSource}" Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
                 <Entry.Behaviors>
                     <xct:EmailValidationBehavior
-                        MinimumLength="1"
+                        MinimumLength="2"
                         InvalidStyle="{StaticResource EntryErrorStyle}" 
                         DecorationFlags="Trim" 
                         Flags="ValidateOnValueChanging"
                         IsValid="{Binding EmailValid}"/>
+                    <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
                 </Entry.Behaviors>
             </Entry>
             
             <Label Grid.Row="5" Grid.Column="1"  Text="Email is not in valid format" TextColor="{StaticResource Danger}" IsVisible="{Binding EmailValid, Converter={StaticResource invertBoolConverter}}"/>
 
-            <Entry AutomationId="LoginPassword" x:Name="PasswordEntry" Grid.Row="6" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
+            <Entry AutomationId="LoginPassword" x:Name="PasswordEntry" Grid.Row="6" Grid.Column="1" Text="{Binding Password, Mode=OneWayToSource}" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
                 <Entry.Behaviors>
-                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}">
+                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" IsValid="{Binding PasswordValid}">
                         <xct:TextValidationBehavior MinimumLength="8"/>
                         <xct:CharactersValidationBehavior 
                            CharacterType="Digit"
@@ -147,13 +148,14 @@
                            CharacterType="Whitespace" 
                            MaximumCharacterCount="0"/>
                     </xct:MultiValidationBehavior>
+                    <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
                 </Entry.Behaviors>
             </Entry>
 
             <Label Grid.Row="7" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
             <!--Button to log into account-->
-            <Button AutomationId="LoginButton" Grid.Row="8" Grid.Column="1" Text="Login" Clicked="Login_Clicked" Style="{StaticResource LoginButton}"/>
+            <Button AutomationId="LoginButton" Grid.Row="8" Grid.Column="1" Text="Login" IsEnabled="True" Command="{Binding ButtonCommand}" Style="{StaticResource LoginButton}"/>
 
             <!--Links for user-->
             <Label AutomationId="LoginReset" Grid.Row="10" Grid.Column="1" Text="Forgot password?" Style="{StaticResource PasswordLabel}">

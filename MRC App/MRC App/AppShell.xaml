@@ -155,7 +155,7 @@
                 </Grid.GestureRecognizers>
                 
                 <!--<xct:AvatarView/>-->
-                <xct:AvatarView Grid.Column="0" Source="{Binding ProfileUrl}" TextColor="{StaticResource LightShade}" Color="{StaticResource Primary}" Size="75" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="10,0,0,0"/>
+                <xct:AvatarView Grid.Column="0" Text="&#xf2bd;" FontFamily="{StaticResource FontAwesomeSolid}" TextColor="{StaticResource LightShade}" Color="{StaticResource Primary}" FontSize="75" Size="75" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="10,0,0,0"/>
                 <Label Grid.Column="1" FontSize="Large" Padding="10,0" VerticalOptions="Center" Text="{Binding Username}" TextColor="{StaticResource LightShade}"/>
             </Grid>
         </DataTemplate>

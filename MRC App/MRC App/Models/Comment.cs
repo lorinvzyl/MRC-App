@@ -15,5 +15,6 @@ namespace MRC_App.Models
         public string UserName { get; set; }
         public int BlogId { get; set; }
         public ICollection<Reply> Reply { get; set; }
+        public bool Expanded { get; set; }
     }
 }

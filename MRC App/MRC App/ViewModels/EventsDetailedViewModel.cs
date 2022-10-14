@@ -49,6 +49,7 @@ namespace MRC_App.ViewModels
         private void PerformOperation(string paramStr)
         {
             var param = JsonConvert.DeserializeObject<Event>(paramStr);
+            param.RSVPCloseDate = DateTime.Parse(param.RSVPCloseDate.ToString().Substring(0,10));
             SelectedEvent.Add(param);
         }
 

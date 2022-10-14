@@ -29,10 +29,5 @@ namespace MRC_App.Views
             await Shell.Current.GoToAsync($"{nameof(BlogDetailed)}?Param={json}");
             ((CollectionView)sender).SelectedItem = null;
         }
-
-        private void mediaSource_MediaOpened(object sender, EventArgs e)
-        {
-            ((MediaElement)sender).Speed = 0; //Xamarin community toolkit currently has a bug where autoplay being set to off doesn't work. This is a workaround.
-        }
     }
 }

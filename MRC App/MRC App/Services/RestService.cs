@@ -58,7 +58,7 @@ namespace MRC_App.Services
 
         public static async Task<IEnumerable<Blog>> GetBlogs()
         {
-            var json = await client.GetAsync("api/Blogs");
+            var json = await client.GetAsync("api/Blogs"); //IConvertable error?
 
             if (!json.IsSuccessStatusCode)
                 return null;

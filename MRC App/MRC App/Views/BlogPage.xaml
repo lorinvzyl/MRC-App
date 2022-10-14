@@ -83,7 +83,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <RefreshView Command="{Binding }">
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
             <CollectionView
              SelectionMode="Single"
              SelectionChanged="CollectionView_SelectedChanged"
@@ -128,21 +128,7 @@
                                                 </Grid.RowDefinitions>
 
                                                 <Label Grid.Row="0" VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
-                                                <Label Grid.Row="1" VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}" LineBreakMode="TailTruncation" MaxLines="2"/>
-
-                                                <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" RowSpacing="0" Padding="0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
-                                                    <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
-                                                    <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
-                                                    <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
-                                                </Grid>
+                                                <Label Grid.Row="1" VerticalOptions="Start" Text="{Binding Description}" Style="{StaticResource BlogContentStyle}" LineBreakMode="TailTruncation" MaxLines="4"/>
                                             </Grid>
 
                                         </StackLayout>
@@ -153,6 +139,13 @@
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Frame Style="{StaticResource BlogCardStyle}" Opacity="0.8">
+                            <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="No blogs found" FontSize="Title" TextColor="{StaticResource LightShade}" Opacity="0.8"/>
+                        </Frame>
+                    </StackLayout>
+                </CollectionView.EmptyView>
             </CollectionView>
         </RefreshView>
     </ContentPage.Content>

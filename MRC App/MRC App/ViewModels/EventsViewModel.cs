@@ -72,27 +72,43 @@ namespace MRC_App.ViewModels
         public int Year
         {
             get => _year;
-            set => SetProperty(ref _year, value);
+            set
+            {
+                _year = value;
+                OnPropertyChanged(nameof(Year));
+            }
         }
 
         public int Month
         {
             get => _month;
-            set => SetProperty(ref _month, value);
+            set
+            {
+                _month = value;
+                OnPropertyChanged(nameof(Month));
+            }
         }
 
         private DateTime _minimumDate = new DateTime(2022, 8, 3);
         public DateTime MinimumDate
         {
             get => _minimumDate;
-            set => SetProperty(ref _minimumDate, value);
+            set
+            {
+                _minimumDate = value;
+                OnPropertyChanged(nameof(MinimumDate));
+            }
         }
 
         private DateTime _maximumDate = DateTime.Today.AddMonths(5);
         public DateTime MaximumDate
         {
             get => _maximumDate;
-            set => SetProperty(ref _maximumDate, value);
+            set
+            {
+                _maximumDate = value;
+                OnPropertyChanged(nameof(MaximumDate));
+            }
         }
 
         private async Task ExecuteEventSelectedCommand(object item)

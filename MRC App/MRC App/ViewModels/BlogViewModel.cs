@@ -17,7 +17,11 @@ namespace MRC_App.ViewModels
         public ObservableRangeCollection<Blog> Blogs
         {
             get { return blogs; }
-            set { blogs = value; }
+            set 
+            {
+                blogs = value;
+                OnPropertyChanged(nameof(Blogs));
+            }
         }
 
         public ICommand RefreshCommand;
@@ -52,7 +56,5 @@ namespace MRC_App.ViewModels
 
             IsBusy = false;
         }
-
-
     }
 }

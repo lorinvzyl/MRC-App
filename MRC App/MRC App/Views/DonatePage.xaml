@@ -110,7 +110,7 @@
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer/>
                                 </Frame.GestureRecognizers>
-                                <Label Text="Donate" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="Donate" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
                             </Frame>
                         </Grid>
                     </Grid>

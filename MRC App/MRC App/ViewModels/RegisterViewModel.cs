@@ -7,16 +7,18 @@ using System.Text.RegularExpressions;
 using MRC_App.Models;
 using System.Threading.Tasks;
 using MRC_App.Services;
+using Xamarin.CommunityToolkit.ObjectModel;
+using System.Windows.Input;
 
 namespace MRC_App.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
 
-        public Command RegisterCommand { get; }
+        public ICommand RegisterCommand => new Command(OnRegisterClicked);
+        public ICommand ButtonCommand => new AsyncCommand(RegisterUser);
         public RegisterViewModel()
         {
-            RegisterCommand = new Command(OnRegisterClicked);
         }
 
         private async void OnRegisterClicked(object obj)
@@ -24,16 +26,85 @@ namespace MRC_App.ViewModels
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}"); /*Needs to have the // prefix added for allowing for a different navigation stack. Gives errors otherwise.*/
         }
 
-        private bool emailValid { get; set; }
+        private bool emailValid;
         public bool EmailValid
         {
             get => emailValid;
             set
             {
                 emailValid = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(EmailValid));
             }
         }
+
+        private bool passwordValid;
+        public bool PasswordValid
+        {
+            get { return passwordValid; }
+            set
+            {
+                passwordValid = value;
+                OnPropertyChanged(nameof(PasswordValid));
+            }
+        }
+
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        private string name;
+
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        private string surname;
+        public string Surname
+        {
+            get { return surname; }
+            set
+            {
+                surname = value;
+                OnPropertyChanged(nameof(Surname));
+            }
+        }
+
+        private string email;
+
+        public string Email
+        {
+            get => email;
+            set
+            {
+                email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        private string birth;
+        public string Birth
+        {
+            get { return birth; }
+            set
+            {
+                birth = value;
+                OnPropertyChanged(nameof(Birth));
+            }
+        }
+
 
         private string error;
         public string Error
@@ -41,14 +112,26 @@ namespace MRC_App.ViewModels
             get => error;
             set
             {
-                error = value;
-                OnPropertyChanged(nameof(Error));
+                SetProperty(ref error, value);
             }
         }
-        public async Task RegisterUser(User user)
+        private async Task RegisterUser()
         {
-            if (user == null)
+            if (Name == null || Surname == null || Email == null || Birth == null || Password == null)
+            {
+                Error = "Invalid input";
                 return;
+            }
+
+            User user = new User()
+            {
+                Name = Name,
+                Surname = Surname,
+                Email = Email,
+                DateOfBirth = DateTime.Parse(Birth),
+                Password = Password,
+                Id = 1
+            };
 
             var registration = await RestService.RegisterUser(user);
 

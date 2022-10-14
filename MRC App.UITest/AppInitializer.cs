@@ -10,10 +10,12 @@ namespace MRC_App.UITest
         {
             if (platform == Platform.Android)
             {
-                return ConfigureApp.Android.StartApp();
+                return ConfigureApp.Android.InstalledApp("com.companyname.mrc_app").PreferIdeSettings().EnableLocalScreenshots().StartApp();
             }
-
-            return ConfigureApp.iOS.StartApp();
+            else
+            {
+                return ConfigureApp.iOS.StartApp();
+            }
         }
     }
 }
