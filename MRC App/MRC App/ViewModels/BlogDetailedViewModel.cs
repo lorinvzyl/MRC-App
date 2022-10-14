@@ -1,4 +1,4 @@
-﻿ using MRC_App.Controls;
+﻿using MRC_App.Controls;
 using MRC_App.Models;
 using MRC_App.Services;
 using MRC_App.Views;
@@ -30,7 +30,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private Comment selectedComment;
+        private Comment selectedComment = null;
         public Comment SelectedComment
         {
             get { return selectedComment; }
@@ -44,13 +44,12 @@ namespace MRC_App.ViewModels
             }
         }
 
-        public ICommand CommentCompleted;
-        public ICommand ReplyCompleted;
+        public ICommand CommentCompleted => new Command(AddBlogComment);
+        public ICommand ReplyCompleted => new Command(AddCommentReply);
 
         public BlogDetailedViewModel()
         {
             Comments = new ObservableRangeCollection<Comment>();
-            CommentCompleted = new Command(AddBlogComment);
         }
 
         public async void AddBlogComment(object obj)
@@ -59,7 +58,7 @@ namespace MRC_App.ViewModels
             {
                 BlogId = Id,
                 CommentText = CommentText,
-                UserName = SecureStorage.GetAsync("Name").Result
+                UserEmail = SecureStorage.GetAsync("Email").Result
             };
 
             await RestService.AddBlogComment(comment);
@@ -67,26 +66,14 @@ namespace MRC_App.ViewModels
 
         public async void AddCommentReply(object obj)
         {
-            Comment comment = new Comment()
-            {
-                UserName = selectedComment.UserName,
-                CommentText = selectedComment.CommentText,
-                Id = selectedComment.Id,
-                BlogId = selectedComment.BlogId
-            };
-
             Reply reply = new Reply()
             {
                 UserName = SecureStorage.GetAsync("Name").Result,
-                CommentText = ReplyText,
-                CommentId = comment.Id
+                CommentText = SelectedComment.ReplyText,
+                CommentId = selectedComment.Id
             };
 
-            ICollection<Reply> replies = new List<Reply>((IEnumerable<Reply>)reply);
-
-            comment.Reply = replies;
-
-            var response = await RestService.AddBlogReply(comment);
+            var response = await RestService.AddBlogReply(reply);
 
             if(response)
             {
@@ -127,7 +114,7 @@ namespace MRC_App.ViewModels
         private void ReadMoreLessMethod(object obj)
         {
             if (TextLines == 20)
-                TextLines = 0; 
+                TextLines = 300;
             else
                 TextLines = 20;
         }
@@ -152,17 +139,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        
-
-        public ICommand ItemSelectedCommand => new Command(async (item) => await SetComment(item));
-
-        private async Task SetComment(object item)
-        {
-            if(item is Comment comment)
-            {
-                SelectedComment = comment;
-            }
-        }
+        public ICommand ItemSelectedCommand => new Command(item => Expander_Tapped(item));
 
         private async void GetComments(int blogId)
         {
@@ -171,46 +148,37 @@ namespace MRC_App.ViewModels
                 Comments.AddRange(blogs);
         }
 
-        //Entry
-        private string replyText;
-        public string ReplyText
-        {
-            get => replyText;
-            set
-            {
-                replyText = value;
-                OnPropertyChanged(nameof(ReplyText));
-            }
-        }
-
         int i = 0;
 
-        private void Expander_Tapped(object sender, EventArgs e)
+        public void Expander_Tapped(object item)
         {
-            var expander = sender as Expander;
-            var comment = expander.Header as Label;
-            var list = Comments;
-            foreach (var item in list)
+            if (item is Comment comment)
             {
-                if (item.CommentText == comment.Text)
+                var list = Comments;
+                foreach (var x in list)
                 {
-                    item.Expanded = true;
-                    SelectedComment = item;
-
-                    if (i >= 1)
+                    if (x.UserName == comment.UserName && x.CommentText == comment.CommentText)
                     {
-                        var commentlist = new List<Comment>(Comments);
+                        x.Expanded = true;
+                        SelectedComment = x;
+                        i++;
 
-                        foreach (var item1 in commentlist)
+                        if (i >= 1)
                         {
-                            if (item1.CommentText != comment.Text)
+                            var commentlist = new List<Comment>(Comments);
+
+                            foreach (var item1 in commentlist)
                             {
-                                item1.Expanded = false;
+                                if (item1.CommentText != comment.CommentText && item1.UserName != comment.UserName)
+                                {
+                                    item1.Expanded = false;
+                                }
                             }
+                            i = 0;
                         }
-                        //BindableLayout.SetItemsSource(collectionview, bdvm.Comments);
                     }
                 }
+                Comments = list;
             }
         }
 

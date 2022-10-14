@@ -114,24 +114,42 @@
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>
-                        
                     </StackLayout>
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="EndAndExpand" x:Name="FrameStackLayout">
                         <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Margin="0,0,0,-20" Padding="0" HeightRequest="250">
                             <Grid ColumnDefinitions="15,*,15" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
                                 <Label Grid.Column="1" Grid.Row="1" Text="Comments" FontSize="20" TextColor="{StaticResource LightShade}" FontAttributes="Bold" HorizontalOptions="Center"/>
-
-                                <Entry AutomationId="BlogComment" x:Name="Comment" Text="{Binding CommentText, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
-                                    <Entry.Behaviors>
-                                        <xct:EventToCommandBehavior EventName="Completed" Command="{Binding CommentCompleted}"/>
-                                    </Entry.Behaviors>
-                                </Entry>
+                                <Grid ColumnDefinitions="*,50" Grid.Column="1" Grid.Row="2">
+                                    <Entry AutomationId="BlogComment" x:Name="Comment" Text="{Binding CommentText, Mode=TwoWay}" Grid.Column="0" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                                        <Entry.Behaviors>
+                                            <xct:EventToCommandBehavior EventName="Completed" Command="{Binding CommentCompleted}"/>
+                                        </Entry.Behaviors>
+                                    </Entry>
+                                    <Label Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="enter">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CommentCompleted}"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                                
                                 <Frame Grid.Column="1" Grid.Row="4" CornerRadius="0" Padding="0">
-                                    <CollectionView ItemsSource="{Binding Comments}" Margin="0,15,0,15" SelectionMode="Single" SelectionChangedCommand="{Binding ItemSelectedCommand}" SelectedItem="{Binding SelectedComment, Mode=TwoWay}">
+                                    <CollectionView x:Name="collectionview" ItemsSource="{Binding Comments}" Margin="0,15,0,15" SelectionMode="Single" SelectionChangedCommand="{Binding ItemSelectedCommand}" SelectedItem="{Binding SelectedComment, Mode=TwoWay}">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackLayout>
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup Name="CommonStates">
+                                                            <VisualState Name="Selected">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
                                                     <xct:Expander IsExpanded="{Binding Expanded}">
+                                                        <xct:Expander.Behaviors>
+                                                            <xct:EventToCommandBehavior EventName="Tapped" Command="{Binding Source={x:Reference detail}, Path=BindingContext.ItemSelectedCommand}" CommandParameter="{Binding .}"/>
+                                                        </xct:Expander.Behaviors>
                                                         <xct:Expander.Header>
                                                             <Grid ColumnDefinitions="15,*,15" RowDefinitions="25,Auto,11">
                                                                 <Label x:Name="user" Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
@@ -142,7 +160,7 @@
                                                         <xct:Expander.ContentTemplate>
                                                             <DataTemplate>
                                                                 <StackLayout>
-                                                                    <Entry AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyText}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                                                                    <Entry AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding ReplyText, Mode=TwoWay}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
                                                                         <Entry.Behaviors>
                                                                             <xct:EventToCommandBehavior EventName="Completed" Command="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyCompleted}"/>
                                                                         </Entry.Behaviors>
@@ -152,15 +170,6 @@
                                                                         <BindableLayout.ItemTemplate>
                                                                             <DataTemplate>
                                                                                 <Grid ColumnDefinitions="30,*,15" RowDefinitions="25, Auto, 11">
-                                                                                    <VisualStateManager.VisualStateGroups>
-                                                                                        <VisualStateGroup Name="CommonStates">
-                                                                                            <VisualState Name="Selected">
-                                                                                                <VisualState.Setters>
-                                                                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
-                                                                                                </VisualState.Setters>
-                                                                                            </VisualState>
-                                                                                        </VisualStateGroup>
-                                                                                    </VisualStateManager.VisualStateGroups>
                                                                                     <Label Text="{Binding UserName}" Grid.Row="0" Grid.Column="1" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
                                                                                     <Label Text="{Binding CommentText}" Grid.Row="1" Grid.Column="1" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
                                                                                     <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>

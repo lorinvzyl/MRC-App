@@ -1,6 +1,4 @@
-﻿using MRC_App.Models;
-using MRC_App.Services;
-using MRC_App.ViewModels;
+﻿using MRC_App.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +39,10 @@ namespace MRC_App.Views
         }
 
         int i = 0;
-        
+
+        private void Expander_Tapped(object sender, EventArgs e)
+        {
+
+        }
     }
 }

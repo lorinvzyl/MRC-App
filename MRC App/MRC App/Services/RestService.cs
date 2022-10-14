@@ -217,7 +217,7 @@ namespace MRC_App.Services
             return commented;
         }
 
-        public static async Task<bool> AddBlogReply(Comment comment)
+        public static async Task<bool> AddBlogReply(Reply comment)
         {
             var replied = false;
 
@@ -227,7 +227,7 @@ namespace MRC_App.Services
             var json = JsonConvert.SerializeObject(comment);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"api/Comments/{comment.Id}", content);
+            var response = await client.PutAsync($"api/Comments/{comment.CommentId}", content);
 
             if(!response.IsSuccessStatusCode)
                 return replied;
