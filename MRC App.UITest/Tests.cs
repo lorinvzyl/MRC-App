@@ -175,8 +175,197 @@ namespace MRC_App.UITest
         }
 
         [Test]
-        public void TestValidation()
+        public void InteractHome()
         {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Screenshot("ValidEntryLogin");
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            //Interact with video, scroll and blog collection
+        }
+
+        [Test]
+        public void InteractBlog()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Screenshot("ValidEntryLogin");
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            //Interact with scroll and blog collection
+        }
+
+        [Test]
+        public void InteractBlogDetailed()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Screenshot("ValidEntryLogin");
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            //Interact with scroll, read more, and comments
+        }
+
+        [Test]
+        public void InteractEvent()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Screenshot("ValidEntryLogin");
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            //Interact with calendar navigation
+        }
+
+        [Test]
+        public void InteractEventsDetailed()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Screenshot("ValidEntryLogin");
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            //Interact with scroll, church location and RSVP
+        }
+
+        [Test]
+        public void InteractDonate()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Screenshot("ValidEntryLogin");
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            //Interact with special message, donation amount and donate button
+        }
+
+        [Test]
+        public void InteractQR()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Screenshot("ValidEntryLogin");
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+
+            //possibly pass qr code into qr
+        }
+
+        [Test]
+        public void InteractAccount()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Screenshot("ValidEntryLogin");
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            //Interact with newsletter, reset password and delete account
+        }
+
+        [Test]
+        public void InteractAccountEdit()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            //Interact with editing fields and confirm changes taking place on accountpage and navflyout
+        }
+
+        [Test]
+        public void InvalidEntryLogin()
+        {
+            //Check error handling for incorrect inputs
             app.WaitForElement(c => c.Marked("Log into your account"));
 
             //Invalid entry, does not meet regex
@@ -187,10 +376,6 @@ namespace MRC_App.UITest
             app.EnterText("invalidpassword");
             app.DismissKeyboard();
             app.Screenshot("InvalidEntryLogin");
-
-            app.Tap(c => c.Marked("LoginButton"));
-            app.WaitForNoElement(c => c.Marked("HomeLabel"));
-            app.Screenshot("LoginPressed");
 
             //Valid entry, but no user
             app.Tap(c => c.Marked("LoginEmail"));
@@ -205,10 +390,16 @@ namespace MRC_App.UITest
             app.Tap(c => c.Marked("LoginButton"));
             app.WaitForElement(c => c.Marked("Incorrect password/email"));
             app.Screenshot("ValidEntriesButIncorrect");
+        }
 
+        [Test]
+        public void InvalidEntryRegister()
+        {
+            //Check error handling for incorrect inputs
+            //Register
+            app.WaitForElement(c => c.Marked("Log into your account"));
             app.Tap(c => c.Marked("No account? Sign up here"));
 
-            //Register
             app.Tap(c => c.Marked("RegisterFName"));
             app.EnterText("John");
             app.PressEnter();
@@ -226,14 +417,91 @@ namespace MRC_App.UITest
             app.DismissKeyboard();
 
             app.Screenshot("InvalidEntryRegister");
+        }
 
-            app.Tap(c => c.Marked("RegisterButton"));
-            app.WaitForNoElement(c => c.Marked("Log into your account"));
-            app.Screenshot("RegisterPressed");
+        [Test]
+        public void InvalidEmailEntryAccountEdit()
+        {
+            //Check error handling for incorrect inputs for email and birthday
+            app.WaitForElement(c => c.Marked("Log into your account"));
 
-            app.Back();
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
 
-            //Go to pages
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Tap(c => c.Marked("LoginButton"));
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.WaitForElement(c => c.Marked("Avatar"));
+
+            app.Tap(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("AccountLabel"));
+            app.Tap(c => c.Marked("AccountEmailEdit"));
+
+            app.WaitForElement(c => c.Marked("ValueEntry"));
+            app.Tap("ValueEntry");
+            app.EnterText("invalidemail");
+            app.Tap(c => c.Marked("Back"));
+
+            AppResult[] result = app.WaitForElement("AccountLabel");
+            Assert.IsTrue(result.Any());
+        }
+
+        [Test]
+        public void InvalidBirthEntryAccountEdit()
+        {
+            //Check error handling for incorrect inputs for email and birthday
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Tap(c => c.Marked("LoginButton"));
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.WaitForElement(c => c.Marked("Avatar"));
+
+            app.Tap(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("AccountLabel"));
+            app.Tap(c => c.Marked("AccountBirthEdit"));
+
+            app.WaitForElement(c => c.Marked("ValueEntry"));
+            app.Tap("ValueEntry");
+            app.EnterText("03/01/2000");
+            app.Tap(c => c.Marked("Back"));
+
+            AppResult[] result = app.WaitForElement("AccountLabel");
+            Assert.IsTrue(result.Any());
+        }
+
+
+        [Test]
+        public void InvalidEntryAccountResetPassword()
+        {
+            //Check error handling when incorrect password is given
+        }
+
+        [Test]
+        public void InvalidEntryAccountDelete()
+        {
+            //Check error handling when incorrect password is given
+        }
+
+        [Test]
+        public void InvalidEntryDonate()
+        {
+            //Check error handling when invalid donation amount is given
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
             app.Tap(c => c.Marked("LoginEmail"));
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
@@ -260,101 +528,6 @@ namespace MRC_App.UITest
             app.EnterText("-1"); //negative number
             app.DismissKeyboard();
             app.Screenshot("DonateInvalidEntryTwo");
-
-            app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
-            app.Tap(c => c.Marked("Avatar"));
-            //Validate error display for incorrect inputs
-        }
-
-        [Test]
-        public void InteractHome()
-        {
-            //Interact with video, scroll and blog collection
-        }
-
-        [Test]
-        public void InteractBlog()
-        {
-            //Interact with scroll and blog collection
-        }
-
-        [Test]
-        public void InteractBlogDetailed()
-        {
-            //Interact with scroll, read more, and comments
-        }
-
-        [Test]
-        public void InteractEvent()
-        {
-            //Interact with calendar navigation
-        }
-
-        [Test]
-        public void InteractEventsDetailed()
-        {
-            //Interact with scroll, church location and RSVP
-        }
-
-        [Test]
-        public void InteractDonate()
-        {
-            //Interact with special message, donation amount and donate button
-        }
-
-        [Test]
-        public void InteractQR()
-        {
-            //possibly pass qr code into qr
-        }
-
-        [Test]
-        public void InteractAccount()
-        {
-            //Interact with newsletter, reset password and delete account
-        }
-
-        [Test]
-        public void InteractAccountEdit()
-        {
-            //Interact with editing fields and confirm changes taking place on accountpage and navflyout
-        }
-
-        [Test]
-        public void InvalidEntryLogin()
-        {
-            //Check error handling for incorrect inputs
-        }
-
-        [Test]
-        public void InvalidEntryRegister()
-        {
-            //Check error handling for incorrect inputs
-        }
-
-        [Test]
-        public void InvalidEntryAccountEdit()
-        {
-            //Check error handling for incorrect inputs for email and birthday
-        }
-
-        [Test]
-        public void InvalidEntryAccountResetPassword()
-        {
-            //Check error handling when incorrect password is given
-        }
-
-        [Test]
-        public void InvalidEntryAccountDelete()
-        {
-            //Check error handling when incorrect password is given
-        }
-
-        [Test]
-        public void InvalidEntryDonate()
-        {
-            //Check error handling when invalid donation amount is given
         }
     }
 }

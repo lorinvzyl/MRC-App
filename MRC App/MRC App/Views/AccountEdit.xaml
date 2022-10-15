@@ -9,7 +9,7 @@
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding UpdateUser}">
             <BackButtonBehavior.IconOverride>
-                <FontImageSource Glyph="&#xf060;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}"/>
+                <FontImageSource AutomationId="Back" Glyph="&#xf060;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}"/>
             </BackButtonBehavior.IconOverride>
         </BackButtonBehavior>
     </Shell.BackButtonBehavior>
