@@ -19,6 +19,21 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
+        async void PopupNavigation(System.Object sender, System.EventArgs e)
+        {
+            var action = await DisplayActionSheet("Open with", "Cancel", null, "Google Maps", "Waze");
+            switch (action)
+            {
+                case "Google Maps":
+                    await Launcher.OpenAsync("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge");
+                    break;
+                case "Waze":
+                    await Launcher.OpenAsync("https://waze.com/ul");
+                    break;
+
+            }
+            //await Launcher.OpenAsync("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge");
+        }
         async void CollectionView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var location = e.SelectedItem as Models.Location;
