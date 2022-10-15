@@ -487,12 +487,40 @@ namespace MRC_App.UITest
         [Test]
         public void InvalidEntryAccountResetPassword()
         {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Tap(c => c.Marked("LoginButton"));
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.WaitForElement(c => c.Marked("Avatar"));
             //Check error handling when incorrect password is given
         }
 
         [Test]
         public void InvalidEntryAccountDelete()
         {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John@Doe");
+            app.DismissKeyboard();
+
+            app.Tap(c => c.Marked("LoginButton"));
+            app.WaitForElement(c => c.Marked("HomeLabel"));
+
+            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.WaitForElement(c => c.Marked("Avatar"));
             //Check error handling when incorrect password is given
         }
 
