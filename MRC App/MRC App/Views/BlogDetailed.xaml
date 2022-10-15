@@ -125,7 +125,7 @@
                                             <xct:EventToCommandBehavior EventName="Completed" Command="{Binding CommentCompleted}"/>
                                         </Entry.Behaviors>
                                     </Entry>
-                                    <Label Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="enter">
+                                    <Label Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="&#xf054;" FontFamily="{StaticResource FontAwesomeSolid}">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding CommentCompleted}"/>
                                         </Label.GestureRecognizers>
@@ -160,11 +160,19 @@
                                                         <xct:Expander.ContentTemplate>
                                                             <DataTemplate>
                                                                 <StackLayout>
-                                                                    <Entry AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding ReplyText, Mode=TwoWay}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
-                                                                        <Entry.Behaviors>
-                                                                            <xct:EventToCommandBehavior EventName="Completed" Command="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyCompleted}"/>
-                                                                        </Entry.Behaviors>
-                                                                    </Entry>
+                                                                    <Grid ColumnDefinitions="*,50">
+                                                                        <Entry Grid.Column="0" AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding ReplyText, Mode=TwoWay}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                                                                            <Entry.Behaviors>
+                                                                                <xct:EventToCommandBehavior EventName="Completed" Command="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyCompleted}"/>
+                                                                            </Entry.Behaviors>
+                                                                        </Entry>
+                                                                        <Label Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="&#xf054;" FontFamily="{StaticResource FontAwesomeSolid}">
+                                                                            <Label.GestureRecognizers>
+                                                                                <TapGestureRecognizer Command="{Binding ReplyCompleted}"/>
+                                                                            </Label.GestureRecognizers>
+                                                                        </Label>
+                                                                    </Grid>
+                                                                    
                                                                     <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
                                                                     <FlexLayout x:Name="ReplyList" Direction="Column" AutomationId="ReplyList" BindableLayout.ItemsSource="{Binding Reply}">
                                                                         <BindableLayout.ItemTemplate>
