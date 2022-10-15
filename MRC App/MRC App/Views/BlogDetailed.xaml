@@ -108,9 +108,9 @@
                         <StackLayout>
                             <Label VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
                             <Label VerticalOptions="Start" Text="{Binding Content}" Style="{StaticResource BlogContentStyle}" MaxLines="{Binding TextLines}"/>
-                            <Label VerticalOptions="End" HorizontalOptions="CenterAndExpand" Text="{Binding ContentLength}">
+                            <Label Text="{Binding ReadMoreLessLabel}" VerticalOptions="End" HorizontalOptions="CenterAndExpand">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer/>
+                                    <TapGestureRecognizer Command="{Binding ReadMoreLess}"/>
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>

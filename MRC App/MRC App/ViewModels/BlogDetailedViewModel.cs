@@ -114,9 +114,26 @@ namespace MRC_App.ViewModels
         private void ReadMoreLessMethod(object obj)
         {
             if (TextLines == 20)
+            {
+                ReadMoreLessLabel = "Read Less";
                 TextLines = 300;
+            }
             else
+            {
+                ReadMoreLessLabel = "Read More";
                 TextLines = 20;
+            }
+        }
+
+        private string readMoreLessLabel;
+        public string ReadMoreLessLabel
+        {
+            get => readMoreLessLabel;
+            set
+            {
+                readMoreLessLabel = value;
+                OnPropertyChanged(nameof(ReadMoreLessLabel));
+            }
         }
 
         private int textLines;
@@ -125,17 +142,8 @@ namespace MRC_App.ViewModels
             get { return textLines; }
             set
             {
-                SetProperty(ref textLines, value);
-            }
-        }
-
-        private string contentLength;
-        public string ContentLength
-        {
-            get { return contentLength; }
-            set
-            {
-                SetProperty(ref contentLength, value);
+                textLines = value;
+                OnPropertyChanged(nameof(TextLines));
             }
         }
 
