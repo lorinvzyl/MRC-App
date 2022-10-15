@@ -15,7 +15,7 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Locations" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Column="0" AutomationId="LocationsLabel" Text="Locations" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
         </Grid>
     </Shell.TitleView>
 

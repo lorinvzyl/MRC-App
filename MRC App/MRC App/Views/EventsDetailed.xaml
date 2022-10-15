@@ -11,7 +11,7 @@
     <Shell.BackButtonBehavior>
         <BackButtonBehavior>
             <BackButtonBehavior.IconOverride>
-                <FontImageSource Glyph="&#xf060;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}"/>
+                <FontImageSource AutomationId="Back" Glyph="&#xf060;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}"/>
             </BackButtonBehavior.IconOverride>
         </BackButtonBehavior>
     </Shell.BackButtonBehavior>
@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Events" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Column="0" AutomationId="EventsDetailedLabel" Text="Events" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
         </Grid>
     </Shell.TitleView>
 

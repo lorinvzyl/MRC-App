@@ -17,7 +17,7 @@ namespace MRC_App.UnitTests
         public void AddBlogAbout()
         {
             //Arrange
-            AboutViewModel avm = new AboutViewModel(true); //passing in true in order to not call default constructor, which calls the database.
+            AboutViewModel avm = new AboutViewModel(); //passing in true in order to not call default constructor, which calls the database.
             var blog = new List<Models.Blog>();
             blog.Add(new Models.Blog
             {
@@ -68,7 +68,7 @@ namespace MRC_App.UnitTests
         public async Task AddVideoTest()
         {
             //Arrange
-            AboutViewModel avm = new AboutViewModel(true);
+            AboutViewModel avm = new AboutViewModel();
 
             Models.Video vid = new Models.Video
             {

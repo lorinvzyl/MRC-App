@@ -16,8 +16,6 @@ namespace MRC_App.ViewModels
     public class AboutViewModel : BaseViewModel
     {
         private ObservableRangeCollection<Blog> blog;
-        private string video;
-
         public ObservableRangeCollection<Blog> Blog
         {
             get { return blog; }
@@ -28,12 +26,13 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private string video;
         public string Video 
         {
             get { return video; }
             set 
             { 
-                if(!String.IsNullOrEmpty(value))
+                if(video != value)
                 {
                     video = value;
                     OnPropertyChanged(nameof(Video));
@@ -52,27 +51,21 @@ namespace MRC_App.ViewModels
             }
         }
 
-        public ICommand RefreshCommand;
+        public ICommand RefreshCommand => new Command(Refresh);
 
         public AboutViewModel()
         {
             IsVisible = false;
             Blog = new ObservableRangeCollection<Blog>();
-            RefreshCommand = new Command(Refresh);
 
             GetBlogs();
             GetVideo();
         }
 
-        public AboutViewModel(bool isTest)
-        {
-            isVisible = false;
-            Blog = new ObservableRangeCollection<Blog>();
-            RefreshCommand = new Command(Refresh);
-        }
-
         public async Task GetBlogs()
         {
+            if (Blog.Count > 0)
+                Blog.Clear();
             var blogs = await RestService.GetBlogsCount(3);
             Blog.AddRange(blogs);
         }
@@ -81,11 +74,6 @@ namespace MRC_App.ViewModels
         {
             var video = await RestService.GetLastVideo();
 
-            await SetUpVideo(video);
-        }
-
-        public async Task SetUpVideo(Video video)
-        {
             var youtube = new YoutubeClient();
 
             if (video == null)
@@ -96,6 +84,7 @@ namespace MRC_App.ViewModels
 
                 if (streamIn != null)
                 {
+                    var stream = await youtube.Videos.Streams.GetAsync(streamIn);
                     var source = streamIn.Url;
 
                     Video = source;
@@ -108,20 +97,19 @@ namespace MRC_App.ViewModels
 
             if (streamInfo != null)
             {
+                var stream = await youtube.Videos.Streams.GetAsync(streamInfo);
                 var source = streamInfo.Url;
 
                 Video = source;
                 IsVisible = true;
             }
+            else
+                IsVisible = false;
         }
 
         public async void Refresh(object obj)
         {
             IsBusy = true;
-
-            Blog.Clear();
-            Video = String.Empty;
-            IsVisible = false;
 
             await GetVideo();
             await GetBlogs();

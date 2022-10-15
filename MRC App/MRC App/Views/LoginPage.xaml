@@ -141,12 +141,6 @@
                         <xct:CharactersValidationBehavior
                            CharacterType="UppercaseLetter" 
                            MinimumCharacterCount="1"/>
-                        <xct:CharactersValidationBehavior 
-                           CharacterType="NonAlphanumericSymbol" 
-                           MinimumCharacterCount="1"/>
-                        <xct:CharactersValidationBehavior 
-                           CharacterType="Whitespace" 
-                           MaximumCharacterCount="0"/>
                     </xct:MultiValidationBehavior>
                     <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
                 </Entry.Behaviors>
@@ -155,7 +149,7 @@
             <Label Grid.Row="7" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
             <!--Button to log into account-->
-            <Button AutomationId="LoginButton" Grid.Row="8" Grid.Column="1" Text="Login" IsEnabled="True" Command="{Binding ButtonCommand}" Style="{StaticResource LoginButton}"/>
+            <Button AutomationId="LoginButton" Grid.Row="8" Grid.Column="1" Text="Login" Command="{Binding ButtonCommand}" IsEnabled="True" Style="{StaticResource LoginButton}"/>
 
             <!--Links for user-->
             <Label AutomationId="LoginReset" Grid.Row="10" Grid.Column="1" Text="Forgot password?" Style="{StaticResource PasswordLabel}">

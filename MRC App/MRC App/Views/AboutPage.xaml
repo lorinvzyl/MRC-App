@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Home" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Column="0" AutomationId="HomeLabel" Text="Home" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
         </Grid>
     </Shell.TitleView>
 
@@ -109,7 +109,6 @@
         <ScrollView>
             <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
                 <StackLayout Padding="0,0,0,10">
-
                     <CollectionView Margin="0,25,20,0" ItemsSource="{Binding Blog}" HeightRequest="300" SelectionChanged="CollectionView_SelectedChanged" SelectionMode="Single">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal"/>

@@ -62,16 +62,5 @@ namespace MRC_App
                 OnPropertyChanged("Username");
             }
         }
-
-        private string profileUrl;
-        public string ProfileUrl
-        {
-            get { return profileUrl; }
-            set
-            {
-                profileUrl = value;
-                OnPropertyChanged("ProfileUrl");
-            }
-        }
     }
 }

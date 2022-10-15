@@ -147,7 +147,7 @@ namespace MRC_App.ViewModels
             }
             else
             {
-                Error = "Incorrect password/email.";
+                Error = "Incorrect password/email";
             }
         }
     }

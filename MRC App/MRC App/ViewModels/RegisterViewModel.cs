@@ -17,8 +17,28 @@ namespace MRC_App.ViewModels
 
         public ICommand RegisterCommand => new Command(OnRegisterClicked);
         public ICommand ButtonCommand => new AsyncCommand(RegisterUser);
+        public ICommand EntryUnfocus => new AsyncCommand(OnEntryUnfocus);
         public RegisterViewModel()
         {
+        }
+
+        public async Task OnEntryUnfocus()
+        {
+            if (!EmailValid || !PasswordValid || !BirthValid || String.IsNullOrEmpty(Birth) || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(Email))
+                IsEnabled = false;
+            else
+                IsEnabled = true;
+        }
+
+        private bool isEnabled;
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set
+            {
+                isEnabled = value;
+                OnPropertyChanged(nameof(IsEnabled));
+            }
         }
 
         private async void OnRegisterClicked(object obj)
@@ -45,6 +65,17 @@ namespace MRC_App.ViewModels
             {
                 passwordValid = value;
                 OnPropertyChanged(nameof(PasswordValid));
+            }
+        }
+
+        private bool birthValid;
+        public bool BirthValid
+        {
+            get { return birthValid; }
+            set
+            {
+                birthValid = value;
+                OnPropertyChanged(nameof(BirthValid));
             }
         }
 

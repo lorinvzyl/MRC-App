@@ -26,6 +26,16 @@ namespace MRC_App.Views
                 Value = value
             };
 
+            if(key == "Email:")
+            {
+                //add validation
+            }
+
+            if(key == "Birthday:")
+            {
+                //add validation
+            }
+
             InitializeComponent();
         }
     }

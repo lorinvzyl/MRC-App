@@ -14,9 +14,6 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BlogDetailed : ContentPage
     {
-        BlogDetailedViewModel bdvm = new BlogDetailedViewModel();
-
-        public event EventHandler Completed;
         private static int blogId;
         public int BlogId
         {
@@ -30,19 +27,7 @@ namespace MRC_App.Views
         public BlogDetailed()
         {
             InitializeComponent();
-            _ = InitialiseEntry();
         }
 
-        public async Task InitialiseEntry()
-        {
-            BlogDetailedViewModel blogDetailedViewModel = new BlogDetailedViewModel();
-        }
-
-        int i = 0;
-
-        private void Expander_Tapped(object sender, EventArgs e)
-        {
-
-        }
     }
 }

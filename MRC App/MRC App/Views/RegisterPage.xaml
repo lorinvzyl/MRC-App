@@ -106,11 +106,15 @@
 
             <!--Entry for user details-->
             <!-- Need an entry for their email and password currently, however more entries are likely required.-->
-            <Entry AutomationId="RegisterFName" Text="{Binding Name, Mode=OneWayToSource}" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}"/>
-            <Entry AutomationId="RegisterLName" Text="{Binding Surname, Mode=OneWayToSource}" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}"/>
-            <Entry AutomationId="RegisterBirth" Text="{Binding Birth, Mode=OneWayToSource}" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}"/>
+            <Entry AutomationId="RegisterFName" x:Name="Name" Text="{Binding Name, Mode=OneWayToSource}" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Surname}"/>
+            <Entry AutomationId="RegisterLName" x:Name="Surname" Text="{Binding Surname, Mode=OneWayToSource}" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Birthday}"/>
+            <Entry AutomationId="RegisterBirth" x:Name="Birthday" Text="{Binding Birth, Mode=OneWayToSource}" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Email}">
+                <Entry.Behaviors>
+                    <xct:TextValidationBehavior RegexPattern="^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$" InvalidStyle="{StaticResource EntryErrorStyle}" IsValid="{Binding BirthValid}"/>
+                </Entry.Behaviors>
+            </Entry>
             <Label Grid.Row="7" Text="YYYY/MM/DD" Grid.Column="1" Margin="4,-5,0,0"  Style="{StaticResource AccountDetailsLabel}"/>
-            <Entry AutomationId="RegisterEmail" Text="{Binding Email, Mode=OneWayToSource}" Grid.Row="8" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
+            <Entry AutomationId="RegisterEmail" x:Name="Email" Text="{Binding Email, Mode=OneWayToSource}" Grid.Row="8" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
                 <Entry.Behaviors>
                     <xct:EmailValidationBehavior
                         MinimumLength="1"
@@ -128,17 +132,11 @@
                            CharacterType="Digit"
                            MinimumCharacterCount="1"/>
                         <xct:CharactersValidationBehavior 
-                           CharacterType="LowercaseLetter" 
+                           CharacterType="LowercaseLetter"
                            MinimumCharacterCount="1"/>
                         <xct:CharactersValidationBehavior
-                           CharacterType="UppercaseLetter" 
+                           CharacterType="UppercaseLetter"
                            MinimumCharacterCount="1"/>
-                        <xct:CharactersValidationBehavior 
-                           CharacterType="NonAlphanumericSymbol" 
-                           MinimumCharacterCount="1"/>
-                        <xct:CharactersValidationBehavior 
-                           CharacterType="Whitespace" 
-                           MaximumCharacterCount="0"/>
                     </xct:MultiValidationBehavior>
                 </Entry.Behaviors>
             </Entry>
@@ -147,7 +145,7 @@
             <Label Grid.Row="10" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
             <!--Register button-->
-            <Button AutomationId="RegisterButton" Grid.Row="11" Grid.Column="1" Text="Register" Style="{StaticResource RegisterButton}"/>
+            <Button AutomationId="RegisterButton" Grid.Row="11" Grid.Column="1" IsEnabled="{Binding IsEnabled}" Text="Register" Style="{StaticResource RegisterButton}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

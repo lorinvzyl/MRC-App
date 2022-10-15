@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Donate" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Column="0" AutomationId="DonateLabel" Text="Donate" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
         </Grid>
     </Shell.TitleView>
     
