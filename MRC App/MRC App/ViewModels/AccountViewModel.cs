@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Acr.UserDialogs;
-
 using System.Threading.Tasks;
 using MRC_App.Services;
 using MRC_App.Models;

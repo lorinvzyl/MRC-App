@@ -5,7 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms.Platform.Android;
-using Acr.UserDialogs;
+using Rg.Plugins.Popup;
 
 namespace MRC_App.Droid
 {
@@ -20,7 +20,7 @@ namespace MRC_App.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
-            UserDialogs.Init(this);
+            Popup.Init(this);
             
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
@@ -33,6 +33,11 @@ namespace MRC_App.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public override void OnBackPressed()
+        {
+            Popup.SendBackPressed(base.OnBackPressed);
         }
     }
 }

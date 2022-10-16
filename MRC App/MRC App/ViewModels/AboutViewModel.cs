@@ -64,10 +64,12 @@ namespace MRC_App.ViewModels
 
         public async Task GetBlogs()
         {
-            if (Blog.Count > 0)
-                Blog.Clear();
+            Blog.Clear();
+
             var blogs = await RestService.GetBlogsCount(3);
             Blog.AddRange(blogs);
+
+            await GetVideo();
         }
 
         public async Task GetVideo()

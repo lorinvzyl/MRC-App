@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="MRC_App.Views.LocationPage">
 
     <ContentPage.BindingContext>
@@ -48,13 +49,22 @@
 
         <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
             <StackLayout>
-                <CollectionView ItemsSource="{Binding Locations}" Margin="20" SelectedItem="CollectionView_ItemSelected">
+                <CollectionView ItemsSource="{Binding Locations}" Margin="20" SelectionMode="Single" SelectionChanged="CollectionView_ItemSelected">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
                                 <Frame Style="{StaticResource LocationFrame}">
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -71,11 +81,7 @@
                                         <Label Grid.Row="1" Grid.Column="0" Text="Pastor:" Style="{StaticResource LocationContent}"/>
                                         <Label Grid.Row="1" Grid.Column="1" Text="{Binding Pastor}" Style="{StaticResource LocationContent}"/>
 
-                                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Click here to navigate to the church" Style="{StaticResource LocationLink}">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="PopupNavigation"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
+                                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Click here to navigate to the church" Style="{StaticResource LocationLink}"/>
                                     </Grid>
                                 </Frame>
                             </StackLayout>

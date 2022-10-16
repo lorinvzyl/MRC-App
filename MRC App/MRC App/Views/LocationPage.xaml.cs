@@ -1,10 +1,14 @@
-﻿using MRC_App.ViewModels;
+﻿using MRC_App.Controls;
+using MRC_App.ViewModels;
+using Rg.Plugins.Popup.Animations;
+using Rg.Plugins.Popup.Enums;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,35 +23,35 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        async void PopupNavigation(System.Object sender, System.EventArgs e)
+        async void CollectionView_ItemSelected(object sender, SelectionChangedEventArgs e)
         {
-            var action = await DisplayActionSheet("Open with", "Cancel", null, "Google Maps", "Waze");
-            switch (action)
-            {
-                case "Google Maps":
-                    await Launcher.OpenAsync("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge");
-                    break;
-                case "Waze":
-                    await Launcher.OpenAsync("https://waze.com/ul");
-                    break;
-
-            }
-            //await Launcher.OpenAsync("http://maps.google.com/?daddr=Reformed%20Church%20Rabie%20Ridge");
-        }
-        async void CollectionView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            var location = e.SelectedItem as Models.Location;
-
+            if (!(e.CurrentSelection.FirstOrDefault() is Models.Location location))
+                return;
 
             var supportsWaze = await Launcher.CanOpenAsync("https://waze.com/ul");
             var supportsGoogleMaps = await Launcher.CanOpenAsync("comgooglemaps://");
-
-            if (supportsWaze || supportsGoogleMaps)
+            if (supportsWaze && supportsGoogleMaps)
             {
-                //bring pop up
-                //use pop up selection to open launcher
-                //await Launcher.OpenAsync($"comgooglemaps://?daddr={location.MapsUrl}");
-                //await Launcher.OpenAsync($"https://waze.com/ul?q={location.MapsUrl}&navigate=yes");
+                var action = await DisplayActionSheet("Open with", "Cancel", null, "Google Maps", "Waze");
+                switch (action)
+                {
+                    case "Google Maps":
+                        await Launcher.OpenAsync($"comgooglemaps://?daddr={location.MapsURL}");
+                        break;
+                    case "Waze":
+                        await Launcher.OpenAsync($"https://waze.com/ul?q={location.MapsURL}&navigate=yes");
+                        break;
+
+                }
+            }
+            else if (supportsWaze)
+                await Launcher.OpenAsync($"https://waze.com/ul?q={location.MapsURL}&navigate=yes");
+            else if(supportsGoogleMaps)
+                await Launcher.OpenAsync($"comgooglemaps://?daddr={location.MapsURL}");
+            else
+            {
+                Uri uri = new Uri($"https://waze.com/ul?q={location.MapsURL}&navigate=yes");
+                await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }
         }
     }

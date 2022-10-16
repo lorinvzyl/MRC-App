@@ -147,7 +147,7 @@
                             <Label Grid.Row="0" Text="Newsletter Settings" Style="{StaticResource HeaderLabelStyle}"/>
 
                             <Label Grid.Column="0" Grid.Row="1" Text="All Newsletters" Style="{StaticResource NewsletterHeaderStyle}" />
-                            <Controls:CSwitch x:Name="newsletterSwitch" Grid.Column="1" Grid.Row="1" ToggledCommand="{Binding ToggleCommand}" IsToggled="{Binding IsNewsletter}">
+                            <Controls:CSwitch AutomationId="NewsletterSwitch" x:Name="newsletterSwitch" Grid.Column="1" Grid.Row="1" ToggledCommand="{Binding ToggleCommand}" IsToggled="{Binding IsNewsletter}">
                             </Controls:CSwitch>
                             <Label Grid.Column="0" Grid.Row="2" Text="Receive newsletters about events, updates and recommendations" Style="{StaticResource NewsletterSubtitleStyle}"/>
                         </Grid>

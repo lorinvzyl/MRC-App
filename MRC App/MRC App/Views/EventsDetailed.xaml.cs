@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using MRC_App.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace MRC_App.Views
 {
@@ -31,5 +32,19 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
+        public async void ActionSheet(string venue)
+        {
+            var action = await DisplayActionSheet("Open with", "Cancel", null, "Google Maps", "Waze");
+            switch (action)
+            {
+                case "Google Maps":
+                    await Launcher.OpenAsync($"comgooglemaps://?daddr={venue}");
+                    break;
+                case "Waze":
+                    await Launcher.OpenAsync($"https://waze.com/ul?q={venue}&navigate=yes");
+                    break;
+
+            }
+        }
     }
 }

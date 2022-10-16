@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Acr.UserDialogs;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MRC_App.ViewModels;

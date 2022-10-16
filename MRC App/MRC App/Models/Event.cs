@@ -16,5 +16,6 @@ namespace MRC_App.Models
         public DateTime RSVPCloseDate { get; set; }
         public DateTime EventDate { get; set; }
 
+
     }
 }
