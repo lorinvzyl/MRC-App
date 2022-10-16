@@ -32,6 +32,7 @@ namespace MRC_App.ViewModels
 
         public LoginViewModel()
         {
+            OnEntryUnfocus();
         }
 
         private async void OnLoginClicked(object obj)
@@ -44,7 +45,7 @@ namespace MRC_App.ViewModels
             await Shell.Current.GoToAsync($"{nameof(RegisterPage)}"); 
         }
 
-        public async Task OnEntryUnfocus()
+        private async Task OnEntryUnfocus()
         {
             if (!EmailValid || !PasswordValid || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(Email))
                 IsEnabled = false;
@@ -116,7 +117,7 @@ namespace MRC_App.ViewModels
 
             User user = new User()
             {
-                Email = Email,
+                Email = Email.ToLower(),
                 Password = Password,
             };
 
@@ -135,7 +136,6 @@ namespace MRC_App.ViewModels
                         await SecureStorage.SetAsync("Email", _user.Email);
                         await SecureStorage.SetAsync("Birth", _user.DateOfBirth.ToString());
                         await SecureStorage.SetAsync("Newsletter", _user.isNewsletter.ToString());
-                        await SecureStorage.SetAsync("ProfileImage", _user.ProfilePicURL);
                     }
                     catch (Exception ex)
                     {

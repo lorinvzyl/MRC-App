@@ -145,10 +145,10 @@ namespace MRC_App.UnitTests
             };
 
             //Act
-            edvm.SelectedEvent.Add(_event);
+            edvm.SelectedEvent = _event;
 
             //Assert
-            Assert.IsTrue(edvm.SelectedEvent.Count == 1);
+            Assert.IsTrue(edvm.SelectedEvent != null);
         }
 
         [TestMethod]

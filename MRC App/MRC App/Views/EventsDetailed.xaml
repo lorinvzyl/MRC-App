@@ -69,7 +69,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout BindableLayout.ItemsSource="{Binding SelectedEvent}">
+            <StackLayout>
                 <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="15"/>
@@ -84,11 +84,11 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="270"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding EventName}" Style="{StaticResource EventTitle}"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding SelectedEvent.EventName}" Style="{StaticResource EventTitle}"/>
 
                         <!--Placeholder for images, however this will need capabilities of a slideshow-->
 
-                        <Label Margin="0,15,0,0" Grid.Row="2" Grid.Column="1" FontSize="Header" Text="{Binding EventDescription}"/>
+                        <Label Margin="0,15,0,0" Grid.Row="2" Grid.Column="1" FontSize="Header" Text="{Binding SelectedEvent.EventDescription}"/>
 
                         <Frame Style="{StaticResource RSVPFrame}" Grid.Row="4" Grid.Column="1" VerticalOptions="End">
                             <!--Placeholder for event details such as spots open, venue and closing date. Maybe add a section for when the event begins?-->
@@ -109,21 +109,21 @@
                                     <RowDefinition Height="30"/>
                                     <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
-                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="Title" Style="{StaticResource RSVPLabelTitle}"/>
+                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="RSVP" Style="{StaticResource RSVPLabelTitle}"/>
                                 <!--Title-->
 
                                 <Label Grid.Row="2" Grid.Column="1" Text="Spots open:" Style="{StaticResource RSVPLabelLeft}"/>
-                                <Label Grid.Row="2" Grid.Column="2" Text="{Binding SpacesAvailable}" Style="{StaticResource RSVPLabelRight}"/>
+                                <Label Grid.Row="2" Grid.Column="2" Text="{Binding SelectedEvent.SpacesAvailable}" Style="{StaticResource RSVPLabelRight}"/>
 
                                 <Label Grid.Row="3" Grid.Column="1" Text="Venue:" Style="{StaticResource RSVPLabelLeft}"/>
-                                <Label Grid.Row="3" Grid.Column="2" Text="Church Location" TextDecorations="Underline" Style="{StaticResource RSVPLabelRight}">
+                                <Label AutomationId="Location" Grid.Row="3" Grid.Column="2" Text="Church Location" TextDecorations="Underline" Style="{StaticResource RSVPLabelRight}">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={x:Reference detail}, Path=BindingContext.LocationCommand}"/>
+                                        <TapGestureRecognizer Command="{Binding LocationCommand}"/>
                                     </Label.GestureRecognizers>
                                 </Label>
 
                                 <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" Style="{StaticResource RSVPLabelLeft}"/>
-                                <Label Grid.Row="4" Grid.Column="2" Text="{Binding RSVPCloseDate}" Style="{StaticResource RSVPLabelRight}"/>
+                                <Label Grid.Row="4" Grid.Column="2" Text="{Binding SelectedEvent.RSVPCloseDate}" Style="{StaticResource RSVPLabelRight}"/>
 
                                 <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
                                     <Grid.RowDefinitions>

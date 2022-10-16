@@ -20,11 +20,12 @@ namespace MRC_App.ViewModels
         public ICommand EntryUnfocus => new AsyncCommand(OnEntryUnfocus);
         public RegisterViewModel()
         {
+            OnEntryUnfocus();
         }
 
-        public async Task OnEntryUnfocus()
+        private async Task OnEntryUnfocus()
         {
-            if (!EmailValid || !PasswordValid || !BirthValid || String.IsNullOrEmpty(Birth) || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(Email))
+            if (!EmailValid || !PasswordValid || !BirthValid || String.IsNullOrEmpty(Birth) || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(Email) || String.IsNullOrEmpty(Name) || String.IsNullOrEmpty(Surname))
                 IsEnabled = false;
             else
                 IsEnabled = true;
@@ -158,9 +159,10 @@ namespace MRC_App.ViewModels
             {
                 Name = Name,
                 Surname = Surname,
-                Email = Email,
-                DateOfBirth = DateTime.Parse(Birth),
+                Email = Email.ToLower(),
+                DateOfBirth = DateTime.Parse(Birth).Date,
                 Password = Password,
+                ProfilePicURL = "&#xf2bd;",
                 Id = 1
             };
 
@@ -168,6 +170,8 @@ namespace MRC_App.ViewModels
 
             if (registration)
                 RegisterCommand.Execute(registration);
+            else
+                Error = "Registration failed";
         }
     }
 }

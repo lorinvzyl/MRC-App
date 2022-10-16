@@ -43,7 +43,7 @@ namespace MRC_App.UITest
         {
             //Register valid user account
             app.WaitForElement(c => c.Marked("Log into your account"));
-            app.Tap(c => c.Text("No account? sign up here"));
+            app.Tap(c => c.Marked("LoginRegister"));
             app.WaitForElement(c => c.Marked("Register your account"));
 
             app.Screenshot("Register Screen"); //ensures the register screen is being displayed
@@ -62,8 +62,8 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
-            app.DismissKeyboard();
+            app.EnterText("John2Doe");
+            app.Back();
 
             //Ensure all fields have values
             app.Screenshot("ValidEntryRegister");
@@ -88,7 +88,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -185,7 +185,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -206,7 +206,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -242,7 +242,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -260,6 +260,8 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("BlogDetailedLabel"));
 
             //Interact with scroll, read more, and comments
+
+
         }
 
         [Test]
@@ -271,7 +273,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -308,7 +310,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -328,10 +330,13 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("EventsDetailedLabel"));
             app.Screenshot("EventsDetailed");
 
-            app.Tap(c => c.Marked(""));
+            app.Tap(c => c.Marked("Location"));
+            //app.WaitForElement(c => c.Marked(""));
 
+            app.Tap(c => c.Marked("EventRSVP"));
+            //app.WaitForElement(c => c.Marked(""));
 
-            AppResult[] result = app.WaitForElement(c => c.Marked("EventsLabel"));
+            AppResult[] result = app.WaitForElement(c => c.Marked("EventsLabel")); //placeholder, will be confirming pop ups
 
             Assert.IsTrue(result.Any());
         }
@@ -345,7 +350,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -383,7 +388,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -413,7 +418,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Screenshot("ValidEntryLogin");
@@ -453,7 +458,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
@@ -531,7 +536,8 @@ namespace MRC_App.UITest
             //Check error handling for incorrect inputs
             //Register
             app.WaitForElement(c => c.Marked("Log into your account"));
-            app.Tap(c => c.Marked("No account? Sign up here"));
+            app.Tap(c => c.Marked("LoginRegister"));
+            app.WaitForElement(c => c.Marked("Register your account"));
 
             app.Tap(c => c.Marked("RegisterFName"));
             app.EnterText("John");
@@ -564,7 +570,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
@@ -596,7 +602,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
@@ -628,7 +634,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
@@ -648,7 +654,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
@@ -669,7 +675,7 @@ namespace MRC_App.UITest
             app.EnterText("johndoe@gmail.com");
             app.PressEnter();
 
-            app.EnterText("John@Doe");
+            app.EnterText("John2Doe");
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));

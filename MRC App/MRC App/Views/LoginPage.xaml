@@ -112,7 +112,7 @@
 
             <!--Information block header text-->
             <Label Grid.Row="2" Grid.Column="1" Text="Welcome!" Style="{StaticResource HeaderTextTitle}"/>
-            <Label Grid.Row="3" Grid.Column="1" Text="Log into your account" Style="{StaticResource HeaderTextSubtitle}"/>
+            <Label AutomationId="LoginWelcome" Grid.Row="3" Grid.Column="1" Text="Log into your account" Style="{StaticResource HeaderTextSubtitle}"/>
             <!--Enter email and password-->
             <Entry AutomationId="LoginEmail" Grid.Row="4" Grid.Column="1" Text="{Binding Email, Mode=OneWayToSource}" Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
                 <Entry.Behaviors>
@@ -149,7 +149,7 @@
             <Label Grid.Row="7" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
             <!--Button to log into account-->
-            <Button AutomationId="LoginButton" Grid.Row="8" Grid.Column="1" Text="Login" Command="{Binding ButtonCommand}" IsEnabled="True" Style="{StaticResource LoginButton}"/>
+            <Button AutomationId="LoginButton" IsEnabled="True" Grid.Row="8" Grid.Column="1" Text="Login" Command="{Binding ButtonCommand}" Style="{StaticResource LoginButton}"/>
 
             <!--Links for user-->
             <Label AutomationId="LoginReset" Grid.Row="10" Grid.Column="1" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
