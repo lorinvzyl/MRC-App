@@ -4,4 +4,18 @@
     <application android:label="MRC_App.Android" android:theme="@style/MainTheme"></application>
 	<uses-permission android:name="android.permission.VIBRATE" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="http"/>
+      </intent>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:scheme="https"/>
+      </intent>
+	  <intent>
+	    <action android:name="android.intent.action.VIEW"/>
+        <data android:scheme="com.google.android.apps.maps"/>
+	  </intent>
+    </queries>
 </manifest>

@@ -24,6 +24,8 @@ namespace MRC_App.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+            Rg.Plugins.Popup.Popup.Init();
+
             LoadApplication(new App());
 
             // Render added to facilitate the custom switches 

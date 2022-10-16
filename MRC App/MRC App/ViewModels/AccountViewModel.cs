@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Acr.UserDialogs;
-
 using System.Threading.Tasks;
 using MRC_App.Services;
 using MRC_App.Models;
+using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 
 namespace MRC_App.ViewModels
 {
@@ -17,17 +17,18 @@ namespace MRC_App.ViewModels
         {
             ToggleCommand = new Command<bool>(async x => await Toggled(x).ConfigureAwait(false));
         }
-        public bool EnableCommands { get; set; }
-        public bool EnableEvents { get; set; }
 
         public ICommand ToggleCommand { get; }
 
         public async Task Toggled(bool newValue)
         {
-            if (EnableCommands)
-            {
-                await UserDialogs.Instance.AlertAsync($"New value: {newValue}", "Switch toggled (Command)").ConfigureAwait(false);
-            }
+            await UpdateNewsletter(newValue);
+        }
+
+        public async Task UpdateNewsletter(bool isNewsletter)
+        {
+            await SecureStorage.SetAsync("Newsletter", isNewsletter.ToString());
+            UpdateUser();
         }
 
         public async Task<bool> DeleteUser(string email)
@@ -39,22 +40,98 @@ namespace MRC_App.ViewModels
             return delete;
         }
 
-        public async Task<bool> UpdateUser(string email, string name, string surname, DateTime dateOfBirth, bool isNewsletter)
+        public async Task UpdateUser()
         {
-            if (email == null || name == null || surname == null || dateOfBirth == null)
-                return false;
-
             User user = new User(){
-                Name = name,
-                Email = email,
-                Surname = surname,
-                DateOfBirth = dateOfBirth,
-                isNewsletter = isNewsletter
+                Id = Int32.Parse(SecureStorage.GetAsync("Id").Result),
+                Name = SecureStorage.GetAsync("Name").Result,
+                Surname = SecureStorage.GetAsync("Surname").Result,
+                Email = SecureStorage.GetAsync("Email").Result,
+                DateOfBirth = DateTime.Parse(SecureStorage.GetAsync("Birth").Result),
+                isNewsletter = Boolean.Parse(SecureStorage.GetAsync("Newsletter").Result),
+                ProfilePicURL = SecureStorage.GetAsync("ProfileImage").Result
             };
 
-            var update = await RestService.UpdateUser(email, user);
+            var update = await RestService.UpdateUser(user.Id, user);
 
-            return update;
+            if(update)
+            {
+                await UpdateData();
+            }
+        }
+
+        public async Task UpdateData()
+        {
+            Name = SecureStorage.GetAsync("Name").Result;
+            Surname = SecureStorage.GetAsync("Surname").Result;
+            Email = SecureStorage.GetAsync("Email").Result;
+            DateOfBirth = SecureStorage.GetAsync("Birth").Result.Substring(0,10);
+        }
+
+        private static string name;
+        private static string surname;
+        private static string dateOfBirth;
+        private static string email;
+        private static bool isNewsletter;
+
+        public string Name
+        {
+            get { return name; }
+            set 
+            { 
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string Surname
+        {
+            get { return surname; }
+            set
+            {
+                surname = value;
+                OnPropertyChanged(nameof(Surname));
+            }
+        }
+
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        public string DateOfBirth
+        {
+            get { return dateOfBirth; }
+            set
+            {
+                dateOfBirth = value;
+                OnPropertyChanged(nameof(DateOfBirth));
+            }
+        }
+        private string profilePicURL;
+        public string ProfilePicURL
+        {
+            get { return profilePicURL; }
+            set
+            {
+                profilePicURL = value;
+                OnPropertyChanged(nameof(ProfilePicURL));
+            }
+        }
+
+        public bool IsNewsletter
+        {
+            get { return isNewsletter; }
+            set
+            {
+                isNewsletter = value;
+                OnPropertyChanged(nameof(IsNewsletter));
+            }
         }
     }
 }

@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:viewmodel="clr-namespace:MRC_App.Controls"
              x:Class="MRC_App.Controls.LocationPopUp">
 
-    <ContentPage.BindingContext>
+    <pages:PopupPage.BindingContext>
         <viewmodel:LocationPopUp/>
-    </ContentPage.BindingContext>
-    
-    <ContentPage.Content>
-        <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}">
+    </pages:PopupPage.BindingContext>
+        
+        <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}" HeightRequest="141" HorizontalOptions="FillAndExpand">
             <Grid RowDefinitions="3*, *">
-                <CollectionView Grid.Row="0" ItemsSource="{Binding Nav}" SelectionMode="Single" SelectedItem="ItemSelected_CollectionView">
-                    <CollectionView.ItemsLayout>
+            <CollectionView Grid.Row="0" ItemsSource="{Binding Nav}" SelectionMode="Single" SelectionChanged="ItemSelected_CollectionView">
+                <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Horizontal"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame>
                                 <Grid RowDefinitions="3*, *">
-                                    <Label Grid.Row="0" Text="{Binding Icon}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                                    <Label Grid.Row="0" Text="{Binding Icon}" FontFamily="{StaticResource FontAwesomeBrands}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
                                     <!--Icon-->
                                     <Label Grid.Row="1" Text="{Binding Title}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
                                     <!--Label-->
@@ -42,11 +42,14 @@
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
                 </CollectionView>
-                
-                <Line Grid.Row="1" VerticalOptions="StartAndExpand" WidthRequest="300" BackgroundColor="{StaticResource DarkShade}"/>
 
-                <Button Grid.Row="1" VerticalOptions="End" HorizontalOptions="CenterAndExpand" BackgroundColor="{StaticResource LightShade}" CornerRadius="0" TextColor="{StaticResource DarkShade}"/>
+                <BoxView Grid.Row="1" Margin="0,10,0,10" WidthRequest="300" HorizontalOptions="CenterAndExpand" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
+
+                <Label Grid.Row="1" VerticalOptions="End" HorizontalOptions="CenterAndExpand" TextColor="{StaticResource DarkShade}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnClose"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
         </Frame>
-    </ContentPage.Content>
-</ContentPage>
+</pages:PopupPage>

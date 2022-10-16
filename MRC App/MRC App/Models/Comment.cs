@@ -6,10 +6,17 @@ namespace MRC_App.Models
 {
     public class Comment
     {
+        public Comment()
+        {
+            Reply = new HashSet<Reply>();
+        }
         public int Id { get; set; }
-        public int BlogId { get; set; }
         public string CommentText { get; set; }
-        public int ParentId { get; set; }
-        public string User { get; set; }
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
+        public int BlogId { get; set; }
+        public ICollection<Reply> Reply { get; set; }
+        public bool Expanded { get; set; }
+        public string ReplyText { get; set; }
     }
 }

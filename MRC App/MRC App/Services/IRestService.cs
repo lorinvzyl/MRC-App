@@ -32,8 +32,10 @@ namespace MRC_App.Services
         //Interacts with video table
         Task<List<Comment>> GetBlogComments(int blogId); //need to implement this
         //Communicates with comment and the reply tables?
-        Task AddBlogComment(Comment comment); //need to implement this
+        Task AddBlogComment(Comment comment);
         //Adds a general comment, interacts with comments.
+        Task UpdateBlogComment(Comment comment); 
+        //Adds a reply to comment
         Task<List<Location>> GetChurchLocations(); //need to implement this
         //Interacts with location table?
         Task UpdateNewsletter(int userId); //need to implement this

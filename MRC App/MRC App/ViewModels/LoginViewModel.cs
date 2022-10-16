@@ -7,15 +7,19 @@ using System.Threading.Tasks;
 using MRC_App.Models;
 using MRC_App.Services;
 using Xamarin.Essentials;
+using System.Windows.Input;
+using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace MRC_App.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public Command LoginCommand { get; }
-        public Command RegisterCommand { get; }
+        public ICommand LoginCommand => new Command(OnLoginClicked);
+        public ICommand RegisterCommand => new Command(OnRegisterClicked);
+        public ICommand ButtonCommand => new AsyncCommand(LoginUser);
+        public ICommand EntryUnfocus => new AsyncCommand(OnEntryUnfocus);
 
-        private string error { get; set; }
+        private string error = "";
         public string Error
         {
             get { return error; }
@@ -28,15 +32,11 @@ namespace MRC_App.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new Command(OnLoginClicked);
-            RegisterCommand = new Command(OnRegisterClicked);
-            Error = "";
+            OnEntryUnfocus();
         }
 
         private async void OnLoginClicked(object obj)
         {
-            var appshell = Xamarin.Forms.Shell.Current as AppShell;
-            appshell.SetUsername();
             await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
 
@@ -45,7 +45,15 @@ namespace MRC_App.ViewModels
             await Shell.Current.GoToAsync($"{nameof(RegisterPage)}"); 
         }
 
-        private bool emailValid { get; set; }
+        private async Task OnEntryUnfocus()
+        {
+            if (!EmailValid || !PasswordValid || String.IsNullOrEmpty(Password) || String.IsNullOrEmpty(Email))
+                IsEnabled = false;
+            else
+                IsEnabled = true;
+        }
+
+        private bool emailValid;
 
         public bool EmailValid
         {
@@ -53,15 +61,65 @@ namespace MRC_App.ViewModels
             set
             {
                 emailValid = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(EmailValid));
             }
         }
 
-        public async Task LoginUser(User user)
+        private string password;
+        public string Password
         {
-            Error = "";
-            if (user == null)
+            get { return password; }
+            set
+            {
+                password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        private string email;
+        public string Email
+        {
+            get => email;
+            set
+            {
+                email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        private bool passwordValid;
+        public bool PasswordValid
+        {
+            get { return passwordValid; }
+            set
+            {
+                passwordValid = value;
+                OnPropertyChanged(nameof(PasswordValid));
+            }
+        }
+
+        private bool isEnabled;
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set
+            {
+                isEnabled = value;
+                OnPropertyChanged(nameof(IsEnabled));
+            }
+        }
+
+        private async Task LoginUser()
+        {
+            Error = ""; //reset error message
+            if (Email == null || Password == null)
                 return;
+
+            User user = new User()
+            {
+                Email = Email.ToLower(),
+                Password = Password,
+            };
 
             var login = await RestService.LoginUser(user);
 
@@ -89,7 +147,7 @@ namespace MRC_App.ViewModels
             }
             else
             {
-                Error = "Incorrect password/email.";
+                Error = "Incorrect password/email";
             }
         }
     }

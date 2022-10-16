@@ -14,23 +14,10 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        LoginViewModel viewModel;
         public LoginPage()
         {
             InitializeComponent();
-            viewModel = new LoginViewModel();
-            BindingContext = viewModel;
         }
 
-        private async void Login_Clicked(object sender, EventArgs e)
-        {
-            User user = new User()
-            {
-                Email = EmailEntry.Text,
-                Password = PasswordEntry.Text
-            };
-
-            await viewModel.LoginUser(user);
-        }
     }
 }

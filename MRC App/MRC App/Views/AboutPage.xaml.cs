@@ -9,6 +9,7 @@ using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.UI.Views;
+using Newtonsoft.Json;
 
 namespace MRC_App.Views
 {
@@ -19,23 +20,14 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        async void ItemSelected_CollectionView(object sender, SelectionChangedEventArgs e)
+        async void CollectionView_SelectedChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!(e.CurrentSelection.FirstOrDefault() is Blog blog))
                 return;
 
-            var blogdetailed = new BlogDetailed
-            {
-                BindingContext = blog
-            };
-
-            await Navigation.PushAsync(blogdetailed);
+            var json = JsonConvert.SerializeObject(blog);
+            await Shell.Current.GoToAsync($"{nameof(BlogDetailed)}?Param={json}");
             ((CollectionView)sender).SelectedItem = null;
-        }
-
-        private void mediaSource_MediaOpened(object sender, EventArgs e)
-        {
-            ((MediaElement)sender).Speed = 0; //Xamarin community toolkit currently has a bug where autoplay being set to off doesn't work. This is a workaround.
         }
     }
 }

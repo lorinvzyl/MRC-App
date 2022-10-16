@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,8 @@ namespace MRC_App.Services
     public class RestService
     {
         static HttpClient client;
-        static string BaseUrl = "http://10.0.2.2:32223/";
+        //static string BaseUrl = "http://10.0.2.2:32223/";
+        static string BaseUrl = "https://reformedchurchmidrandapi.azurewebsites.net";
 
         static RestService()
         {
@@ -24,6 +26,7 @@ namespace MRC_App.Services
         public static async Task<bool> RegisterUser(User user)
         {
             bool registered = false;
+
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -55,7 +58,7 @@ namespace MRC_App.Services
 
         public static async Task<IEnumerable<Blog>> GetBlogs()
         {
-            var json = await client.GetAsync("api/Blogs");
+            var json = await client.GetAsync("api/Blogs"); //IConvertable error?
 
             if (!json.IsSuccessStatusCode)
                 return null;
@@ -78,7 +81,7 @@ namespace MRC_App.Services
 
         public static async Task<User> GetUser(int id)
         {
-            var json = await client.GetAsync($"spi/Users/{id}");
+            var json = await client.GetAsync($"api/Users/{id}");
             if (!json.IsSuccessStatusCode)
                 return null;
 
@@ -142,17 +145,17 @@ namespace MRC_App.Services
             return deleted;
         }
 
-        public static async Task<bool> UpdateUser(string email, User user)
+        public static async Task<bool> UpdateUser(int id, User user)
         {
             bool updated = false;
 
-            if (user == null || email == null)
+            if (user == null || id != user.Id)
                 return updated;
 
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"api/Users/email={email}", content);
+            var response = await client.PutAsync($"api/Users/{id}", content);
 
             if (!response.IsSuccessStatusCode)
                 return updated;
@@ -212,6 +215,25 @@ namespace MRC_App.Services
             commented = true;
 
             return commented;
+        }
+
+        public static async Task<bool> AddBlogReply(Reply comment)
+        {
+            var replied = false;
+
+            if (comment == null)
+                return replied;
+
+            var json = JsonConvert.SerializeObject(comment);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync($"api/Comments/{comment.CommentId}", content);
+
+            if(!response.IsSuccessStatusCode)
+                return replied;
+
+            replied = true;
+            return replied;
         }
 
         public static async Task<IEnumerable<Location>> GetChurchLocations()

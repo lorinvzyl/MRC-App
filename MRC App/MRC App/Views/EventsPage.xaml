@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Events" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Column="0" AutomationId="EventsLabel" Text="Events" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
         </Grid>
     </Shell.TitleView>
 
@@ -76,7 +76,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!--icon for left-->
-                            <Frame Grid.Column="1" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                            <Frame AutomationId="LeftIcon" Grid.Column="1" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
                                 <Label VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"  FontSize="Large" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf104;" TextColor="{StaticResource DarkShade}" InputTransparent="True"/>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding PrevLayoutUnitCommand}"/> <!--Plugin command, allows for changing of months.-->
@@ -96,14 +96,13 @@
                             </Label>
                             
                             <!--icon for right-->
-                            <Frame Grid.Column="3" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                            <Frame AutomationId="RightIcon" Grid.Column="3" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
                                 <Label VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="Large" FontAttributes="Bold" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf105;" TextColor="{StaticResource DarkShade}" InputTransparent="True"/>
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding NextLayoutUnitCommand}"/> <!--plugin command, allows for changing of months.-->
+                                    <TapGestureRecognizer Command="{Binding NextLayoutUnitCommand}"/>
+                                    <!--plugin command, allows for changing of months.-->
                                 </Frame.GestureRecognizers>
                             </Frame>
-                            
-
                         </Grid>
                     </DataTemplate>
                 </controls:Calendar.HeaderSectionTemplate>

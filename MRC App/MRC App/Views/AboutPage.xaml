@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Home" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Column="0" AutomationId="HomeLabel" Text="Home" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
         </Grid>
     </Shell.TitleView>
 
@@ -107,84 +107,75 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="0,0,0,10">
-                <CollectionView Margin="0,25,20,0" ItemsSource="{Binding Blog}" HeightRequest="300" SelectionChanged="ItemSelected_CollectionView" SelectionMode="Single">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Horizontal"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup Name="CommonStates">
-                                        <VisualState Name="Selected">
-                                            <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="Transparent"/>
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-                                <Frame Style="{StaticResource BlogCardStyle}">
-                                    <Grid>
-                                        <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
-                                            <Image Source="{Binding ImagePath}" Style="{StaticResource BlogImageStyle}"/>
-                                        </StackLayout>
-                                        <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
-                                        <StackLayout VerticalOptions="EndAndExpand">
-                                            <Grid HeightRequest="135" RowSpacing="0">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="7*"/>
-                                                    <RowDefinition Height="3*"/>
-                                                </Grid.RowDefinitions>
-                                                <ScrollView>
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
+                <StackLayout Padding="0,0,0,10">
+                    <CollectionView Margin="0,25,20,0" ItemsSource="{Binding Blog}" HeightRequest="300" SelectionChanged="CollectionView_SelectedChanged" SelectionMode="Single">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Frame Style="{StaticResource BlogCardStyle}">
+                                        <Grid>
+                                            <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
+                                                <Image Source="{Binding ImagePath}" Style="{StaticResource BlogImageStyle}"/>
+                                            </StackLayout>
+                                            <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
+                                            <StackLayout VerticalOptions="EndAndExpand">
+                                                <ScrollView HeightRequest="135">
                                                     <Label Grid.Row="0" Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
                                                 </ScrollView>
-                                                <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" Margin="0,0,15,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Label Grid.Column="0" Text="&#xf075;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
-                                                    <Label Text="1" Grid.Column="1" Style="{StaticResource IconLabels}"/>
-                                                    <Label Grid.Column="2" Text="&#xf004;" FontFamily="{StaticResource FontAwesomeRegular}" Style="{StaticResource Icons}"/>
-                                                    <Label Text="3" Grid.Column="3" Style="{StaticResource IconLabels}"/>
-                                                </Grid>
-                                            </Grid>
-                                        </StackLayout>
-                                    </Grid>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <Frame Style="{StaticResource BlogCardStyle}">
+                                    <StackLayout Style="{StaticResource ImageStackLayoutStyle}" Opacity="0.8">
+                                        <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="No blogs found" FontSize="Title" TextColor="{StaticResource LightShade}" Opacity="0.8"/>
+                                    </StackLayout>
                                 </Frame>
                             </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
 
-                <Frame Style="{StaticResource ContainerStyle}">
+                    <Frame Style="{StaticResource ContainerStyle}">
+                        <StackLayout>
+                            <Label Text="Latest Video" Style="{StaticResource ContainerTitleStyle}"/>
+                            <xct:MediaElement x:Name="mediaSource" Source="{Binding Video}" IsVisible="{Binding IsVisible}" Style="{StaticResource Videostyle}" Speed="0" AutoPlay="False"/>
+                        </StackLayout>
+                    </Frame>
 
-                    <StackLayout>
-                        <Label Text="Latest Video" Style="{StaticResource ContainerTitleStyle}"/>
-                        <xct:MediaElement x:Name="mediaSource" Source="{Binding Video}" IsVisible="{Binding IsVisible}" Style="{StaticResource Videostyle}"/>
-                    </StackLayout>
+                    <Frame Style="{StaticResource ContainerStyle}">
+                        <StackLayout>
+                            <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
+                            <Label Text="Every word of God is pure; He is a shield to those who put their trust in Him." Style="{StaticResource ContainerTextStyle}"/>
+                            <Label Text="Proverbs 30: 5-5" Style="{StaticResource ContainerTitleStyle}"/>
+                        </StackLayout>
+                    </Frame>
 
-                </Frame>
-
-                <Frame Style="{StaticResource ContainerStyle}">
-                    <StackLayout>
-                        <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
-                        <Label Text="Every word of God is pure; He is a shield to those who put their trust in Him." Style="{StaticResource ContainerTextStyle}"/>
-                        <Label Text="Proverbs 30: 5-5" Style="{StaticResource ContainerTitleStyle}"/>
-                    </StackLayout>
-                </Frame>
-
-                <Frame Style="{StaticResource ContainerStyle}">
-                    <StackLayout>
-                        <Label Text="Institutions we support" Style="{StaticResource ContainerTitleStyle}"/>
-                        <Label Style="{StaticResource ContainerTextStyle}"
+                    <Frame Style="{StaticResource ContainerStyle}">
+                        <StackLayout>
+                            <Label Text="Institutions we support" Style="{StaticResource ContainerTitleStyle}"/>
+                            <Label Style="{StaticResource ContainerTextStyle}"
                             Text="&#x2022; Institution 1 &#10;&#x2022; Institution 2 &#10;&#x2022; Institution 3 &#10;&#10;If you wish to find out more about these institutions, visit our website page on it here"/>
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </RefreshView>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

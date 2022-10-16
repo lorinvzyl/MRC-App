@@ -3,6 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:MRC_App.Views"
        xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+       xmlns:viewmodel="clr-namespace:MRC_App.ViewModels"
        Title="MRC_App"
        x:Class="MRC_App.AppShell"
        FlyoutBackground="{StaticResource LightShade}">
@@ -14,7 +15,7 @@
     -->
 
     <Shell.FlyoutIcon>
-        <FontImageSource Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title"  />
+        <FontImageSource AutomationId="FlyoutIcon" Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title"  />
     </Shell.FlyoutIcon>
 
     <Shell.Resources>
@@ -76,37 +77,37 @@
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
     </ShellItem>
     
-    <FlyoutItem Title="Home">
+    <FlyoutItem AutomationId="Home" Title="Home">
         <FlyoutItem.Icon>
             <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xe3af;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Blog">
+    <FlyoutItem AutomationId="Blog" Title="Blog">
         <FlyoutItem.Icon>
             <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf1ea;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="BlogPage" ContentTemplate="{DataTemplate local:BlogPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Donate">
+    <FlyoutItem AutomationId="Donate" Title="Donate">
         <FlyoutItem.Icon>
             <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf4c0;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="DonatePage" ContentTemplate="{DataTemplate local:DonatePage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Events">
+    <FlyoutItem AutomationId="Events" Title="Events">
         <FlyoutItem.Icon>
             <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf073;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="EventsPage"  ContentTemplate="{DataTemplate local:EventsPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="QR">
+    <FlyoutItem AutomationId="QR" Title="QR">
         <FlyoutItem.Icon>
             <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf029;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
         <ShellContent Route="QRPage" ContentTemplate="{DataTemplate local:QRPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Locations">
+    <FlyoutItem AutomationId="Locations" Title="Locations">
         <FlyoutItem.Icon>
             <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Glyph="&#xf3c5;" Color="{StaticResource DarkShade}"/>
         </FlyoutItem.Icon>
@@ -144,7 +145,7 @@
     -->
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="{StaticResource Primary}" HeightRequest="200" Padding="0">
+            <Grid AutomationId="Account" BackgroundColor="{StaticResource Primary}" HeightRequest="200" Padding="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
@@ -154,7 +155,7 @@
                 </Grid.GestureRecognizers>
                 
                 <!--<xct:AvatarView/>-->
-                <xct:AvatarView Grid.Column="0" Text="&#xf2bd;" FontSize="75" TextColor="{StaticResource LightShade}" Color="{StaticResource Primary}" FontFamily="{StaticResource FontAwesomeSolid}" Size="75" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="10,0,0,0"/>
+                <xct:AvatarView AutomationId="Avatar" Grid.Column="0" Text="&#xf2bd;" FontFamily="{StaticResource FontAwesomeSolid}" TextColor="{StaticResource LightShade}" Color="{StaticResource Primary}" FontSize="75" Size="75" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="10,0,0,0"/>
                 <Label Grid.Column="1" FontSize="Large" Padding="10,0" VerticalOptions="Center" Text="{Binding Username}" TextColor="{StaticResource LightShade}"/>
             </Grid>
         </DataTemplate>
@@ -162,7 +163,7 @@
 
     <Shell.FlyoutFooterTemplate>
         <DataTemplate>
-            <Grid HeightRequest="50">
+            <Grid HeightRequest="50" AutomationId="Logout">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="15"/>
                     <ColumnDefinition Width="Auto"/>

@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Donate" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <Label Grid.Column="0" AutomationId="DonateLabel" Text="Donate" FontSize="Title" TextColor="{StaticResource LightShade}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
         </Grid>
     </Shell.TitleView>
     
@@ -53,6 +53,12 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
                 <Setter Property="Padding" Value="0"/>
             </Style>
+            <Style x:Key="DonateButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="Background" Value="{StaticResource LightShade}"/>
+                <Setter Property="TextColor" Value="{StaticResource DarkShade}"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
             <Style x:Key="EntryErrorStyle" TargetType="Editor">
                 <Setter Property="TextColor" Value="{StaticResource Danger}"/>
             </Style>
@@ -72,9 +78,8 @@
                         <Label Grid.Row="0" Style="{StaticResource GratitudeMessage}"
                         Text="Thank you if you wish to donate to our church, insert formalities here. &#x0a;&#x0a;Your donation supports insert communities here.&#x0a;&#x0a;Once you select an amount to donate, you will be redirected to a third party payment service that you have selected below.&#x0a;&#x0a;If you wish to write a special message, do so here:"/>
                         <Frame Grid.Row="1" Style="{StaticResource TextBoxContainer}">
-                            <Editor Style="{StaticResource TextBox}" BackgroundColor="Transparent"/>
+                            <Editor AutomationId="DonateComment" Text="{Binding Message, Mode=OneWayToSource}" Style="{StaticResource TextBox}" BackgroundColor="Transparent"/>
                         </Frame>
-
 
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
@@ -98,48 +103,17 @@
                                         <ColumnDefinition Width="3"/>
                                     </Grid.ColumnDefinitions>
                                     <Label VerticalOptions="Center" Grid.Column="1" Text="R" FontSize="Medium"/>
-                                    <Editor Grid.Column="2" MaxLength="4">
+                                    <Editor Grid.Column="2" MaxLength="4" Text="{Binding Amount, Mode=OneWayToSource}" AutomationId="DonatePrice">
                                         <Editor.Behaviors>
-                                            <xct:NumericValidationBehavior Flags="ValidateOnValueChanging" MinimumValue="1" InvalidStyle="{StaticResource EntryErrorStyle}"/>
+                                            <xct:NumericValidationBehavior Flags="ValidateOnValueChanging" MinimumValue="1" InvalidStyle="{StaticResource EntryErrorStyle}" IsValid="{Binding AmountValid}"/>
+                                            <xct:EventToCommandBehavior EventName="TextChanged" Command="{Binding EnableCommand}"/>
                                         </Editor.Behaviors>
                                     </Editor>
                                 </Grid>
-
                             </Frame>
 
-                            <!--Change this into collectionview with 3 columns-->
-                            <Frame Grid.Row="3" Grid.Column="0" Style="{StaticResource DonateContainer}">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer/>
-                                </Frame.GestureRecognizers>
-                                <Image>
-                                    <Image.Source>
-                                        <FontImageSource Glyph="&#xf1f4;" FontFamily="{StaticResource FontAwesomeBrands}" Color="{StaticResource DarkShade}"/>
-                                    </Image.Source>
-                                </Image>
-                            </Frame>
-
-                            <Frame Grid.Row="3" Grid.Column="1" Style="{StaticResource DonateContainer}">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer/>
-                                </Frame.GestureRecognizers>
-                                <Image>
-                                    <Image.Source>
-                                        <FontImageSource Glyph="&#xe079;" FontFamily="{StaticResource FontAwesomeBrands}" Color="{StaticResource DarkShade}"/>
-                                    </Image.Source>
-                                </Image>
-                            </Frame>
-
-                            <Frame Grid.Row="3" Grid.Column="2" Style="{StaticResource DonateContainer}">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer/>
-                                </Frame.GestureRecognizers>
-                                <Image>
-                                    <Image.Source>
-                                        <FontImageSource Glyph="&#xf09d;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource DarkShade}"/>
-                                    </Image.Source>
-                                </Image>
-                            </Frame>
+                            <!--Change this into collectionview with 3 columns?-->
+                            <Button AutomationId="Donate" WidthRequest="250" Text="Donate" IsEnabled="{Binding Enabled}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource DonateButton}"/>
                         </Grid>
                     </Grid>
                 </Frame>

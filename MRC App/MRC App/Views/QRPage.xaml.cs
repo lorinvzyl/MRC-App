@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SkiaSharp.Views.Forms;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SkiaSharp;
 
 namespace MRC_App.Views
 {
@@ -20,7 +22,8 @@ namespace MRC_App.Views
 
         private void ZXingScannerView_OnScanResult(ZXing.Result result)
         {
-            scanResult.Text = result.Text;
+            QRViewModel qrViewModel = new QRViewModel();
+            qrViewModel.AttendEvent(result.Text);
         }
     }
 }

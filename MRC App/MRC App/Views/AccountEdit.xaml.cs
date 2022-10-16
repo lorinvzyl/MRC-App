@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MRC_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +20,23 @@ namespace MRC_App.Views
 
         public AccountEdit(string key, string value)
         {
-            
-        }
+            AccountEditViewModel viewmodel = new AccountEditViewModel
+            {
+                Key = key,
+                Value = value
+            };
 
-        public AccountEdit(string key, DateTime value)
-        {
+            if(key == "Email:")
+            {
+                //add validation
+            }
 
+            if(key == "Birthday:")
+            {
+                //add validation
+            }
+
+            InitializeComponent();
         }
     }
 }
