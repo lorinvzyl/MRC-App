@@ -89,7 +89,7 @@ namespace MRC_App.UITest
             app.PressEnter();
 
             app.EnterText("John2Doe");
-            app.DismissKeyboard();
+            app.Back();
 
             app.Screenshot("ValidEntryLogin");
 
@@ -114,7 +114,7 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Blog"));
             app.Screenshot("Blog");
 
-            app.TapCoordinates(200,272); //Select one of the blogs
+            app.Tap(c => c.Marked("BlogItem")); //Select one of the blogs
             app.WaitForElement(c => c.Marked("Blog"));
             app.Screenshot("BlogDetailedBlog");
 
@@ -134,7 +134,7 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutDonate");
 
-            app.TapCoordinates(77, 143);
+            app.Tap(c => c.Marked("Events"));
             app.WaitForElement(c => c.Marked("Events"));
             app.Screenshot("Event");
 
@@ -260,7 +260,8 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Blog"));
 
             //Interact with scroll, read more, and comments
-
+            app.Tap(c => c.Marked("BlogItem"));
+            app.WaitForElement(c => c.Marked("Blog"));
 
         }
         
@@ -575,7 +576,7 @@ namespace MRC_App.UITest
             app.ClearText();
             app.EnterText("ValidIncorrect8");
 
-            app.DismissKeyboard();
+            app.Back();
             app.Tap(c => c.Marked("LoginButton"));
             AppResult[] result = app .WaitForElement(c => c.Marked("Incorrect password/email"));
             app.Screenshot("ValidEntriesButIncorrect");
@@ -736,7 +737,7 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Logout"));
+            AppResult[] result = app.WaitForElement(c => c.Marked("Logout"));
 
             //Donate page
             app.Tap(c => c.Marked("Donate"));
@@ -748,11 +749,12 @@ namespace MRC_App.UITest
             app.Screenshot("DonateInvalidEntry");
 
             app.Tap(c => c.Marked("DonatePrice"));
+            app.ClearText();
             app.EnterText("-1"); //negative number
             app.DismissKeyboard();
             app.Screenshot("DonateInvalidEntryTwo");
 
-            Assert.Pass();
+            Assert.IsTrue(result.Any());
         }
     }
 }

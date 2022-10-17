@@ -92,7 +92,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Margin="0,0,0,25">
+                        <StackLayout Margin="0,0,0,25" AutomationId="BlogItem">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup Name="CommonStates">
                                     <VisualState Name="Selected">

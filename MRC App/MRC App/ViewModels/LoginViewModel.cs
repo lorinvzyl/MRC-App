@@ -33,7 +33,12 @@ namespace MRC_App.ViewModels
 
         public LoginViewModel()
         {
-            OnEntryUnfocus();
+            Task.Run(() =>
+            {
+                EmailValid = false;
+                PasswordValid = false;
+                OnEntryUnfocus();
+            });
         }
 
         private async void OnLoginClicked(object obj)
@@ -55,7 +60,6 @@ namespace MRC_App.ViewModels
         }
 
         private bool emailValid;
-
         public bool EmailValid
         {
             get => emailValid;

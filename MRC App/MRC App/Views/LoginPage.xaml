@@ -151,7 +151,7 @@
                 <Label Grid.Row="7" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
                 <!--Button to log into account-->
-                <Button AutomationId="LoginButton" IsEnabled="True" Grid.Row="8" Grid.Column="1" Text="Login" Command="{Binding ButtonCommand}" Style="{StaticResource LoginButton}"/>
+                <Button AutomationId="LoginButton" IsEnabled="{Binding IsEnabled}" Grid.Row="8" Grid.Column="1" Text="Login" Command="{Binding ButtonCommand}" Style="{StaticResource LoginButton}"/>
 
                 <!--Links for user-->
                 <Label AutomationId="LoginReset" Grid.Row="10" Grid.Column="1" Text="Forgot password?" Style="{StaticResource PasswordLabel}">
