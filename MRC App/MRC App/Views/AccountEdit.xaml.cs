@@ -28,6 +28,13 @@ namespace MRC_App.Views
 
             if(key == "Email:")
             {
+                Xamarin.CommunityToolkit.Behaviors.EmailValidationBehavior emailValidationBehavior = new Xamarin.CommunityToolkit.Behaviors.EmailValidationBehavior();
+                emailValidationBehavior.MinimumLength = 2;
+                emailValidationBehavior.DecorationFlags = Xamarin.CommunityToolkit.Behaviors.TextDecorationFlags.Trim;
+                emailValidationBehavior.Flags = Xamarin.CommunityToolkit.Behaviors.ValidationFlags.ValidateOnValueChanging;
+                emailValidationBehavior.IsValid = viewmodel.IsValid;
+
+                ValueEntry.Behaviors.Add(emailValidationBehavior);
                 //add validation
             }
 

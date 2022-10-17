@@ -72,95 +72,108 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid Style="{StaticResource PageGrid}" RowSpacing="0" Padding="0">
-            <!--Define rows needed-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20*"/> <!--Aligns with login page icon.-->
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="3*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="15"/>
-            </Grid.ColumnDefinitions>
-            
-            <!--Header-->
-            <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource BrandIconBackground}">
-                <Label Text="&#xf51d;" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource BrandIcon}"/>
-            </StackLayout>
+        <Grid>
+            <Grid Style="{StaticResource PageGrid}" RowSpacing="0" Padding="0">
+                <!--Define rows needed-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <!--Aligns with login page icon.-->
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="15"/>
+                </Grid.ColumnDefinitions>
 
-            <!--Information block header text-->
-            <Label Grid.Row="2" Grid.Column="1" Text="Welcome!" FontSize="24" Style="{StaticResource HeaderTextTitle}"/>
-            <Label AutomationId="RegisterPage" Grid.Row="3" Grid.Column="1" Text="Register your account" Style="{StaticResource HeaderTextSubtitle}"/>
+                <!--Header-->
+                <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource BrandIconBackground}">
+                    <Label Text="&#xf51d;" FontFamily="{StaticResource FontAwesomeSolid}" Style="{StaticResource BrandIcon}"/>
+                </StackLayout>
 
-            <!--Entry for user details-->
-            <!-- Need an entry for their email and password currently, however more entries are likely required.-->
-            <Entry AutomationId="RegisterFName" x:Name="Name" Text="{Binding Name, Mode=OneWayToSource}" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Surname}">
-                <Entry.Behaviors>
-                    <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
-                </Entry.Behaviors>
-            </Entry>
-            <Entry AutomationId="RegisterLName" x:Name="Surname" Text="{Binding Surname, Mode=OneWayToSource}" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Birthday}">
-                <Entry.Behaviors>
-                    <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
-                </Entry.Behaviors>
-            </Entry>
-            <Entry AutomationId="RegisterBirth" x:Name="Birthday" Text="{Binding Birth, Mode=OneWayToSource}" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Email}">
-                <Entry.Behaviors>
-                    <xct:TextValidationBehavior RegexPattern="^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$" InvalidStyle="{StaticResource EntryErrorStyle}" IsValid="{Binding BirthValid}"/>
-                    <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
-                </Entry.Behaviors>
-            </Entry>
-            <Label Grid.Row="7" Text="YYYY/MM/DD" Grid.Column="1" Margin="4,-5,0,0"  Style="{StaticResource AccountDetailsLabel}"/>
-            <Entry AutomationId="RegisterEmail" x:Name="Email" Text="{Binding Email, Mode=OneWayToSource}" Grid.Row="8" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
-                <Entry.Behaviors>
-                    <xct:EmailValidationBehavior
+                <!--Information block header text-->
+                <Label Grid.Row="2" Grid.Column="1" Text="Welcome!" FontSize="24" Style="{StaticResource HeaderTextTitle}"/>
+                <Label AutomationId="RegisterPage" Grid.Row="3" Grid.Column="1" Text="Register your account" Style="{StaticResource HeaderTextSubtitle}"/>
+
+                <!--Entry for user details-->
+                <!-- Need an entry for their email and password currently, however more entries are likely required.-->
+                <Entry AutomationId="RegisterFName" x:Name="Name" Text="{Binding Name, Mode=OneWayToSource}" Grid.Row="4" Grid.Column="1" Placeholder="First Name" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Surname}">
+                    <Entry.Behaviors>
+                        <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry AutomationId="RegisterLName" x:Name="Surname" Text="{Binding Surname, Mode=OneWayToSource}" Grid.Row="5" Grid.Column="1" Placeholder="Last Name" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Birthday}">
+                    <Entry.Behaviors>
+                        <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry AutomationId="RegisterBirth" x:Name="Birthday" Text="{Binding Birth, Mode=OneWayToSource}" Grid.Row="6" Grid.Column="1" Placeholder="Birthday" Style="{StaticResource AccountDetails}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Email}">
+                    <Entry.Behaviors>
+                        <xct:TextValidationBehavior RegexPattern="^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$" InvalidStyle="{StaticResource EntryErrorStyle}" Flags="ValidateOnValueChanging" IsValid="{Binding BirthValid}"/>
+                        <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <Label Grid.Row="7" Text="YYYY/MM/DD" Grid.Column="1" Margin="4,-5,0,0"  Style="{StaticResource AccountDetailsLabel}"/>
+                <Entry AutomationId="RegisterEmail" x:Name="Email" Text="{Binding Email, Mode=OneWayToSource}" Grid.Row="8" Grid.Column="1"  Placeholder="Email@sample.com" Style="{StaticResource AccountDetails}"  xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference PasswordEntry}">
+                    <Entry.Behaviors>
+                        <xct:EmailValidationBehavior
                         MinimumLength="1"
                         InvalidStyle="{StaticResource EntryErrorStyle}" 
                         DecorationFlags="Trim" 
                         Flags="ValidateOnValueChanging"
                         IsValid="{Binding EmailValid}"/>
-                    <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
-                </Entry.Behaviors>
-            </Entry>
-            <Entry AutomationId="RegisterPassword" x:Name="PasswordEntry" Text="{Binding Password, Mode=OneWayToSource}" Grid.Row="9" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
-                <Entry.Behaviors>
-                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" IsValid="{Binding PasswordValid}" Flags="ValidateOnValueChanging">
-                        <xct:TextValidationBehavior MinimumLength="8"/>
-                        <xct:CharactersValidationBehavior 
+                        <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <Entry AutomationId="RegisterPassword" x:Name="PasswordEntry" Text="{Binding Password, Mode=OneWayToSource}" Grid.Row="9" Grid.Column="1" Placeholder="Password" IsPassword="True" Style="{StaticResource AccountDetails}">
+                    <Entry.Behaviors>
+                        <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" IsValid="{Binding PasswordValid}" Flags="ValidateOnValueChanging">
+                            <xct:TextValidationBehavior MinimumLength="8"/>
+                            <xct:CharactersValidationBehavior 
                            CharacterType="Digit"
                            MinimumCharacterCount="1"/>
-                        <xct:CharactersValidationBehavior 
+                            <xct:CharactersValidationBehavior 
                            CharacterType="LowercaseLetter"
                            MinimumCharacterCount="1"/>
-                        <xct:CharactersValidationBehavior
+                            <xct:CharactersValidationBehavior
                            CharacterType="UppercaseLetter"
                            MinimumCharacterCount="1"/>
-                    </xct:MultiValidationBehavior>
-                    <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
-                </Entry.Behaviors>
-            </Entry>
-            <!--Can add a "eye" icon here so they can see the password they entered-->
+                        </xct:MultiValidationBehavior>
+                        <xct:EventToCommandBehavior EventName="Unfocused" Command="{Binding EntryUnfocus}"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <!--Can add a "eye" icon here so they can see the password they entered-->
 
-            <Label Grid.Row="10" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
+                <Label Grid.Row="10" Grid.Column="1" Text="{Binding Error}" Style="{StaticResource ErrorStyle}"/>
 
-            <!--Register button-->
-            <Button AutomationId="RegisterButton" Grid.Row="11" Grid.Column="1" IsEnabled="{Binding IsEnabled}" Text="Register" Style="{StaticResource RegisterButton}">
-                <Button.Behaviors>
-                    <xct:EventToCommandBehavior EventName="Clicked" Command="{Binding ButtonCommand}"/>
-                </Button.Behaviors>
-            </Button>
+                <!--Register button-->
+                <Button AutomationId="RegisterButton" Grid.Row="11" Grid.Column="1" IsEnabled="{Binding IsEnabled}" Text="Register" Style="{StaticResource RegisterButton}">
+                    <Button.Behaviors>
+                        <xct:EventToCommandBehavior EventName="Clicked" Command="{Binding ButtonCommand}"/>
+                    </Button.Behaviors>
+                </Button>
+            </Grid>
+
+            <ContentView IsVisible="{Binding IsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid>
+                    <StackLayout BackgroundColor="{StaticResource LightDarkShade}" Opacity="0.1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout HeightRequest="100" WidthRequest="100" Padding="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                        <ActivityIndicator VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsRunning="{Binding IsVisible}" Color="{StaticResource DarkAccent}"/>
+                    </StackLayout>
+                </Grid>
+            </ContentView>
         </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

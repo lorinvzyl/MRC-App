@@ -4,6 +4,7 @@ using MRC_App.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -43,19 +44,26 @@ namespace MRC_App.ViewModels
                     }
                     break;
                 case "Email:":
-                    user.Email = Value;
-                    if (await SetUser(id, user))
+                    if(IsValid)
                     {
-                        SecureStorage.Remove("Email");
-                        await SecureStorage.SetAsync("Email", Value);
+                        user.Email = Value;
+                        if (await SetUser(id, user))
+                        {
+                            SecureStorage.Remove("Email");
+                            await SecureStorage.SetAsync("Email", Value);
+                        }
                     }
                     break;
                 case "Birthday:":
-                    user.DateOfBirth = DateTime.Parse(Value);
-                    if (await SetUser(id, user))
+                    var regexBirth = Regex.Match(user.DateOfBirth.ToString(), @"^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$");
+                    if(regexBirth.Success)
                     {
-                        SecureStorage.Remove("Birth");
-                        await SecureStorage.SetAsync("Birth", Value);
+                        user.DateOfBirth = DateTime.Parse(Value);
+                        if (await SetUser(id, user))
+                        {
+                            SecureStorage.Remove("Birth");
+                            await SecureStorage.SetAsync("Birth", Value);
+                        }
                     }
                     break;
             }
@@ -84,6 +92,17 @@ namespace MRC_App.ViewModels
             { 
                 _value = value;
                 OnPropertyChanged("Value");
+            }
+        }
+
+        private bool isValid;
+        public bool IsValid
+        {
+            get { return isValid; }
+            set
+            {
+                isValid = value;
+                OnPropertyChanged(nameof(IsValid));
             }
         }
 

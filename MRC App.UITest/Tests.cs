@@ -76,7 +76,7 @@ namespace MRC_App.UITest
 
             Assert.IsTrue(result.Any());
         }
-
+        /*
         [Test]
         public void LoginAndExplore()
         {
@@ -95,78 +95,78 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
             app.Screenshot("Home");
 
-            app.TapCoordinates(128, 272); //Select one of the blogs
-            app.WaitForElement(c => c.Marked("BlogDetailedLabel"));
+            app.Tap(c => c.Marked("CollectionViewItem")); //Select one of the blogs
+            app.WaitForElement(c => c.Marked("Blog"));
             app.Screenshot("BlogDetailedAbout");
 
             app.Tap(c => c.Marked("Back"));
-            app.WaitForElement("HomeLabel");
+            app.WaitForElement("Home");
             app.Screenshot("BlogDetailedAboutReturn");
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutHome");
 
             app.Tap(c => c.Marked("Blog"));
-            app.WaitForElement(c => c.Marked("BlogLabel"));
+            app.WaitForElement(c => c.Marked("Blog"));
             app.Screenshot("Blog");
 
-            app.TapCoordinates(200,272); //Select one of the blogs
-            app.WaitForElement(c => c.Marked("BlogDetailedLabel"));
-            app.Screenshot("BlogDetailedBlog");
+            //app.TapCoordinates(200,272); //Select one of the blogs
+            //app.WaitForElement(c => c.Marked("Blog"));
+            //app.Screenshot("BlogDetailedBlog");
 
-            app.Tap(c => c.Marked("Back"));
-            app.WaitForElement("BlogLabel");
-            app.Screenshot("BlogDetailedBlogReturn");
+            //app.Tap(c => c.Marked("Back"));
+            //app.WaitForElement("Blog");
+            //app.Screenshot("BlogDetailedBlogReturn");
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutBlog");
 
             app.Tap(c => c.Marked("Donate"));
-            app.WaitForElement(c => c.Marked("DonateLabel"));
+            app.WaitForElement(c => c.Marked("Donate"));
             app.Screenshot("Donate");
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutDonate");
 
             app.Tap(c => c.Marked("Events"));
-            app.WaitForElement(c => c.Marked("EventsLabel"));
+            app.WaitForElement(c => c.Marked("Events"));
             app.Screenshot("Event");
 
             app.TapCoordinates(312, 385);
             app.Screenshot("EventDateSelect");
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutEvent");
 
             app.Tap(c => c.Marked("QR"));
-            app.WaitForElement(c => c.Marked("QRLabel"));
+            app.WaitForElement(c => c.Marked("QR"));
             app.Screenshot("QR");
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutQR");
 
             app.Tap(c => c.Marked("Locations"));
-            app.WaitForElement(c => c.Marked("LocationsLabel"));
+            app.WaitForElement(c => c.Marked("Locations"));
             app.Screenshot("Locations");
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutLocations");
 
             app.Tap(c => c.Marked("Account"));
-            app.WaitForElement(c => c.Marked("AccountLabel"));
+            app.WaitForElement(c => c.Marked("Account"));
             app.Screenshot("Account");
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutAccount");
 
             app.Tap(c => c.Marked("Logout"));
@@ -175,6 +175,7 @@ namespace MRC_App.UITest
 
             Assert.IsTrue(result.Any());
         }
+        */
 
         [Test]
         public void InteractHome()
@@ -192,8 +193,10 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            AppResult[] result = app.WaitForElement(c => c.Marked("Home"));
+            app.Screenshot("Home");
 
+            Assert.IsTrue(result.Any());
             //Interact with video, scroll
         }
 
@@ -213,13 +216,15 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("Blog"));
-            app.WaitForElement(c => c.Marked("BlogLabel"));
+            AppResult[] result = app.WaitForElement(c => c.Marked("Blog"));
+
+            app.Screenshot("Blog");
 
             //Interact with scroll
             app.DragCoordinates(200, 722, 200, 200);
@@ -229,10 +234,9 @@ namespace MRC_App.UITest
             app.DragCoordinates(200, 127, 200, 280);
             app.Screenshot("BlogRefresh");
 
-            Thread.Sleep(5000); //waits for blogs to be refreshed, if it does not throw error then pass
-            Assert.Pass();
+            Assert.IsTrue(result.Any());
         }
-
+        /*
         [Test]
         public void InteractBlogDetailed()
         {
@@ -249,20 +253,21 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("Blog"));
-            app.WaitForElement(c => c.Marked("BlogLabel"));
+            app.WaitForElement(c => c.Marked("Blog"));
             app.TapCoordinates(200, 272);
-            app.WaitForElement(c => c.Marked("BlogDetailedLabel"));
+            app.WaitForElement(c => c.Marked("Blog"));
 
             //Interact with scroll, read more, and comments
 
 
         }
+        */
 
         [Test]
         public void InteractEvent()
@@ -280,13 +285,14 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("Events"));
-            app.WaitForElement(c => c.Marked("EventsLabel"));
+            app.WaitForElement(c => c.Marked("Events"));
+            app.Screenshot("Event");
 
             //Interact with calendar navigation
             var month = DateTime.Today.Month;
@@ -301,6 +307,7 @@ namespace MRC_App.UITest
             Assert.IsTrue(result.Any());
         }
 
+        /*
         [Test]
         public void InteractEventsDetailed()
         {
@@ -317,17 +324,17 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("Events"));
-            app.WaitForElement(c => c.Marked("EventsLabel"));
+            app.WaitForElement(c => c.Marked("Events"));
 
             //Interact with scroll, church location and RSVP
             app.TapCoordinates(312, 385);
-            app.WaitForElement(c => c.Marked("EventsDetailedLabel"));
+            app.WaitForElement(c => c.Marked("Events"));
             app.Screenshot("EventsDetailed");
 
             app.Tap(c => c.Marked("Location"));
@@ -336,11 +343,11 @@ namespace MRC_App.UITest
             app.Tap(c => c.Marked("EventRSVP"));
             //app.WaitForElement(c => c.Marked(""));
 
-            AppResult[] result = app.WaitForElement(c => c.Marked("EventsLabel")); //placeholder, will be confirming pop ups
+            AppResult[] result = app.WaitForElement(c => c.Marked("Events")); //placeholder, will be confirming pop ups
 
             Assert.IsTrue(result.Any());
         }
-
+        */
         [Test]
         public void InteractDonate()
         {
@@ -357,13 +364,14 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("Donate"));
-            AppResult[] result = app.WaitForElement(c => c.Marked("DonateLabel"));
+            AppResult[] result = app.WaitForElement(c => c.Marked("Donate"));
+            app.Screenshot("Donate");
             //Interact with special message, donation amount and donate button
 
             app.Tap(c => c.Marked("DonateComment"));
@@ -395,13 +403,13 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("QR"));
-            AppResult[] result = app.WaitForElement(c => c.Marked("QRLabel"));
+            AppResult[] result = app.WaitForElement(c => c.Marked("QR"));
             app.Screenshot("QR");
 
             //possibly pass qr code into qr
@@ -425,25 +433,26 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("Account"));
-            AppResult[] result = app.WaitForElement(c => c.Marked("AccountLabel"));
+            AppResult[] result = app.WaitForElement(c => c.Marked("Account"));
+            app.Screenshot("Account");
 
             //Interact with newsletter, reset password and delete account
             app.Tap(c => c.Marked("NewsletterSwitch"));
 
-            app.Tap(c => c.Marked("AccountReset"));
-            app.WaitForNoElement(c => c.Marked("AccountReset"));
-            app.Screenshot("AccountResetPasswordPopUp");
+            //app.Tap(c => c.Marked("AccountReset"));
+            //app.WaitForNoElement(c => c.Marked("AccountReset"));
+            //app.Screenshot("AccountResetPasswordPopUp");
             //dismiss pop up
 
-            app.Tap(c => c.Marked("AccountDelete"));
-            app.WaitForNoElement(c => c.Marked("AccountDelete"));
-            app.Screenshot("AccountDeletePopUp");
+            //app.Tap(c => c.Marked("AccountDelete"));
+            //app.WaitForNoElement(c => c.Marked("AccountDelete"));
+            //app.Screenshot("AccountDeletePopUp");
             //dismiss pop up
 
             Assert.IsTrue(result.Any());
@@ -463,17 +472,17 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("LoginButton"));
 
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("Account"));
-            app.WaitForElement(c => c.Marked("AccountLabel"));
+            app.WaitForElement(c => c.Marked("Account"));
             //Interact with editing fields and confirm changes taking place on accountpage and navflyout
 
             app.Tap(c => c.Marked("AccountFNameEdit"));
-            app.WaitForElement(c => c.Marked("ValueEntry"));
+            app.WaitForElement(c => c.Marked("John"));
 
             app.Tap("ValueEntry");
             app.ClearText();
@@ -483,7 +492,7 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Joe"));
 
             app.Tap(c => c.Marked("AccountLNameEdit"));
-            app.WaitForElement(c => c.Marked("ValueEntry"));
+            app.WaitForElement(c => c.Marked("Doe"));
 
             app.Tap(c => c.Marked("ValueEntry"));
             app.ClearText();
@@ -493,7 +502,36 @@ namespace MRC_App.UITest
             app.WaitForElement("Dohn");
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            AppResult[] result = app.WaitForElement(c => c.Marked("Joe Dohn"));
+            app.WaitForElement(c => c.Marked("Joe Dohn"));
+            app.Screenshot("AccountEdited");
+
+            //reset name back
+            app.Tap(c => c.Marked("Account"));
+            app.WaitForElement(c => c.Marked("Account"));
+
+            app.Tap(c => c.Marked("AccountFNameEdit"));
+            app.WaitForElement(c => c.Marked("Joe"));
+
+            app.Tap("ValueEntry");
+            app.ClearText();
+            app.EnterText("John");
+
+            app.Tap(c => c.Marked("Back"));
+            app.WaitForElement(c => c.Marked("John"));
+
+            app.Tap(c => c.Marked("AccountLNameEdit"));
+            app.WaitForElement(c => c.Marked("Dohn"));
+
+            app.Tap(c => c.Marked("ValueEntry"));
+            app.ClearText();
+            app.EnterText("Doe");
+
+            app.Tap(c => c.Marked("Back"));
+            app.WaitForElement("Doe");
+
+            app.Tap(c => c.Marked("FlyoutIcon"));
+
+            AppResult[] result = app.WaitForElement(c => c.Marked("John Doe"));
 
             Assert.IsTrue(result.Any());
         }
@@ -574,13 +612,13 @@ namespace MRC_App.UITest
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
-            app.Tap(c => c.Marked("Avatar"));
-            app.WaitForElement(c => c.Marked("AccountLabel"));
+            app.Tap(c => c.Marked("Logout"));
+            app.WaitForElement(c => c.Marked("Account"));
             app.Tap(c => c.Marked("AccountEmailEdit"));
 
             app.WaitForElement(c => c.Marked("ValueEntry"));
@@ -588,7 +626,7 @@ namespace MRC_App.UITest
             app.EnterText("invalidemail");
             app.Tap(c => c.Marked("Back"));
 
-            AppResult[] result = app.WaitForElement("AccountLabel");
+            AppResult[] result = app.WaitForElement("Account");
             Assert.IsTrue(result.Any());
         }
 
@@ -606,13 +644,13 @@ namespace MRC_App.UITest
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
-            app.Tap(c => c.Marked("Avatar"));
-            app.WaitForElement(c => c.Marked("AccountLabel"));
+            app.Tap(c => c.Marked("Logout"));
+            app.WaitForElement(c => c.Marked("Account"));
             app.Tap(c => c.Marked("AccountBirthEdit"));
 
             app.WaitForElement(c => c.Marked("ValueEntry"));
@@ -620,11 +658,11 @@ namespace MRC_App.UITest
             app.EnterText("03/01/2000");
             app.Tap(c => c.Marked("Back"));
 
-            AppResult[] result = app.WaitForElement("AccountLabel");
+            AppResult[] result = app.WaitForElement("Account");
             Assert.IsTrue(result.Any());
         }
 
-
+        /*
         [Test]
         public void InvalidEntryAccountResetPassword()
         {
@@ -638,10 +676,10 @@ namespace MRC_App.UITest
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             //Check error handling when incorrect password is given
         }
 
@@ -658,12 +696,13 @@ namespace MRC_App.UITest
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
             //Check error handling when incorrect password is given
         }
+        */
 
         [Test]
         public void InvalidEntryDonate()
@@ -679,14 +718,14 @@ namespace MRC_App.UITest
             app.DismissKeyboard();
 
             app.Tap(c => c.Marked("LoginButton"));
-            app.WaitForElement(c => c.Marked("HomeLabel"));
+            app.WaitForElement(c => c.Marked("Home"));
 
             app.Tap(c => c.Marked("FlyoutIcon"));
-            app.WaitForElement(c => c.Marked("Avatar"));
+            app.WaitForElement(c => c.Marked("Logout"));
 
             //Donate page
             app.Tap(c => c.Marked("Donate"));
-            app.WaitForElement(c => c.Marked("DonateLabel"));
+            app.WaitForElement(c => c.Marked("Donate"));
 
             app.Tap(c => c.Marked("DonatePrice"));
             app.EnterText("ree"); //not a number
