@@ -50,6 +50,7 @@ namespace MRC_App.ViewModels
         public BlogDetailedViewModel()
         {
             Comments = new ObservableRangeCollection<Comment>();
+            
         }
 
         public async void AddBlogComment(object obj)
@@ -103,8 +104,10 @@ namespace MRC_App.ViewModels
             Author = param.Author;
             ImagePath = param.ImagePath;
 
-            BlogDetailed blogDetailed = new BlogDetailed();
-            blogDetailed.BlogId = Id;
+            if(Content.Length > 500)
+            {
+                ReadMoreLessMethod(paramStr);
+            }
 
             GetComments(param.Id);
         }

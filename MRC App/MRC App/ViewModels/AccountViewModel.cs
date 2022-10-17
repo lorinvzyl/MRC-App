@@ -48,8 +48,7 @@ namespace MRC_App.ViewModels
                 Surname = SecureStorage.GetAsync("Surname").Result,
                 Email = SecureStorage.GetAsync("Email").Result,
                 DateOfBirth = DateTime.Parse(SecureStorage.GetAsync("Birth").Result),
-                isNewsletter = Boolean.Parse(SecureStorage.GetAsync("Newsletter").Result),
-                ProfilePicURL = SecureStorage.GetAsync("ProfileImage").Result
+                isNewsletter = Boolean.Parse(SecureStorage.GetAsync("Newsletter").Result)
             };
 
             var update = await RestService.UpdateUser(user.Id, user);

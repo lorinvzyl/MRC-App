@@ -26,7 +26,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private string video;
+        private static string video;
         public string Video 
         {
             get { return video; }
@@ -51,7 +51,6 @@ namespace MRC_App.ViewModels
             }
         }
 
-        public ICommand RefreshCommand => new Command(Refresh);
 
         public AboutViewModel()
         {
@@ -68,8 +67,6 @@ namespace MRC_App.ViewModels
 
             var blogs = await RestService.GetBlogsCount(3);
             Blog.AddRange(blogs);
-
-            await GetVideo();
         }
 
         public async Task GetVideo()
@@ -80,8 +77,7 @@ namespace MRC_App.ViewModels
 
             if (video == null)
             {
-                string vid = "IEKHzbwWSr4";
-                var streamMani = await youtube.Videos.Streams.GetManifestAsync(vid);
+                var streamMani = await youtube.Videos.Streams.GetManifestAsync("IEKHzbwWSr4");
                 var streamIn = streamMani.GetMuxedStreams().GetWithHighestVideoQuality();
 
                 if (streamIn != null)
@@ -109,7 +105,7 @@ namespace MRC_App.ViewModels
                 IsVisible = false;
         }
 
-        public async void Refresh(object obj)
+        async void Refresh()
         {
             IsBusy = true;
 

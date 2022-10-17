@@ -77,8 +77,6 @@
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="Margin" Value="0,4,0,0"/>
             </Style>
-
-
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -94,7 +92,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Margin="0,0,0,25">
+                        <StackLayout Margin="0,0,0,25" AutomationId="BlogItem">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup Name="CommonStates">
                                     <VisualState Name="Selected">
@@ -122,9 +120,8 @@
 
                                             <Grid HeightRequest="150" RowSpacing="0" Padding="0">
                                                 <Grid.RowDefinitions>
-                                                    <RowDefinition Height="60"/>
-                                                    <RowDefinition Height="50"/>
-                                                    <RowDefinition Height="30"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
                                                 </Grid.RowDefinitions>
 
                                                 <Label Grid.Row="0" VerticalOptions="Start"  Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>

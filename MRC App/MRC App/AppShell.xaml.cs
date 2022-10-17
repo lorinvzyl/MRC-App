@@ -26,16 +26,14 @@ namespace MRC_App
             Routing.RegisterRoute("RegisterPage", typeof(RegisterPage));
             Routing.RegisterRoute("LocationPage", typeof(LocationPage));
 
-            Task.Run(async () =>
-            {
-                SetUser();
-            });
+            FlyoutIcon.AutomationId = "FlyoutIcon";
 
             this.BindingContext = this;
         }
 
         private async void Logout_Tapped(object sender, EventArgs e)
         {
+            SecureStorage.RemoveAll();
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
 

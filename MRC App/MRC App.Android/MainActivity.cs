@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms.Platform.Android;
 using Rg.Plugins.Popup;
+using Acr.UserDialogs;
 
 namespace MRC_App.Droid
 {
@@ -20,6 +21,7 @@ namespace MRC_App.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
+            UserDialogs.Init(this);
             Popup.Init(this);
             
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

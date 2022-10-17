@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MRC_App.ViewModels;
 using Xamarin.Essentials;
+using MRC_App.Models;
+using MRC_App.Services;
 
 namespace MRC_App.Views
 {
@@ -21,14 +23,73 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        private void DeleteAccountLblGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void DeleteAccountLblGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            
+            string password = await DisplayPromptAsync("Warning!", "Account deletion is permanent.&#10;Please enter your password to delete your account:", "Confirm", "Cancel");
+
+            //Login user here
+            User user = new User()
+            {
+                Password = password,
+                Email = SecureStorage.GetAsync("Email").Result.ToLower()
+            };
+
+            var response = await RestService.LoginUser(user);
+
+            //if true, do delete
+            if (response)
+            {
+                var result = await RestService.DeleteUser(user.Email);
+                if(result)
+                {
+                    //sign user out
+                    await Task.Run(async () =>
+                    {
+                        SecureStorage.RemoveAll();
+                        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                    });
+                }
+                else
+                {
+                    //error
+                }
+            }
         }
 
-        private void ResetPasswordLblGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void ResetPasswordLblGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            string currentPassword = await DisplayPromptAsync("Reset Password", "Please enter your current password:", "Confirm", "Cancel");
+            string newPassword = await DisplayPromptAsync("Reset Password", "Please enter your new password:", "Confirm", "Cancel");
+            string confirmNewPassword = await DisplayPromptAsync("Reset Password", "Please confirm your new password:", "Confirm", "Cancel");
 
+            //login user here
+            User user = new User()
+            {
+                Password = currentPassword,
+                Email = SecureStorage.GetAsync("Email").Result.ToLower()
+            };
+
+            var response = await RestService.LoginUser(user);
+
+            //confirm passwords are the same and update user if true
+            if (response && newPassword == confirmNewPassword)
+            {
+                user.Id = Int32.Parse(SecureStorage.GetAsync("Id").Result);
+                user.DateOfBirth = DateTime.Parse(SecureStorage.GetAsync("Birth").Result);
+                user.isNewsletter = Boolean.Parse(SecureStorage.GetAsync("Newsletter").Result);
+                user.Name = SecureStorage.GetAsync("Name").Result;
+                user.Surname = SecureStorage.GetAsync("Surname").Result;
+
+                var result = await RestService.UpdateUser(user.Id, user);
+                if(result)
+                {
+                    //success
+                }
+                else
+                {
+                    //error
+                }
+            }
         }
 
         private async void EditName_Tapped(object sender, EventArgs e)
@@ -52,17 +113,7 @@ namespace MRC_App.Views
         private async void EditBirthday_Tapped(object sender, EventArgs e)
         {
             var birthday = SecureStorage.GetAsync("Birth").Result;
-            await Navigation.PushAsync(new AccountEdit("Birthday:", birthday.Substring(1,10)));
-        }
-
-        private void ChangeAvatarBtn_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RemoveAvatarBtn_Clicked(object sender, EventArgs e)
-        {
-
+            await Navigation.PushAsync(new AccountEdit("Birthday:", birthday.Substring(0,10)));
         }
 
         protected override void OnAppearing()

@@ -15,7 +15,7 @@
     -->
 
     <Shell.FlyoutIcon>
-        <FontImageSource AutomationId="FlyoutIcon" Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title"  />
+        <FontImageSource Glyph="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" Color="{StaticResource LightShade}" Size="Title"  />
     </Shell.FlyoutIcon>
 
     <Shell.Resources>

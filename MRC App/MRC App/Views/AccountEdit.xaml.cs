@@ -20,23 +20,36 @@ namespace MRC_App.Views
 
         public AccountEdit(string key, string value)
         {
+            InitializeComponent();
+
             AccountEditViewModel viewmodel = new AccountEditViewModel
             {
                 Key = key,
                 Value = value
             };
 
-            if(key == "Email:")
+            BindingContext = viewmodel;
+
+            if (key == "Email:")
             {
-                //add validation
+                Xamarin.CommunityToolkit.Behaviors.EmailValidationBehavior emailValidationBehavior = new Xamarin.CommunityToolkit.Behaviors.EmailValidationBehavior();
+                emailValidationBehavior.MinimumLength = 2;
+                emailValidationBehavior.DecorationFlags = Xamarin.CommunityToolkit.Behaviors.TextDecorationFlags.Trim;
+                emailValidationBehavior.Flags = Xamarin.CommunityToolkit.Behaviors.ValidationFlags.ValidateOnValueChanging;
+                emailValidationBehavior.IsValid = viewmodel.IsValid;
+
+                ValueEntry.Behaviors.Add(emailValidationBehavior);
             }
 
             if(key == "Birthday:")
             {
-                //add validation
-            }
+                Xamarin.CommunityToolkit.Behaviors.TextValidationBehavior textValidationBehavior = new Xamarin.CommunityToolkit.Behaviors.TextValidationBehavior();
+                textValidationBehavior.Flags = Xamarin.CommunityToolkit.Behaviors.ValidationFlags.ValidateOnValueChanging;
+                textValidationBehavior.IsValid = viewmodel.IsValid;
+                textValidationBehavior.RegexPattern = @"^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$";
 
-            InitializeComponent();
+                ValueEntry.Behaviors.Add(textValidationBehavior);
+            }
         }
     }
 }
