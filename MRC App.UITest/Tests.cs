@@ -76,7 +76,7 @@ namespace MRC_App.UITest
 
             Assert.IsTrue(result.Any());
         }
-        /*
+        
         [Test]
         public void LoginAndExplore()
         {
@@ -106,7 +106,7 @@ namespace MRC_App.UITest
             app.WaitForElement("Home");
             app.Screenshot("BlogDetailedAboutReturn");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77, 143);
             app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutHome");
 
@@ -114,15 +114,15 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Blog"));
             app.Screenshot("Blog");
 
-            //app.TapCoordinates(200,272); //Select one of the blogs
-            //app.WaitForElement(c => c.Marked("Blog"));
-            //app.Screenshot("BlogDetailedBlog");
+            app.TapCoordinates(200,272); //Select one of the blogs
+            app.WaitForElement(c => c.Marked("Blog"));
+            app.Screenshot("BlogDetailedBlog");
 
-            //app.Tap(c => c.Marked("Back"));
-            //app.WaitForElement("Blog");
-            //app.Screenshot("BlogDetailedBlogReturn");
+            app.Tap(c => c.Marked("Back"));
+            app.WaitForElement("Blog");
+            app.Screenshot("BlogDetailedBlogReturn");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77, 143);
             app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutBlog");
 
@@ -130,18 +130,18 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Donate"));
             app.Screenshot("Donate");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77, 143);
             app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutDonate");
 
-            app.Tap(c => c.Marked("Events"));
+            app.TapCoordinates(77, 143);
             app.WaitForElement(c => c.Marked("Events"));
             app.Screenshot("Event");
 
             app.TapCoordinates(312, 385);
             app.Screenshot("EventDateSelect");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77, 143);
             app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutEvent");
 
@@ -149,7 +149,7 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("QR"));
             app.Screenshot("QR");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77, 143);
             app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutQR");
 
@@ -157,7 +157,7 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Locations"));
             app.Screenshot("Locations");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77, 143);
             app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutLocations");
 
@@ -165,7 +165,7 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Account"));
             app.Screenshot("Account");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77, 143);
             app.WaitForElement(c => c.Marked("Logout"));
             app.Screenshot("FlyoutAccount");
 
@@ -175,7 +175,7 @@ namespace MRC_App.UITest
 
             Assert.IsTrue(result.Any());
         }
-        */
+        
 
         [Test]
         public void InteractHome()
@@ -188,8 +188,6 @@ namespace MRC_App.UITest
 
             app.EnterText("John2Doe");
             app.DismissKeyboard();
-
-            app.Screenshot("ValidEntryLogin");
 
             app.Tap(c => c.Marked("LoginButton"));
 
@@ -211,8 +209,6 @@ namespace MRC_App.UITest
 
             app.EnterText("John2Doe");
             app.DismissKeyboard();
-
-            app.Screenshot("ValidEntryLogin");
 
             app.Tap(c => c.Marked("LoginButton"));
 
@@ -236,7 +232,7 @@ namespace MRC_App.UITest
 
             Assert.IsTrue(result.Any());
         }
-        /*
+        
         [Test]
         public void InteractBlogDetailed()
         {
@@ -267,8 +263,7 @@ namespace MRC_App.UITest
 
 
         }
-        */
-
+        
         [Test]
         public void InteractEvent()
         {
@@ -281,8 +276,6 @@ namespace MRC_App.UITest
             app.EnterText("John2Doe");
             app.DismissKeyboard();
 
-            app.Screenshot("ValidEntryLogin");
-
             app.Tap(c => c.Marked("LoginButton"));
 
             app.WaitForElement(c => c.Marked("Home"));
@@ -293,10 +286,12 @@ namespace MRC_App.UITest
             app.Tap(c => c.Marked("Events"));
             app.WaitForElement(c => c.Marked("Events"));
             app.Screenshot("Event");
+            //popup
+            app.Tap(c => c.Marked("Ok"));
 
             //Interact with calendar navigation
-            var month = DateTime.Today.Month;
-            var prevMonth = DateTime.Today.Month - 1;
+            var month = DateTime.Today.Month.ToString();
+            var prevMonth = (DateTime.Today.Month - 1).ToString();
             app.Tap(c => c.Marked("LeftIcon"));
             app.WaitForElement(c => c.Marked($"{prevMonth}"));
             app.Screenshot("Previous Month");
@@ -319,8 +314,6 @@ namespace MRC_App.UITest
 
             app.EnterText("John2Doe");
             app.DismissKeyboard();
-
-            app.Screenshot("ValidEntryLogin");
 
             app.Tap(c => c.Marked("LoginButton"));
 
@@ -360,8 +353,6 @@ namespace MRC_App.UITest
             app.EnterText("John2Doe");
             app.DismissKeyboard();
 
-            app.Screenshot("ValidEntryLogin");
-
             app.Tap(c => c.Marked("LoginButton"));
 
             app.WaitForElement(c => c.Marked("Home"));
@@ -399,8 +390,6 @@ namespace MRC_App.UITest
             app.EnterText("John2Doe");
             app.DismissKeyboard();
 
-            app.Screenshot("ValidEntryLogin");
-
             app.Tap(c => c.Marked("LoginButton"));
 
             app.WaitForElement(c => c.Marked("Home"));
@@ -410,9 +399,37 @@ namespace MRC_App.UITest
 
             app.Tap(c => c.Marked("QR"));
             AppResult[] result = app.WaitForElement(c => c.Marked("QR"));
+            app.Screenshot("QRPopUp");
+
+            app.Tap(c => c.Marked("While using the app"));
             app.Screenshot("QR");
 
             //possibly pass qr code into qr
+
+            Assert.IsTrue(result.Any());
+        }
+
+        [Test]
+        public void InteractLocation()
+        {
+            app.WaitForElement(c => c.Marked("Log into your account"));
+
+            app.Tap(c => c.Marked("LoginEmail"));
+            app.EnterText("johndoe@gmail.com");
+            app.PressEnter();
+
+            app.EnterText("John2Doe");
+            app.DismissKeyboard();
+
+            app.Tap(c => c.Marked("LoginButton"));
+
+            app.WaitForElement(c => c.Marked("Home"));
+
+            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.WaitForElement(c => c.Marked("Logout"));
+
+            app.Tap(c => c.Marked("Locations"));
+            AppResult[] result = app.WaitForElement(c => c.Marked("Locations"));
 
             Assert.IsTrue(result.Any());
         }
@@ -428,8 +445,6 @@ namespace MRC_App.UITest
 
             app.EnterText("John2Doe");
             app.DismissKeyboard();
-
-            app.Screenshot("ValidEntryLogin");
 
             app.Tap(c => c.Marked("LoginButton"));
 
@@ -474,7 +489,7 @@ namespace MRC_App.UITest
 
             app.WaitForElement(c => c.Marked("Home"));
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.Tap(c => c.Marked("FlyoutIcon")); //77 143
             app.WaitForElement(c => c.Marked("Logout"));
 
             app.Tap(c => c.Marked("Account"));
@@ -501,7 +516,7 @@ namespace MRC_App.UITest
             app.Tap(c => c.Marked("Back"));
             app.WaitForElement("Dohn");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77,143);
             app.WaitForElement(c => c.Marked("Joe Dohn"));
             app.Screenshot("AccountEdited");
 
@@ -529,7 +544,7 @@ namespace MRC_App.UITest
             app.Tap(c => c.Marked("Back"));
             app.WaitForElement("Doe");
 
-            app.Tap(c => c.Marked("FlyoutIcon"));
+            app.TapCoordinates(77,143);
 
             AppResult[] result = app.WaitForElement(c => c.Marked("John Doe"));
 

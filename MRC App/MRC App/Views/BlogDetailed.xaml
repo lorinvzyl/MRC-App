@@ -119,19 +119,19 @@
                         <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Margin="0,0,0,-20" Padding="0" HeightRequest="250">
                             <Grid ColumnDefinitions="15,*,15" RowDefinitions="10,25,50,10,Auto" RowSpacing="0" Padding="0">
                                 <Label Grid.Column="1" Grid.Row="1" Text="Comments" FontSize="20" TextColor="{StaticResource LightShade}" FontAttributes="Bold" HorizontalOptions="Center"/>
-                                <Grid ColumnDefinitions="*,50" Grid.Column="1" Grid.Row="2">
+                                <Grid ColumnDefinitions="*,40" Grid.Column="1" Grid.Row="2">
                                     <Entry AutomationId="BlogComment" x:Name="Comment" Text="{Binding CommentText, Mode=TwoWay}" Grid.Column="0" FontSize="Medium" Placeholder="Add a comment" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
                                         <Entry.Behaviors>
                                             <xct:EventToCommandBehavior EventName="Completed" Command="{Binding CommentCompleted}"/>
                                         </Entry.Behaviors>
                                     </Entry>
-                                    <Label Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="&#xf054;" FontFamily="{StaticResource FontAwesomeSolid}">
+                                    <Label Grid.Column="1" Margin="0,0,10,0" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="&#xf054;" FontFamily="{StaticResource FontAwesomeSolid}">
                                         <Label.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding CommentCompleted}"/>
                                         </Label.GestureRecognizers>
                                     </Label>
                                 </Grid>
-                                
+
                                 <Frame Grid.Column="1" Grid.Row="4" CornerRadius="0" Padding="0">
                                     <CollectionView x:Name="collectionview" ItemsSource="{Binding Comments}" Margin="0,15,0,15" SelectionMode="Single" SelectionChangedCommand="{Binding ItemSelectedCommand}" SelectedItem="{Binding SelectedComment, Mode=TwoWay}">
                                         <CollectionView.ItemTemplate>
@@ -160,19 +160,19 @@
                                                         <xct:Expander.ContentTemplate>
                                                             <DataTemplate>
                                                                 <StackLayout>
-                                                                    <Grid ColumnDefinitions="*,50">
-                                                                        <Entry Grid.Column="0" AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding ReplyText, Mode=TwoWay}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
+                                                                    <Grid ColumnDefinitions="*,40">
+                                                                        <Entry Grid.Column="0" Margin="10,0,0,0" AutomationId="BlogReply" Placeholder="Add a reply" Text="{Binding ReplyText, Mode=TwoWay}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill">
                                                                             <Entry.Behaviors>
                                                                                 <xct:EventToCommandBehavior EventName="Completed" Command="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyCompleted}"/>
                                                                             </Entry.Behaviors>
                                                                         </Entry>
-                                                                        <Label Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="&#xf054;" FontFamily="{StaticResource FontAwesomeSolid}">
+                                                                        <Label Grid.Column="1" Margin="0,0,15,0" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="&#xf054;" FontFamily="{StaticResource FontAwesomeSolid}">
                                                                             <Label.GestureRecognizers>
                                                                                 <TapGestureRecognizer Command="{Binding ReplyCompleted}"/>
                                                                             </Label.GestureRecognizers>
                                                                         </Label>
                                                                     </Grid>
-                                                                    
+
                                                                     <BoxView Grid.Row="2" Margin="0,5,0,5" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
                                                                     <FlexLayout x:Name="ReplyList" Direction="Column" AutomationId="ReplyList" BindableLayout.ItemsSource="{Binding Reply}">
                                                                         <BindableLayout.ItemTemplate>
@@ -203,7 +203,6 @@
                         </Frame>
                     </StackLayout>
                 </Grid>
-                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

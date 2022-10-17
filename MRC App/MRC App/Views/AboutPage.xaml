@@ -84,7 +84,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
                 <Setter Property="Opacity" Value="0.65"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
-                <Setter Property="HeightRequest" Value="95"/>
+                <Setter Property="HeightRequest" Value="60"/>
                 <Setter Property="CornerRadius" Value="15"/>
             </Style>
             <Style x:Key="IconLabels" TargetType="Label">
@@ -131,7 +131,7 @@
                                         </StackLayout>
                                         <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
                                         <StackLayout VerticalOptions="EndAndExpand">
-                                            <ScrollView HeightRequest="135">
+                                            <ScrollView HeightRequest="100">
                                                 <Label Grid.Row="0" Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
                                             </ScrollView>
                                         </StackLayout>

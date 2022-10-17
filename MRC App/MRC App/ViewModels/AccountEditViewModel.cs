@@ -55,8 +55,7 @@ namespace MRC_App.ViewModels
                     }
                     break;
                 case "Birthday:":
-                    var regexBirth = Regex.Match(user.DateOfBirth.ToString(), @"^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$");
-                    if(regexBirth.Success)
+                    if(IsValid)
                     {
                         user.DateOfBirth = DateTime.Parse(Value);
                         if (await SetUser(id, user))
@@ -95,7 +94,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private bool isValid;
+        private static bool isValid;
         public bool IsValid
         {
             get { return isValid; }

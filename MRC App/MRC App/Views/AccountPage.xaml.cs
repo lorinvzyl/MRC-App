@@ -113,7 +113,7 @@ namespace MRC_App.Views
         private async void EditBirthday_Tapped(object sender, EventArgs e)
         {
             var birthday = SecureStorage.GetAsync("Birth").Result;
-            await Navigation.PushAsync(new AccountEdit("Birthday:", birthday.Substring(1,10)));
+            await Navigation.PushAsync(new AccountEdit("Birthday:", birthday.Substring(0,10)));
         }
 
         protected override void OnAppearing()
