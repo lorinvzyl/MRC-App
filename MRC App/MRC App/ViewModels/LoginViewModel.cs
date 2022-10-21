@@ -37,7 +37,6 @@ namespace MRC_App.ViewModels
             {
                 EmailValid = false;
                 PasswordValid = false;
-                OnEntryUnfocus();
             });
         }
 
@@ -139,11 +138,9 @@ namespace MRC_App.ViewModels
 
             IsVisible = true;
 
-            bool login = false;
-
             await Task.Run(async () =>
             {
-                login = await RestService.LoginUser(user);
+                bool login = await RestService.LoginUser(user);
                 if (login)
                 {
                     var _user = await RestService.GetUserByEmail(user.Email);
@@ -161,6 +158,8 @@ namespace MRC_App.ViewModels
                     await Task.Run(() => appshell.SetUser());
 
                     IsVisible = false;
+
+                    LoginCommand.Execute(user);
                 }
                 else
                 {
@@ -168,11 +167,6 @@ namespace MRC_App.ViewModels
                     Error = "Incorrect password/email";
                 }
             });
-
-            if(login)
-            {
-                LoginCommand.Execute(user);
-            }
         }
     }
 }

@@ -106,7 +106,7 @@ namespace MRC_App.Services
             var json = JsonConvert.SerializeObject(_event);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"api/Events{id}", content);
+            var response = await client.PutAsync($"api/Events/{id}", content);
 
             if (!response.IsSuccessStatusCode)
                 return false;

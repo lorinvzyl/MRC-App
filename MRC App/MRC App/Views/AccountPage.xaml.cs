@@ -27,69 +27,87 @@ namespace MRC_App.Views
         {
             string password = await DisplayPromptAsync("Warning!", "Account deletion is permanent.&#10;Please enter your password to delete your account:", "Confirm", "Cancel");
 
-            //Login user here
-            User user = new User()
+            if(!String.IsNullOrEmpty(password))
             {
-                Password = password,
-                Email = SecureStorage.GetAsync("Email").Result.ToLower()
-            };
-
-            var response = await RestService.LoginUser(user);
-
-            //if true, do delete
-            if (response)
-            {
-                var result = await RestService.DeleteUser(user.Email);
-                if(result)
+                //Login user here
+                User user = new User()
                 {
-                    //sign user out
-                    await Task.Run(async () =>
+                    Password = password,
+                    Email = SecureStorage.GetAsync("Email").Result.ToLower()
+                };
+
+                var response = await RestService.LoginUser(user);
+
+                //if true, do delete
+                if (response)
+                {
+                    var result = await RestService.DeleteUser(user.Email);
+                    if (result)
                     {
-                        SecureStorage.RemoveAll();
-                        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-                    });
-                }
-                else
-                {
-                    //error
+                        //sign user out
+                        await Task.Run(async () =>
+                        {
+                            SecureStorage.RemoveAll();
+                            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                        });
+                    }
+                    else
+                    {
+                        //error
+                    }
                 }
             }
+           
         }
 
         private async void ResetPasswordLblGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            string currentPassword = await DisplayPromptAsync("Reset Password", "Please enter your current password:", "Confirm", "Cancel");
-            string newPassword = await DisplayPromptAsync("Reset Password", "Please enter your new password:", "Confirm", "Cancel");
-            string confirmNewPassword = await DisplayPromptAsync("Reset Password", "Please confirm your new password:", "Confirm", "Cancel");
+            string currentPassword = String.Empty;
+            string newPassword = String.Empty;
+            string confirmNewPassword = String.Empty;
 
-            //login user here
-            User user = new User()
+            currentPassword = await DisplayPromptAsync("Reset Password", "Please enter your current password:", "Confirm", "Cancel", "Current Password");
+            if(!String.IsNullOrEmpty(currentPassword))
             {
-                Password = currentPassword,
-                Email = SecureStorage.GetAsync("Email").Result.ToLower()
-            };
-
-            var response = await RestService.LoginUser(user);
-
-            //confirm passwords are the same and update user if true
-            if (response && newPassword == confirmNewPassword)
-            {
-                user.Id = Int32.Parse(SecureStorage.GetAsync("Id").Result);
-                user.DateOfBirth = DateTime.Parse(SecureStorage.GetAsync("Birth").Result);
-                user.isNewsletter = Boolean.Parse(SecureStorage.GetAsync("Newsletter").Result);
-                user.Name = SecureStorage.GetAsync("Name").Result;
-                user.Surname = SecureStorage.GetAsync("Surname").Result;
-
-                var result = await RestService.UpdateUser(user.Id, user);
-                if(result)
+                newPassword = await DisplayPromptAsync("Reset Password", "Please enter your new password:", "Confirm", "Cancel");
+                if(newPassword != currentPassword && !String.IsNullOrEmpty(newPassword))
                 {
-                    //success
-                }
-                else
-                {
-                    //error
+                    confirmNewPassword = await DisplayPromptAsync("Reset Password", "Please confirm your new password:", "Confirm", "Cancel");
                 }
             }
+
+            //login user here
+            if(newPassword == confirmNewPassword)
+            {
+                User user = new User()
+                {
+                    Password = currentPassword,
+                    Email = SecureStorage.GetAsync("Email").Result.ToLower()
+                };
+
+                var response = await RestService.LoginUser(user);
+
+                //update user if valid password entered
+                if (response)
+                {
+                    user.Id = Int32.Parse(SecureStorage.GetAsync("Id").Result);
+                    user.DateOfBirth = DateTime.Parse(SecureStorage.GetAsync("Birth").Result);
+                    user.isNewsletter = Boolean.Parse(SecureStorage.GetAsync("Newsletter").Result);
+                    user.Name = SecureStorage.GetAsync("Name").Result;
+                    user.Surname = SecureStorage.GetAsync("Surname").Result;
+
+                    var result = await RestService.UpdateUser(user.Id, user);
+                    if (result)
+                    {
+                        //success
+                    }
+                    else
+                    {
+                        //error
+                    }
+                }
+            }
+            
         }
 
         private async void EditName_Tapped(object sender, EventArgs e)

@@ -69,8 +69,9 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Grid>
+            <Grid>
+                <StackLayout>
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="15"/>
                             <!--filler-->
@@ -146,7 +147,18 @@
                             </Grid>
                         </Frame>
                     </Grid>
-            </StackLayout>
+                </StackLayout>
+
+                <ContentView IsVisible="{Binding IsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid>
+                        <StackLayout BackgroundColor="{StaticResource LightDarkShade}" Opacity="0.2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                        <StackLayout HeightRequest="100" WidthRequest="100" Padding="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                            <ActivityIndicator VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsRunning="{Binding IsVisible}" Color="{StaticResource DarkAccent}"/>
+                        </StackLayout>
+                    </Grid>
+                </ContentView>
+            </Grid>
+            
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

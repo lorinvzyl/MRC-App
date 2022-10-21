@@ -46,7 +46,6 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-
         <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
             <StackLayout>
                 <CollectionView ItemsSource="{Binding Locations}" Margin="20" SelectionMode="Single" SelectionChanged="CollectionView_ItemSelected">
@@ -87,6 +86,11 @@
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Frame Style="{StaticResource LocationFrame}">
+                            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title" Text="No locations found" Style="{StaticResource LocationTitle}"/>
+                        </Frame>
+                    </CollectionView.EmptyView>
                 </CollectionView>
             </StackLayout>
         </RefreshView>

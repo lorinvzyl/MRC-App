@@ -47,6 +47,17 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get => isVisible;
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+
         private void PerformOperation(string paramStr)
         {
             var param = JsonConvert.DeserializeObject<Event>(paramStr);
@@ -77,6 +88,11 @@ namespace MRC_App.ViewModels
 
         private async void OnRSVPClicked(object obj)
         {
+            IsVisible = true;
+            //check if user already attended
+
+
+            //if yes, update event
             Event _event = new Event()
             {
                 EventName = SelectedEvent.EventName,
@@ -91,13 +107,15 @@ namespace MRC_App.ViewModels
                
             var response = await RestService.UpdateEvent(_event.Id, _event);
 
+            IsVisible = false;
+
             if(!response)
             {
-                //error pop up
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Could not RSVP", "Ok"));
             }
             else
             {
-                //success pop up
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", $"You RSVP'd for {_event.EventName}", "Ok"));
             }
         }
 

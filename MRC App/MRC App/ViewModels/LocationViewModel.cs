@@ -41,7 +41,7 @@ namespace MRC_App.ViewModels
             Locations = new ObservableRangeCollection<Models.Location>();
             RefreshCommand = new AsyncCommand(Refresh);
         }
-        /*
+        
         public async void PopupItemSelected(Navigation navigation)
         {
             switch (navigation.Title)
@@ -65,7 +65,7 @@ namespace MRC_App.ViewModels
                 OnPropertyChanged(nameof(Location));
             }
         }
-        */
+        
 
         async Task Refresh()
         {

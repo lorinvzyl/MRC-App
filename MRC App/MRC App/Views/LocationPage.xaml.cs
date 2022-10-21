@@ -1,6 +1,7 @@
 ﻿using MRC_App.Controls;
 using MRC_App.ViewModels;
 using Rg.Plugins.Popup.Animations;
+using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Enums;
 using Rg.Plugins.Popup.Services;
 using System;

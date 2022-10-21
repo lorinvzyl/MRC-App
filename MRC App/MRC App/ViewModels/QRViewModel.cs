@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace MRC_App.ViewModels
 {
@@ -16,7 +17,7 @@ namespace MRC_App.ViewModels
 
         public async Task AttendEvent(string result)
         {
-            if (result.EndsWith("Attend"))
+            if (!result.EndsWith("Attend"))
                 return;
 
             var email = SecureStorage.GetAsync("Email").Result;
@@ -29,13 +30,13 @@ namespace MRC_App.ViewModels
             };
 
             var response = await RestService.Attend(userEvent);
-            if(response)
+            if (!response)
             {
-                //return success
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
             }
             else
             {
-                //error
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", "Attended", "Ok"));
             }
         }
     }

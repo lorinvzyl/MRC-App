@@ -28,11 +28,15 @@ namespace MRC_App.ViewModels
         public DateTime Today = DateTime.Today;
         public EventsViewModel()
         {
-            Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Info", "Loading events", "Ok"));
+            IsVisible = true;
 
             Event = new EventCollection();
 
-            GenerateEvents();
+            Task.Run(() =>
+            {
+                GenerateEvents();
+            });
+            
         }
 
         public EventsViewModel(bool isTest)
@@ -50,6 +54,8 @@ namespace MRC_App.ViewModels
             {
                 Event.Add(item.EventDate, new List<Event>(GenerateEvent(item)));
             }
+
+            IsVisible = false;
         }
 
         public IEnumerable<Event> GenerateEvent(Event item)
@@ -66,6 +72,18 @@ namespace MRC_App.ViewModels
                 Venue = item.Venue
             });
         }
+
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+
 
         private int _year;
         private int _month;

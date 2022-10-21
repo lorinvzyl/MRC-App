@@ -16,7 +16,7 @@ namespace MRC_App.ViewModels
         {
         }
 
-        public async Task<bool> Donate()
+        public async Task Donate()
         {
             //Add third party payment here, if successful, continue with adding with database
 
@@ -28,7 +28,15 @@ namespace MRC_App.ViewModels
             };
 
             var result = await RestService.Donate(donation);
-            return result;
+
+            if (!result)
+            {
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", "Donated", "Ok"));
+            }
         }
 
         private string message;
@@ -80,7 +88,7 @@ namespace MRC_App.ViewModels
 
         public ICommand EnableCommand => new Command(IsEnabledMethod);
 
-        private async void IsEnabledMethod(object obj)
+        private void IsEnabledMethod(object obj)
         {
             if (AmountValid == true)
                 Enabled = true;
