@@ -14,16 +14,6 @@ namespace MRC_App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BlogDetailed : ContentPage
     {
-        private static int blogId;
-        public int BlogId
-        {
-            get { return blogId; }
-            set
-            {
-                blogId = value;
-                OnPropertyChanged(nameof(BlogId));
-            }
-        }
         public BlogDetailed()
         {
             InitializeComponent();

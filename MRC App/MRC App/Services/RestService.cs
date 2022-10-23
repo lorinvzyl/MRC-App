@@ -58,7 +58,7 @@ namespace MRC_App.Services
 
         public static async Task<IEnumerable<Blog>> GetBlogs()
         {
-            var json = await client.GetAsync("api/Blogs"); //IConvertable error?
+            var json = await client.GetAsync("api/Blogs");
 
             if (!json.IsSuccessStatusCode)
                 return null;
@@ -113,9 +113,9 @@ namespace MRC_App.Services
             return true;
         }
 
-        public static async Task<UserEvent> GetUserEvent(int id)
+        public static async Task<UserEvent> GetUserEvent(int id, int userId)
         {
-            var response = await client.GetAsync($"api/UserEvents/{id}");
+            var response = await client.GetAsync($"api/UserEvents/{id}/{userId}");
             if (!response.IsSuccessStatusCode)
                 return null;
 

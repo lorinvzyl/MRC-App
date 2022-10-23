@@ -303,7 +303,6 @@ namespace MRC_App.UITest
             Assert.IsTrue(result.Any());
         }
 
-        /*
         [Test]
         public void InteractEventsDetailed()
         {
@@ -341,7 +340,7 @@ namespace MRC_App.UITest
 
             Assert.IsTrue(result.Any());
         }
-        */
+
         [Test]
         public void InteractDonate()
         {
@@ -678,7 +677,6 @@ namespace MRC_App.UITest
             Assert.IsTrue(result.Any());
         }
 
-        /*
         [Test]
         public void InvalidEntryAccountResetPassword()
         {
@@ -718,7 +716,6 @@ namespace MRC_App.UITest
             app.WaitForElement(c => c.Marked("Logout"));
             //Check error handling when incorrect password is given
         }
-        */
 
         [Test]
         public void InvalidEntryDonate()
