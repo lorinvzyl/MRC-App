@@ -32,21 +32,6 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        public async void ActionSheet(string venue)
-        {
-            var action = await DisplayActionSheet("Open with", "Cancel", null, "Google Maps", "Waze");
-            switch (action)
-            {
-                case "Google Maps":
-                    await Launcher.OpenAsync($"comgooglemaps://?daddr={venue}");
-                    break;
-                case "Waze":
-                    await Launcher.OpenAsync($"https://waze.com/ul?q={venue}&navigate=yes");
-                    break;
-
-            }
-        }
-
         private void RSVP_Clicked(object sender, EventArgs e)
         {
             EventsDetailedViewModel viewModel = new EventsDetailedViewModel();

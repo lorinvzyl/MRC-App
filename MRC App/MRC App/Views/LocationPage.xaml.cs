@@ -34,7 +34,7 @@ namespace MRC_App.Views
 
             var supportsWaze = await Launcher.CanOpenAsync("https://waze.com/ul");
             var supportsGoogleMaps = await Launcher.CanOpenAsync("comgooglemaps://");
-            if (supportsWaze || supportsGoogleMaps)
+            if (supportsWaze && supportsGoogleMaps)
             {
                 viewModel.IsVisible = true;
                 this.BindingContext = viewModel;

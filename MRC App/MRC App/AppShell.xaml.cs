@@ -47,6 +47,7 @@ namespace MRC_App
         private async void Account_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
+            Shell.Current.FlyoutIsPresented = false;
         }
 
         private string username;
