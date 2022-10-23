@@ -39,7 +39,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private Event selectedEvent;
+        private static Event selectedEvent;
         public Event SelectedEvent
         {
             get => selectedEvent;

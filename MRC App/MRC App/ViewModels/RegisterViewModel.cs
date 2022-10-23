@@ -179,21 +179,19 @@ namespace MRC_App.ViewModels
 
             var registration = false;
             IsVisible = true;
-            await Task.Run(async () =>
+            var response = await RestService.GetUserByEmail(Email);
+            if (response == null)
             {
-                var response = await RestService.GetUserByEmail(Email);
-                if (response == null)
-                    registration = await RestService.RegisterUser(user);
-                else
-                    Error = "User already exists";
-            });
+                registration = await RestService.RegisterUser(user);
+                
+            }  
+            else
+                Error = "Registration failed";
 
             IsVisible = false;
 
             if (registration)
                 RegisterCommand.Execute(registration);
-            else
-                Error = "Registration failed";
         }
     }
 }
