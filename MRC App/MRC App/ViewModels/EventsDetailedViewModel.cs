@@ -160,7 +160,7 @@ namespace MRC_App.ViewModels
             IsVisible = true;
             //check if user already attended
             var id = Int32.Parse(SecureStorage.GetAsync("Id").Result);
-            var userEvent = await RestService.GetUserEvent(id);
+            var userEvent = await RestService.GetUserEvent(SelectedEvent.Id, id);
 
             if(userEvent == null)
             {

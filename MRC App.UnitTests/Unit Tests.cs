@@ -42,7 +42,7 @@ namespace MRC_App.UnitTests
         public void AddBlogTest()
         {
             //Arrange
-            //BlogViewModel bvm = new BlogViewModel(true); //passing in true in order to not call default constructor, which calls the database.
+            BlogViewModel bvm = new BlogViewModel(true); //passing in true in order to not call default constructor, which calls the database.
             var blog = new List<Models.Blog>();
 
             blog.Add(new Models.Blog
@@ -58,10 +58,10 @@ namespace MRC_App.UnitTests
             IEnumerable<MRC_App.Models.Blog> blogs = blog;
 
             //Act
-            //bvm.Blogs.AddRange(blogs);
+            bvm.Blogs.AddRange(blogs);
 
             //Assert
-            //Assert.IsTrue(bvm.Blogs.Count == 1);
+            Assert.IsTrue(bvm.Blogs.Count == 1);
         }
 
         [TestMethod]
@@ -242,45 +242,6 @@ namespace MRC_App.UnitTests
 
             //Assert
             Assert.IsTrue(lvm.Locations.Count == 1);
-        }
-
-        //Commands
-        [TestMethod]
-        public void CanEventTap()
-        {
-            //Arrange
-            EventsViewModel evm = new EventsViewModel(true);
-
-            Models.Event _event = new Models.Event()
-            {
-                EventDate = DateTime.Now,
-                EventDescription = "EventDesc",
-                EventName = "EventName",
-                Id = 1,
-                RSVPCloseDate = DateTime.Now.AddDays(5),
-                SpacesAvailable = 10,
-                SpacesTaken = 1,
-                Venue = "Location"
-            };
-
-            //Act & Assert
-            Assert.IsTrue(evm.EventSelectedCommand.CanExecute(_event));
-        }
-
-        [TestMethod]
-        public void CanEventTodayCommand()
-        {
-            //Arrange
-            EventsViewModel evm = new EventsViewModel(true);
-
-            var year = DateTime.Today.Year;
-            var month = DateTime.Today.Month;
-
-            //Act
-            evm.TodayCommand.Execute(evm);
-
-            //Assert
-            Assert.IsTrue(evm.Year == year && evm.Month == month);
         }
     }
 }
