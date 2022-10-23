@@ -98,6 +98,12 @@
                 <Setter Property="VerticalOptions" Value="StartAndExpand"/>
                 <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
+            <Style x:Key="EntryErrorStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+            </Style>
+            <Style x:Key="EntryValidStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource LightShade}"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -184,17 +190,62 @@
             </ScrollView>
             <ContentView x:Name="ResetPassword" IsVisible="{Binding ResetIsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid>
-                    <StackLayout BackgroundColor="{StaticResource LightDarkShade}" Opacity="0.2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout BackgroundColor="{StaticResource DarkShade}" Opacity="0.7" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
                     <Frame VerticalOptions="CenterAndExpand" Margin="30,0,30,0" HorizontalOptions="FillAndExpand" Padding="15" CornerRadius="15" BackgroundColor="{StaticResource Primary}">
                         <Grid RowDefinitions="15,*,15,*,15,*,15,*,*">
                             <Label Grid.Row="0" Text="Current Password:" TextColor="{StaticResource LightShade}"/>
-                            <Entry Grid.Row="1" IsPassword="True" Text="{Binding Password, Mode=OneWayToSource}" Placeholder="Password1" TextColor="{StaticResource LightShade}" BackgroundColor="{StaticResource Primary}"/>
+                            <Entry Grid.Row="1" IsPassword="True" Text="{Binding Password, Mode=TwoWay}" Placeholder="Password1" BackgroundColor="{StaticResource Primary}">
+                                <Entry.Behaviors>
+                                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" ValidStyle="{StaticResource EntryValidStyle}">
+                                        <xct:TextValidationBehavior MinimumLength="8"/>
+                                        <xct:CharactersValidationBehavior 
+                                            CharacterType="Digit"
+                                            MinimumCharacterCount="1"/>
+                                        <xct:CharactersValidationBehavior 
+                                            CharacterType="LowercaseLetter" 
+                                            MinimumCharacterCount="1"/>
+                                        <xct:CharactersValidationBehavior
+                                            CharacterType="UppercaseLetter" 
+                                            MinimumCharacterCount="1"/>
+                                    </xct:MultiValidationBehavior>
+                                </Entry.Behaviors>
+                            </Entry>
 
                             <Label Grid.Row="2" Text="New Password:" TextColor="{StaticResource LightShade}"/>
-                            <Entry Grid.Row="3" IsPassword="True" Text="{Binding NPassword, Mode=OneWayToSource}" Placeholder="Password2" TextColor="{StaticResource LightShade}" BackgroundColor="{StaticResource Primary}"/>
+                            <Entry Grid.Row="3" IsPassword="True" Text="{Binding NPassword, Mode=TwoWay}" Placeholder="Password2" BackgroundColor="{StaticResource Primary}">
+                                <Entry.Behaviors>
+                                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" ValidStyle="{StaticResource EntryValidStyle}" IsValid="{Binding PasswordIsValid}">
+                                        <xct:TextValidationBehavior MinimumLength="8"/>
+                                        <xct:CharactersValidationBehavior 
+                                            CharacterType="Digit"
+                                            MinimumCharacterCount="1"/>
+                                        <xct:CharactersValidationBehavior 
+                                            CharacterType="LowercaseLetter" 
+                                            MinimumCharacterCount="1"/>
+                                        <xct:CharactersValidationBehavior
+                                            CharacterType="UppercaseLetter" 
+                                            MinimumCharacterCount="1"/>
+                                    </xct:MultiValidationBehavior>
+                                </Entry.Behaviors>
+                            </Entry>
 
                             <Label Grid.Row="4" Text="Confirm Password:" TextColor="{StaticResource LightShade}"/>
-                            <Entry Grid.Row="5" IsPassword="True" Text="{Binding CNPassword, Mode=OneWayToSource}" BackgroundColor="{StaticResource Primary}" Placeholder="Password2" TextColor="{StaticResource LightShade}"/>
+                            <Entry Grid.Row="5" IsPassword="True" Text="{Binding CNPassword, Mode=TwoWay}" BackgroundColor="{StaticResource Primary}" Placeholder="Password2">
+                                <Entry.Behaviors>
+                                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" ValidStyle="{StaticResource EntryValidStyle}">
+                                        <xct:TextValidationBehavior MinimumLength="8"/>
+                                        <xct:CharactersValidationBehavior 
+                                            CharacterType="Digit"
+                                            MinimumCharacterCount="1"/>
+                                        <xct:CharactersValidationBehavior 
+                                            CharacterType="LowercaseLetter" 
+                                            MinimumCharacterCount="1"/>
+                                        <xct:CharactersValidationBehavior
+                                            CharacterType="UppercaseLetter" 
+                                            MinimumCharacterCount="1"/>
+                                    </xct:MultiValidationBehavior>
+                                </Entry.Behaviors>
+                            </Entry>
 
                             <Label Grid.Row="7" Text="Forgot password?" TextDecorations="Underline" TextColor="{StaticResource LightShade}"/>
                             <Grid Grid.Row="8" ColumnDefinitions="*,20,*">
@@ -208,18 +259,33 @@
             </ContentView>
             <ContentView x:Name="AccountDelete" IsVisible="{Binding DeleteIsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid>
-                    <StackLayout BackgroundColor="{StaticResource LightDarkShade}" Opacity="0.2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout BackgroundColor="{StaticResource DarkShade}" Opacity="0.7" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
                     <Frame VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="30,0,30,0" Padding="20" CornerRadius="15" BackgroundColor="{StaticResource Primary}">
                         <Grid RowDefinitions="35,30,25,*,15,*">
                             <Label Grid.Row="0" FontSize="Title" Text="Warning!" FontAttributes="Bold" TextColor="{StaticResource Danger}" HorizontalOptions="CenterAndExpand"/>
                             <Label Grid.Row="1" Text="Account deletion is permanent." TextColor="{StaticResource LightShade}"/>
                             <Label Grid.Row="2" Text="Enter your password to delete your account:" TextColor="{StaticResource LightShade}"/>
 
-                            <Entry Grid.Row="3" BackgroundColor="{StaticResource Primary}" Text="{Binding Password, Mode=OneWayToSource}" TextColor="{StaticResource LightShade}" Placeholder="Password" IsPassword="True"/>
+                            <Entry Grid.Row="3" BackgroundColor="{StaticResource Primary}" Text="{Binding Password, Mode=TwoWay}" Placeholder="Password" IsPassword="True">
+                                <Entry.Behaviors>
+                                    <xct:MultiValidationBehavior InvalidStyle="{StaticResource EntryErrorStyle}" ValidStyle="{StaticResource EntryValidStyle}">
+                                        <xct:TextValidationBehavior MinimumLength="8"/>
+                                        <xct:CharactersValidationBehavior 
+                                            CharacterType="Digit"
+                                            MinimumCharacterCount="1"/>
+                                        <xct:CharactersValidationBehavior 
+                                            CharacterType="LowercaseLetter" 
+                                            MinimumCharacterCount="1"/>
+                                        <xct:CharactersValidationBehavior
+                                            CharacterType="UppercaseLetter" 
+                                            MinimumCharacterCount="1"/>
+                                    </xct:MultiValidationBehavior>
+                                </Entry.Behaviors>
+                            </Entry>
 
                             <Grid Grid.Row="5" ColumnDefinitions="*,20,*">
                                 <Button Grid.Column="0" Text="Cancel" BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource LightShade}" Clicked="Cancel_Clicked"/>
-                                <Button Grid.Column="2" Text="Confirm" BackgroundColor="{StaticResource LightShade}" TextColor="{StaticResource Primary}" Command="{Binding DelUser}"/>
+                                <Button Grid.Column="2" Text="Confirm" BackgroundColor="{StaticResource LightShade}" CornerRadius="15" TextColor="{StaticResource Primary}" Command="{Binding DelUser}"/>
                             </Grid>
                         </Grid>
                     </Frame>

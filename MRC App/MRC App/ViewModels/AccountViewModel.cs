@@ -68,6 +68,17 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private bool passwordIsValid;
+        public bool PasswordIsValid
+        {
+            get { return passwordIsValid; }
+            set
+            {
+                passwordIsValid = value;
+                OnPropertyChanged(nameof(PasswordIsValid));
+            }
+        }
+
         private async void AccountResetPassword()
         {
             ResetIsVisible = false;
@@ -91,7 +102,7 @@ namespace MRC_App.ViewModels
 
             var response = await RestService.LoginUser(user);
 
-            if (response && newPassword == confirmNewPassword)
+            if (response && newPassword == confirmNewPassword && PasswordIsValid)
             {
                 user.Id = Int32.Parse(SecureStorage.GetAsync("Id").Result);
                 user.DateOfBirth = DateTime.Parse(SecureStorage.GetAsync("Birth").Result);
@@ -108,6 +119,11 @@ namespace MRC_App.ViewModels
                 {
                     Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
                 }
+                
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
             }
 
             IsVisible = false;
@@ -149,6 +165,10 @@ namespace MRC_App.ViewModels
                     {
                         Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
                     }
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
                 }
             }
 

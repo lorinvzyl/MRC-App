@@ -115,8 +115,7 @@ namespace MRC_App.ViewModels
             var supportsGoogleMaps = await Launcher.CanOpenAsync("comgooglemaps://");
             if (supportsWaze && supportsGoogleMaps)
             {
-                EventsDetailed eventsDetailed = new EventsDetailed();
-                eventsDetailed.ActionSheet(SelectedEvent.Venue);
+                LocationIsVisible = true;
             }
             else if (supportsWaze)
                 await Launcher.OpenAsync($"https://waze.com/ul?q={SelectedEvent.Venue}&navigate=yes");
@@ -142,7 +141,7 @@ namespace MRC_App.ViewModels
 
         public async void PopupItemSelected(Navigation navigation)
         {
-            IsVisible = false;
+            LocationIsVisible = false;
 
             switch (navigation.Title)
             {

@@ -98,7 +98,7 @@
 
             <ContentView x:Name="LocationPopUp" IsVisible="{Binding IsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <Grid>
-                    <StackLayout BackgroundColor="{StaticResource LightDarkShade}" Opacity="0.2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout BackgroundColor="{StaticResource DarkShade}" Opacity="0.7" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
                     <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}" HeightRequest="150" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
                         <Grid RowDefinitions="2*, 11, 30">
                             <CollectionView Grid.Row="0" SelectionMode="Single" ItemsSource="{Binding Nav}" SelectionChanged="Location_Popup">

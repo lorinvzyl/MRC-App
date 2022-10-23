@@ -110,13 +110,13 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Frame Style="{StaticResource BlogCardStyle}" Grid.Column="1">
-                                    <Grid>
-                                        <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
+                                    <Grid RowDefinitions="*,*">
+                                        <StackLayout Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource ImageStackLayoutStyle}">
                                             <Image Source="{Binding ImagePath}" Style="{StaticResource BlogImageStyle}"/>
                                         </StackLayout>
-                                        <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
+                                        <Frame Grid.Row="1" Style="{StaticResource BlogTextBackgroundStyle}"/>
 
-                                        <StackLayout VerticalOptions="EndAndExpand">
+                                        <StackLayout VerticalOptions="EndAndExpand" Grid.Row="1">
 
                                             <Grid HeightRequest="150" RowSpacing="0" Padding="0">
                                                 <Grid.RowDefinitions>
