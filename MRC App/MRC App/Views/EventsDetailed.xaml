@@ -43,7 +43,7 @@
             <Style x:Key="RSVPFrame" TargetType="Frame">
                 <Setter Property="Margin" Value="0,0,0,15"/>
                 <Setter Property="Padding" Value="10"/>
-                <Setter Property="HeightRequest" Value="230"/>
+                <Setter Property="HeightRequest" Value="220"/>
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource LightAccent}"/>
             </Style>
@@ -83,7 +83,7 @@
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="270"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="1" Grid.Column="1" Text="{Binding SelectedEvent.EventName}" Style="{StaticResource EventTitle}"/>
 
@@ -106,8 +106,8 @@
                                     <RowDefinition Height="15"/>
                                     <RowDefinition Height="30"/>
                                     <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
-                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="15"/>
                                     <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="RSVP" Style="{StaticResource RSVPLabelTitle}"/>
@@ -124,7 +124,7 @@
                                 </Label>
 
                                 <Label Grid.Row="4" Grid.Column="1" Text="Closing date:" Style="{StaticResource RSVPLabelLeft}"/>
-                                <Label Grid.Row="4" Grid.Column="2" Text="{Binding SelectedEvent.RSVPCloseDate}" Style="{StaticResource RSVPLabelRight}"/>
+                                <Label Grid.Row="4" Grid.Column="2" Text="{Binding FormattedDate}" Style="{StaticResource RSVPLabelRight}"/>
 
                                 <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2">
                                     <Grid.RowDefinitions>
@@ -139,7 +139,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Button AutomationId="EventRSVP" Grid.Row="1" Grid.Column="1" Padding="0" HorizontalOptions="Center" WidthRequest="100" VerticalOptions="End" Text="RSVP" Style="{StaticResource RSVPButton}">
                                         <Button.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding TapCommand}"/>
+                                            <TapGestureRecognizer Tapped="RSVP_Clicked"/>
                                         </Button.GestureRecognizers>
                                     </Button>
                                 </Grid>
@@ -155,6 +155,56 @@
                         <StackLayout HeightRequest="100" WidthRequest="100" Padding="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
                             <ActivityIndicator VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsRunning="{Binding IsVisible}" Color="{StaticResource DarkAccent}"/>
                         </StackLayout>
+                    </Grid>
+                </ContentView>
+
+                <ContentView x:Name="LocationPopUp" IsVisible="{Binding LocationIsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid>
+                        <StackLayout BackgroundColor="{StaticResource LightDarkShade}" Opacity="0.2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                        <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}" HeightRequest="150" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                            <Grid RowDefinitions="2*, 11, 30">
+                                <CollectionView Grid.Row="0" SelectionMode="Single" ItemsSource="{Binding Nav}" SelectionChanged="Location_Popup">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal"/>
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame CornerRadius="0" Margin="5,0,5,0" BackgroundColor="{StaticResource LightShade}">
+                                                <Grid RowDefinitions="4*, 2*">
+                                                    <Label Grid.Row="0" Text="{Binding Icon}" FontFamily="{StaticResource FontAwesomeBrands}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                                                    </Label>
+                                                    <!--Icon-->
+                                                    <Label Grid.Row="1" Text="{Binding Title}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                                                    <!--Label-->
+                                                </Grid>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState x:Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </CollectionView>
+
+                                <BoxView Grid.Row="1" Margin="0,5,0,5" WidthRequest="400" HorizontalOptions="CenterAndExpand" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
+
+                                <Label Grid.Row="2" Text="Cancel" FontSize="Large" TextColor="{StaticResource LightDarkShade}" VerticalOptions="EndAndExpand" HorizontalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Cancel_Clicked"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
                     </Grid>
                 </ContentView>
             </Grid>

@@ -22,6 +22,9 @@ namespace MRC_App.ViewModels
         public EventsDetailedViewModel()
         {
             TapCommand = new Command(OnRSVPClicked);
+            Nav = new ObservableCollection<Navigation>();
+
+            AddNavData();
         }
 
         string param = "";
@@ -47,6 +50,35 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private void AddNavData()
+        {
+            Navigation waze = new Navigation()
+            {
+                Icon = "&#xf83f;",
+                Title = "Waze"
+            };
+
+            Navigation google = new Navigation()
+            {
+                Icon = "&#xf1a0;",
+                Title = "Google Maps"
+            };
+
+            Nav.Add(waze);
+            Nav.Add(google);
+        }
+
+        private ObservableCollection<Navigation> nav;
+        public ObservableCollection<Navigation> Nav
+        {
+            get { return nav; }
+            set
+            {
+                nav = value;
+                OnPropertyChanged(nameof(Nav));
+            }
+        }
+
         private bool isVisible;
         public bool IsVisible
         {
@@ -58,10 +90,21 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private bool locationIsVisible;
+        public bool LocationIsVisible
+        {
+            get => locationIsVisible;
+            set
+            {
+                locationIsVisible = value;
+                OnPropertyChanged(nameof(LocationIsVisible));
+            }
+        }
+
         private void PerformOperation(string paramStr)
         {
             var param = JsonConvert.DeserializeObject<Event>(paramStr);
-            param.RSVPCloseDate = DateTime.Parse(param.RSVPCloseDate.ToString().Substring(0,10));
+            FormattedDate = param.RSVPCloseDate.ToString().Substring(0,10);
             SelectedEvent = param;
         }
 
@@ -86,36 +129,79 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private string formattedDate;
+        public string FormattedDate
+        {
+            get { return formattedDate; }
+            set
+            {
+                formattedDate = value;
+                OnPropertyChanged(nameof(FormattedDate));
+            }
+        }
+
+        public async void PopupItemSelected(Navigation navigation)
+        {
+            IsVisible = false;
+
+            switch (navigation.Title)
+            {
+                case "Google Maps":
+                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync($"comgooglemaps://?daddr={SelectedEvent.Venue}"));
+                    break;
+                case "Waze":
+                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync($"https://waze.com/ul?q={SelectedEvent.Venue}&navigate=yes"));
+                    break;
+            }
+        }
+
         private async void OnRSVPClicked(object obj)
         {
             IsVisible = true;
             //check if user already attended
+            var id = Int32.Parse(SecureStorage.GetAsync("Id").Result);
+            var userEvent = await RestService.GetUserEvent(id);
 
-
-            //if yes, update event
-            Event _event = new Event()
+            if(userEvent == null)
             {
-                EventName = SelectedEvent.EventName,
-                EventDescription = SelectedEvent.EventDescription,
-                EventDate = SelectedEvent.EventDate,
-                Id = SelectedEvent.Id,
-                RSVPCloseDate = SelectedEvent.RSVPCloseDate,
-                SpacesAvailable = SelectedEvent.SpacesAvailable - 1,
-                SpacesTaken = SelectedEvent.SpacesTaken + 1,
-                Venue = SelectedEvent.Venue,
-            };
-               
-            var response = await RestService.UpdateEvent(_event.Id, _event);
+                //if yes, update event
+                Event _event = new Event()
+                {
+                    EventName = SelectedEvent.EventName,
+                    EventDescription = SelectedEvent.EventDescription,
+                    EventDate = SelectedEvent.EventDate,
+                    Id = SelectedEvent.Id,
+                    RSVPCloseDate = SelectedEvent.RSVPCloseDate,
+                    SpacesAvailable = SelectedEvent.SpacesAvailable - 1,
+                    SpacesTaken = SelectedEvent.SpacesTaken + 1,
+                    Venue = SelectedEvent.Venue,
+                };
 
-            IsVisible = false;
+                UserEvent userEvent1 = new UserEvent()
+                {
+                    UserEmail = SecureStorage.GetAsync("Email").Result,
+                    EventId = SelectedEvent.Id,
+                    isAttended = false
+                };
 
-            if(!response)
-            {
-                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Could not RSVP", "Ok"));
+                var result = await RestService.Attend(userEvent1);
+                var response = await RestService.UpdateEvent(_event.Id, _event);
+                
+
+                IsVisible = false;
+
+                if (!response)
+                {
+                    Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", $"You RSVP'd for {_event.EventName}", "Ok"));
+                }
             }
             else
             {
-                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", $"You RSVP'd for {_event.EventName}", "Ok"));
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "You already RSVP'd for this event", "Ok"));
             }
         }
 

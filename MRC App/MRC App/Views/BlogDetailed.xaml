@@ -168,7 +168,7 @@
                                                                         </Entry>
                                                                         <Label Grid.Column="1" Margin="0,0,15,0" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="&#xf054;" FontFamily="{StaticResource FontAwesomeSolid}">
                                                                             <Label.GestureRecognizers>
-                                                                                <TapGestureRecognizer Command="{Binding ReplyCompleted}"/>
+                                                                                <TapGestureRecognizer Command="{Binding Source={x:Reference detail}, Path=BindingContext.ReplyCompleted}"/>
                                                                             </Label.GestureRecognizers>
                                                                         </Label>
                                                                     </Grid>

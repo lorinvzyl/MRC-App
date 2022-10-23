@@ -22,11 +22,13 @@ namespace MRC_App.Views
         {
             InitializeComponent();
 
-            AccountEditViewModel _ = new AccountEditViewModel
+            AccountEditViewModel viewModel = new AccountEditViewModel
             {
                 Key = key,
                 Value = value
             };
+
+            this.BindingContext = viewModel;
         }
     }
 }

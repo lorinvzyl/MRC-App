@@ -46,8 +46,8 @@ namespace MRC_App.ViewModels
                 case "Email:":
                     Xamarin.CommunityToolkit.Behaviors.EmailValidationBehavior emailValidationBehavior = new Xamarin.CommunityToolkit.Behaviors.EmailValidationBehavior();
                     emailValidationBehavior.Value = Value;
-                    emailValidationBehavior.IsValid = IsValid;
                     await emailValidationBehavior.ForceValidate();
+                    IsValid = emailValidationBehavior.IsValid;
                     if(IsValid)
                     {
                         user.Email = Value;

@@ -138,9 +138,11 @@ namespace MRC_App.ViewModels
 
             IsVisible = true;
 
+            bool login = false;
+
             await Task.Run(async () =>
             {
-                bool login = await RestService.LoginUser(user);
+                login = await RestService.LoginUser(user);
                 if (login)
                 {
                     var _user = await RestService.GetUserByEmail(user.Email);
@@ -159,7 +161,7 @@ namespace MRC_App.ViewModels
 
                     IsVisible = false;
 
-                    LoginCommand.Execute(user);
+                    
                 }
                 else
                 {
@@ -167,6 +169,11 @@ namespace MRC_App.ViewModels
                     Error = "Incorrect password/email";
                 }
             });
+
+            if (login) //due to view hierarchy, it needs to be seperated
+            {
+                LoginCommand.Execute(user);
+            }
         }
     }
 }

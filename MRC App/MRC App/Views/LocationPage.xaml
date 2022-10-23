@@ -46,53 +46,105 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
-            <StackLayout>
-                <CollectionView ItemsSource="{Binding Locations}" Margin="20" SelectionMode="Single" SelectionChanged="CollectionView_ItemSelected">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
+        <Grid>
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
+                <StackLayout>
+                    <CollectionView ItemsSource="{Binding Locations}" Margin="20" SelectionMode="Single" SelectionChanged="CollectionView_ItemSelected">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Frame Style="{StaticResource LocationFrame}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Name}" Style="{StaticResource LocationTitle}"/>
+
+                                            <Label Grid.Row="1" Grid.Column="0" Text="Pastor:" Style="{StaticResource LocationContent}"/>
+                                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Pastor}" Style="{StaticResource LocationContent}"/>
+
+                                            <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Click here to navigate to the church" Style="{StaticResource LocationLink}"/>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <Frame Style="{StaticResource LocationFrame}" HeightRequest="200">
+                                <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title" Text="No locations found" Style="{StaticResource LocationTitle}"/>
+                            </Frame>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </StackLayout>
+            </RefreshView>
+
+            <ContentView x:Name="LocationPopUp" IsVisible="{Binding IsVisible}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid>
+                    <StackLayout BackgroundColor="{StaticResource LightDarkShade}" Opacity="0.2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <Frame CornerRadius="0" BackgroundColor="{StaticResource LightShade}" HeightRequest="150" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                        <Grid RowDefinitions="2*, 11, 30">
+                            <CollectionView Grid.Row="0" SelectionMode="Single" ItemsSource="{Binding Nav}" SelectionChanged="Location_Popup">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame CornerRadius="0" Margin="5,0,5,0" BackgroundColor="{StaticResource LightShade}">
+                                            <Grid RowDefinitions="4*, 2*">
+                                                <Label Grid.Row="0" Text="{Binding Icon}" FontFamily="{StaticResource FontAwesomeBrands}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                                                </Label>
+                                                <!--Icon-->
+                                                <Label Grid.Row="1" Text="{Binding Title}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                                                <!--Label-->
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
                                 <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup Name="CommonStates">
-                                        <VisualState Name="Selected">
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
                                             <VisualState.Setters>
-                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                <Setter Property="BackgroundColor" Value="{StaticResource LightShade}"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                                             </VisualState.Setters>
                                         </VisualState>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <Frame Style="{StaticResource LocationFrame}">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="3*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Name}" Style="{StaticResource LocationTitle}"/>
+                            </CollectionView>
 
-                                        <Label Grid.Row="1" Grid.Column="0" Text="Pastor:" Style="{StaticResource LocationContent}"/>
-                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Pastor}" Style="{StaticResource LocationContent}"/>
+                            <BoxView Grid.Row="1" Margin="0,5,0,5" WidthRequest="400" HorizontalOptions="CenterAndExpand" HeightRequest="1" Color="{StaticResource LightDarkShade}" Opacity="0.5"/>
 
-                                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="Click here to navigate to the church" Style="{StaticResource LocationLink}"/>
-                                    </Grid>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                    <CollectionView.EmptyView>
-                        <Frame Style="{StaticResource LocationFrame}">
-                            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Title" Text="No locations found" Style="{StaticResource LocationTitle}"/>
-                        </Frame>
-                    </CollectionView.EmptyView>
-                </CollectionView>
-            </StackLayout>
-        </RefreshView>
+                            <Label Grid.Row="2" Text="Cancel" FontSize="Large" TextColor="{StaticResource LightDarkShade}" VerticalOptions="EndAndExpand" HorizontalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Cancel_Clicked"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </ContentView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

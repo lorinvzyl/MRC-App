@@ -26,14 +26,29 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private ObservableCollection<Navigation> nav;
+        public ObservableCollection<Navigation> Nav
+        {
+            get { return nav; }
+            set
+            {
+                nav = value;
+                OnPropertyChanged(nameof(Nav));
+            }
+        }
+
         public AsyncCommand RefreshCommand { get; }
 
         public LocationViewModel()
         { 
             Locations = new ObservableRangeCollection<Models.Location>();
+            Nav = new ObservableCollection<Navigation>();
             RefreshCommand = new AsyncCommand(Refresh);
 
-            AddData();
+            Task.Run(() =>
+            {
+                AddData();
+            });
         }
 
         public LocationViewModel(bool isTest)
@@ -44,13 +59,15 @@ namespace MRC_App.ViewModels
         
         public async void PopupItemSelected(Navigation navigation)
         {
+            IsVisible = false;
+
             switch (navigation.Title)
             {
                 case "Google Maps":
-                    await Launcher.OpenAsync($"comgooglemaps://?daddr={Location.MapsURL}");
+                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync($"comgooglemaps://?daddr={Location.MapsURL}"));
                     break;
                 case "Waze":
-                    await Launcher.OpenAsync($"https://waze.com/ul?q={Location.MapsURL}&navigate=yes");
+                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync($"https://waze.com/ul?q={Location.MapsURL}&navigate=yes"));
                     break;
             }
         }
@@ -65,7 +82,28 @@ namespace MRC_App.ViewModels
                 OnPropertyChanged(nameof(Location));
             }
         }
-        
+
+        private static bool isVisible;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+
+        private static bool hideNav;
+        public bool HideNav
+        {
+            get { return hideNav; }
+            set
+            {
+                hideNav = value;
+                OnPropertyChanged(nameof(HideNav));
+            }
+        }
 
         async Task Refresh()
         {
@@ -84,6 +122,21 @@ namespace MRC_App.ViewModels
         {
             var locations = await RestService.GetChurchLocations();
             Locations.AddRange(locations);
+
+            Navigation waze = new Navigation()
+            {
+                Icon = "&#xf83f;",
+                Title = "Waze"
+            };
+
+            Navigation google = new Navigation()
+            {
+                Icon = "&#xf1a0;",
+                Title = "Google Maps"
+            };
+
+            Nav.Add(waze);
+            Nav.Add(google);
         }
     }
 }

@@ -32,10 +32,7 @@ namespace MRC_App.ViewModels
 
             Event = new EventCollection();
 
-            Task.Run(() =>
-            {
-                GenerateEvents();
-            });
+            GenerateEvents();
             
         }
 

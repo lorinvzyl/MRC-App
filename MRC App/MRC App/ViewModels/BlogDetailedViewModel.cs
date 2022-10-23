@@ -71,6 +71,7 @@ namespace MRC_App.ViewModels
             else
             {
                 Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", "Comment added", "Ok"));
+                GetComments(Id);
             }
         }
 
@@ -78,7 +79,7 @@ namespace MRC_App.ViewModels
         {
             Reply reply = new Reply()
             {
-                UserName = SecureStorage.GetAsync("Name").Result,
+                UserEmail = SecureStorage.GetAsync("Email").Result,
                 CommentText = SelectedComment.ReplyText,
                 CommentId = selectedComment.Id
             };
@@ -92,6 +93,7 @@ namespace MRC_App.ViewModels
             else
             {
                 Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", "Reply added", "Ok"));
+                GetComments(Id);
             }
         }
 

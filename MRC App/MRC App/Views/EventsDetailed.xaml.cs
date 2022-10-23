@@ -46,5 +46,34 @@ namespace MRC_App.Views
 
             }
         }
+
+        private void RSVP_Clicked(object sender, EventArgs e)
+        {
+            EventsDetailedViewModel viewModel = new EventsDetailedViewModel();
+
+            viewModel.TapCommand.Execute(viewModel);
+
+            this.BindingContext = viewModel;
+        }
+
+        private void Cancel_Clicked(object sender, EventArgs e)
+        {
+            EventsDetailedViewModel viewModel = new EventsDetailedViewModel();
+
+            viewModel.LocationIsVisible = false;
+
+            this.BindingContext = viewModel;
+        }
+
+        private void Location_Popup(object sender, SelectionChangedEventArgs e)
+        {
+            var navigation = e.CurrentSelection.FirstOrDefault();
+            if (navigation != null && navigation is Models.Navigation nav)
+            {
+                EventsDetailedViewModel viewModel = new EventsDetailedViewModel();
+                viewModel.PopupItemSelected(nav);
+                this.BindingContext = viewModel;
+            }
+        }
     }
 }
