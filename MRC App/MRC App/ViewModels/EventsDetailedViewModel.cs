@@ -39,7 +39,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private Event selectedEvent;
+        private static Event selectedEvent;
         public Event SelectedEvent
         {
             get => selectedEvent;
@@ -128,7 +128,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private string formattedDate;
+        private static string formattedDate;
         public string FormattedDate
         {
             get { return formattedDate; }
@@ -161,7 +161,7 @@ namespace MRC_App.ViewModels
             var id = Int32.Parse(SecureStorage.GetAsync("Id").Result);
             var userEvent = await RestService.GetUserEvent(SelectedEvent.Id, id);
 
-            if(userEvent == null)
+            if(userEvent != null)
             {
                 //if yes, update event
                 Event _event = new Event()

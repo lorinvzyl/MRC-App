@@ -37,6 +37,7 @@ namespace MRC_App.Views
             if (supportsWaze && supportsGoogleMaps)
             {
                 viewModel.IsVisible = true;
+                viewModel.Location = location;
                 this.BindingContext = viewModel;
             }
             else if (supportsWaze)

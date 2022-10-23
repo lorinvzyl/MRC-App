@@ -137,11 +137,7 @@
                                         <ColumnDefinition Width="7*"/>
                                         <ColumnDefinition Width="5*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button AutomationId="EventRSVP" Grid.Row="1" Grid.Column="1" Padding="0" HorizontalOptions="Center" WidthRequest="100" VerticalOptions="End" Text="RSVP" Style="{StaticResource RSVPButton}">
-                                        <Button.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="RSVP_Clicked"/>
-                                        </Button.GestureRecognizers>
-                                    </Button>
+                                    <Button AutomationId="EventRSVP" Grid.Row="1" Grid.Column="1" Padding="0" HorizontalOptions="Center" WidthRequest="100" VerticalOptions="End" Text="RSVP" Style="{StaticResource RSVPButton}" Clicked="RSVP_Clicked"/>
                                 </Grid>
                                 <!--Button to RSVP. Not sure how this will interact with the database yet.-->
                             </Grid>
