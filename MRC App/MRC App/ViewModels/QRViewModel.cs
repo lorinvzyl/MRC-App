@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace MRC_App.ViewModels
 {
@@ -16,26 +17,34 @@ namespace MRC_App.ViewModels
 
         public async Task AttendEvent(string result)
         {
-            if (result.EndsWith("Attend"))
+            if (!result.StartsWith("https://reformedchurchmidrandapi.azurewebsites.net/api/UserEvents/Attend/"))
                 return;
 
-            var email = SecureStorage.GetAsync("Email").Result;
+            int id = 0;
+            var response1 = Int32.TryParse(result.Substring(result.Length - 1), out id);
+            var response = false;
 
-            UserEvent userEvent = new UserEvent
+            if(response1)
             {
-                UserEmail = email,
-                EventId = 1,
-                isAttended = true
-            };
+                var email = SecureStorage.GetAsync("Email").Result;
 
-            var response = await RestService.Attend(userEvent);
-            if(response)
+                UserEvent userEvent = new UserEvent
+                {
+                    UserEmail = email,
+                    EventId = id,
+                    isAttended = true
+                };
+
+                response = await RestService.Attend(userEvent);
+            }
+            
+            if (!response)
             {
-                //return success
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
             }
             else
             {
-                //error
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", "Attended", "Ok"));
             }
         }
     }

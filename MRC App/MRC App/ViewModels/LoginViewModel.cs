@@ -37,7 +37,6 @@ namespace MRC_App.ViewModels
             {
                 EmailValid = false;
                 PasswordValid = false;
-                OnEntryUnfocus();
             });
         }
 
@@ -161,6 +160,8 @@ namespace MRC_App.ViewModels
                     await Task.Run(() => appshell.SetUser());
 
                     IsVisible = false;
+
+                    
                 }
                 else
                 {
@@ -169,7 +170,7 @@ namespace MRC_App.ViewModels
                 }
             });
 
-            if(login)
+            if (login) //due to view hierarchy, it needs to be seperated
             {
                 LoginCommand.Execute(user);
             }

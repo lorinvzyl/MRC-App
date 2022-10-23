@@ -62,23 +62,38 @@ namespace MRC_App.ViewModels
                 UserEmail = SecureStorage.GetAsync("Email").Result
             };
 
-            await RestService.AddBlogComment(comment);
+            var response = await RestService.AddBlogComment(comment);
+
+            if (!response)
+            {
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", "Comment added", "Ok"));
+                GetComments(Id);
+            }
         }
 
         public async void AddCommentReply(object obj)
         {
             Reply reply = new Reply()
             {
-                UserName = SecureStorage.GetAsync("Name").Result,
+                UserEmail = SecureStorage.GetAsync("Email").Result,
                 CommentText = SelectedComment.ReplyText,
                 CommentId = selectedComment.Id
             };
 
             var response = await RestService.AddBlogReply(reply);
 
-            if(response)
+            if(!response)
             {
-                //do something
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Error", "Something went wrong", "Ok"));
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(async () => await App.Current.MainPage.DisplayAlert("Success", "Reply added", "Ok"));
+                GetComments(Id);
             }
         }
 
@@ -94,7 +109,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private async void PerformOperation(string paramStr)
+        private void PerformOperation(string paramStr)
         {
             var param = JsonConvert.DeserializeObject<Blog>(paramStr);
             Id = param.Id;
@@ -119,7 +134,7 @@ namespace MRC_App.ViewModels
             if (TextLines == 20)
             {
                 ReadMoreLessLabel = "Read Less";
-                TextLines = 300;
+                TextLines = -1;
             }
             else
             {

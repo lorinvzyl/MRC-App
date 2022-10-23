@@ -106,11 +106,23 @@ namespace MRC_App.Services
             var json = JsonConvert.SerializeObject(_event);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"api/Events{id}", content);
+            var response = await client.PutAsync($"api/Events/{id}", content);
 
             if (!response.IsSuccessStatusCode)
                 return false;
             return true;
+        }
+
+        public static async Task<UserEvent> GetUserEvent(int id)
+        {
+            var response = await client.GetAsync($"api/UserEvents/{id}");
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            var urlContent = await response.Content.ReadAsStringAsync();
+            var userEvent = JsonConvert.DeserializeObject<UserEvent>(urlContent);
+
+            return userEvent;
         }
 
         public static async Task<bool> Donate(Donation donation)
@@ -227,7 +239,7 @@ namespace MRC_App.Services
             var json = JsonConvert.SerializeObject(comment);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"api/Comments/{comment.CommentId}", content);
+            var response = await client.PostAsync("api/Replies", content);
 
             if(!response.IsSuccessStatusCode)
                 return replied;
