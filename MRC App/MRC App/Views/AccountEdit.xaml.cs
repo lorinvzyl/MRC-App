@@ -20,23 +20,15 @@ namespace MRC_App.Views
 
         public AccountEdit(string key, string value)
         {
-            AccountEditViewModel viewmodel = new AccountEditViewModel
+            InitializeComponent();
+
+            AccountEditViewModel viewModel = new AccountEditViewModel
             {
                 Key = key,
                 Value = value
             };
 
-            if(key == "Email:")
-            {
-                //add validation
-            }
-
-            if(key == "Birthday:")
-            {
-                //add validation
-            }
-
-            InitializeComponent();
+            this.BindingContext = viewModel;
         }
     }
 }

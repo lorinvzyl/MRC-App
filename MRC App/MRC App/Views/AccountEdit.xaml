@@ -13,10 +13,18 @@
             </BackButtonBehavior.IconOverride>
         </BackButtonBehavior>
     </Shell.BackButtonBehavior>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryErrorStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource Danger}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <ContentPage.Content>
         <StackLayout>
-            <Grid ColumnDefinitions="15,110, *,15" Margin="0,15,0,0">
+            <Grid ColumnDefinitions="15,Auto, *,15" Margin="0,15,0,0">
                 <Label AutomationId="KeyEntry" FontSize="Medium" Grid.Column="1" Text="{Binding Key}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
                 <Entry AutomationId="ValueEntry" x:Name="ValueEntry" FontSize="Medium" Grid.Column="2" Text="{Binding Value, Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" WidthRequest="300"/>
             </Grid>

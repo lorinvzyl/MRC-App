@@ -1,6 +1,8 @@
 ﻿using MRC_App.Controls;
+using MRC_App.Models;
 using MRC_App.ViewModels;
 using Rg.Plugins.Popup.Animations;
+using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Enums;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -28,31 +30,45 @@ namespace MRC_App.Views
             if (!(e.CurrentSelection.FirstOrDefault() is Models.Location location))
                 return;
 
+            LocationViewModel viewModel = new LocationViewModel();
+
             var supportsWaze = await Launcher.CanOpenAsync("https://waze.com/ul");
-            var supportsGoogleMaps = await Launcher.CanOpenAsync("comgooglemaps://");
+            var supportsGoogleMaps = await Launcher.CanOpenAsync("https://www.google.com/maps"); //always false for some reason?
             if (supportsWaze && supportsGoogleMaps)
             {
-                var action = await DisplayActionSheet("Open with", "Cancel", null, "Google Maps", "Waze");
-                switch (action)
-                {
-                    case "Google Maps":
-                        await Launcher.OpenAsync($"comgooglemaps://?daddr={location.MapsURL}");
-                        break;
-                    case "Waze":
-                        await Launcher.OpenAsync($"https://waze.com/ul?q={location.MapsURL}&navigate=yes");
-                        break;
-
-                }
+                viewModel.IsVisible = true;
+                viewModel.Location = location;
+                this.BindingContext = viewModel;
             }
             else if (supportsWaze)
                 await Launcher.OpenAsync($"https://waze.com/ul?q={location.MapsURL}&navigate=yes");
             else if(supportsGoogleMaps)
-                await Launcher.OpenAsync($"comgooglemaps://?daddr={location.MapsURL}");
+                await Launcher.OpenAsync($"https://www.google.com/maps/dir/?api=1&destintation={location.MapsURL}");
             else
             {
                 Uri uri = new Uri($"https://waze.com/ul?q={location.MapsURL}&navigate=yes");
                 await Browser.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }
+        }
+
+        private void Location_Popup(object sender, SelectionChangedEventArgs e)
+        {
+            var navigation = e.CurrentSelection.FirstOrDefault();
+            if (navigation != null && navigation is Models.Navigation nav)
+            {
+                LocationViewModel locationViewModel = new LocationViewModel();
+                locationViewModel.PopupItemSelected(nav);
+                this.BindingContext = locationViewModel;
+            }
+        }
+
+        private void Cancel_Clicked(object sender, EventArgs e)
+        {
+            LocationViewModel viewModel = new LocationViewModel();
+
+            viewModel.IsVisible = false;
+
+            this.BindingContext = viewModel;
         }
     }
 }

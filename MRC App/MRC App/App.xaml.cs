@@ -14,7 +14,7 @@ namespace MRC_App
         {
             InitializeComponent();
             SetCultureToZA();
-
+            
             MainPage = new AppShell();
         }
 

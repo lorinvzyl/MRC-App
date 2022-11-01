@@ -4,6 +4,7 @@ using MRC_App.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -28,7 +29,7 @@ namespace MRC_App.ViewModels
             {
                 case "First Name:":
                     user.Name = Value;
-                    if (await SetUser(id, user))
+                    if (await SetUser(id, user) && !String.IsNullOrEmpty(user.Name))
                     {
                         SecureStorage.Remove("Name");
                         await SecureStorage.SetAsync("Name", Value);
@@ -36,35 +37,48 @@ namespace MRC_App.ViewModels
                     break;
                 case "Last Name:":
                     user.Surname = Value;
-                    if (await SetUser(id, user))
+                    if (await SetUser(id, user) && !String.IsNullOrEmpty(user.Surname))
                     {
                         SecureStorage.Remove("Surname");
                         await SecureStorage.SetAsync("Surname", Value);
                     }
                     break;
                 case "Email:":
-                    user.Email = Value;
-                    if (await SetUser(id, user))
+                    Xamarin.CommunityToolkit.Behaviors.EmailValidationBehavior emailValidationBehavior = new Xamarin.CommunityToolkit.Behaviors.EmailValidationBehavior();
+                    emailValidationBehavior.Value = Value;
+                    await emailValidationBehavior.ForceValidate();
+                    IsValid = emailValidationBehavior.IsValid;
+                    if(IsValid)
                     {
-                        SecureStorage.Remove("Email");
-                        await SecureStorage.SetAsync("Email", Value);
+                        user.Email = Value;
+                        if (await SetUser(id, user) && !String.IsNullOrEmpty(user.Email))
+                        {
+                            SecureStorage.Remove("Email");
+                            await SecureStorage.SetAsync("Email", Value);
+                        }
                     }
                     break;
                 case "Birthday:":
-                    user.DateOfBirth = DateTime.Parse(Value);
-                    if (await SetUser(id, user))
+                    Regex regex = new Regex(@"^\d{4}\/(0?[1-9]|1[012])\/(0?[1-9]|[12][0-9]|3[01])$");
+                    bool response = regex.IsMatch(Value);
+                    if(response)
                     {
-                        SecureStorage.Remove("Birth");
-                        await SecureStorage.SetAsync("Birth", Value);
+                        user.DateOfBirth = DateTime.Parse(Value);
+                        if (await SetUser(id, user) && user.DateOfBirth != null)
+                        {
+                            SecureStorage.Remove("Birth");
+                            await SecureStorage.SetAsync("Birth", Value);
+                        }
                     }
                     break;
+                    
             }
 
             var appshell = Shell.Current as AppShell;
             await Task.Run(() => appshell.SetUser());
 
             var account = new AccountViewModel();
-            account.UpdateData();
+            await account.UpdateData();
             
             await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
             //return to previous page of the stack
@@ -84,6 +98,17 @@ namespace MRC_App.ViewModels
             { 
                 _value = value;
                 OnPropertyChanged("Value");
+            }
+        }
+
+        private bool isValid;
+        public bool IsValid
+        {
+            get { return isValid; }
+            set
+            {
+                isValid = value;
+                OnPropertyChanged(nameof(IsValid));
             }
         }
 

@@ -32,18 +32,32 @@ namespace MRC_App.Views
             InitializeComponent();
         }
 
-        public async void ActionSheet(string venue)
+        private void RSVP_Clicked(object sender, EventArgs e)
         {
-            var action = await DisplayActionSheet("Open with", "Cancel", null, "Google Maps", "Waze");
-            switch (action)
-            {
-                case "Google Maps":
-                    await Launcher.OpenAsync($"comgooglemaps://?daddr={venue}");
-                    break;
-                case "Waze":
-                    await Launcher.OpenAsync($"https://waze.com/ul?q={venue}&navigate=yes");
-                    break;
+            EventsDetailedViewModel viewModel = new EventsDetailedViewModel();
 
+            viewModel.TapCommand.Execute(viewModel);
+
+            this.BindingContext = viewModel;
+        }
+
+        private void Cancel_Clicked(object sender, EventArgs e)
+        {
+            EventsDetailedViewModel viewModel = new EventsDetailedViewModel();
+
+            viewModel.LocationIsVisible = false;
+
+            this.BindingContext = viewModel;
+        }
+
+        private void Location_Popup(object sender, SelectionChangedEventArgs e)
+        {
+            var navigation = e.CurrentSelection.FirstOrDefault();
+            if (navigation != null && navigation is Models.Navigation nav)
+            {
+                EventsDetailedViewModel viewModel = new EventsDetailedViewModel();
+                viewModel.PopupItemSelected(nav);
+                this.BindingContext = viewModel;
             }
         }
     }

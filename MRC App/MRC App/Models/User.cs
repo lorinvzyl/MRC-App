@@ -14,6 +14,5 @@ namespace MRC_App.Models
         public DateTime DateOfBirth { get; set; }
         public bool isNewsletter { get; set; }
         public string Password { get; set; }
-        public string ProfilePicURL { get; set; }
     }
 }

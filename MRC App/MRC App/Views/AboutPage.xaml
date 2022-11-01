@@ -84,7 +84,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource DarkShade}"/>
                 <Setter Property="Opacity" Value="0.65"/>
                 <Setter Property="VerticalOptions" Value="EndAndExpand"/>
-                <Setter Property="HeightRequest" Value="95"/>
+                <Setter Property="HeightRequest" Value="60"/>
                 <Setter Property="CornerRadius" Value="15"/>
             </Style>
             <Style x:Key="IconLabels" TargetType="Label">
@@ -107,75 +107,73 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}">
-                <StackLayout Padding="0,0,0,10">
-                    <CollectionView Margin="0,25,20,0" ItemsSource="{Binding Blog}" HeightRequest="300" SelectionChanged="CollectionView_SelectedChanged" SelectionMode="Single">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup Name="CommonStates">
-                                            <VisualState Name="Selected">
-                                                <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="Transparent"/>
-                                                </VisualState.Setters>
-                                            </VisualState>
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
-                                    <Frame Style="{StaticResource BlogCardStyle}">
-                                        <Grid>
-                                            <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
-                                                <Image Source="{Binding ImagePath}" Style="{StaticResource BlogImageStyle}"/>
-                                            </StackLayout>
-                                            <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
-                                            <StackLayout VerticalOptions="EndAndExpand">
-                                                <ScrollView HeightRequest="135">
-                                                    <Label Grid.Row="0" Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
-                                                </ScrollView>
-                                            </StackLayout>
-                                        </Grid>
-                                    </Frame>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                        <CollectionView.EmptyView>
-                            <StackLayout>
+            <StackLayout Padding="0,0,0,10">
+                <CollectionView Margin="0,25,20,0" ItemsSource="{Binding Blog}" HeightRequest="300" SelectionChanged="CollectionView_SelectedChanged" SelectionMode="Single">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout AutomationId="CollectionViewItem">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent"/>
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
                                 <Frame Style="{StaticResource BlogCardStyle}">
-                                    <StackLayout Style="{StaticResource ImageStackLayoutStyle}" Opacity="0.8">
-                                        <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="No blogs found" FontSize="Title" TextColor="{StaticResource LightShade}" Opacity="0.8"/>
-                                    </StackLayout>
+                                    <Grid>
+                                        <StackLayout Style="{StaticResource ImageStackLayoutStyle}">
+                                            <Image Source="{Binding ImagePath}" Style="{StaticResource BlogImageStyle}"/>
+                                        </StackLayout>
+                                        <Frame Style="{StaticResource BlogTextBackgroundStyle}"/>
+                                        <StackLayout VerticalOptions="EndAndExpand">
+                                            <ScrollView HeightRequest="100">
+                                                <Label Grid.Row="0" Text="{Binding BlogTitle}" Style="{StaticResource BlogTitleStyle}"/>
+                                            </ScrollView>
+                                        </StackLayout>
+                                    </Grid>
                                 </Frame>
                             </StackLayout>
-                        </CollectionView.EmptyView>
-                    </CollectionView>
-
-                    <Frame Style="{StaticResource ContainerStyle}">
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
                         <StackLayout>
-                            <Label Text="Latest Video" Style="{StaticResource ContainerTitleStyle}"/>
-                            <xct:MediaElement x:Name="mediaSource" Source="{Binding Video}" IsVisible="{Binding IsVisible}" Style="{StaticResource Videostyle}" Speed="0" AutoPlay="False"/>
+                            <Frame Style="{StaticResource BlogCardStyle}">
+                                <StackLayout Style="{StaticResource ImageStackLayoutStyle}" Opacity="0.8">
+                                    <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Text="No blogs found" FontSize="Title" TextColor="{StaticResource LightShade}" Opacity="0.8"/>
+                                </StackLayout>
+                            </Frame>
                         </StackLayout>
-                    </Frame>
+                    </CollectionView.EmptyView>
+                </CollectionView>
 
-                    <Frame Style="{StaticResource ContainerStyle}">
-                        <StackLayout>
-                            <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
-                            <Label Text="Every word of God is pure; He is a shield to those who put their trust in Him." Style="{StaticResource ContainerTextStyle}"/>
-                            <Label Text="Proverbs 30: 5-5" Style="{StaticResource ContainerTitleStyle}"/>
-                        </StackLayout>
-                    </Frame>
+                <Frame Style="{StaticResource ContainerStyle}">
+                    <StackLayout>
+                        <Label Text="Latest Video" Style="{StaticResource ContainerTitleStyle}"/>
+                        <xct:MediaElement x:Name="mediaSource" Source="{Binding Video}" IsVisible="{Binding IsVisible}" Style="{StaticResource Videostyle}" Speed="0" AutoPlay="False"/>
+                    </StackLayout>
+                </Frame>
 
-                    <Frame Style="{StaticResource ContainerStyle}">
-                        <StackLayout>
-                            <Label Text="Institutions we support" Style="{StaticResource ContainerTitleStyle}"/>
-                            <Label Style="{StaticResource ContainerTextStyle}"
+                <Frame Style="{StaticResource ContainerStyle}">
+                    <StackLayout>
+                        <Label Text="Verse of the Day" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Text="Every word of God is pure; He is a shield to those who put their trust in Him." Style="{StaticResource ContainerTextStyle}"/>
+                        <Label Text="Proverbs 30: 5-5" Style="{StaticResource ContainerTitleStyle}"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Style="{StaticResource ContainerStyle}">
+                    <StackLayout>
+                        <Label Text="Institutions we support" Style="{StaticResource ContainerTitleStyle}"/>
+                        <Label Style="{StaticResource ContainerTextStyle}"
                             Text="&#x2022; Institution 1 &#10;&#x2022; Institution 2 &#10;&#x2022; Institution 3 &#10;&#10;If you wish to find out more about these institutions, visit our website page on it here"/>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-            </RefreshView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

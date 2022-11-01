@@ -147,6 +147,18 @@ namespace MRC_App.ViewModels
                 SetProperty(ref error, value);
             }
         }
+
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+
         private async Task RegisterUser()
         {
             if (Name == null || Surname == null || Email == null || Birth == null || Password == null)
@@ -162,16 +174,24 @@ namespace MRC_App.ViewModels
                 Email = Email.ToLower(),
                 DateOfBirth = DateTime.Parse(Birth).Date,
                 Password = Password,
-                ProfilePicURL = "&#xf2bd;",
                 Id = 1
             };
 
-            var registration = await RestService.RegisterUser(user);
+            var registration = false;
+            IsVisible = true;
+            var response = await RestService.GetUserByEmail(Email);
+            if (response == null)
+            {
+                registration = await RestService.RegisterUser(user);
+                
+            }  
+            else
+                Error = "Registration failed";
+
+            IsVisible = false;
 
             if (registration)
                 RegisterCommand.Execute(registration);
-            else
-                Error = "Registration failed";
         }
     }
 }

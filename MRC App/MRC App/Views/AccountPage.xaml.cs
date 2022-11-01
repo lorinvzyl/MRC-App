@@ -8,67 +8,79 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MRC_App.ViewModels;
 using Xamarin.Essentials;
+using MRC_App.Models;
+using MRC_App.Services;
 
 namespace MRC_App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AccountPage : ContentPage
     {
-        private readonly AccountViewModel _viewModel = new AccountViewModel(); 
-
         public AccountPage()
         {
             InitializeComponent();
         }
 
-        private void DeleteAccountLblGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void DeleteAccountLblGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            
+            AccountViewModel viewModel = new AccountViewModel();
+
+            viewModel.DeleteIsVisible = true;
+
+            this.BindingContext = viewModel;
         }
 
-        private void ResetPasswordLblGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void ResetPasswordLblGestureRecognizer_Tapped(object sender, EventArgs e)
         {
+            AccountViewModel viewModel = new AccountViewModel();
 
+            viewModel.ResetIsVisible = true;
+
+            this.BindingContext = viewModel;
         }
 
-        private async void EditName_Tapped(object sender, EventArgs e)
+        private void EditName_Tapped(object sender, EventArgs e)
         {
             var name = SecureStorage.GetAsync("Name").Result;
-            await Navigation.PushAsync(new AccountEdit("First Name:", name));
+            var edit = new AccountEdit("First Name:", name);
+            Shell.Current.Navigation.PushAsync(edit);
         }
 
-        private async void EditSurname_Tapped(object sender, EventArgs e)
+        private void EditSurname_Tapped(object sender, EventArgs e)
         {
             var surname = SecureStorage.GetAsync("Surname").Result;
-            await Navigation.PushAsync(new AccountEdit("Last Name:", surname));
+            var edit = new AccountEdit("Last Name:", surname);
+            Shell.Current.Navigation.PushAsync(edit);
         }
 
-        private async void EditEmail_Tapped(object sender, EventArgs e)
+        private void EditEmail_Tapped(object sender, EventArgs e)
         {
             var email = SecureStorage.GetAsync("Email").Result;
-            await Navigation.PushAsync(new AccountEdit("Email:", email));
+            var edit = new AccountEdit("Email:", email);
+            Shell.Current.Navigation.PushAsync(edit);
         }
 
-        private async void EditBirthday_Tapped(object sender, EventArgs e)
+        private void EditBirthday_Tapped(object sender, EventArgs e)
         {
             var birthday = SecureStorage.GetAsync("Birth").Result;
-            await Navigation.PushAsync(new AccountEdit("Birthday:", birthday.Substring(1,10)));
-        }
-
-        private void ChangeAvatarBtn_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RemoveAvatarBtn_Clicked(object sender, EventArgs e)
-        {
-
+            var edit = new AccountEdit("Birthday:", birthday.Substring(0,10));
+            Shell.Current.Navigation.PushAsync(edit);
         }
 
         protected override void OnAppearing()
         {
             AccountViewModel viewModel = new AccountViewModel();
             viewModel.UpdateData();
+
+            this.BindingContext = viewModel;
+        }
+
+        private void Cancel_Clicked(object sender, EventArgs e)
+        {
+            AccountViewModel viewModel = new AccountViewModel();
+
+            viewModel.ResetIsVisible = false;
+            viewModel.DeleteIsVisible = false;
 
             this.BindingContext = viewModel;
         }

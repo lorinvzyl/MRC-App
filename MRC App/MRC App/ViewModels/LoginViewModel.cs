@@ -9,6 +9,7 @@ using MRC_App.Services;
 using Xamarin.Essentials;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Acr.UserDialogs;
 
 namespace MRC_App.ViewModels
 {
@@ -32,7 +33,11 @@ namespace MRC_App.ViewModels
 
         public LoginViewModel()
         {
-            OnEntryUnfocus();
+            Task.Run(() =>
+            {
+                EmailValid = false;
+                PasswordValid = false;
+            });
         }
 
         private async void OnLoginClicked(object obj)
@@ -54,7 +59,6 @@ namespace MRC_App.ViewModels
         }
 
         private bool emailValid;
-
         public bool EmailValid
         {
             get => emailValid;
@@ -109,6 +113,17 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged(nameof(IsVisible));
+            }
+        }
+
         private async Task LoginUser()
         {
             Error = ""; //reset error message
@@ -121,14 +136,17 @@ namespace MRC_App.ViewModels
                 Password = Password,
             };
 
-            var login = await RestService.LoginUser(user);
+            IsVisible = true;
 
-            if(login)
+            bool login = false;
+
+            await Task.Run(async () =>
             {
-                var _user = await RestService.GetUserByEmail(user.Email);
-                if(_user != null)
+                login = await RestService.LoginUser(user);
+                if (login)
                 {
-                    try
+                    var _user = await RestService.GetUserByEmail(user.Email);
+                    if (_user != null)
                     {
                         await SecureStorage.SetAsync("Id", _user.Id.ToString());
                         await SecureStorage.SetAsync("Name", _user.Name);
@@ -137,17 +155,24 @@ namespace MRC_App.ViewModels
                         await SecureStorage.SetAsync("Birth", _user.DateOfBirth.ToString());
                         await SecureStorage.SetAsync("Newsletter", _user.isNewsletter.ToString());
                     }
-                    catch (Exception ex)
-                    {
 
-                    }
+                    var appshell = Shell.Current as AppShell;
+                    await Task.Run(() => appshell.SetUser());
+
+                    IsVisible = false;
+
+                    
                 }
+                else
+                {
+                    IsVisible = false;
+                    Error = "Incorrect password/email";
+                }
+            });
 
-                LoginCommand.Execute(user);
-            }
-            else
+            if (login) //due to view hierarchy, it needs to be seperated
             {
-                Error = "Incorrect password/email";
+                LoginCommand.Execute(user);
             }
         }
     }

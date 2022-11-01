@@ -1,14 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using MRC_App.ViewModels;
+﻿using Xamarin.Forms;
 using MRC_App.Models;
 using System.Linq;
-using YoutubeExplode;
-using YoutubeExplode.Videos.Streams;
-using System.Threading.Tasks;
-using Xamarin.CommunityToolkit.UI.Views;
 using Newtonsoft.Json;
 
 namespace MRC_App.Views
