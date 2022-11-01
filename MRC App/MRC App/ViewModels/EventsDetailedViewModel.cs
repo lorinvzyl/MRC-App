@@ -111,16 +111,22 @@ namespace MRC_App.ViewModels
         public ICommand LocationCommand => new Command(OnLocationClicked);
         private async void OnLocationClicked(object obj)
         {
+            var location = SelectedEvent.Venue;
+            location.Replace(" ", "%20");
+            location.Replace(",", "%2C");
+
+            FormattedLocation = location;
+
             var supportsWaze = await Launcher.CanOpenAsync("https://waze.com/ul");
-            var supportsGoogleMaps = await Launcher.CanOpenAsync("comgooglemaps://");
+            var supportsGoogleMaps = await Launcher.CanOpenAsync("https://www.google.com/maps");
             if (supportsWaze && supportsGoogleMaps)
             {
                 LocationIsVisible = true;
             }
             else if (supportsWaze)
-                await Launcher.OpenAsync($"https://waze.com/ul?q={SelectedEvent.Venue}&navigate=yes");
+                await Launcher.OpenAsync($"https://waze.com/ul?q={FormattedLocation}&navigate=yes");
             else if (supportsGoogleMaps)
-                await Launcher.OpenAsync($"comgooglemaps://?daddr={SelectedEvent.Venue}");
+                await Launcher.OpenAsync($"https://www.google.com/maps/dir/?api=1&destintation={FormattedLocation}");
             else
             {
                 Uri uri = new Uri($"https://waze.com/ul?q={SelectedEvent.Venue}&navigate=yes");
@@ -139,6 +145,17 @@ namespace MRC_App.ViewModels
             }
         }
 
+        private string formattedLocation;
+        public string FormattedLocation
+        {
+            get { return formattedLocation; }
+            set
+            {
+                formattedLocation = value;
+                OnPropertyChanged(nameof(FormattedLocation));
+            }
+        }
+
         public async void PopupItemSelected(Navigation navigation)
         {
             LocationIsVisible = false;
@@ -146,10 +163,10 @@ namespace MRC_App.ViewModels
             switch (navigation.Title)
             {
                 case "Google Maps":
-                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync($"comgooglemaps://?daddr={SelectedEvent.Venue}"));
+                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync($"https://www.google.com/maps/dir/?api=1&destintation={FormattedLocation}"));
                     break;
                 case "Waze":
-                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync($"https://waze.com/ul?q={SelectedEvent.Venue}&navigate=yes"));
+                    Device.BeginInvokeOnMainThread(async () => await Launcher.OpenAsync($"https://waze.com/ul?q={FormattedLocation}&navigate=yes"));
                     break;
             }
         }
