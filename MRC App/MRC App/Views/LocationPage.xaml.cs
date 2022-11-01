@@ -33,7 +33,7 @@ namespace MRC_App.Views
             LocationViewModel viewModel = new LocationViewModel();
 
             var supportsWaze = await Launcher.CanOpenAsync("https://waze.com/ul");
-            var supportsGoogleMaps = await Launcher.CanOpenAsync("comgooglemaps://");
+            var supportsGoogleMaps = await Launcher.CanOpenAsync("https://www.google.com/maps"); //always false for some reason?
             if (supportsWaze && supportsGoogleMaps)
             {
                 viewModel.IsVisible = true;
@@ -43,7 +43,7 @@ namespace MRC_App.Views
             else if (supportsWaze)
                 await Launcher.OpenAsync($"https://waze.com/ul?q={location.MapsURL}&navigate=yes");
             else if(supportsGoogleMaps)
-                await Launcher.OpenAsync($"comgooglemaps://?daddr={location.MapsURL}"); //need to add comgooglemaps before it can be valid. Can't seem to find how to do this.
+                await Launcher.OpenAsync($"https://www.google.com/maps/dir/?api=1&destintation={location.MapsURL}");
             else
             {
                 Uri uri = new Uri($"https://waze.com/ul?q={location.MapsURL}&navigate=yes");
