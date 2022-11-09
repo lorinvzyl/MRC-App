@@ -27,10 +27,6 @@ namespace MRC_App.Views
             Event = new ObservableCollection<Event>();
             InitializeComponent();
         }
-        public EventsDetailed(object item)
-        {
-            InitializeComponent();
-        }
 
         private void RSVP_Clicked(object sender, EventArgs e)
         {

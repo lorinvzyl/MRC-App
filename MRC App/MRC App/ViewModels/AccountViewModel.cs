@@ -280,16 +280,6 @@ namespace MRC_App.ViewModels
                 OnPropertyChanged(nameof(DateOfBirth));
             }
         }
-        private string profilePicURL;
-        public string ProfilePicURL
-        {
-            get { return profilePicURL; }
-            set
-            {
-                profilePicURL = value;
-                OnPropertyChanged(nameof(ProfilePicURL));
-            }
-        }
 
         public bool IsNewsletter
         {
