@@ -104,7 +104,7 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private DateTime _minimumDate = new DateTime(2022, 8, 3);
+        private DateTime _minimumDate = DateTime.Today.AddMonths(-5);
         public DateTime MinimumDate
         {
             get => _minimumDate;

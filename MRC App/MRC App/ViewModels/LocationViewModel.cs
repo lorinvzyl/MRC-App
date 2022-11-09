@@ -94,17 +94,6 @@ namespace MRC_App.ViewModels
             }
         }
 
-        private static bool hideNav;
-        public bool HideNav
-        {
-            get { return hideNav; }
-            set
-            {
-                hideNav = value;
-                OnPropertyChanged(nameof(HideNav));
-            }
-        }
-
         async Task Refresh()
         {
             IsBusy = true;
